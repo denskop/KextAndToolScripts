@@ -33,6 +33,9 @@ function svn_co()
 echo -e "\n# Clone ACPI Component Architecture"
 git_clone https://github.com/acpica/acpica.git "ACPICA"
 
+echo -e "\n# Clone Kozlek kexts"
+git_clone https://github.com/kozlek/HWSensors.git "HWSensors"
+
 echo -e "\n# Clone LongSoft tools"
 git_clone https://github.com/LongSoft/UEFITool.git "UEFITool"
 git_clone https://github.com/LongSoft/UEFITool.git "UEFITool(NE)" new_engine

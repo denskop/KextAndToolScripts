@@ -103,6 +103,11 @@ mkdir -p "OS-X-MaciASL-patchmatic/build/Release/MaciASL.app/Contents/MacOS"
 cp "acpica/generate/unix/bin/iasl" "OS-X-MaciASL-patchmatic/iasl4"
 cp "acpica/generate/unix/bin/iasl" "OS-X-MaciASL-patchmatic/iasl61"
 
+echo -e "\n# $build_cmd Kozlek kexts"
+xcode_build3 HWSensors/HWSensors.xcworkspace "Build Kexts" Release
+xcode_build3 HWSensors/HWSensors.xcworkspace "HWMonitor" Release
+xcode_build3 HWSensors/HWSensors.xcworkspace "org.hwsensors.HWMonitorHelper" Release
+
 echo -e "\n# $build_cmd Mieze kexts"
 if [[ ${OSTYPE:6} -le 16 ]]; then # if [macOS < 10.12]; then
     xcode_build AtherosE2200Ethernet/AtherosE2200Ethernet.xcodeproj AtherosE2200Ethernet Release

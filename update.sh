@@ -27,6 +27,9 @@ function svn_update()
 echo -e "\n# Update ACPI Component Architecture"
 git_pull acpica "ACPICA"
 
+echo -e "\n# Update Kozlek kexts"
+git_pull HWSensors
+
 echo -e "\n# Update LongSoft tools"
 git_pull UEFITool
 git_pull "UEFITool(NE)" "UEFITool(NE)"

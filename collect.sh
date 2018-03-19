@@ -16,6 +16,12 @@ mkdir -p "Collection/Tools/ACPICA"
 print "ACPICA"
 cp -R "acpica/generate/unix/bin/" "Collection/Tools/ACPICA/"
 
+echo -e "\n# Collect Kozlek kexts"
+mkdir -p "Collection/FakeSMC"
+#
+print "HWSensors"
+cp -R "HWSensors/Binaries/" "Collection/FakeSMC/"
+
 echo -e "\n# Collect LongSoft tools"
 mkdir -p "Collection/Tools/UEFITool"
 #
