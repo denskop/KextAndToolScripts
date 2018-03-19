@@ -54,18 +54,18 @@ git_clone https://github.com/RehabMan/OS-X-Fake-PCI-ID.git "OSX FakePCIID"
 git_clone https://github.com/RehabMan/OS-X-MaciASL-patchmatic.git "OSX MaciASL"
 
 echo -e "\n# Clone vit9696 kexts and plugins"
-git_clone https://github.com/lvs1974/AirportBrcmFixup.git "AirportBrcmFixup"             #lvs1974
+git_clone https://github.com/lvs1974/AirportBrcmFixup.git "AirportBrcmFixup"            #lvs1974
 git_clone https://github.com/vit9696/AppleALC.git "AppleALC"
-git_clone https://github.com/chunnann/ATH9KFixup.git "ATH9KFixup"						             #chunnann
-git_clone https://github.com/coderobe/AzulPatcher4600.git "AzulPatcher4600"              #coderobe
-git_clone https://github.com/lvs1974/BT4LEContiunityFixup.git "BT4LEContiunityFixup"	   #lvs1974
-git_clone https://github.com/PMheart/CoreDisplayFixup.git "CoreDisplayFixup"    		     #PMheart
-git_clone https://github.com/PMheart/CPUFriend.git "CPUFriend"                           #PMheart
-git_clone https://github.com/syscl/EnableLidWake.git "EnableLidWake"	           		     #syscl
-git_clone https://github.com/lvs1974/HibernationFixup.git "HibernationFixup"    		     #lvs1974	
-git_clone https://github.com/lvs1974/IntelGraphicsFixup.git "IntelGraphicsFixup"         #lvs1974
+git_clone https://github.com/chunnann/ATH9KFixup.git "ATH9KFixup"					    #chunnann
+git_clone https://github.com/coderobe/AzulPatcher4600.git "AzulPatcher4600"             #coderobe
+git_clone https://github.com/lvs1974/BT4LEContiunityFixup.git "BT4LEContiunityFixup"    #lvs1974
+git_clone https://github.com/PMheart/CoreDisplayFixup.git "CoreDisplayFixup"            #PMheart
+git_clone https://github.com/PMheart/CPUFriend.git "CPUFriend"                          #PMheart
+git_clone https://github.com/syscl/EnableLidWake.git "EnableLidWake"	           	    #syscl
+git_clone https://github.com/lvs1974/HibernationFixup.git "HibernationFixup"            #lvs1974
+git_clone https://github.com/lvs1974/IntelGraphicsFixup.git "IntelGraphicsFixup"        #lvs1974
 git_clone https://github.com/vit9696/Lilu.git "Lilu"
-git_clone https://github.com/lvs1974/NvidiaGraphicsFixup.git "NvidiaGraphicsFixup"       #lvs1974
+git_clone https://github.com/lvs1974/NvidiaGraphicsFixup.git "NvidiaGraphicsFixup"      #lvs1974
 git_clone https://github.com/vit9696/Shiki.git "Shiki"
 git_clone https://github.com/vit9696/WhateverGreen.git "WhateverGreen"
 

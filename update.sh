@@ -55,7 +55,7 @@ git_pull AzulPatcher4600        #coderobe
 git_pull BT4LEContiunityFixup	#lvs1974
 git_pull CoreDisplayFixup       #PMheart
 git_pull CPUFriend		        #PMheart
-git_pull EnableLidWake		    #syscl
+git_pull EnableLidWake          #syscl
 git_pull HibernationFixup       #lvs1974	
 git_pull IntelGraphicsFixup	    #lvs1974
 git_pull Lilu
