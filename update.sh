@@ -37,13 +37,15 @@ git_pull IntelMausiEthernet
 git_pull RealtekRTL8100 "Realtek RTL8100"
 git_pull RTL8111_driver_for_OS_X "Realtek RTL8111"
 
-echo -e "\n# Update RehabMan kexts"
+echo -e "\n# Update RehabMan kexts and tools"
 git_pull EAPD-Codec-Commander "EAPD Codec Commander"
 git_pull OS-X-ACPI-Battery-Driver "OSX ACPI Battery Driver"
 git_pull OS-X-ACPI-Debug "OSX ACPI Debug"
 git_pull OS-X-ACPI-Keyboard "OSX ACPI Keyboard"
 git_pull OS-X-BrcmPatchRAM "OSX BrcmPatchRAM"
 git_pull OS-X-Fake-PCI-ID "OSX FakePCIID"
+#
+git_pull OS-X-MaciASL-patchmatic "OSX MaciASL"
 
 echo -e "\n# Update vit9696 kexts and plugins"
 git_pull AirportBrcmFixup       #lvs1974

@@ -40,7 +40,7 @@ cp -R "RealtekRTL8100/build/Release/RealtekRTL8100.kext" "Collection/LAN/"
 print "Realtek RTL8111"
 cp -R "RTL8111_driver_for_OS_X/build/Release/RealtekRTL8111.kext" "Collection/LAN/"
 
-echo -e "\n# Collect RehabMan kexts"
+echo -e "\n# Collect RehabMan kexts and tools"
 mkdir -p "Collection/Laptop"
 mkdir -p "Collection/Misc"
 mkdir -p "Collection/FakePCIID"
@@ -65,6 +65,9 @@ cp -R "OS-X-BrcmPatchRAM/build/Products/Release/" "Collection/Bluetooth/BrcmPatc
 #
 print "OSX FakePCIID"
 cp -R "OS-X-Fake-PCI-ID/build/Release/" "Collection/FakePCIID/"
+#
+print "OSX MaciASL"
+cp -R "OS-X-MaciASL-patchmatic/build/Release/MaciASL.app" "Collection/Tools/"
 
 echo -e "\n# Collect vit9696 kexts and plugins"
 mkdir -p "Collection/Lilu+Plugins"

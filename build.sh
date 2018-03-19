@@ -79,13 +79,20 @@ function qt_build()
     cd ..
 }
 
+echo -e "\n# $build_cmd ACPI Component Architecture"
+make_build acpica "ACPICA"
+# Copy iasl
+mkdir -p "OS-X-MaciASL-patchmatic/build/Release/MaciASL.app/Contents/MacOS"
+cp "acpica/generate/unix/bin/iasl" "OS-X-MaciASL-patchmatic/iasl4"
+cp "acpica/generate/unix/bin/iasl" "OS-X-MaciASL-patchmatic/iasl61"
+
 echo -e "\n# $build_cmd Mieze kexts"
 xcode_build AtherosE2200Ethernet/AtherosE2200Ethernet.xcodeproj AtherosE2200Ethernet Release
 xcode_build IntelMausiEthernet/IntelMausiEthernet.xcodeproj IntelMausiEthernet Release
 xcode_build RealtekRTL8100/RealtekRTL8100.xcodeproj RealtekRTL8100 Release
 xcode_build RTL8111_driver_for_OS_X/RealtekRTL8111.xcodeproj RealtekRTL8111-V2 Release
 
-echo -e "\n# $build_cmd RehabMan kexts"
+echo -e "\n# $build_cmd RehabMan kexts and tools"
 xcode_build OS-X-ACPI-Battery-Driver/ACPIBatteryManager.xcodeproj ACPIBatteryManager Release force
 xcode_build OS-X-ACPI-Debug/ACPIDebug.xcodeproj ACPIDebug Release force
 xcode_build OS-X-ACPI-Keyboard/ACPIKeyboard.xcodeproj ACPIKeyboard Release force
@@ -111,6 +118,8 @@ xcode_build OS-X-Fake-PCI-ID/FakePCIID.xcodeproj FakePCIID_Broadcom_WiFi Release
 xcode_build OS-X-Fake-PCI-ID/FakePCIID.xcodeproj FakePCIID_BCM57XX_as_BCM57765 Release plugin force
 xcode_build OS-X-Fake-PCI-ID/FakePCIID.xcodeproj FakePCIID_Intel_GbX Release plugin force
 xcode_build OS-X-Fake-PCI-ID/FakePCIID.xcodeproj FakePCIID_XHCIMux Release plugin force
+#
+xcode_build OS-X-MaciASL-patchmatic/MaciASL.xcodeproj MaciASL Release force
 
 echo -e "\n# $build_cmd vit9696 kexts and plugins"
 xcode_build Lilu/Lilu.xcodeproj Lilu Debug
@@ -141,16 +150,15 @@ xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CSynaptics/VoodooI2CSynaptic
 #
 # Copy kexts
 mkdir -p "VoodooI2C/VoodooI2C/build/Release"
-cp -R "VoodooI2C/Dependencies/VoodooGPIO/build/Release/VoodooGPIO.kext"  "VoodooI2C/VoodooI2C/build/Release/"
-cp -R "VoodooI2C/Dependencies/VoodooI2CServices/build/Release/VoodooI2CServices.kext"  "VoodooI2C/VoodooI2C/build/Release/"
+if [ "$build_cmd" != "clean" ]; then
+    cp -R "VoodooI2C/Dependencies/VoodooGPIO/build/Release/VoodooGPIO.kext"  "VoodooI2C/VoodooI2C/build/Release/"
+    cp -R "VoodooI2C/Dependencies/VoodooI2CServices/build/Release/VoodooI2CServices.kext"  "VoodooI2C/VoodooI2C/build/Release/"
+fi
 #
 xcode_build "VoodooI2C/VoodooI2C/VoodooI2C.xcodeproj" VoodooI2C Release force
 
 echo -e "\n# $build_cmd Piker-Alpha kexts and tools"
 xcode_build "AppleIntelInfo/AppleIntelInfo.xcodeproj" AppleIntelInfo Release
-
-echo -e "\n# $build_cmd ACPI Component Architecture"
-make_build acpica "ACPICA"
 
 echo -e "\n# $build_cmd LongSoft tools"
 qt_build UEFITool uefitool.pro

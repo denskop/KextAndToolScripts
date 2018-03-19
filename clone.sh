@@ -43,13 +43,15 @@ git_clone https://github.com/Mieze/IntelMausiEthernet.git "IntelMausiEthernet"
 git_clone https://github.com/Mieze/RealtekRTL8100.git "Realtek RTL8100"
 git_clone https://github.com/Mieze/RTL8111_driver_for_OS_X.git "Realtek RTL8111"
 
-echo -e "\n# Clone RehabMan kexts"
+echo -e "\n# Clone RehabMan kexts and tools"
 git_clone https://github.com/RehabMan/EAPD-Codec-Commander.git "EAPD Codec Commander"
 git_clone https://github.com/RehabMan/OS-X-ACPI-Battery-Driver.git "OSX ACPI Battery Driver"
 git_clone https://github.com/RehabMan/OS-X-ACPI-Debug.git "OSX ACPI Debug"
 git_clone https://github.com/RehabMan/OS-X-ACPI-Keyboard.git "OSX ACPI Keyboard"
 git_clone https://github.com/RehabMan/OS-X-BrcmPatchRAM.git "OSX BrcmPatchRAM"
 git_clone https://github.com/RehabMan/OS-X-Fake-PCI-ID.git "OSX FakePCIID"
+#
+git_clone https://github.com/RehabMan/OS-X-MaciASL-patchmatic.git "OSX MaciASL"
 
 echo -e "\n# Clone vit9696 kexts and plugins"
 git_clone https://github.com/lvs1974/AirportBrcmFixup.git "AirportBrcmFixup"            #lvs1974
