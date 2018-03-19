@@ -54,18 +54,18 @@ git_clone https://github.com/RehabMan/OS-X-Fake-PCI-ID.git "OSX FakePCIID"
 git_clone https://github.com/RehabMan/OS-X-MaciASL-patchmatic.git "OSX MaciASL"
 
 echo -e "\n# Clone vit9696 kexts and plugins"
-git_clone https://github.com/lvs1974/AirportBrcmFixup.git "AirportBrcmFixup"            #lvs1974
+git_clone https://github.com/lvs1974/AirportBrcmFixup.git "AirportBrcmFixup"             #lvs1974
 git_clone https://github.com/vit9696/AppleALC.git "AppleALC"
-git_clone https://github.com/chunnann/ATH9KFixup.git "ATH9KFixup"						#chunnann
-git_clone https://github.com/coderobe/AzulPatcher4600.git "AzulPatcher4600"             #coderobe
-git_clone https://github.com/lvs1974/BT4LEContiunityFixup.git "BT4LEContiunityFixup"	#lvs1974
-git_clone https://github.com/PMheart/CoreDisplayFixup.git "CoreDisplayFixup"    		#PMheart
-git_clone https://github.com/PMheart/CPUFriend.git "CPUFriend"                          #PMheart
-git_clone https://github.com/syscl/EnableLidWake.git "EnableLidWake"	           		#syscl
-git_clone https://github.com/lvs1974/HibernationFixup.git "HibernationFixup"    		#lvs1974	
-git_clone https://github.com/lvs1974/IntelGraphicsFixup.git "IntelGraphicsFixup"        #lvs1974
+git_clone https://github.com/chunnann/ATH9KFixup.git "ATH9KFixup"						             #chunnann
+git_clone https://github.com/coderobe/AzulPatcher4600.git "AzulPatcher4600"              #coderobe
+git_clone https://github.com/lvs1974/BT4LEContiunityFixup.git "BT4LEContiunityFixup"	   #lvs1974
+git_clone https://github.com/PMheart/CoreDisplayFixup.git "CoreDisplayFixup"    		     #PMheart
+git_clone https://github.com/PMheart/CPUFriend.git "CPUFriend"                           #PMheart
+git_clone https://github.com/syscl/EnableLidWake.git "EnableLidWake"	           		     #syscl
+git_clone https://github.com/lvs1974/HibernationFixup.git "HibernationFixup"    		     #lvs1974	
+git_clone https://github.com/lvs1974/IntelGraphicsFixup.git "IntelGraphicsFixup"         #lvs1974
 git_clone https://github.com/vit9696/Lilu.git "Lilu"
-git_clone https://github.com/lvs1974/NvidiaGraphicsFixup.git "NvidiaGraphicsFixup"      #lvs1974
+git_clone https://github.com/lvs1974/NvidiaGraphicsFixup.git "NvidiaGraphicsFixup"       #lvs1974
 git_clone https://github.com/vit9696/Shiki.git "Shiki"
 git_clone https://github.com/vit9696/WhateverGreen.git "WhateverGreen"
 
@@ -89,16 +89,16 @@ git_clone https://github.com/Piker-Alpha/AppleIntelInfo.git "AppleIntelInfo"
 git_clone https://github.com/Piker-Alpha/ssdtPRGen.sh "ssdtPRGen"
 
 echo -e "\n# Clone UEFI projects"
-git_clone https://github.com/tianocore/edk2.git "EDK2"                              #Tianocore
+git_clone https://github.com/tianocore/edk2.git "EDK2"                                                      #Tianocore
 #svn_co https://svn.code.sf.net/p/edk2/code/trunk . "EDK2"
 #
-svn_co https://svn.code.sf.net/p/cloverefiboot/code edk2/Clover "Clover EFI Bootloader"  #CloverTeam
+svn_co https://svn.code.sf.net/p/cloverefiboot/code edk2/Clover "Clover EFI Bootloader"                     #CloverTeam
 # UEFI useful packages
-git_clone2 https://github.com/CupertinoNet/CupertinoModulePkg edk2/CupertinoModulePkg "CupertinoModulePkg"   #CupertinoNet
-git_clone2 https://github.com/CupertinoNet/EfiMiscPkg edk2/EfiMiscPkg "EfiMiscPkg"                   #CupertinoNet
-git_clone2 https://github.com/CupertinoNet/EfiPkg edk2/EfiPkg "EfiPkg"                           #CupertinoNet
+git_clone2 https://github.com/CupertinoNet/CupertinoModulePkg edk2/CupertinoModulePkg "CupertinoModulePkg"  #CupertinoNet
+git_clone2 https://github.com/CupertinoNet/EfiMiscPkg edk2/EfiMiscPkg "EfiMiscPkg"                          #CupertinoNet
+git_clone2 https://github.com/CupertinoNet/EfiPkg edk2/EfiPkg "EfiPkg"                                      #CupertinoNet
 #
-git_clone2 https://github.com/vit9696/AptioFixPkg.git edk2/AptioFixPkg "AptioFixPkg"                  #vit9696
+git_clone2 https://github.com/vit9696/AptioFixPkg.git edk2/AptioFixPkg "AptioFixPkg"                        #vit9696
 
 
 
