@@ -34,6 +34,7 @@ git_pull "UEFITool(NE)" "UEFITool(NE)"
 echo -e "\n# Update Mieze kexts"
 git_pull AtherosE2200Ethernet
 git_pull IntelMausiEthernet
+git_pull RealtekRTL8100 "Realtek RTL8100"
 git_pull RTL8111_driver_for_OS_X "Realtek RTL8111"
 
 echo -e "\n# Update RehabMan kexts"

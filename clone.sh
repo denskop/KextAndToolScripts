@@ -40,6 +40,7 @@ git_clone https://github.com/LongSoft/UEFITool.git "UEFITool(NE)" new_engine
 echo -e "\n# Clone Mieze kexts"
 git_clone https://github.com/Mieze/AtherosE2200Ethernet.git "AtherosE2200Ethernet"
 git_clone https://github.com/Mieze/IntelMausiEthernet.git "IntelMausiEthernet"
+git_clone https://github.com/Mieze/RealtekRTL8100.git "Realtek RTL8100"
 git_clone https://github.com/Mieze/RTL8111_driver_for_OS_X.git "Realtek RTL8111"
 
 echo -e "\n# Clone RehabMan kexts"

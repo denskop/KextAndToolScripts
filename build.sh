@@ -82,6 +82,7 @@ function qt_build()
 echo -e "\n# $build_cmd Mieze kexts"
 xcode_build AtherosE2200Ethernet/AtherosE2200Ethernet.xcodeproj AtherosE2200Ethernet Release
 xcode_build IntelMausiEthernet/IntelMausiEthernet.xcodeproj IntelMausiEthernet Release
+xcode_build RealtekRTL8100/RealtekRTL8100.xcodeproj RealtekRTL8100 Release
 xcode_build RTL8111_driver_for_OS_X/RealtekRTL8111.xcodeproj RealtekRTL8111-V2 Release
 
 echo -e "\n# $build_cmd RehabMan kexts"

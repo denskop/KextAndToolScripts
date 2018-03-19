@@ -34,6 +34,9 @@ cp -R "AtherosE2200Ethernet/build/Release/AtherosE2200Ethernet.kext" "Collection
 print "IntelMausiEthernet"
 cp -R "IntelMausiEthernet/build/Release/IntelMausiEthernet.kext" "Collection/LAN/"
 #
+print "Realtek RTL8100"
+cp -R "RealtekRTL8100/build/Release/RealtekRTL8100.kext" "Collection/LAN/"
+#
 print "Realtek RTL8111"
 cp -R "RTL8111_driver_for_OS_X/build/Release/RealtekRTL8111.kext" "Collection/LAN/"
 
