@@ -53,6 +53,9 @@ git_clone https://github.com/RehabMan/OS-X-Fake-PCI-ID.git "OSX FakePCIID"
 #
 git_clone https://github.com/RehabMan/OS-X-MaciASL-patchmatic.git "OSX MaciASL"
 
+echo -e "\n# Clone Slice kexts"
+svn_co https://svn.code.sf.net/p/voodoohda/code "VoodooHDA"
+
 echo -e "\n# Clone vit9696 kexts and plugins"
 git_clone https://github.com/lvs1974/AirportBrcmFixup.git "AirportBrcmFixup"            #lvs1974
 git_clone https://github.com/vit9696/AppleALC.git "AppleALC"

@@ -69,6 +69,13 @@ cp -R "OS-X-Fake-PCI-ID/build/Release/" "Collection/FakePCIID/"
 print "OSX MaciASL"
 cp -R "OS-X-MaciASL-patchmatic/build/Release/MaciASL.app" "Collection/Tools/"
 
+echo -e "\n# Collect Slice kexts"
+mkdir -p "Collection/Sound/VoodooHDA"
+#
+print "VoodooHDA"
+cp -R "VoodooHDA/tranc/build/Release/VoodooHDA.kext" "Collection/Sound/VoodooHDA"
+cp -R "VoodooHDA/VoodooHdaSettingsLoader/src/build/Release/VoodooHdaSettingsLoader.app" "Collection/Sound/VoodooHDA"
+
 echo -e "\n# Collect vit9696 kexts and plugins"
 mkdir -p "Collection/Lilu+Plugins"
 #

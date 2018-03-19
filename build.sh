@@ -153,6 +153,11 @@ xcode_build OS-X-Fake-PCI-ID/FakePCIID.xcodeproj FakePCIID_XHCIMux Release plugi
 #
 xcode_build OS-X-MaciASL-patchmatic/MaciASL.xcodeproj MaciASL Release force
 
+echo -e "\n# $build_cmd Slice kexts"
+xcode_build VoodooHDA/tranc/VoodooHDA.xcodeproj VoodooHDA Release force
+xcode_build VoodooHDA/VHDAPrefPane/VoodooHDA/VoodooHDA.xcodeproj VoodooHDA Release force
+xcode_build VoodooHDA/VoodooHdaSettingsLoader/src/VoodooHdaSettingsLoader.xcodeproj VoodooHdaSettingsLoader Release force
+
 echo -e "\n# $build_cmd vit9696 kexts and plugins"
 xcode_build Lilu/Lilu.xcodeproj Lilu Debug
 xcode_build Lilu/Lilu.xcodeproj Lilu Release

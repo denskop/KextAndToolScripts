@@ -47,6 +47,9 @@ git_pull OS-X-Fake-PCI-ID "OSX FakePCIID"
 #
 git_pull OS-X-MaciASL-patchmatic "OSX MaciASL"
 
+echo -e "\n# Update Slice kexts"
+svn_update VoodooHDA
+
 echo -e "\n# Update vit9696 kexts and plugins"
 git_pull AirportBrcmFixup       #lvs1974
 git_pull AppleALC
