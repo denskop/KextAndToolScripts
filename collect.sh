@@ -146,9 +146,40 @@ cp -R "AppleIntelInfo/build/Release/AppleIntelInfo.kext" "Collection/Misc"
 
 echo -e "\n# Collect UEFI projects"
 mkdir -p "Collection/UEFI/drivers64UEFI"
+mkdir -p "Collection/UEFI/BOOT"
+mkdir -p "Collection/UEFI/Misc"
 #
 print "AptioMemoryFix"
 cp "edk2/Build/AptioFixPkg/RELEASE_XCODE5/X64/AptioMemoryFix.efi" "Collection/UEFI/drivers64UEFI/AptioMemoryFix-64.efi"
 #
 print "AptioInputFix"
 cp "edk2/Build/AptioFixPkg/RELEASE_XCODE5/X64/AptioInputFix.efi" "Collection/UEFI/drivers64UEFI/AptioInputFix-64.efi"
+
+print "Clover EFI Bootloader"
+# bootloader
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/CLOVER.efi" "Collection/UEFI/BOOT/BOOTX64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/CLOVER.efi" "Collection/UEFI/CLOVERX64.efi"
+
+# drivers
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/DataHubDxe.efi" "Collection/UEFI/drivers64UEFI/DataHubDxe-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/AppleImageCodec.efi" "Collection/UEFI/drivers64UEFI/AppleImageCodec-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/AppleKeyAggregator.efi" "Collection/UEFI/drivers64UEFI/AppleKeyAggregator-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/AppleUITheme.efi" "Collection/UEFI/drivers64UEFI/AppleUITheme-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/EmuVariableUefi.efi" "Collection/UEFI/drivers64UEFI/EmuVariableUefi-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/Fat.efi" "Collection/UEFI/drivers64UEFI/Fat-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/FirmwareVolume.efi" "Collection/UEFI/drivers64UEFI/FirmwareVolume-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/FSInject.efi" "Collection/UEFI/drivers64UEFI/FSInject-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/OsxAptioFix2Drv.efi" "Collection/UEFI/drivers64UEFI/OsxAptioFix2Drv-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/OsxAptioFix3Drv.efi" "Collection/UEFI/drivers64UEFI/OsxAptioFix3Drv-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/OsxAptioFixDrv.efi" "Collection/UEFI/drivers64UEFI/OsxAptioFixDrv-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/OsxFatBinaryDrv.efi" "Collection/UEFI/drivers64UEFI/OsxFatBinaryDrv-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/OsxLowMemFixDrv.efi" "Collection/UEFI/drivers64UEFI/OsxLowMemFixDrv-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/PartitionDxe.efi" "Collection/UEFI/drivers64UEFI/PartitionDxe-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/SMCHelper.efi" "Collection/UEFI/drivers64UEFI/SMCHelper-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/VBoxHfs.efi" "Collection/UEFI/drivers64UEFI/VBoxHfs-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/CsmVideoDxe.efi" "Collection/UEFI/drivers64UEFI/CsmVideoDxe-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/UsbKbDxe.efi" "Collection/UEFI/drivers64UEFI/UsbKbDxe-64.efi"
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/UsbMouseDxe.efi" "Collection/UEFI/drivers64UEFI/UsbMouseDxe-64.efi"
+
+# additinal drivers
+cp "edk2/Build/Clover/RELEASE_XCODE5/X64/DumpUefiCalls.efi" "Collection/UEFI/Misc/DumpUefiCalls-64.efi"
