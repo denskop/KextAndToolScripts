@@ -143,3 +143,12 @@ mkdir -p "Collection/Misc"
 #
 print "AppleIntelInfo"
 cp -R "AppleIntelInfo/build/Release/AppleIntelInfo.kext" "Collection/Misc"
+
+echo -e "\n# Collect UEFI projects"
+mkdir -p "Collection/UEFI/drivers64UEFI"
+#
+print "AptioMemoryFix"
+cp "edk2/Build/AptioFixPkg/RELEASE_XCODE5/X64/AptioMemoryFix.efi" "Collection/UEFI/drivers64UEFI/AptioMemoryFix-64.efi"
+#
+print "AptioInputFix"
+cp "edk2/Build/AptioFixPkg/RELEASE_XCODE5/X64/AptioInputFix.efi" "Collection/UEFI/drivers64UEFI/AptioInputFix-64.efi"

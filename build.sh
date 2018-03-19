@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SELF_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 qmake=/Applications/Qt/5.9.2/clang_64/bin/qmake
 
 if [ "$1" == "clean" ]; then
@@ -77,6 +79,12 @@ function qt_build()
 		make clean >/dev/null | grep -e "error|warning"
 	fi
     cd ..
+}
+
+function edk2_build()
+{
+    echo "🔹 $(tput bold)$4$(tput sgr0) (X64, $1)"
+    build -a X64 -b $1 -t $2 -p $3 >/dev/null | grep -e "error|warning"
 }
 
 echo -e "\n# $build_cmd ACPI Component Architecture"
@@ -165,3 +173,16 @@ qt_build UEFITool uefitool.pro
 #qt_build UEFITool_NE UEFIExtract/uefiextract.pro
 #qt_build UEFITool_NE UEFIFind/uefifind.pro
 qt_build "UEFITool(NE)" UEFITool/uefitool.pro
+
+echo -e "\n# $build_cmd UEFI projects"
+# Setup EDK2
+cd edk2
+make_build BaseTools "EDK2 BaseTools"
+source edksetup.sh 
+
+# Build AptioFixPkg
+edk2_build RELEASE XCODE5 AptioFixPkg/AptioFixPkg.dsc "AptioFixPkg"
+
+# Build Clover
+cp -R Clover/Patches_for_EDK2/* .
+./Clover/ebuild.sh -fr -x64

@@ -78,12 +78,15 @@ echo -e "\n# Update Piker-Alpha kexts and tools"
 git_pull "AppleIntelInfo"
 git_pull "ssdtPRGen.sh" "ssdtPRGen"
 
-echo -e "\n# Update AptioFixPkg"
-git_pull AptioFixPkg
-
-echo -e "\n# Update EDK2"
-git_pull edk2 "EDK2"
+echo -e "\n# Update UEFI projects"
+git_pull edk2 "EDK2"                                #TianoCore
 #svn_update edk2
 
-echo -e "\n# Update Clover EFI Bootloader"
-svn_update Clover
+svn_update edk2/Clover "Clover EFI Bootloader"      #CloverTeam
+
+#cd edk2
+git_pull "edk2/AptioFixPkg" "AptioFixPkg"                        #vit9696
+# UEFI useful packages
+git_pull "edk2/CupertinoModulePkg" "CupertinoModulePkg"              #CupertinoNet   
+git_pull "edk2/EfiMiscPkg" "EfiMiscPkg"                         #CupertinoNet
+git_pull "edk2/EfiPkg" "EfiPkg"                            #CupertinoNet

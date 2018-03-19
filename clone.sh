@@ -89,7 +89,48 @@ git_clone https://github.com/Piker-Alpha/AppleIntelInfo.git "AppleIntelInfo"
 git_clone https://github.com/Piker-Alpha/ssdtPRGen.sh "ssdtPRGen"
 
 echo -e "\n# Clone UEFI projects"
-git_clone https://github.com/vit9696/AptioFixPkg.git "AptioFixPkg"
-git_clone https://github.com/tianocore/edk2.git "EDK2"
+git_clone https://github.com/tianocore/edk2.git "EDK2"                              #Tianocore
 #svn_co https://svn.code.sf.net/p/edk2/code/trunk . "EDK2"
-svn_co https://svn.code.sf.net/p/cloverefiboot/code Clover "Clover EFI Bootloader"
+#
+svn_co https://svn.code.sf.net/p/cloverefiboot/code edk2/Clover "Clover EFI Bootloader"  #CloverTeam
+# UEFI useful packages
+git_clone2 https://github.com/CupertinoNet/CupertinoModulePkg edk2/CupertinoModulePkg "CupertinoModulePkg"   #CupertinoNet
+git_clone2 https://github.com/CupertinoNet/EfiMiscPkg edk2/EfiMiscPkg "EfiMiscPkg"                   #CupertinoNet
+git_clone2 https://github.com/CupertinoNet/EfiPkg edk2/EfiPkg "EfiPkg"                           #CupertinoNet
+#
+git_clone2 https://github.com/vit9696/AptioFixPkg.git edk2/AptioFixPkg "AptioFixPkg"                  #vit9696
+
+
+
+echo -e "\n# Check and Install missing tools"
+
+# Check NASM by vit9696
+if [ "$(nasm -v)" = "" ] || [ "$(nasm -v | grep Apple)" != "" ]; then
+  echo "1. nasm - $(tput bold)FAILED$(tput sgr0)"
+  pushd /tmp >/dev/null
+  rm -rf "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}"
+  curl -O "http://www.nasm.us/pub/nasm/releasebuilds/${NASMVER}/macosx/nasm-${NASMVER}-macosx.zip" || exit 1
+  unzip -q "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}/nasm" "nasm-${NASMVER}/ndisasm" || exit 1
+  sudo mkdir -p /usr/local/bin || exit 1
+  sudo mv "nasm-${NASMVER}/nasm" /usr/local/bin/ || exit 1
+  sudo mv "nasm-${NASMVER}/ndisasm" /usr/local/bin/ || exit 1
+  rm -rf "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}"
+  popd >/dev/null
+else
+  echo "1. nasm - $(tput bold)PASSED$(tput sgr0)"
+fi
+
+# Check MTOCK by vit9696
+if [ "$(which mtoc.NEW)" == "" ] || [ "$(which mtoc)" == "" ]; then
+  echo "2. mtoc - $(tput bold)FAILED$(tput sgr0)"
+  rm -f mtoc mtoc.NEW
+  unzip -q external/mtoc-mac64.zip mtoc mtoc.NEW || exit 1
+  sudo mkdir -p /usr/local/bin || exit 1
+  sudo mv mtoc /usr/local/bin/ || exit 1
+  sudo mv mtoc.NEW /usr/local/bin/ || exit 1
+else
+  echo "2. mtoc - $(tput bold)PASSED$(tput sgr0)"
+fi
+
+# Check qmake
+echo "3. qmake - $(tput bold)UNKNOWN$(tput sgr0). Set qmake location to build.sh manually!"
