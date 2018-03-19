@@ -139,6 +139,7 @@ xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CHID/VoodooI2CHID.xcodeproj"
 xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CSynaptics/VoodooI2CSynaptics.xcodeproj" VoodooI2CSynaptics Release plugin force
 #
 # Copy kexts
+mkdir -p "VoodooI2C/VoodooI2C/build/Release"
 cp -R "VoodooI2C/Dependencies/VoodooGPIO/build/Release/VoodooGPIO.kext"  "VoodooI2C/VoodooI2C/build/Release/"
 cp -R "VoodooI2C/Dependencies/VoodooI2CServices/build/Release/VoodooI2CServices.kext"  "VoodooI2C/VoodooI2C/build/Release/"
 #
