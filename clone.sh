@@ -5,9 +5,9 @@ function git_clone()
     echo "🔸 $(tput bold)$2$(tput sgr0):"
 
     if [ -z "$3" ]; then
-        git clone $1
+        git clone "$1"
     else
-        git clone $1 $2 -b $3
+        git clone "$1" "$2" -b "$3"
     fi 
 
 }
@@ -27,7 +27,7 @@ function svn_co()
         echo "🔸 $(tput bold)$3$(tput sgr0):"
     fi
 
-    svn checkout $1 $2
+    svn checkout "$1" "$2"
 }
 
 echo -e "\n# Clone ACPI Component Architecture"
@@ -87,5 +87,6 @@ git_clone https://github.com/Piker-Alpha/ssdtPRGen.sh "ssdtPRGen"
 
 echo -e "\n# Clone UEFI projects"
 git_clone https://github.com/vit9696/AptioFixPkg.git "AptioFixPkg"
-svn_co https://svn.code.sf.net/p/edk2/code/trunk . "EDK2"
+git_clone https://github.com/tianocore/edk2.git "EDK2"
+#svn_co https://svn.code.sf.net/p/edk2/code/trunk . "EDK2"
 svn_co https://svn.code.sf.net/p/cloverefiboot/code Clover "Clover EFI Bootloader"

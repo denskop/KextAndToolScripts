@@ -72,14 +72,15 @@ git_pull "VoodooI2C/VoodooI2C Satellites/VoodooI2CUPDDEngine" "VoodooI2CUPDDEngi
 git_pull "VoodooI2C-Patches" "VoodooI2C Patches"
 
 echo -e "\n# Update Piker-Alpha kexts and tools"
-git_clone "AppleIntelInfo"
-git_clone "ssdtPRGen.sh" "ssdtPRGen"
+git_pull "AppleIntelInfo"
+git_pull "ssdtPRGen.sh" "ssdtPRGen"
 
 echo -e "\n# Update AptioFixPkg"
 git_pull AptioFixPkg
 
 echo -e "\n# Update EDK2"
-svn_update edk2
+git_pull edk2 "EDK2"
+#svn_update edk2
 
 echo -e "\n# Update Clover EFI Bootloader"
 svn_update Clover
