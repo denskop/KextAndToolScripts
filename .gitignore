@@ -5,4 +5,7 @@
 !.gitignore
 
 # Allow scripts
-!*.sh
+!build.sh
+!clone.sh
+!collect.sh
+!update.sh
