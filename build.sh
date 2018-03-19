@@ -104,10 +104,20 @@ cp "acpica/generate/unix/bin/iasl" "OS-X-MaciASL-patchmatic/iasl4"
 cp "acpica/generate/unix/bin/iasl" "OS-X-MaciASL-patchmatic/iasl61"
 
 echo -e "\n# $build_cmd Mieze kexts"
-xcode_build AtherosE2200Ethernet/AtherosE2200Ethernet.xcodeproj AtherosE2200Ethernet Release
+if [[ ${OSTYPE:6} -le 16 ]]; then # if [macOS < 10.12]; then
+    xcode_build AtherosE2200Ethernet/AtherosE2200Ethernet.xcodeproj AtherosE2200Ethernet Release
+else
+    xcode_build AtherosE2200Ethernet/AtherosE2200Ethernet.xcodeproj AtherosE2200EthernetV2 Release
+fi
+
 xcode_build IntelMausiEthernet/IntelMausiEthernet.xcodeproj IntelMausiEthernet Release
 xcode_build RealtekRTL8100/RealtekRTL8100.xcodeproj RealtekRTL8100 Release
-xcode_build RTL8111_driver_for_OS_X/RealtekRTL8111.xcodeproj RealtekRTL8111-V2 Release
+
+if [[ ${OSTYPE:6} -le 16 ]]; then # if [macOS < 10.12]; then
+    xcode_build RTL8111_driver_for_OS_X/RealtekRTL8111.xcodeproj RealtekRTL8111 Release
+else
+    xcode_build RTL8111_driver_for_OS_X/RealtekRTL8111.xcodeproj RealtekRTL8111-V2 Release
+fi
 
 echo -e "\n# $build_cmd RehabMan kexts and tools"
 xcode_build OS-X-ACPI-Battery-Driver/ACPIBatteryManager.xcodeproj ACPIBatteryManager Release force
@@ -123,8 +133,13 @@ fi
 
 xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmFirmwareData Release plugin force
 xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmFirmwareRepo Release plugin force
-xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmNonPatchRAM Release plugin force
-xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmNonPatchRAM2 Release plugin force
+
+if [[ ${OSTYPE:6} -le 15 ]]; then # if [macOS < 10.11]; then
+    xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmNonPatchRAM Release plugin force
+else
+    xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmNonPatchRAM2 Release plugin force
+fi
+
 xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmBluetoothInjector Release plugin force
 
 xcode_build OS-X-Fake-PCI-ID/FakePCIID.xcodeproj FakePCIID Release force
