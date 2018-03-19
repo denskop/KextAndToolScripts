@@ -34,7 +34,7 @@ function xcode_build2()
     	rm -R $2/Lilu.kext
        #rm -R $2/build/Release/*.zip
     fi
-    xcode_build $1 $2 $3 $4 $5
+    xcode_build "$1" "$2" "$3" "$4" "$5"
 }
 
 function xcode_build3()
@@ -46,9 +46,9 @@ function xcode_build3()
     fi
 
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
-        xcodebuild -workspace $1  -scheme $2 -configuration $3 -sdk macosx -quiet $build_cmd
+        xcodebuild -workspace "$1"  -scheme "$2" -configuration "$3" -sdk macosx -quiet $build_cmd
     else
-        xcodebuild -workspace $1  -scheme $2 -configuration $3 -quiet $build_cmd
+        xcodebuild -workspace "$1"  -scheme "$2" -configuration "$3" -quiet $build_cmd
     fi
 }
 
@@ -61,9 +61,9 @@ function make_build()
     fi
 
     if [ "$build_cmd" != "clean" ]; then
-    	make -C $1 >/dev/null | grep -e "error|warning"
+    	make -C "$1" >/dev/null | grep -e "error|warning"
     else
-    	make -C $1 clean >/dev/null | grep -e "error|warning"
+    	make -C "$1" clean >/dev/null | grep -e "error|warning"
     fi 
 }
 
@@ -73,7 +73,7 @@ function qt_build()
     cd $1
 
     if [ "$build_cmd" != "clean" ]; then
-    	$qmake $2 >/dev/null | grep -e "error|warning"
+    	$qmake "$2" >/dev/null | grep -e "error|warning"
     	make >/dev/null | grep -e "error|warning"
 	else
 		make clean >/dev/null | grep -e "error|warning"
@@ -84,7 +84,16 @@ function qt_build()
 function edk2_build()
 {
     echo "🔹 $(tput bold)$4$(tput sgr0) (X64, $1)"
-    build -a X64 -b $1 -t $2 -p $3 >/dev/null | grep -e "error|warning"
+    if [ "$build_cmd" != "clean" ]; then
+        build -a X64 -b "$1" -t "$2" -p "$3" >/dev/null | grep -e "error|warning"
+    else
+        build clean -a X64 -b "$1" -t "$2" -p "$3" >/dev/null | grep -e "error|warning"
+    fi  
+}
+
+function print()
+{
+    echo "🔹 $(tput bold)$1$(tput sgr0) (X64, $2)" 
 }
 
 echo -e "\n# $build_cmd ACPI Component Architecture"
@@ -184,5 +193,10 @@ source edksetup.sh
 edk2_build RELEASE XCODE5 AptioFixPkg/AptioFixPkg.dsc "AptioFixPkg"
 
 # Build Clover
+print "Clover EFI Bootloader" "RELEASE"
 cp -R Clover/Patches_for_EDK2/* .
-./Clover/ebuild.sh -fr -x64
+if [ "$build_cmd" != "clean" ]; then
+    ./Clover/ebuild.sh -fr -x64 >/dev/null | grep -e "error|warning"
+else
+    ./Clover/ebuild.sh clean >/dev/null | grep -e "error|warning"
+fi
