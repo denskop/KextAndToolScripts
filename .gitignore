@@ -1,0 +1,8 @@
+# Ignore all files
+*
+
+# Allow gitignore
+!.gitignore
+
+# Allow scripts
+!*.sh
