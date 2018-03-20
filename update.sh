@@ -93,7 +93,7 @@ git_pull "AppleIntelInfo"
 git_pull "ssdtPRGen.sh" "ssdtPRGen"
 
 echo -e "\n# Update UEFI projects"
-git_pull edk2 "EDK2"                                        #TianoCore
+#git_pull edk2 "EDK2"                                       #TianoCore
 #svn_update edk2
 svn_update edk2/Clover "Clover EFI Bootloader"              #CloverTeam
 git_pull "edk2/AptioFixPkg" "AptioFixPkg"                   #vit9696
