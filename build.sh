@@ -178,7 +178,7 @@ fi
 xcode_build IntelMausiEthernet/IntelMausiEthernet.xcodeproj IntelMausiEthernet Release
 xcode_build RealtekRTL8100/RealtekRTL8100.xcodeproj RealtekRTL8100 Release
 
-if [[ ${OSTYPE:6} -le 16 ]]; then # if [macOS < 10.12]; then
+if [[ ${OSTYPE:6} -lt 16 ]]; then # if [macOS < 10.12]; then
     xcode_build RTL8111_driver_for_OS_X/RealtekRTL8111.xcodeproj RealtekRTL8111 Release
 else
     xcode_build RTL8111_driver_for_OS_X/RealtekRTL8111.xcodeproj RealtekRTL8111-V2 Release
@@ -190,7 +190,7 @@ xcode_build OS-X-ACPI-Debug/ACPIDebug.xcodeproj ACPIDebug Release force
 xcode_build OS-X-ACPI-Keyboard/ACPIKeyboard.xcodeproj ACPIKeyboard Release force
 xcode_build EAPD-Codec-Commander/CodecCommander.xcodeproj CodecCommander Release force
 
-if [[ ${OSTYPE:6} -le 15 ]]; then # if [macOS < 10.11]; then
+if [[ ${OSTYPE:6} -lt 15 ]]; then # if [macOS < 10.11]; then
     xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmPatchRAM Release force
 else
     xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmPatchRAM2 Release force
@@ -199,7 +199,7 @@ fi
 xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmFirmwareData Release plugin force
 xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmFirmwareRepo Release plugin force
 
-if [[ ${OSTYPE:6} -le 15 ]]; then # if [macOS < 10.11]; then
+if [[ ${OSTYPE:6} -lt 15 ]]; then # if [macOS < 10.11]; then
     xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmNonPatchRAM Release plugin force
 else
     xcode_build OS-X-BrcmPatchRAM/BrcmPatchRAM.xcodeproj BrcmNonPatchRAM2 Release plugin force
