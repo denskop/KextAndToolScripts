@@ -3,7 +3,7 @@
 function git_pull()
 {
     if [ -z "$2" ]; then
-    	echo "🔸 $(tput bold)$1$(tput sgr0):"
+        echo "🔸 $(tput bold)$1$(tput sgr0):"
     else
         echo "🔸 $(tput bold)$2$(tput sgr0):"
     fi
@@ -14,7 +14,7 @@ function git_pull()
 function svn_update()
 {
     if [ -z "$2" ]; then
-    	echo "🔸 $(tput bold)$1$(tput sgr0):"
+        echo "🔸 $(tput bold)$1$(tput sgr0):"
     else
         echo "🔸 $(tput bold)$2$(tput sgr0):"
     fi
@@ -58,14 +58,14 @@ git_pull AirportBrcmFixup       #lvs1974
 git_pull AppleALC
 git_pull ATH9KFixup             #chunnann
 git_pull AzulPatcher4600        #coderobe
-git_pull BT4LEContiunityFixup	#lvs1974
+git_pull BT4LEContiunityFixup   #lvs1974
 git_pull CoreDisplayFixup       #PMheart
-git_pull CPUFriend		        #PMheart
+git_pull CPUFriend              #PMheart
 git_pull EnableLidWake          #syscl
-git_pull HibernationFixup       #lvs1974	
-git_pull IntelGraphicsFixup	    #lvs1974
+git_pull HibernationFixup       #lvs1974
+git_pull IntelGraphicsFixup     #lvs1974
 git_pull Lilu
-git_pull NvidiaGraphicsFixup	#lvs1974
+git_pull NvidiaGraphicsFixup    #lvs1974
 git_pull Shiki
 git_pull WhateverGreen
 
@@ -87,10 +87,7 @@ git_pull "ssdtPRGen.sh" "ssdtPRGen"
 echo -e "\n# Update UEFI projects"
 git_pull edk2 "EDK2"                                        #TianoCore
 #svn_update edk2
-
 svn_update edk2/Clover "Clover EFI Bootloader"              #CloverTeam
-
-#cd edk2
 git_pull "edk2/AptioFixPkg" "AptioFixPkg"                   #vit9696
 # UEFI useful packages
 git_pull "edk2/CupertinoModulePkg" "CupertinoModulePkg"     #CupertinoNet   

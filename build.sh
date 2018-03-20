@@ -8,19 +8,19 @@ if [ "$1" == "clean" ]; then
     echo "Start cleaning"
     build_cmd="clean"
 else
-	build_cmd="build"
+    build_cmd="build"
 fi
 
 function xcode_build()
 {
     if [ "$4" != "plugin" ]; then
-    	echo "🔹 $(tput bold)$2$(tput sgr0) ($3)"
+        echo "🔹 $(tput bold)$2$(tput sgr0) ($3)"
     else
         echo "    ➕ $(tput bold)$2$(tput sgr0) ($3)"
     fi
 
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
-    	xcodebuild -project "$1"  -target "$2" -configuration "$3" -sdk macosx -quiet $build_cmd
+        xcodebuild -project "$1"  -target "$2" -configuration "$3" -sdk macosx -quiet $build_cmd
     else
         xcodebuild -project "$1"  -target "$2" -configuration "$3" -quiet $build_cmd
     fi
@@ -28,11 +28,11 @@ function xcode_build()
 
 function xcode_build2()
 {
-	if [ "$build_cmd" != "clean" ]; then
-    	cp -R Lilu/build/Debug/Lilu.kext $2/
+    if [ "$build_cmd" != "clean" ]; then
+        cp -R Lilu/build/Debug/Lilu.kext $2/
     else
-    	rm -R $2/Lilu.kext
-       #rm -R $2/build/Release/*.zip
+        rm -R $2/Lilu.kext
+        #rm -R $2/build/Release/*.zip
     fi
     xcode_build "$1" "$2" "$3" "$4" "$5"
 }
@@ -55,15 +55,15 @@ function xcode_build3()
 function make_build()
 {
     if [ -z "$2" ]; then
-    	echo "🔹 $(tput bold)$1$(tput sgr0)"
+        echo "🔹 $(tput bold)$1$(tput sgr0)"
     else
         echo "🔹 $(tput bold)$2$(tput sgr0)"
     fi
 
     if [ "$build_cmd" != "clean" ]; then
-    	make -C "$1" >/dev/null | grep -e "error|warning"
+        make -C "$1" >/dev/null | grep -e "error|warning"
     else
-    	make -C "$1" clean >/dev/null | grep -e "error|warning"
+        make -C "$1" clean >/dev/null | grep -e "error|warning"
     fi 
 }
 
@@ -73,11 +73,11 @@ function qt_build()
     cd $1
 
     if [ "$build_cmd" != "clean" ]; then
-    	$qmake "$2" >/dev/null | grep -e "error|warning"
-    	make >/dev/null | grep -e "error|warning"
-	else
-		make clean >/dev/null | grep -e "error|warning"
-	fi
+        $qmake "$2" >/dev/null | grep -e "error|warning"
+        make >/dev/null | grep -e "error|warning"
+    else
+        make clean >/dev/null | grep -e "error|warning"
+    fi
     cd ..
 }
 
@@ -95,6 +95,54 @@ function print()
 {
     echo "🔹 $(tput bold)$1$(tput sgr0) (X64, $2)" 
 }
+
+echo -e "\n# Checking build tools"
+
+# Check path
+if [ "$SELF_PATH" != "$(printf "%s\n" $SELF_PATH)" ]; then
+    echo "Scripts location path contains spaces, aborting..."
+    exit 1
+fi
+
+# Check Command Line Tools
+if [[ ! -x "/usr/bin/xcodebuild" ]]; then
+    echo "1. Command Line Tools: Not Installed"
+    exit 1
+fi
+
+if [ "$(which xcodebuild)" = "" ] || [ "$(xcodebuild -v 2>&1 | grep "no developer")" != "" ]; then
+    echo "1. Command Line Tools: Not Selected"
+    exit 1
+else
+    echo "1. Command Line Tools: Installed"
+fi
+
+# Check Xcode
+
+# Check NASM by vit9696
+NASMVER="2.13.02"
+if [ "$(nasm -v)" = "" ] || [ "$(nasm -v | grep Apple)" != "" ]; then
+    echo "2. nasm: Installing..."
+    unzip -q "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}/nasm" "nasm-${NASMVER}/ndisasm" || exit 1
+    sudo mkdir -p /usr/local/bin || exit 1
+    sudo mv "nasm-${NASMVER}/nasm" /usr/local/bin/ || exit 1
+    sudo mv "nasm-${NASMVER}/ndisasm" /usr/local/bin/ || exit 1
+    rm -rf "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}"
+else
+    echo "2. nasm: Installed"
+fi
+
+# Check MTOCK by vit9696
+if [ "$(which mtoc.NEW)" == "" ] || [ "$(which mtoc)" == "" ]; then
+    echo "3. mtoc: Installing..."
+    rm -f mtoc mtoc.NEW
+    unzip -q mtoc-mac64.zip mtoc mtoc.NEW || exit 1
+    sudo mkdir -p /usr/local/bin || exit 1
+    sudo mv mtoc /usr/local/bin/ || exit 1
+    sudo mv mtoc.NEW /usr/local/bin/ || exit 1
+else
+    echo "3. mtoc: Installed"
+fi
 
 echo -e "\n# $build_cmd ACPI Component Architecture"
 make_build acpica "ACPICA"
@@ -167,17 +215,17 @@ echo -e "\n# $build_cmd vit9696 kexts and plugins"
 xcode_build Lilu/Lilu.xcodeproj Lilu Debug
 xcode_build Lilu/Lilu.xcodeproj Lilu Release
 
-xcode_build2 AirportBrcmFixup/AirportBrcmFixup.xcodeproj	AirportBrcmFixup Release plugin                #lvs1974
+xcode_build2 AirportBrcmFixup/AirportBrcmFixup.xcodeproj    AirportBrcmFixup Release plugin                 #lvs1974
 xcode_build2 AppleALC/AppleALC.xcodeproj AppleALC Release plugin
-xcode_build2 ATH9KFixup/ATH9KFixup.xcodeproj ATH9KFixup Release plugin 									   #chunnann
-xcode_build2 AzulPatcher4600/AzulPatcher4600.xcodeproj AzulPatcher4600 Release plugin                      #coderobe
-xcode_build2 BT4LEContiunityFixup/BT4LEContiunityFixup.xcodeproj	BT4LEContiunityFixup Release plugin	   #lvs1974
-xcode_build2 CoreDisplayFixup/CoreDisplayFixup.xcodeproj	CoreDisplayFixup Release plugin			       #PMheart
-xcode_build2 CPUFriend/CPUFriend.xcodeproj CPUFriend Release plugin	 					                   #PMheart
-xcode_build2 EnableLidWake/EnableLidWake.xcodeproj EnableLidWake Release plugin					           #syscl
-xcode_build2 HibernationFixup/HibernationFixup.xcodeproj HibernationFixup Release plugin			       #lvs1974	
-xcode_build2 IntelGraphicsFixup/IntelGraphicsFixup.xcodeproj IntelGraphicsFixup Release plugin			   #lvs1974
-xcode_build2 NvidiaGraphicsFixup/NvidiaGraphicsFixup.xcodeproj NvidiaGraphicsFixup Release plugin		   #lvs1974
+xcode_build2 ATH9KFixup/ATH9KFixup.xcodeproj ATH9KFixup Release plugin                                      #chunnann
+xcode_build2 AzulPatcher4600/AzulPatcher4600.xcodeproj AzulPatcher4600 Release plugin                       #coderobe
+xcode_build2 BT4LEContiunityFixup/BT4LEContiunityFixup.xcodeproj    BT4LEContiunityFixup Release plugin     #lvs1974
+xcode_build2 CoreDisplayFixup/CoreDisplayFixup.xcodeproj    CoreDisplayFixup Release plugin                 #PMheart
+xcode_build2 CPUFriend/CPUFriend.xcodeproj CPUFriend Release plugin                                         #PMheart
+xcode_build2 EnableLidWake/EnableLidWake.xcodeproj EnableLidWake Release plugin                             #syscl
+xcode_build2 HibernationFixup/HibernationFixup.xcodeproj HibernationFixup Release plugin                    #lvs1974
+xcode_build2 IntelGraphicsFixup/IntelGraphicsFixup.xcodeproj IntelGraphicsFixup Release plugin              #lvs1974
+xcode_build2 NvidiaGraphicsFixup/NvidiaGraphicsFixup.xcodeproj NvidiaGraphicsFixup Release plugin           #lvs1974
 xcode_build2 Shiki/Shiki.xcodeproj Shiki Release plugin
 xcode_build2 WhateverGreen/WhateverGreen.xcodeproj WhateverGreen Release plugin
 

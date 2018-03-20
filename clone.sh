@@ -30,6 +30,19 @@ function svn_co()
     svn checkout "$1" "$2"
 }
 
+# Check git svn tools
+if [[ ! -x "/usr/bin/git" ]] || [[ ! -x "/usr/bin/svn" ]]; then
+    echo "Command Line Tools: Not Installed, aborting..."
+    exit 1
+fi
+
+if [ "$(which git)" = "" ] || [ "$(which svn)" = "" ] || [ "$(git -v 2>&1 | grep "no developer")" != "" ] || [ "$(svn -v 2>&1 | grep "no developer")" != "" ]; then
+    echo "Command Line Tools: Not Selected, aborting..."
+    exit 1
+else
+    echo "Command Line Tools: Installed"
+fi
+
 echo -e "\n# Clone ACPI Component Architecture"
 git_clone https://github.com/acpica/acpica.git "ACPICA"
 
@@ -62,12 +75,12 @@ svn_co https://svn.code.sf.net/p/voodoohda/code "VoodooHDA"
 echo -e "\n# Clone vit9696 kexts and plugins"
 git_clone https://github.com/lvs1974/AirportBrcmFixup.git "AirportBrcmFixup"            #lvs1974
 git_clone https://github.com/vit9696/AppleALC.git "AppleALC"
-git_clone https://github.com/chunnann/ATH9KFixup.git "ATH9KFixup"					    #chunnann
+git_clone https://github.com/chunnann/ATH9KFixup.git "ATH9KFixup"                       #chunnann
 git_clone https://github.com/coderobe/AzulPatcher4600.git "AzulPatcher4600"             #coderobe
 git_clone https://github.com/lvs1974/BT4LEContiunityFixup.git "BT4LEContiunityFixup"    #lvs1974
 git_clone https://github.com/PMheart/CoreDisplayFixup.git "CoreDisplayFixup"            #PMheart
 git_clone https://github.com/PMheart/CPUFriend.git "CPUFriend"                          #PMheart
-git_clone https://github.com/syscl/EnableLidWake.git "EnableLidWake"	           	    #syscl
+git_clone https://github.com/syscl/EnableLidWake.git "EnableLidWake"                    #syscl
 git_clone https://github.com/lvs1974/HibernationFixup.git "HibernationFixup"            #lvs1974
 git_clone https://github.com/lvs1974/IntelGraphicsFixup.git "IntelGraphicsFixup"        #lvs1974
 git_clone https://github.com/vit9696/Lilu.git "Lilu"
@@ -106,36 +119,25 @@ git_clone2 https://github.com/CupertinoNet/EfiPkg edk2/EfiPkg "EfiPkg"          
 #
 git_clone2 https://github.com/vit9696/AptioFixPkg.git edk2/AptioFixPkg "AptioFixPkg"                        #vit9696
 
-
-
-echo -e "\n# Check and Install missing tools"
+echo -e "\n# Check and Download missing tools"
 
 # Check NASM by vit9696
+NASMVER="2.13.02"
 if [ "$(nasm -v)" = "" ] || [ "$(nasm -v | grep Apple)" != "" ]; then
-  echo "1. nasm - $(tput bold)FAILED$(tput sgr0)"
-  pushd /tmp >/dev/null
-  rm -rf "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}"
-  curl -O "http://www.nasm.us/pub/nasm/releasebuilds/${NASMVER}/macosx/nasm-${NASMVER}-macosx.zip" || exit 1
-  unzip -q "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}/nasm" "nasm-${NASMVER}/ndisasm" || exit 1
-  sudo mkdir -p /usr/local/bin || exit 1
-  sudo mv "nasm-${NASMVER}/nasm" /usr/local/bin/ || exit 1
-  sudo mv "nasm-${NASMVER}/ndisasm" /usr/local/bin/ || exit 1
-  rm -rf "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}"
-  popd >/dev/null
+    echo "1. nasm - $(tput bold)FAILED$(tput sgr0)"
+    rm -rf "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}"
+    curl -O "http://www.nasm.us/pub/nasm/releasebuilds/${NASMVER}/macosx/nasm-${NASMVER}-macosx.zip" || exit 1
 else
-  echo "1. nasm - $(tput bold)PASSED$(tput sgr0)"
+    echo "1. nasm - $(tput bold)PASSED$(tput sgr0)"
 fi
 
 # Check MTOCK by vit9696
 if [ "$(which mtoc.NEW)" == "" ] || [ "$(which mtoc)" == "" ]; then
-  echo "2. mtoc - $(tput bold)FAILED$(tput sgr0)"
-  rm -f mtoc mtoc.NEW
-  unzip -q external/mtoc-mac64.zip mtoc mtoc.NEW || exit 1
-  sudo mkdir -p /usr/local/bin || exit 1
-  sudo mv mtoc /usr/local/bin/ || exit 1
-  sudo mv mtoc.NEW /usr/local/bin/ || exit 1
+    echo "2. mtoc - $(tput bold)FAILED$(tput sgr0)"
+    rm -rf mtoc-mac64.zip
+    curl -O "https://github.com/vit9696/AptioFixPkg/raw/master/external/mtoc-mac64.zip" || exit 1
 else
-  echo "2. mtoc - $(tput bold)PASSED$(tput sgr0)"
+    echo "2. mtoc - $(tput bold)PASSED$(tput sgr0)"
 fi
 
 # Check qmake
