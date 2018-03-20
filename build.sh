@@ -289,10 +289,10 @@ echo -e "\n# $build_cmd Piker-Alpha kexts and tools"
 xcode_build "AppleIntelInfo/AppleIntelInfo.xcodeproj" AppleIntelInfo Release
 
 echo -e "\n# $build_cmd LongSoft tools"
-qt_build uefitool.pro UEFITool
+qt_build UEFITool/uefitool.pro UEFITool
 #qt_build UEFIExtract/uefiextract.pro UEFITool_NE
 #qt_build UEFIFind/uefifind.pro UEFITool_NE
-qt_build UEFITool/uefitool.pro "UEFITool(NE)"
+qt_build "UEFITool(NE)/UEFITool/uefitool.pro" "UEFITool(NE)"
 
 echo -e "\n# $build_cmd UEFI projects"
 # Setup EDK2

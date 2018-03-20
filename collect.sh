@@ -31,7 +31,7 @@ print "UEFITool"
 cp -R "UEFITool/UEFITool.app" "Collection/Tools/UEFITool/UEFITool.app"
 #
 print "UEFITool(NE)"
-cp -R "UEFITool(NE)/UEFITool.app" "Collection/Tools/UEFITool/UEFITool(NE).app"
+cp -R "UEFITool(NE)/UEFITool/UEFITool.app" "Collection/Tools/UEFITool/UEFITool(NE).app"
 
 echo -e "\n# Collect Mieze kexts"
 mkdir -p "Collection/LAN"
