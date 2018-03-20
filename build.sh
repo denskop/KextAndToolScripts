@@ -105,13 +105,8 @@ if [ "$SELF_PATH" != "$(printf "%s\n" $SELF_PATH)" ]; then
 fi
 
 # Check Command Line Tools
-if [[ ! -x "/usr/bin/xcodebuild" ]]; then
-    echo "1. Command Line Tools: Not Installed"
-    exit 1
-fi
-
-if [ "$(which xcodebuild)" = "" ] || [ "$(xcodebuild -v 2>&1 | grep "no developer")" != "" ]; then
-    echo "1. Command Line Tools: Not Selected"
+if [ "$(xcodebuild -v 2>&1 | grep "no developer")" != "" ]; then
+    echo "1. Command Line Tools: Not Installed or Not Selected, aborting..."
     exit 1
 else
     echo "1. Command Line Tools: Installed"
@@ -121,7 +116,7 @@ fi
 
 # Check NASM by vit9696
 NASMVER="2.13.02"
-if [ "$(nasm -v)" = "" ] || [ "$(nasm -v | grep Apple)" != "" ]; then
+if [ "$(nasm -v | grep Apple)" != "" ]; then
     echo "2. nasm: Installing..."
     unzip -q "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}/nasm" "nasm-${NASMVER}/ndisasm" || exit 1
     sudo mkdir -p /usr/local/bin || exit 1
@@ -136,7 +131,7 @@ fi
 if [ "$(which mtoc.NEW)" == "" ] || [ "$(which mtoc)" == "" ]; then
     echo "3. mtoc: Installing..."
     rm -f mtoc mtoc.NEW
-    unzip -q mtoc-mac64.zip mtoc mtoc.NEW || exit 1
+    unzip -q edk2/AptioFixPkg/external/mtoc-mac64.zip mtoc mtoc.NEW || exit 1
     sudo mkdir -p /usr/local/bin || exit 1
     sudo mv mtoc /usr/local/bin/ || exit 1
     sudo mv mtoc.NEW /usr/local/bin/ || exit 1

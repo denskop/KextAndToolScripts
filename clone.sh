@@ -31,13 +31,8 @@ function svn_co()
 }
 
 # Check git svn tools
-if [[ ! -x "/usr/bin/git" ]] || [[ ! -x "/usr/bin/svn" ]]; then
-    echo "Command Line Tools: Not Installed, aborting..."
-    exit 1
-fi
-
-if [ "$(which git)" = "" ] || [ "$(which svn)" = "" ] || [ "$(git -v 2>&1 | grep "no developer")" != "" ] || [ "$(svn -v 2>&1 | grep "no developer")" != "" ]; then
-    echo "Command Line Tools: Not Selected, aborting..."
+if [ "$(git -v 2>&1 | grep "no developer")" != "" ] || [ "$(svn -v 2>&1 | grep "no developer")" != "" ]; then
+    echo "Command Line Tools: Not Installed or Not Selected, aborting..."
     exit 1
 else
     echo "Command Line Tools: Installed"
@@ -123,7 +118,7 @@ echo -e "\n# Check and Download missing tools"
 
 # Check NASM by vit9696
 NASMVER="2.13.02"
-if [ "$(nasm -v)" = "" ] || [ "$(nasm -v | grep Apple)" != "" ]; then
+if [ "$(nasm -v | grep Apple)" != "" ]; then
     echo "1. nasm - $(tput bold)FAILED$(tput sgr0)"
     rm -rf "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}"
     curl -O "http://www.nasm.us/pub/nasm/releasebuilds/${NASMVER}/macosx/nasm-${NASMVER}-macosx.zip" || exit 1
@@ -134,8 +129,6 @@ fi
 # Check MTOCK by vit9696
 if [ "$(which mtoc.NEW)" == "" ] || [ "$(which mtoc)" == "" ]; then
     echo "2. mtoc - $(tput bold)FAILED$(tput sgr0)"
-    rm -rf mtoc-mac64.zip
-    curl -O "https://github.com/vit9696/AptioFixPkg/raw/master/external/mtoc-mac64.zip" || exit 1
 else
     echo "2. mtoc - $(tput bold)PASSED$(tput sgr0)"
 fi

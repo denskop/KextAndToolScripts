@@ -24,6 +24,14 @@ function svn_update()
     cd ..
 }
 
+# Check git svn tools
+if [ "$(git -v 2>&1 | grep "no developer")" != "" ] || [ "$(svn -v 2>&1 | grep "no developer")" != "" ]; then
+    echo "Command Line Tools: Not Installed or Not Selected, aborting..."
+    exit 1
+else
+    echo "Command Line Tools: Installed"
+fi
+
 echo -e "\n# Update ACPI Component Architecture"
 git_pull acpica "ACPICA"
 
