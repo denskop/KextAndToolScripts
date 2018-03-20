@@ -3,6 +3,7 @@
 SELF_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 qmake=/Applications/Qt/5.9.2/clang_64/bin/qmake
+xcode_installed="false"
 
 if [ "$1" == "clean" ]; then
     echo "Start cleaning"
@@ -17,6 +18,11 @@ function xcode_build()
         echo "🔹 $(tput bold)$2$(tput sgr0) ($3)"
     else
         echo "    ➕ $(tput bold)$2$(tput sgr0) ($3)"
+    fi
+
+    if [ "$xcode_installed" == "false" ]; then
+        echo "Skipping..."
+        return 1
     fi
 
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
@@ -45,6 +51,11 @@ function xcode_build3()
         echo "    ➕ $(tput bold)$2$(tput sgr0) ($3)"
     fi
 
+    if [ "$xcode_installed" == "false" ]; then
+        echo "Skipping..."
+        return 1
+    fi
+
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
         xcodebuild -workspace "$1"  -scheme "$2" -configuration "$3" -sdk macosx -quiet $build_cmd
     else
@@ -59,7 +70,7 @@ function make_build()
     else
         echo "🔹 $(tput bold)$2$(tput sgr0)"
     fi
-
+    
     if [ "$build_cmd" != "clean" ]; then
         make -C "$1" >/dev/null | grep -e "error|warning"
     else
@@ -113,30 +124,36 @@ else
 fi
 
 # Check Xcode
+if [ "$(xcodebuild -v 2>&1 | grep "requires Xcode")" != "" ]; then
+    echo "2. Xcode: Not Installed, skipping kext building..."
+else
+    echo "2. Xcode: Installed"
+    xcode_installed="true"
+fi
 
 # Check NASM by vit9696
 NASMVER="2.13.02"
 if [ "$(nasm -v | grep Apple)" != "" ]; then
-    echo "2. nasm: Installing..."
+    echo "3. nasm: Installing..."
     unzip -q "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}/nasm" "nasm-${NASMVER}/ndisasm" || exit 1
     sudo mkdir -p /usr/local/bin || exit 1
     sudo mv "nasm-${NASMVER}/nasm" /usr/local/bin/ || exit 1
     sudo mv "nasm-${NASMVER}/ndisasm" /usr/local/bin/ || exit 1
     rm -rf "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}"
 else
-    echo "2. nasm: Installed"
+    echo "3. nasm: Installed"
 fi
 
 # Check MTOCK by vit9696
 if [ "$(which mtoc.NEW)" == "" ] || [ "$(which mtoc)" == "" ]; then
-    echo "3. mtoc: Installing..."
+    echo "4. mtoc: Installing..."
     rm -f mtoc mtoc.NEW
     unzip -q edk2/AptioFixPkg/external/mtoc-mac64.zip mtoc mtoc.NEW || exit 1
     sudo mkdir -p /usr/local/bin || exit 1
     sudo mv mtoc /usr/local/bin/ || exit 1
     sudo mv mtoc.NEW /usr/local/bin/ || exit 1
 else
-    echo "3. mtoc: Installed"
+    echo "4. mtoc: Installed"
 fi
 
 echo -e "\n# $build_cmd ACPI Component Architecture"
