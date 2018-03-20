@@ -2,9 +2,10 @@
 
 SELF_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Qt qmake user-defined location
 qmake=/Applications/Qt/5.9.2/clang_64/bin/qmake
-xcode_installed="false"
 
+xcode_installed="false"
 if [ "$1" == "clean" ]; then
     echo "Start cleaning"
     build_cmd="clean"
@@ -12,6 +13,10 @@ else
     build_cmd="build"
 fi
 
+# xcode_build
+# args: <project> <target> <release/debug> optional: <plugin> <force>
+# plugin - display project as a plugin of parent project
+# force - setup project SDK to last version. It helps build old projects
 function xcode_build()
 {
     if [ "$4" != "plugin" ]; then
@@ -32,6 +37,11 @@ function xcode_build()
     fi
 }
 
+# xcode_build2
+# args: <project> <target> <release/debug> optional: <plugin> <force>
+# plugin - display project as a plugin of parent project
+# force - setup project SDK to last version. It helps build old projects
+# note: call for Lilu based projects
 function xcode_build2()
 {
     if [ "$build_cmd" != "clean" ]; then
@@ -43,6 +53,11 @@ function xcode_build2()
     xcode_build "$1" "$2" "$3" "$4" "$5"
 }
 
+# xcode_build3
+# args: <workspace> <scheme> <release/debug> optional: <plugin> <force>
+# plugin - display workspace as a plugin of parent workspace. Useless?
+# force - setup workspace SDK to last version. It helps build old workspaces
+# note: call for Lilu based projects
 function xcode_build3()
 {
     if [ "$4" != "plugin" ]; then
@@ -63,6 +78,8 @@ function xcode_build3()
     fi
 }
 
+# make_build
+# args: <makefile> optional: <string>
 function make_build()
 {
     if [ -z "$2" ]; then
@@ -78,30 +95,36 @@ function make_build()
     fi 
 }
 
+# qt_build
+# args: <pro file> <string>
 function qt_build()
 {
-    echo "🔹 $(tput bold)$1$(tput sgr0)"
-    cd $1
+    echo "🔹 $(tput bold)$2$(tput sgr0)"
+    pushd "$1" >/dev/null
 
     if [ "$build_cmd" != "clean" ]; then
-        $qmake "$2" >/dev/null | grep -e "error|warning"
+        $qmake "$1" >/dev/null | grep -e "error|warning"
         make >/dev/null | grep -e "error|warning"
     else
         make clean >/dev/null | grep -e "error|warning"
     fi
-    cd ..
+    popd >/dev/null
 }
 
+# edk2_build
+# args: <package> <toolchain> <debug/release> <string>
 function edk2_build()
 {
     echo "🔹 $(tput bold)$4$(tput sgr0) (X64, $1)"
     if [ "$build_cmd" != "clean" ]; then
-        build -a X64 -b "$1" -t "$2" -p "$3" >/dev/null | grep -e "error|warning"
+        build -a X64 -p "$1" -t "$2" -b "$3" >/dev/null | grep -e "error|warning"
     else
-        build clean -a X64 -b "$1" -t "$2" -p "$3" >/dev/null | grep -e "error|warning"
+        build clean -a X64 -p "$1" -t "$2" -b "$3" >/dev/null | grep -e "error|warning"
     fi  
 }
 
+# print
+# args: <string> <debug/release>
 function print()
 {
     echo "🔹 $(tput bold)$1$(tput sgr0) (X64, $2)" 
@@ -263,19 +286,19 @@ echo -e "\n# $build_cmd Piker-Alpha kexts and tools"
 xcode_build "AppleIntelInfo/AppleIntelInfo.xcodeproj" AppleIntelInfo Release
 
 echo -e "\n# $build_cmd LongSoft tools"
-qt_build UEFITool uefitool.pro
-#qt_build UEFITool_NE UEFIExtract/uefiextract.pro
-#qt_build UEFITool_NE UEFIFind/uefifind.pro
-qt_build "UEFITool(NE)" UEFITool/uefitool.pro
+qt_build uefitool.pro UEFITool
+#qt_build UEFIExtract/uefiextract.pro UEFITool_NE
+#qt_build UEFIFind/uefifind.pro UEFITool_NE
+qt_build UEFITool/uefitool.pro "UEFITool(NE)"
 
 echo -e "\n# $build_cmd UEFI projects"
 # Setup EDK2
-cd edk2
+pushd edk2 >/dev/null
 make_build BaseTools "EDK2 BaseTools"
 source edksetup.sh 
 
 # Build AptioFixPkg
-edk2_build RELEASE XCODE5 AptioFixPkg/AptioFixPkg.dsc "AptioFixPkg"
+edk2_build AptioFixPkg/AptioFixPkg.dsc XCODE5 RELEASE "AptioFixPkg"
 
 # Build Clover
 print "Clover EFI Bootloader" "RELEASE"
@@ -285,3 +308,4 @@ if [ "$build_cmd" != "clean" ]; then
 else
     ./Clover/ebuild.sh clean >/dev/null | grep -e "error|warning"
 fi
+popd >/dev/null

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# git_pull
+# args: <folder> optional: <string>
 function git_pull()
 {
     if [ -z "$2" ]; then
@@ -8,9 +10,10 @@ function git_pull()
         echo "🔸 $(tput bold)$2$(tput sgr0):"
     fi
     git -C "$1" pull
-    #echo ""
 }
 
+# svn_update
+# args: <folder> optional: <string>
 function svn_update()
 {
     if [ -z "$2" ]; then
@@ -19,9 +22,9 @@ function svn_update()
         echo "🔸 $(tput bold)$2$(tput sgr0):"
     fi
 
-    cd "$1"
+    pushd "$1" >/dev/null
     svn update
-    cd ..
+    popd >/dev/null
 }
 
 # Check git svn tools
@@ -96,8 +99,8 @@ echo -e "\n# Update UEFI projects"
 #git_pull edk2 "EDK2"                                       #TianoCore
 #svn_update edk2
 svn_update edk2/Clover "Clover EFI Bootloader"              #CloverTeam
-git_pull "edk2/AptioFixPkg" "AptioFixPkg"                   #vit9696
+git_pull edk2/AptioFixPkg "AptioFixPkg"                     #vit9696
 # UEFI useful packages
-git_pull "edk2/CupertinoModulePkg" "CupertinoModulePkg"     #CupertinoNet   
-git_pull "edk2/EfiMiscPkg" "EfiMiscPkg"                     #CupertinoNet
-git_pull "edk2/EfiPkg" "EfiPkg"                             #CupertinoNet
+git_pull edk2/CupertinoModulePkg "CupertinoModulePkg"       #CupertinoNet
+git_pull edk2/EfiMiscPkg "EfiMiscPkg"                       #CupertinoNet
+git_pull edk2/EfiPkg "EfiPkg"                               #CupertinoNet

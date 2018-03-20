@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# git_clone
+# args: <url> <folder> optional: <branch>
 function git_clone()
 {
     echo "🔸 $(tput bold)$2$(tput sgr0):"
@@ -12,6 +14,8 @@ function git_clone()
 
 }
 
+# git_clone2
+# args: <url> <folder> <string>
 function git_clone2()
 {
     echo "🔸 $(tput bold)$3$(tput sgr0):"
@@ -19,6 +23,8 @@ function git_clone2()
     git clone "$1" "$2"
 }
 
+# git_checkout
+# args: <url> <folder> <sha> <string>
 function git_checkout()
 {
     echo "🔸 $(tput bold)$4$(tput sgr0):"
@@ -27,6 +33,8 @@ function git_checkout()
     git -C "$2" checkout "$3"
 }
 
+# svn_co
+# args: <url> <folder> optional: <string>
 function svn_co()
 {
     if [ -z "$3" ]; then

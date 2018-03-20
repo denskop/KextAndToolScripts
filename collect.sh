@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# print
+# args: <string> optional: <plugin>
 function print()
 {
     if [ "$2" != "plugin" ]; then
