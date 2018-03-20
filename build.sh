@@ -169,7 +169,7 @@ xcode_build3 HWSensors/HWSensors.xcworkspace "HWMonitor" Release
 xcode_build3 HWSensors/HWSensors.xcworkspace "org.hwsensors.HWMonitorHelper" Release
 
 echo -e "\n# $build_cmd Mieze kexts"
-if [[ ${OSTYPE:6} -le 16 ]]; then # if [macOS < 10.12]; then
+if [[ ${OSTYPE:6} -lt 16 ]]; then # if [macOS < 10.12]; then
     xcode_build AtherosE2200Ethernet/AtherosE2200Ethernet.xcodeproj AtherosE2200Ethernet Release
 else
     xcode_build AtherosE2200Ethernet/AtherosE2200Ethernet.xcodeproj AtherosE2200EthernetV2 Release
