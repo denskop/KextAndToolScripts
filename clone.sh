@@ -19,6 +19,14 @@ function git_clone2()
     git clone "$1" "$2"
 }
 
+function git_checkout()
+{
+    echo "🔸 $(tput bold)$3$(tput sgr0):"
+
+    git clone "$1"
+    git checkout "$2"
+}
+
 function svn_co()
 {
     if [ -z "$3" ]; then
@@ -103,7 +111,7 @@ git_clone https://github.com/Piker-Alpha/AppleIntelInfo.git "AppleIntelInfo"
 git_clone https://github.com/Piker-Alpha/ssdtPRGen.sh "ssdtPRGen"
 
 echo -e "\n# Clone UEFI projects"
-git_clone https://github.com/tianocore/edk2.git "EDK2"                                                      #Tianocore
+git_checkout https://github.com/tianocore/edk2.git "a35918caae4d0b9bb51d0d4765117d7ca9a4d641" "EDK2"        #Tianocore
 #git_clone https://git.code.sf.net/p/tianocore/edk2 "EDK2"
 #
 svn_co https://svn.code.sf.net/p/cloverefiboot/code edk2/Clover "Clover EFI Bootloader"                     #CloverTeam
