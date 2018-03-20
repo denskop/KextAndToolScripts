@@ -100,10 +100,13 @@ function make_build()
 function qt_build()
 {
     echo "🔹 $(tput bold)$2$(tput sgr0)"
-    pushd "$1" >/dev/null
+
+    path=$(dirname "$1}")
+    name=$(basename "$1")
+    pushd "$path" >/dev/null
 
     if [ "$build_cmd" != "clean" ]; then
-        $qmake "$1" >/dev/null | grep -e "error|warning"
+        $qmake "$name" >/dev/null | grep -e "error|warning"
         make >/dev/null | grep -e "error|warning"
     else
         make clean >/dev/null | grep -e "error|warning"
