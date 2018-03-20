@@ -104,7 +104,7 @@ git_clone https://github.com/Piker-Alpha/ssdtPRGen.sh "ssdtPRGen"
 
 echo -e "\n# Clone UEFI projects"
 git_clone https://github.com/tianocore/edk2.git "EDK2"                                                      #Tianocore
-#svn_co https://svn.code.sf.net/p/edk2/code/trunk . "EDK2"
+#git_clone https://git.code.sf.net/p/tianocore/edk2 "EDK2"
 #
 svn_co https://svn.code.sf.net/p/cloverefiboot/code edk2/Clover "Clover EFI Bootloader"                     #CloverTeam
 # UEFI useful packages
