@@ -150,10 +150,10 @@ cp -R "VoodooI2C/VoodooI2C Satellites/VoodooI2CSynaptics/build/Release/VoodooI2C
 print "VoodooI2CUPDDEngine"
 cp -R "VoodooI2C/VoodooI2C Satellites/VoodooI2CUPDDEngine/build/Release/VoodooI2CUPDDEngine.kext" "Collection/Laptop/VoodooI2C"
 #
-print "VoodooI2C Patches"
-cp -R "VoodooI2C-Patches/Controllers" "Collection/Laptop/VoodooI2C/ACPI-Patches/"
-cp -R "VoodooI2C-Patches/GPIO" "Collection/Laptop/VoodooI2C/ACPI-Patches/"
-cp -R "VoodooI2C-Patches/Windows" "Collection/Laptop/VoodooI2C/ACPI-Patches/"
+print "VoodooI2C ACPI Patches"
+cp -R "VoodooI2C/ACPI-Patches/Controllers" "Collection/Laptop/VoodooI2C/ACPI-Patches/"
+cp -R "VoodooI2C/ACPI-Patches/GPIO" "Collection/Laptop/VoodooI2C/ACPI-Patches/"
+cp -R "VoodooI2C/ACPI-Patches/Windows" "Collection/Laptop/VoodooI2C/ACPI-Patches/"
 
 echo -e "\n# Collect Piker-Alpha kexts and tools"
 mkdir -p "Collection/Misc"

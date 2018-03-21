@@ -89,7 +89,7 @@ git_pull "VoodooI2C/VoodooI2C Satellites/VoodooI2CHID" "VoodooI2CHID"
 git_pull "VoodooI2C/VoodooI2C Satellites/VoodooI2CSynaptics" "VoodooI2CSynaptics"
 git_pull "VoodooI2C/VoodooI2C Satellites/VoodooI2CUPDDEngine" "VoodooI2CUPDDEngine"
 #
-git_pull "VoodooI2C-Patches" "VoodooI2C Patches"
+git_pull "VoodooI2C/ACPI-Patches" "VoodooI2C ACPI Patches"
 
 echo -e "\n# Update Piker-Alpha kexts and tools"
 git_pull "AppleIntelInfo"

@@ -112,7 +112,7 @@ git_clone2 https://github.com/alexandred/VoodooI2CSynaptics.git "VoodooI2C/Voodo
 git_clone2 https://github.com/blankmac/VoodooI2CUPDDEngine.git "VoodooI2C/VoodooI2C Satellites/VoodooI2CUPDDEngine" "VoodooI2CUPDDEngine"
 
 # Patches
-git_clone2 https://github.com/alexandred/VoodooI2C-Patches.git "VoodooI2C-Patches" "VoodooI2C Patches"
+git_clone2 https://github.com/alexandred/VoodooI2C-Patches.git "VoodooI2C/ACPI-Patches" "VoodooI2C ACPI Patches"
 
 echo -e "\n# Clone Piker-Alpha kexts and tools"
 git_clone https://github.com/Piker-Alpha/AppleIntelInfo.git "AppleIntelInfo"
