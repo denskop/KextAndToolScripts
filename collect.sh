@@ -22,6 +22,7 @@ echo -e "\n# Collect Kozlek kexts"
 mkdir -p "Collection/FakeSMC"
 #
 print "HWSensors"
+rm -f -R "Collection/FakeSMC/HWMonitor.app" # To avoid framework overwrite problems
 cp -R "HWSensors/Binaries/" "Collection/FakeSMC/"
 
 echo -e "\n# Collect LongSoft tools"
