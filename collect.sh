@@ -24,6 +24,7 @@ mkdir -p "Collection/FakeSMC"
 print "HWSensors"
 rm -f -R "Collection/FakeSMC/HWMonitor.app" # To avoid framework overwrite problems
 cp -R "HWSensors/Binaries/" "Collection/FakeSMC/"
+rm -f -R "Collection/FakeSMC/org.hwsensors.HWMonitorHelper" # This is part of HWMonitor.app
 
 echo -e "\n# Collect LongSoft tools"
 mkdir -p "Collection/Tools/UEFITool"
