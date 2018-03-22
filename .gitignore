@@ -4,8 +4,14 @@
 # Allow gitignore
 !.gitignore
 
+# Allow documentation
+!*.md
+
 # Allow scripts
 !build.sh
 !clone.sh
 !collect.sh
 !update.sh
+
+# Allow blacklist
+!blacklist.txt
