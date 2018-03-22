@@ -1,0 +1,45 @@
+#ACPICA
+#HWSensors
+#UEFITool
+#UEFITool(NE)
+#AtherosE2200Ethernet
+#IntelMausiEthernet
+#Realtek RTL8100
+#Realtek RTL8111
+#EAPD Codec Commander
+#ACPI Battery Driver
+#ACPI Debug
+#ACPI Keyboard
+#BrcmPatchRAM
+#FakePCIID
+#MaciASL
+#VoodooHDA
+#AirportBrcmFixup
+#AppleALC
+#ATH9KFixup
+#AzulPatcher4600
+#BT4LEContiunityFixup
+#CoreDisplayFixup
+#CPUFriend
+#EnableLidWake
+#HibernationFixup
+#IntelGraphicsFixup
+#Lilu
+#NvidiaGraphicsFixup
+#Shiki
+#WhateverGreen
+#VoodooI2C
+#VoodooGPIO
+#VoodooI2CELAN
+#VoodooI2CHID
+#VoodooI2CSynaptics
+#VoodooI2CUPDDEngine
+#ACPI-Patches
+#AppleIntelInfo
+#ssdtPRGen
+#edk2
+#Clover
+#CupertinoModulePkg
+#EfiMiscPkg
+#EfiPkg
+#AptioFixPkg
