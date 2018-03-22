@@ -18,6 +18,9 @@
     ./build.sh
     ./collect.sh
  
+## Known issues
+    1. VoodooHDA prefpane build fails
+ 
 ## List of supported kexts and tools
 
 ### 1. ACPI Component Architecture
