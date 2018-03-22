@@ -16,7 +16,7 @@ echo -e "\n# Collect ACPI Component Architecture"
 mkdir -p "Collection/Tools/ACPICA"
 #
 print "ACPICA"
-cp -R "acpica/generate/unix/bin/" "Collection/Tools/ACPICA/"
+cp -R "ACPICA/generate/unix/bin/" "Collection/Tools/ACPICA/"
 
 echo -e "\n# Collect Kozlek kexts"
 mkdir -p "Collection/FakeSMC"
@@ -45,10 +45,10 @@ print "IntelMausiEthernet"
 cp -R "IntelMausiEthernet/build/Release/IntelMausiEthernet.kext" "Collection/LAN/"
 #
 print "Realtek RTL8100"
-cp -R "RealtekRTL8100/build/Release/RealtekRTL8100.kext" "Collection/LAN/"
+cp -R "Realtek RTL8100/build/Release/RealtekRTL8100.kext" "Collection/LAN/"
 #
 print "Realtek RTL8111"
-cp -R "RTL8111_driver_for_OS_X/build/Release/RealtekRTL8111.kext" "Collection/LAN/"
+cp -R "Realtek RTL8111/build/Release/RealtekRTL8111.kext" "Collection/LAN/"
 
 echo -e "\n# Collect RehabMan kexts and tools"
 mkdir -p "Collection/Laptop"
@@ -59,25 +59,25 @@ mkdir -p "Collection/Bluetooth"
 mkdir -p "Collection/Bluetooth/BrcmPatchRAM"
 #
 print "EAPD Codec Commander"
-cp -R "EAPD-Codec-Commander/build/Products/Release/CodecCommander.kext" "Collection/Sound/"
+cp -R "EAPD Codec Commander/build/Products/Release/CodecCommander.kext" "Collection/Sound/"
 #
-print "OSX ACPI Battery Driver"
-cp -R "OS-X-ACPI-Battery-Driver/build/Products/Release/ACPIBatteryManager.kext" "Collection/Laptop/"
+print "ACPI Battery Driver"
+cp -R "ACPI Battery Driver/build/Products/Release/ACPIBatteryManager.kext" "Collection/Laptop/"
 #
-print "OSX ACPI Debug"
-cp -R "OS-X-ACPI-Debug/build/Products/Release/ACPIDebug.kext" "Collection/Misc/"
+print "ACPI Debug"
+cp -R "ACPI Debug/build/Products/Release/ACPIDebug.kext" "Collection/Misc/"
 #
-print "OSX ACPI Keyboard"
-cp -R "OS-X-ACPI-Keyboard/build/Products/Release/ACPIKeyboard.kext" "Collection/Laptop/"
+print "ACPI Keyboard"
+cp -R "ACPI Keyboard/build/Products/Release/ACPIKeyboard.kext" "Collection/Laptop/"
 #
-print "OSX BrcmPatchRAM"
-cp -R "OS-X-BrcmPatchRAM/build/Products/Release/" "Collection/Bluetooth/BrcmPatchRAM/"
+print "BrcmPatchRAM"
+cp -R "BrcmPatchRAM/build/Products/Release/" "Collection/Bluetooth/BrcmPatchRAM/"
 #
-print "OSX FakePCIID"
-cp -R "OS-X-Fake-PCI-ID/build/Release/" "Collection/FakePCIID/"
+print "FakePCIID"
+cp -R "FakePCIID/build/Release/" "Collection/FakePCIID/"
 #
-print "OSX MaciASL"
-cp -R "OS-X-MaciASL-patchmatic/build/Release/MaciASL.app" "Collection/Tools/"
+print "MaciASL"
+cp -R "MaciASL/build/Release/MaciASL.app" "Collection/Tools/"
 
 echo -e "\n# Collect Slice kexts"
 mkdir -p "Collection/Sound/VoodooHDA"
