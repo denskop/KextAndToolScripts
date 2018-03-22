@@ -1,9 +1,38 @@
 #!/bin/bash
 
+blacklist_file="blacklist.txt"
+blacklist_file_exist="false"
+
+# check_in_blacklist
+# args: <file>
+# return codes: -1, blacklist not found
+#                0, file is not listed in blacklist
+#                1, file is listed in blacklist
+function check_in_blacklist()
+{
+    if [ "$blacklist_file_exist" == "false" ]; then
+        return -1
+    fi
+
+    while IFS='' read -r line || [[ -n "$line" ]]; do
+        if [ "$1" == "$line" ]; then
+            #echo "Found in blacklist: $line"
+            return 1
+        fi
+    done < "$blacklist_file"
+    return 0
+}
+
 # git_clone
 # args: <url> <folder> optional: <branch>
 function git_clone()
 {
+    check_in_blacklist "$(basename "$2")"
+    if [ "$?" == "1" ]; then
+        rm -rf "$2"
+        return 1
+    fi
+
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
 
     if [ -z "$3" ]; then
@@ -17,6 +46,11 @@ function git_clone()
 # args: <url> <folder> <sha>
 function git_checkout()
 {
+    check_in_blacklist "$(basename "$2")"
+    if [ "$?" == "1" ]; then
+        rm -rf "$2"
+        return 1
+    fi
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
 
     git clone "$1" "$2"
@@ -27,8 +61,98 @@ function git_checkout()
 # args: <url> <folder>
 function svn_co()
 {
+    check_in_blacklist "$(basename "$2")"
+    if [ "$?" == "1" ]; then
+        rm -rf "$2"
+        return 1
+    fi
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
     svn checkout "$1" "$2"
+}
+
+# print_group
+# args: <group>
+function print_group()
+{
+    if [ "$1" == "acpica" ]; then
+        array=("ACPICA")
+        title="\n# Clone ACPI Component Architecture"
+    elif [ "$1" == "kozlek" ]; then
+        array=("HWSensors")
+        title="\n# Clone Kozlek kexts"
+    elif [ "$1" == "longsoft" ]; then
+        array=("UEFITool" "UEFITool(NE)")
+        title="\n# Clone LongSoft tools"
+    elif [ "$1" == "mieze" ]; then
+        array=("AtherosE2200Ethernet" \
+               "IntelMausiEthernet" \
+               "Realtek RTL8100" \
+               "Realtek RTL8111")
+        title="\n# Clone Mieze kexts"
+    elif [ "$1" == "rehabman" ]; then
+        array=("EAPD Codec Commander" \
+               "ACPI Battery Driver" \
+               "ACPI Debug" \
+               "ACPI Keyboard" \
+               "BrcmPatchRAM" \
+               "FakePCIID" \
+               "MaciASL")
+        title="\n# Clone RehabMan kexts and tools"
+    elif [ "$1" == "slice" ]; then
+        array=("VoodooHDA")
+        title="\n# Clone Slice kexts"
+    elif [ "$1" == "vit9696" ]; then
+        array=("AirportBrcmFixup" \
+               "AppleALC" \
+               "ATH9KFixup" \
+               "AzulPatcher4600" \
+               "BT4LEContiunityFixup" \
+               "CoreDisplayFixup" \
+               "CPUFriend" \
+               "EnableLidWake" \
+               "HibernationFixup" \
+               "IntelGraphicsFixup" \
+               "Lilu" \
+               "NvidiaGraphicsFixup" \
+               "Shiki" \
+               "WhateverGreen")
+        title="\n# Clone vit9696 kexts and plugins"
+    elif [ "$1" == "alexandred" ]; then
+        array=("VoodooI2C" \
+               "VoodooGPIO" \
+               "VoodooI2CELAN" \
+               "VoodooI2CHID" \
+               "VoodooI2CSynaptics" \
+               "VoodooI2CUPDDEngine" \
+               "ACPI-Patches")
+        title="\n# Clone alexandred kexts"
+    elif [ "$1" == "piker_alpha" ]; then
+        array=("AppleIntelInfo" \
+               "ssdtPRGen")
+        title="\n# Clone Piker-Alpha kexts and tools"
+    elif [ "$1" == "uefi" ]; then
+        array=("edk2" \
+               "Clover" \
+               "CupertinoModulePkg" \
+               "EfiMiscPkg" \
+               "EfiPkg" \
+               "AptioFixPkg")
+        title="\n# Clone UEFI projects"
+    else
+        array=("nil")
+        title="nil"
+    fi
+
+    for i in "${array[@]}"; do
+        check_in_blacklist "$(basename "${i}")"
+        ret="$?"
+
+        if [ "$ret" == "0" ] || [ "$ret" == "-1" ]; then
+            echo -e "$title"
+            return 1
+        fi
+    done
+    return 0
 }
 
 # Check git svn tools
@@ -39,23 +163,31 @@ else
     echo "Command Line Tools: Installed"
 fi
 
-echo -e "\n# Clone ACPI Component Architecture"
+# Check blacklist file
+if [ -f "$blacklist_file" ]; then
+    echo "Blacklist file: Exist"
+    blacklist_file_exist="true"
+else
+    echo "Blacklist file: Not exist"
+fi
+
+print_group "acpica"
 git_clone https://github.com/acpica/acpica.git "ACPICA"
 
-echo -e "\n# Clone Kozlek kexts"
+print_group "kozlek"
 git_clone https://github.com/kozlek/HWSensors.git "HWSensors"
 
-echo -e "\n# Clone LongSoft tools"
+print_group "longsoft"
 git_clone https://github.com/LongSoft/UEFITool.git "UEFITool"
 git_clone https://github.com/LongSoft/UEFITool.git "UEFITool(NE)" new_engine
 
-echo -e "\n# Clone Mieze kexts"
+print_group "mieze"
 git_clone https://github.com/Mieze/AtherosE2200Ethernet.git "AtherosE2200Ethernet"
 git_clone https://github.com/Mieze/IntelMausiEthernet.git "IntelMausiEthernet"
 git_clone https://github.com/Mieze/RealtekRTL8100.git "Realtek RTL8100"
 git_clone https://github.com/Mieze/RTL8111_driver_for_OS_X.git "Realtek RTL8111"
 
-echo -e "\n# Clone RehabMan kexts and tools"
+print_group "rehabman"
 git_clone https://github.com/RehabMan/EAPD-Codec-Commander.git "EAPD Codec Commander"
 git_clone https://github.com/RehabMan/OS-X-ACPI-Battery-Driver.git "ACPI Battery Driver"
 git_clone https://github.com/RehabMan/OS-X-ACPI-Debug.git "ACPI Debug"
@@ -65,10 +197,10 @@ git_clone https://github.com/RehabMan/OS-X-Fake-PCI-ID.git "FakePCIID"
 #
 git_clone https://github.com/RehabMan/OS-X-MaciASL-patchmatic.git "MaciASL"
 
-echo -e "\n# Clone Slice kexts"
+print_group "slice"
 svn_co https://svn.code.sf.net/p/voodoohda/code "VoodooHDA"
 
-echo -e "\n# Clone vit9696 kexts and plugins"
+print_group "vit9696"
 git_clone https://github.com/lvs1974/AirportBrcmFixup.git "AirportBrcmFixup"            #lvs1974
 git_clone https://github.com/vit9696/AppleALC.git "AppleALC"
 git_clone https://github.com/chunnann/ATH9KFixup.git "ATH9KFixup"                       #chunnann
@@ -84,7 +216,7 @@ git_clone https://github.com/lvs1974/NvidiaGraphicsFixup.git "NvidiaGraphicsFixu
 git_clone https://github.com/vit9696/Shiki.git "Shiki"
 git_clone https://github.com/vit9696/WhateverGreen.git "WhateverGreen"
 
-echo -e "\n# Clone alexandred kexts"
+print_group "alexandred"
 git_clone https://github.com/alexandred/VoodooI2C.git "VoodooI2C"
 
 # Dependencies
@@ -99,11 +231,11 @@ git_clone https://github.com/blankmac/VoodooI2CUPDDEngine.git "VoodooI2C/VoodooI
 # Patches
 git_clone https://github.com/alexandred/VoodooI2C-Patches.git "VoodooI2C/ACPI-Patches"
 
-echo -e "\n# Clone Piker-Alpha kexts and tools"
+print_group "piker_alpha"
 git_clone https://github.com/Piker-Alpha/AppleIntelInfo.git "AppleIntelInfo"
 git_clone https://github.com/Piker-Alpha/ssdtPRGen.sh "ssdtPRGen"
 
-echo -e "\n# Clone UEFI projects"
+print_group "uefi"
 git_checkout https://github.com/tianocore/edk2.git "edk2" "a35918caae4d0b9bb51d0d4765117d7ca9a4d641"    #Tianocore
 #git_clone https://git.code.sf.net/p/tianocore/edk2 "edk2"
 #
