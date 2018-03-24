@@ -64,7 +64,9 @@ function print_group()
         array=("HWSensors")
         title="\n# Update Kozlek kexts"
     elif [ "$1" == "longsoft" ]; then
-        array=("UEFITool" "UEFITool(NE)")
+        array=("UEFITool" \
+               "UEFITool(NE)")
+              #"Universal IFR Extractor")
         title="\n# Update LongSoft tools"
     elif [ "$1" == "mieze" ]; then
         array=("AtherosE2200Ethernet" \
@@ -79,7 +81,9 @@ function print_group()
                "ACPI Keyboard" \
                "BrcmPatchRAM" \
                "FakePCIID" \
-               "MaciASL")
+               "MaciASL" \
+               "USBInjectAll" \
+               "VoodooPS2")
         title="\n# Update RehabMan kexts and tools"
     elif [ "$1" == "slice" ]; then
         array=("VoodooHDA")
@@ -94,8 +98,10 @@ function print_group()
                "CPUFriend" \
                "EnableLidWake" \
                "HibernationFixup" \
+               "IntelGraphicsDVMTFixup" \
                "IntelGraphicsFixup" \
                "Lilu" \
+               "NightShiftUnlocker" \
                "NvidiaGraphicsFixup" \
                "Shiki" \
                "WhateverGreen")
@@ -107,7 +113,7 @@ function print_group()
                "VoodooI2CHID" \
                "VoodooI2CSynaptics" \
                "VoodooI2CUPDDEngine" \
-               "ACPI-Patches")
+               "VoodooI2C ACPI Patches")
         title="\n# Update alexandred kexts"
     elif [ "$1" == "piker_alpha" ]; then
         array=("AppleIntelInfo" \
@@ -163,6 +169,7 @@ git_pull "HWSensors"
 print_group "longsoft"
 git_pull "UEFITool"
 git_pull "UEFITool(NE)"
+#git_pull "Universal IFR Extractor"
 
 print_group "mieze"
 git_pull "AtherosE2200Ethernet"
@@ -177,25 +184,28 @@ git_pull "ACPI Debug"
 git_pull "ACPI Keyboard"
 git_pull "BrcmPatchRAM"
 git_pull "FakePCIID"
-#
 git_pull "MaciASL"
+git_pull "USBInjectAll"
+git_pull "VoodooPS2"
 
 print_group "slice"
 svn_update "VoodooHDA"
 
 print_group "vit9696"
-git_pull "AirportBrcmFixup"     #lvs1974
+git_pull "AirportBrcmFixup"         #lvs1974
 git_pull "AppleALC"
-git_pull "ATH9KFixup"           #chunnann
-git_pull "AzulPatcher4600"      #coderobe
-git_pull "BT4LEContiunityFixup" #lvs1974
-git_pull "CoreDisplayFixup"     #PMheart
-git_pull "CPUFriend"            #PMheart
-git_pull "EnableLidWake"        #syscl
-git_pull "HibernationFixup"     #lvs1974
-git_pull "IntelGraphicsFixup"   #lvs1974
+git_pull "ATH9KFixup"               #chunnann
+git_pull "AzulPatcher4600"          #coderobe
+git_pull "BT4LEContiunityFixup"     #lvs1974
+git_pull "CoreDisplayFixup"         #PMheart
+git_pull "CPUFriend"                #PMheart
+git_pull "EnableLidWake"            #syscl
+git_pull "HibernationFixup"         #lvs1974
+git_pull "IntelGraphicsDVMTFixup"   #BarbaraPalvin
+git_pull "IntelGraphicsFixup"       #lvs1974
 git_pull "Lilu"
-git_pull "NvidiaGraphicsFixup"  #lvs1974
+git_pull "NightShiftUnlocker"       #Austere-J
+git_pull "NvidiaGraphicsFixup"      #lvs1974
 git_pull "Shiki"
 git_pull "WhateverGreen"
 
@@ -208,7 +218,7 @@ git_pull "VoodooI2C/VoodooI2C Satellites/VoodooI2CHID"
 git_pull "VoodooI2C/VoodooI2C Satellites/VoodooI2CSynaptics"
 git_pull "VoodooI2C/VoodooI2C Satellites/VoodooI2CUPDDEngine"
 #
-git_pull "VoodooI2C/ACPI-Patches"
+git_pull "VoodooI2C/VoodooI2C ACPI Patches"
 
 print_group "piker_alpha"
 git_pull "AppleIntelInfo"

@@ -81,7 +81,9 @@ function print_group()
         array=("HWSensors")
         title="\n# Clone Kozlek kexts"
     elif [ "$1" == "longsoft" ]; then
-        array=("UEFITool" "UEFITool(NE)")
+        array=("UEFITool" \
+               "UEFITool(NE)")
+               #"Universal IFR Extractor")
         title="\n# Clone LongSoft tools"
     elif [ "$1" == "mieze" ]; then
         array=("AtherosE2200Ethernet" \
@@ -96,7 +98,9 @@ function print_group()
                "ACPI Keyboard" \
                "BrcmPatchRAM" \
                "FakePCIID" \
-               "MaciASL")
+               "MaciASL" \
+               "USBInjectAll" \
+               "VoodooPS2") \
         title="\n# Clone RehabMan kexts and tools"
     elif [ "$1" == "slice" ]; then
         array=("VoodooHDA")
@@ -111,8 +115,10 @@ function print_group()
                "CPUFriend" \
                "EnableLidWake" \
                "HibernationFixup" \
+               "IntelGraphicsDVMTFixup" \
                "IntelGraphicsFixup" \
                "Lilu" \
+               "NightShiftUnlocker" \
                "NvidiaGraphicsFixup" \
                "Shiki" \
                "WhateverGreen")
@@ -124,7 +130,7 @@ function print_group()
                "VoodooI2CHID" \
                "VoodooI2CSynaptics" \
                "VoodooI2CUPDDEngine" \
-               "ACPI-Patches")
+               "VoodooI2C ACPI Patches")
         title="\n# Clone alexandred kexts"
     elif [ "$1" == "piker_alpha" ]; then
         array=("AppleIntelInfo" \
@@ -180,6 +186,7 @@ git_clone https://github.com/kozlek/HWSensors.git "HWSensors"
 print_group "longsoft"
 git_clone https://github.com/LongSoft/UEFITool.git "UEFITool"
 git_clone https://github.com/LongSoft/UEFITool.git "UEFITool(NE)" new_engine
+#git_clone https://github.com/LongSoft/Universal-IFR-Extractor.git "Universal IFR Extractor"
 
 print_group "mieze"
 git_clone https://github.com/Mieze/AtherosE2200Ethernet.git "AtherosE2200Ethernet"
@@ -194,25 +201,28 @@ git_clone https://github.com/RehabMan/OS-X-ACPI-Debug.git "ACPI Debug"
 git_clone https://github.com/RehabMan/OS-X-ACPI-Keyboard.git "ACPI Keyboard"
 git_clone https://github.com/RehabMan/OS-X-BrcmPatchRAM.git "BrcmPatchRAM"
 git_clone https://github.com/RehabMan/OS-X-Fake-PCI-ID.git "FakePCIID"
-#
 git_clone https://github.com/RehabMan/OS-X-MaciASL-patchmatic.git "MaciASL"
+git_clone https://github.com/RehabMan/OS-X-USB-Inject-All.git "USBInjectAll"
+git_clone https://github.com/RehabMan/OS-X-Voodoo-PS2-Controller.git "VoodooPS2"
 
 print_group "slice"
 svn_co https://svn.code.sf.net/p/voodoohda/code "VoodooHDA"
 
 print_group "vit9696"
-git_clone https://github.com/lvs1974/AirportBrcmFixup.git "AirportBrcmFixup"            #lvs1974
+git_clone https://github.com/lvs1974/AirportBrcmFixup.git "AirportBrcmFixup"                    #lvs1974
 git_clone https://github.com/vit9696/AppleALC.git "AppleALC"
-git_clone https://github.com/chunnann/ATH9KFixup.git "ATH9KFixup"                       #chunnann
-git_clone https://github.com/coderobe/AzulPatcher4600.git "AzulPatcher4600"             #coderobe
-git_clone https://github.com/lvs1974/BT4LEContiunityFixup.git "BT4LEContiunityFixup"    #lvs1974
-git_clone https://github.com/PMheart/CoreDisplayFixup.git "CoreDisplayFixup"            #PMheart
-git_clone https://github.com/PMheart/CPUFriend.git "CPUFriend"                          #PMheart
-git_clone https://github.com/syscl/EnableLidWake.git "EnableLidWake"                    #syscl
-git_clone https://github.com/lvs1974/HibernationFixup.git "HibernationFixup"            #lvs1974
-git_clone https://github.com/lvs1974/IntelGraphicsFixup.git "IntelGraphicsFixup"        #lvs1974
+git_clone https://github.com/chunnann/ATH9KFixup.git "ATH9KFixup"                               #chunnann
+git_clone https://github.com/coderobe/AzulPatcher4600.git "AzulPatcher4600"                     #coderobe
+git_clone https://github.com/lvs1974/BT4LEContiunityFixup.git "BT4LEContiunityFixup"            #lvs1974
+git_clone https://github.com/PMheart/CoreDisplayFixup.git "CoreDisplayFixup"                    #PMheart
+git_clone https://github.com/PMheart/CPUFriend.git "CPUFriend"                                  #PMheart
+git_clone https://github.com/syscl/EnableLidWake.git "EnableLidWake"                            #syscl
+git_clone https://github.com/lvs1974/HibernationFixup.git "HibernationFixup"                    #lvs1974
+git_clone https://github.com/BarbaraPalvin/IntelGraphicsDVMTFixup.git "IntelGraphicsDVMTFixup"  #BarbaraPalvin
+git_clone https://github.com/lvs1974/IntelGraphicsFixup.git "IntelGraphicsFixup"                #lvs1974
 git_clone https://github.com/vit9696/Lilu.git "Lilu"
-git_clone https://github.com/lvs1974/NvidiaGraphicsFixup.git "NvidiaGraphicsFixup"      #lvs1974
+git_clone https://github.com/Austere-J/NightShiftUnlocker.git "NightShiftUnlocker"              #Austere-J
+git_clone https://github.com/lvs1974/NvidiaGraphicsFixup.git "NvidiaGraphicsFixup"              #lvs1974
 git_clone https://github.com/vit9696/Shiki.git "Shiki"
 git_clone https://github.com/vit9696/WhateverGreen.git "WhateverGreen"
 
@@ -229,7 +239,7 @@ git_clone https://github.com/alexandred/VoodooI2CSynaptics.git "VoodooI2C/Voodoo
 git_clone https://github.com/blankmac/VoodooI2CUPDDEngine.git "VoodooI2C/VoodooI2C Satellites/VoodooI2CUPDDEngine"
 
 # Patches
-git_clone https://github.com/alexandred/VoodooI2C-Patches.git "VoodooI2C/ACPI-Patches"
+git_clone https://github.com/alexandred/VoodooI2C-Patches.git "VoodooI2C/VoodooI2C ACPI Patches"
 
 print_group "piker_alpha"
 git_clone https://github.com/Piker-Alpha/AppleIntelInfo.git "AppleIntelInfo"

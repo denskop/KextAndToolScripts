@@ -241,8 +241,15 @@ xcode_build "FakePCIID/FakePCIID.xcodeproj" "FakePCIID_Broadcom_WiFi" Release pl
 xcode_build "FakePCIID/FakePCIID.xcodeproj" "FakePCIID_BCM57XX_as_BCM57765" Release plugin force
 xcode_build "FakePCIID/FakePCIID.xcodeproj" "FakePCIID_Intel_GbX" Release plugin force
 xcode_build "FakePCIID/FakePCIID.xcodeproj" "FakePCIID_XHCIMux" Release plugin force
-#
 xcode_build "MaciASL/MaciASL.xcodeproj" "MaciASL" Release force
+xcode_build "USBInjectAll/USBInjectAll.xcodeproj" "USBInjectAll" Release force
+xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "VoodooPS2Controller" Release force
+xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "VoodooPS2Keyboard" Release plugin force
+xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "VoodooPS2Mouse" Release plugin force
+xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "VoodooPS2Trackpad" Release plugin force
+xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "VoodooPS2Daemon" Release plugin force
+xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "VoodooPS2synapticsPane" Release plugin force
+xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "synapticsconfigload" Release plugin force
 
 echo -e "\n# $build_cmd Slice kexts"
 xcode_build "VoodooHDA/tranc/VoodooHDA.xcodeproj" "VoodooHDA" Release force
@@ -253,17 +260,19 @@ echo -e "\n# $build_cmd vit9696 kexts and plugins"
 xcode_build "Lilu/Lilu.xcodeproj" "Lilu" Debug
 xcode_build "Lilu/Lilu.xcodeproj" "Lilu" Release
 
-xcode_build2 "AirportBrcmFixup/AirportBrcmFixup.xcodeproj" "AirportBrcmFixup" Release plugin                #lvs1974
+xcode_build2 "AirportBrcmFixup/AirportBrcmFixup.xcodeproj" "AirportBrcmFixup" Release plugin                    #lvs1974
 xcode_build2 "AppleALC/AppleALC.xcodeproj" "AppleALC" Release plugin
-xcode_build2 "ATH9KFixup/ATH9KFixup.xcodeproj" "ATH9KFixup" Release plugin                                  #chunnann
-xcode_build2 "AzulPatcher4600/AzulPatcher4600.xcodeproj" "AzulPatcher4600" Release plugin                   #coderobe
-xcode_build2 "BT4LEContiunityFixup/BT4LEContiunityFixup.xcodeproj" "BT4LEContiunityFixup" Release plugin    #lvs1974
-xcode_build2 "CoreDisplayFixup/CoreDisplayFixup.xcodeproj" "CoreDisplayFixup" Release plugin                #PMheart
-xcode_build2 "CPUFriend/CPUFriend.xcodeproj" "CPUFriend" Release plugin                                     #PMheart
-xcode_build2 "EnableLidWake/EnableLidWake.xcodeproj" "EnableLidWake" Release plugin                         #syscl
-xcode_build2 "HibernationFixup/HibernationFixup.xcodeproj" "HibernationFixup" Release plugin                #lvs1974
-xcode_build2 "IntelGraphicsFixup/IntelGraphicsFixup.xcodeproj" "IntelGraphicsFixup" Release plugin          #lvs1974
-xcode_build2 "NvidiaGraphicsFixup/NvidiaGraphicsFixup.xcodeproj" "NvidiaGraphicsFixup" Release plugin       #lvs1974
+xcode_build2 "ATH9KFixup/ATH9KFixup.xcodeproj" "ATH9KFixup" Release plugin                                      #chunnann
+xcode_build2 "AzulPatcher4600/AzulPatcher4600.xcodeproj" "AzulPatcher4600" Release plugin                       #coderobe
+xcode_build2 "BT4LEContiunityFixup/BT4LEContiunityFixup.xcodeproj" "BT4LEContiunityFixup" Release plugin        #lvs1974
+xcode_build2 "CoreDisplayFixup/CoreDisplayFixup.xcodeproj" "CoreDisplayFixup" Release plugin                    #PMheart
+xcode_build2 "CPUFriend/CPUFriend.xcodeproj" "CPUFriend" Release plugin                                         #PMheart
+xcode_build2 "EnableLidWake/EnableLidWake.xcodeproj" "EnableLidWake" Release plugin                             #syscl
+xcode_build2 "HibernationFixup/HibernationFixup.xcodeproj" "HibernationFixup" Release plugin                    #lvs1974
+xcode_build2 "IntelGraphicsDVMTFixup/IntelGraphicsDVMTFixup.xcodeproj" "IntelGraphicsDVMTFixup" Release plugin  #lvs1974
+xcode_build2 "IntelGraphicsFixup/IntelGraphicsFixup.xcodeproj" "IntelGraphicsFixup" Release plugin              #lvs1974
+xcode_build2 "NightShiftUnlocker/NightShiftUnlocker.xcodeproj" "NightShiftUnlocker" Release plugin              #Austere-J
+xcode_build2 "NvidiaGraphicsFixup/NvidiaGraphicsFixup.xcodeproj" "NvidiaGraphicsFixup" Release plugin           #lvs1974
 xcode_build2 "Shiki/Shiki.xcodeproj" "Shiki" Release plugin
 xcode_build2 "WhateverGreen/WhateverGreen.xcodeproj" "WhateverGreen" Release plugin
 

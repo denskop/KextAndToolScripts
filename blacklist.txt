@@ -1,45 +1,50 @@
-#ACPICA
-#HWSensors
-#UEFITool
-#UEFITool(NE)
-#AtherosE2200Ethernet
-#IntelMausiEthernet
-#Realtek RTL8100
-#Realtek RTL8111
-#EAPD Codec Commander
 #ACPI Battery Driver
 #ACPI Debug
 #ACPI Keyboard
-#BrcmPatchRAM
-#FakePCIID
-#MaciASL
-#VoodooHDA
+#ACPICA
 #AirportBrcmFixup
 #AppleALC
+#AppleIntelInfo
+#AptioFixPkg
 #ATH9KFixup
+#AtherosE2200Ethernet
 #AzulPatcher4600
+#BrcmPatchRAM
 #BT4LEContiunityFixup
+#Clover
 #CoreDisplayFixup
 #CPUFriend
+#CupertinoModulePkg
+#EAPD Codec Commander
+#edk2
+#EfiMiscPkg
+#EfiPkg
 #EnableLidWake
+#FakePCIID
 #HibernationFixup
+#HWSensors
+#IntelGraphicsDVMTFixup
 #IntelGraphicsFixup
+#IntelMausiEthernet
 #Lilu
+#MaciASL
+#NightShiftUnlocker
 #NvidiaGraphicsFixup
+#Realtek RTL8100
+#Realtek RTL8111
 #Shiki
-#WhateverGreen
-#VoodooI2C
+#ssdtPRGen
+#UEFITool
+#UEFITool(NE)
+#Universal IFR Extractor
+#USBInjectAll
 #VoodooGPIO
+#VoodooHDA
+#VoodooI2C
+#VoodooI2C ACPI Patches
 #VoodooI2CELAN
 #VoodooI2CHID
 #VoodooI2CSynaptics
 #VoodooI2CUPDDEngine
-#ACPI-Patches
-#AppleIntelInfo
-#ssdtPRGen
-#edk2
-#Clover
-#CupertinoModulePkg
-#EfiMiscPkg
-#EfiPkg
-#AptioFixPkg
+#VoodooPS2
+#WhateverGreen
