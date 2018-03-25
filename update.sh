@@ -62,7 +62,7 @@ function print_group()
         title="\n# Update ACPI Component Architecture"
     elif [ "$1" == "denskop" ]; then
         array=("Universal IFR Extractor")
-        title="\n# Clone denskop forks"
+        title="\n# Update denskop forks"
     elif [ "$1" == "kozlek" ]; then
         array=("HWSensors")
         title="\n# Update Kozlek kexts"
