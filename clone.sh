@@ -80,10 +80,12 @@ function print_group()
     elif [ "$1" == "kozlek" ]; then
         array=("HWSensors")
         title="\n# Clone Kozlek kexts"
+    elif [ "$1" == "denskop" ]; then
+        array=("Universal IFR Extractor")
+        title="\n# Clone denskop forks"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
                "UEFITool(NE)")
-               #"Universal IFR Extractor")
         title="\n# Clone LongSoft tools"
     elif [ "$1" == "mieze" ]; then
         array=("AtherosE2200Ethernet" \
@@ -180,13 +182,15 @@ fi
 print_group "acpica"
 git_clone https://github.com/acpica/acpica.git "ACPICA"
 
+print_group "denskop"
+git_clone https://github.com/denskop/Universal-IFR-Extractor.git "Universal IFR Extractor"
+
 print_group "kozlek"
 git_clone https://github.com/kozlek/HWSensors.git "HWSensors"
 
 print_group "longsoft"
 git_clone https://github.com/LongSoft/UEFITool.git "UEFITool"
 git_clone https://github.com/LongSoft/UEFITool.git "UEFITool(NE)" new_engine
-#git_clone https://github.com/LongSoft/Universal-IFR-Extractor.git "Universal IFR Extractor"
 
 print_group "mieze"
 git_clone https://github.com/Mieze/AtherosE2200Ethernet.git "AtherosE2200Ethernet"

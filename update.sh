@@ -60,13 +60,15 @@ function print_group()
     if [ "$1" == "acpica" ]; then
         array=("ACPICA")
         title="\n# Update ACPI Component Architecture"
+    elif [ "$1" == "denskop" ]; then
+        array=("Universal IFR Extractor")
+        title="\n# Clone denskop forks"
     elif [ "$1" == "kozlek" ]; then
         array=("HWSensors")
         title="\n# Update Kozlek kexts"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
                "UEFITool(NE)")
-              #"Universal IFR Extractor")
         title="\n# Update LongSoft tools"
     elif [ "$1" == "mieze" ]; then
         array=("AtherosE2200Ethernet" \
@@ -163,13 +165,15 @@ fi
 print_group "acpica"
 git_pull "ACPICA"
 
+print_group "denskop"
+git_pull "Universal IFR Extractor"
+
 print_group "kozlek"
 git_pull "HWSensors"
 
 print_group "longsoft"
 git_pull "UEFITool"
 git_pull "UEFITool(NE)"
-#git_pull "Universal IFR Extractor"
 
 print_group "mieze"
 git_pull "AtherosE2200Ethernet"

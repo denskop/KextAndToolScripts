@@ -297,6 +297,9 @@ xcode_build "VoodooI2C/VoodooI2C/VoodooI2C.xcodeproj" "VoodooI2C" Release force
 echo -e "\n# $build_cmd Piker-Alpha kexts and tools"
 xcode_build "AppleIntelInfo/AppleIntelInfo.xcodeproj" "AppleIntelInfo" Release
 
+echo -e "\n# $build_cmd denskop forks"
+qt_build "Universal IFR Extractor/Qt/Universal_IFR_Extractor.pro" "Universal IFR Extractor"
+
 echo -e "\n# $build_cmd LongSoft tools"
 qt_build "UEFITool/uefitool.pro" "UEFITool"
 #qt_build "UEFIExtract/uefiextract.pro" "UEFIExtract"

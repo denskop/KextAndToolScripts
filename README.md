@@ -20,6 +20,7 @@
  
 ## Known issues
     1. VoodooHDA prefpane build fails
+    2. NightShiftUnlocker build fails with Xcode 9
  
 ## List of supported kexts and tools
 
@@ -62,6 +63,8 @@ with plugins: ACPISensors, CPUSensors,  GPUSensors, LPCSensors
 - [BrcmPatchRAM](https://github.com/RehabMan/OS-X-BrcmPatchRAM)
 - [FakePCIID](https://github.com/RehabMan/OS-X-Fake-PCI-ID)
 - [MaciASL](https://github.com/RehabMan/OS-X-MaciASL-patchmatic)
+- [USBInjectAll](https://github.com/RehabMan/OS-X-USB-Inject-All)
+- [VoodooPS2](https://github.com/RehabMan/OS-X-Voodoo-PS2-Controller)
 
 ### 9. Slice kexts
 - [VoodooHDA](https://sourceforge.net/projects/voodoohda/)
@@ -76,8 +79,10 @@ with plugins: ACPISensors, CPUSensors,  GPUSensors, LPCSensors
 - [CPUFriend](https://github.com/PMheart/CPUFriend)
 - [EnableLidWake](https://github.com/syscl/EnableLidWake)
 - [HibernationFixup](https://github.com/lvs1974/HibernationFixup)
+- [IntelGraphicsDVMTFixup](https://github.com/BarbaraPalvin/IntelGraphicsDVMTFixup)
 - [IntelGraphicsFixup](https://github.com/lvs1974/IntelGraphicsFixup)
 - [Lilu](https://github.com/vit9696/Lilu)
+- [NightShiftUnlocker](https://github.com/Austere-J/NightShiftUnlocker)
 - [NvidiaGraphicsFixup](https://github.com/lvs1974/NvidiaGraphicsFixup)
 - [Shiki](https://github.com/vit9696/Shiki)
 - [WhateverGreen](https://github.com/vit9696/WhateverGreen)

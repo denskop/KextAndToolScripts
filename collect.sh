@@ -19,6 +19,10 @@ print "ACPICA"
 cp -R "ACPICA/generate/unix/bin/" "Collection/Tools/ACPICA/Misc/"
 mv "Collection/Tools/ACPICA/Misc/iasl" "Collection/Tools/ACPICA/"
 cp -R "ACPICA/documents/aslcompiler.pdf" "Collection/Tools/ACPICA/"
+#
+echo -e "\n# Collect denskop forks"
+mkdir -p "Collection/Tools/"
+cp -R "Universal IFR Extractor/Qt/Universal IFR Extractor.app" "Collection/Tools/"
 
 echo -e "\n# Collect Kozlek kexts"
 mkdir -p "Collection/FakeSMC"
