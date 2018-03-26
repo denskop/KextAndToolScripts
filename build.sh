@@ -153,7 +153,11 @@ fi
 
 # Check Xcode
 if [ "$(xcodebuild -v 2>&1 | grep "requires Xcode")" != "" ]; then
-    echo "2. Xcode: Not Installed, skipping kext building..."
+    if [ -d "/Applications/Xcode.app" ]; then
+        echo "2. Xcode: Not Selected, skipping kext building..."
+    else
+        echo "2. Xcode: Not Installed, skipping kext building..."
+    fi
 else
     echo "2. Xcode: Installed"
     xcode_installed="true"
