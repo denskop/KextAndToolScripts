@@ -322,10 +322,10 @@ if [ "$qmake_found" == "true" ]; then
     echo "3. qmake - $(tput bold)PASSED$(tput sgr0). Found at: $QMAKEPATH"
 else
     echo "3. qmake - $(tput bold)FAILED$(tput sgr0)."
-    if [ "$(brew -v | grep "Homebrew")" == "" ]; then
-        echo "\nInstalling Homebrew..."
+    if [ "$(brew -v 2>&1 | grep Homebrew)" == "" ]; then
+        echo -e "\nInstalling Homebrew..."
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        echo "\nInstalling Qt5..."
+        echo -e "\nInstalling Qt5..."
         brew install qt5
         echo "QMAKEPATH="/usr/local/Cellar/qt"" > qmake_path
     fi
