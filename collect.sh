@@ -22,6 +22,8 @@ cp -R "ACPICA/documents/aslcompiler.pdf" "Collection/Tools/ACPICA/"
 #
 echo -e "\n# Collect denskop forks"
 mkdir -p "Collection/Tools/"
+#
+print "Universal IFR Extractor"
 cp -R "Universal IFR Extractor/Qt/Universal IFR Extractor.app" "Collection/Tools/"
 
 echo -e "\n# Collect Kozlek kexts"
