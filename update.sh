@@ -72,7 +72,7 @@ function print_group()
         title="\n# Update LongSoft tools"
     elif [ "$1" == "vulgo" ]; then
         array=("bootoption")
-        title="\n# Clone vulgo tools"
+        title="\n# Update vulgo tools"
     elif [ "$1" == "mieze" ]; then
         array=("AtherosE2200Ethernet" \
                "IntelMausiEthernet" \
