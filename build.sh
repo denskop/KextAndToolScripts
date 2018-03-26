@@ -2,9 +2,6 @@
 
 SELF_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Qt qmake user-defined location
-qmake=/Applications/Qt/5.9.2/clang_64/bin/qmake
-
 xcode_installed="false"
 if [ "$1" == "clean" ]; then
     echo "Start cleaning"
@@ -101,6 +98,11 @@ function qt_build()
 {
     echo "🔹 $(tput bold)$2$(tput sgr0)"
 
+    if [ "$qmake_found" == "false" ]; then
+        echo "Skipping..."
+        return 1
+    fi
+
     path=$(dirname "$1}")
     name=$(basename "$1")
     pushd "$path" >/dev/null
@@ -180,6 +182,50 @@ if [ "$(which mtoc.NEW)" == "" ] || [ "$(which mtoc)" == "" ]; then
     sudo mv mtoc.NEW /usr/local/bin/ || exit 1
 else
     echo "4. mtoc: Installed"
+fi
+
+# Check qmake
+qmake_found="false"
+
+if [ -f qmake_path ]; then
+    source qmake_path
+    qmake_found="true"
+fi
+
+# Bad qmake location
+if [ ! -f "$QMAKEPATH" ]; then
+    rm -rf qmake_path
+    qmake_found="false"
+fi
+
+# Find in typical locations
+if [ "$qmake_found" == "false" ]; then
+    # default style
+    qmake_candidates=($(find "$HOME/Qt" -name "qmake" -type f 2>/dev/null))
+
+    # brew style
+    qmake_candidates+=($(find "/usr/local/Cellar/qt" -name "qmake" -type f 2>/dev/null))
+
+    # user style
+    qmake_candidates+=($(find "/Applications/Qt" -name "qmake" -type f 2>/dev/null))
+    qmake_candidates+=($(find "/Applications/Qt5" -name "qmake" -type f 2>/dev/null))
+fi
+
+# Check potential qmakes
+for candidate in "${qmake_candidates[@]}"; do
+    if [ "$($candidate 2>&1 | grep "Usage: ")" ]; then
+        echo "QMAKEPATH="$candidate"" > qmake_path
+        QMAKEPATH=$candidate
+        qmake_found="true"
+        break
+    fi
+done
+
+if [ "$qmake_found" == "false" ]; then
+    echo "5. qmake: Not Installed, skipping Qt apps building..."
+else
+    echo "5. qmake: Installed"
+    qmake=$QMAKEPATH
 fi
 
 echo -e "\n# $build_cmd ACPI Component Architecture"

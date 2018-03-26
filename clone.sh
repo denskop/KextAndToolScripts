@@ -281,4 +281,52 @@ else
 fi
 
 # Check qmake
-echo "3. qmake - $(tput bold)UNKNOWN$(tput sgr0). Set qmake location to build.sh manually!"
+qmake_found="false"
+
+if [ -f qmake_path ]; then
+    source qmake_path
+    #echo "qmake path: $QMAKEPATH"
+    qmake_found="true"
+fi
+
+# Bad qmake location
+if [ ! -f "$QMAKEPATH" ]; then
+    rm -rf qmake_path
+    qmake_found="false"
+fi
+
+# Find in typical locations
+if [ "$qmake_found" == "false" ]; then
+    # default style
+    qmake_candidates=($(find "$HOME/Qt" -name "qmake" -type f 2>/dev/null))
+
+    # brew style
+    qmake_candidates+=($(find "/usr/local/Cellar/qt" -name "qmake" -type f 2>/dev/null))
+
+    # user style
+    qmake_candidates+=($(find "/Applications/Qt" -name "qmake" -type f 2>/dev/null))
+    qmake_candidates+=($(find "/Applications/Qt5" -name "qmake" -type f 2>/dev/null))
+fi
+
+# Check potential qmakes
+for candidate in "${qmake_candidates[@]}"; do
+    if [ "$($candidate 2>&1 | grep "Usage: ")" ]; then
+        echo "QMAKEPATH="$candidate"" > qmake_path
+        QMAKEPATH=$candidate
+        qmake_found="true"
+        break
+    fi
+done
+
+if [ "$qmake_found" == "true" ]; then
+    echo "3. qmake - $(tput bold)PASSED$(tput sgr0). Found at: $QMAKEPATH"
+else
+    echo "3. qmake - $(tput bold)FAILED$(tput sgr0)."
+    if [ "$(brew -v | grep "Homebrew")" == "" ]; then
+        echo "\nInstalling Homebrew..."
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        echo "\nInstalling Qt5..."
+        brew install qt5
+        echo "QMAKEPATH="/usr/local/Cellar/qt"" > qmake_path
+    fi
+fi
