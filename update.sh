@@ -70,6 +70,9 @@ function print_group()
         array=("UEFITool" \
                "UEFITool(NE)")
         title="\n# Update LongSoft tools"
+    elif [ "$1" == "vulgo" ]; then
+        array=("bootoption")
+        title="\n# Clone vulgo tools"
     elif [ "$1" == "mieze" ]; then
         array=("AtherosE2200Ethernet" \
                "IntelMausiEthernet" \
@@ -119,6 +122,7 @@ function print_group()
         title="\n# Update alexandred kexts"
     elif [ "$1" == "piker_alpha" ]; then
         array=("AppleIntelInfo" \
+               "csrstat" \
                "ssdtPRGen")
         title="\n# Update Piker-Alpha kexts and tools"
     elif [ "$1" == "uefi" ]; then
@@ -213,6 +217,9 @@ git_pull "NvidiaGraphicsFixup"      #lvs1974
 git_pull "Shiki"
 git_pull "WhateverGreen"
 
+print_group "vulgo"
+git_pull "bootoption"
+
 print_group "alexandred"
 git_pull "VoodooI2C"
 git_pull "VoodooI2C/Dependencies/VoodooGPIO"
@@ -226,6 +233,7 @@ git_pull "VoodooI2C/VoodooI2C ACPI Patches"
 
 print_group "piker_alpha"
 git_pull "AppleIntelInfo"
+git_pull "csrstat"
 git_pull "ssdtPRGen"
 
 print_group "uefi"

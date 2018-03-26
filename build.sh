@@ -128,6 +128,25 @@ function edk2_build()
     fi  
 }
 
+# gcc_build
+# args: <folder> optional: <string>
+function gcc_build()
+{
+cat << "EOT" > "$1/Makefile"
+CC := gcc
+SRCS := $(shell find . -name *.c)
+OBJS := $(addsuffix .o,$(basename $(SRCS)))
+all: out
+out: $(OBJS)
+	$(CC) $(LDFLAGS) $(OBJS) -o $@
+.PHONY: clean
+clean:
+	$(RM) out $(OBJS)
+EOT
+
+make_build "$1"
+}
+
 # print
 # args: <string> <debug/release>
 function print()
@@ -326,6 +345,9 @@ xcode_build2 "NvidiaGraphicsFixup/NvidiaGraphicsFixup.xcodeproj" "NvidiaGraphics
 xcode_build2 "Shiki/Shiki.xcodeproj" "Shiki" Release plugin
 xcode_build2 "WhateverGreen/WhateverGreen.xcodeproj" "WhateverGreen" Release plugin
 
+echo -e "\n# $build_cmd vulgo tools"
+xcode_build "bootoption/bootoption.xcodeproj" "bootoption" Release
+
 echo -e "\n# $build_cmd alexandred kexts"
 xcode_build "VoodooI2C/Dependencies/VoodooGPIO/VoodooGPIO.xcodeproj" "VoodooGPIO" Release plugin force
 xcode_build "VoodooI2C/Dependencies/VoodooI2CServices/VoodooI2CServices.xcodeproj" "VoodooI2CServices" Release plugin force
@@ -346,6 +368,7 @@ xcode_build "VoodooI2C/VoodooI2C/VoodooI2C.xcodeproj" "VoodooI2C" Release force
 
 echo -e "\n# $build_cmd Piker-Alpha kexts and tools"
 xcode_build "AppleIntelInfo/AppleIntelInfo.xcodeproj" "AppleIntelInfo" Release
+gcc_build "csrstat"
 
 echo -e "\n# $build_cmd denskop forks"
 qt_build "Universal IFR Extractor/Qt/Universal_IFR_Extractor.pro" "Universal IFR Extractor"

@@ -188,8 +188,16 @@ mkdir -p "Collection/Debug"
 print "AppleIntelInfo"
 cp -R "AppleIntelInfo/build/Release/AppleIntelInfo.kext" "Collection/Debug"
 #
+print "csrstat"
+cp -R "csrstat/out" "Collection/Tools/csrstat"
+#
 print "ssdtPRGen"
 cp -R "ssdtPRGen/ssdtPRGen.sh" "Collection/Tools/"
+
+echo -e "\n# Collect vulgo tools"
+#
+print "bootoption"
+cp -R "bootoption/build/Release/bootoption" "Collection/Tools/"
 
 echo -e "\n# Collect UEFI projects"
 mkdir -p "Collection/UEFI/Drivers"

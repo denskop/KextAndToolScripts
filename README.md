@@ -56,6 +56,7 @@ with plugins: ACPISensors, CPUSensors,  GPUSensors, LPCSensors
 
 ### 8. Piker-Alpha kexts and tools
 - [AppleIntelInfo](https://github.com/Piker-Alpha/AppleIntelInfo)
+- [csrstat](https://github.com/Piker-Alpha/csrstat)
 - [ssdtPRGen.sh](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 
 ### 9. RehabMan kexts and forks
@@ -89,3 +90,6 @@ with plugins: ACPISensors, CPUSensors,  GPUSensors, LPCSensors
 - [NvidiaGraphicsFixup](https://github.com/lvs1974/NvidiaGraphicsFixup)
 - [Shiki](https://github.com/vit9696/Shiki)
 - [WhateverGreen](https://github.com/vit9696/WhateverGreen)
+
+### 12. vulgo tools
+- [bootoption](https://github.com/vulgo/bootoption)

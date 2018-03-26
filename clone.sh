@@ -87,6 +87,9 @@ function print_group()
         array=("UEFITool" \
                "UEFITool(NE)")
         title="\n# Clone LongSoft tools"
+    elif [ "$1" == "vulgo" ]; then
+        array=("bootoption")
+        title="\n# Clone vulgo tools"
     elif [ "$1" == "mieze" ]; then
         array=("AtherosE2200Ethernet" \
                "IntelMausiEthernet" \
@@ -136,6 +139,7 @@ function print_group()
         title="\n# Clone alexandred kexts"
     elif [ "$1" == "piker_alpha" ]; then
         array=("AppleIntelInfo" \
+               "csrstat" \
                "ssdtPRGen")
         title="\n# Clone Piker-Alpha kexts and tools"
     elif [ "$1" == "uefi" ]; then
@@ -230,6 +234,9 @@ git_clone https://github.com/lvs1974/NvidiaGraphicsFixup.git "NvidiaGraphicsFixu
 git_clone https://github.com/vit9696/Shiki.git "Shiki"
 git_clone https://github.com/vit9696/WhateverGreen.git "WhateverGreen"
 
+print_group "vulgo"
+git_clone https://github.com/vulgo/bootoption.git "bootoption"
+
 print_group "alexandred"
 git_clone https://github.com/alexandred/VoodooI2C.git "VoodooI2C"
 
@@ -247,7 +254,8 @@ git_clone https://github.com/alexandred/VoodooI2C-Patches.git "VoodooI2C/VoodooI
 
 print_group "piker_alpha"
 git_clone https://github.com/Piker-Alpha/AppleIntelInfo.git "AppleIntelInfo"
-git_clone https://github.com/Piker-Alpha/ssdtPRGen.sh "ssdtPRGen"
+git_clone https://github.com/Piker-Alpha/csrstat.git "csrstat"
+git_clone https://github.com/Piker-Alpha/ssdtPRGen.sh.git "ssdtPRGen"
 
 print_group "uefi"
 git_checkout https://github.com/tianocore/edk2.git "edk2" "a35918caae4d0b9bb51d0d4765117d7ca9a4d641"    #Tianocore

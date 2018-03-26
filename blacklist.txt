@@ -9,11 +9,13 @@
 #ATH9KFixup
 #AtherosE2200Ethernet
 #AzulPatcher4600
+#bootoption
 #BrcmPatchRAM
 #BT4LEContiunityFixup
 #Clover
 #CoreDisplayFixup
 #CPUFriend
+#csrstat
 #CupertinoModulePkg
 #EAPD Codec Commander
 #edk2
