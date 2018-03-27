@@ -1,6 +1,7 @@
 #!/bin/bash
 
 SELF_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SOURCE_PATH="$SELF_PATH/SourceCode"
 
 xcode_installed="false"
 if [ "$1" == "clean" ]; then
@@ -28,9 +29,9 @@ function xcode_build()
     fi
 
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
-        xcodebuild -project "$1"  -target "$2" -configuration "$3" -sdk macosx -quiet $build_cmd
+        xcodebuild -project "$SOURCE_PATH/$1"  -target "$2" -configuration "$3" -sdk macosx -quiet $build_cmd
     else
-        xcodebuild -project "$1"  -target "$2" -configuration "$3" -quiet $build_cmd
+        xcodebuild -project "$SOURCE_PATH/$1"  -target "$2" -configuration "$3" -quiet $build_cmd
     fi
 }
 
@@ -42,10 +43,10 @@ function xcode_build()
 function xcode_build2()
 {
     if [ "$build_cmd" != "clean" ]; then
-        cp -R Lilu/build/Debug/Lilu.kext $2/
+        cp -R "$SOURCE_PATH/Lilu/build/Debug/Lilu.kext" "$SOURCE_PATH/$2/"
     else
-        rm -R $2/Lilu.kext
-        #rm -R $2/build/Release/*.zip
+        rm -R "$SOURCE_PATH/$2/Lilu.kext"
+        #rm -R "$SOURCE_PATH/$2/build/Release/*.zip"
     fi
     xcode_build "$1" "$2" "$3" "$4" "$5"
 }
@@ -69,9 +70,9 @@ function xcode_build3()
     fi
 
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
-        xcodebuild -workspace "$1"  -scheme "$2" -configuration "$3" -sdk macosx -quiet $build_cmd
+        xcodebuild -workspace "$SOURCE_PATH/$1"  -scheme "$2" -configuration "$3" -sdk macosx -quiet $build_cmd
     else
-        xcodebuild -workspace "$1"  -scheme "$2" -configuration "$3" -quiet $build_cmd
+        xcodebuild -workspace "$SOURCE_PATH/$1"  -scheme "$2" -configuration "$3" -quiet $build_cmd
     fi
 }
 
@@ -86,9 +87,9 @@ function make_build()
     fi
     
     if [ "$build_cmd" != "clean" ]; then
-        make -C "$1" >/dev/null | grep -e "error|warning"
+        make -C "$SOURCE_PATH/$1" >/dev/null | grep -e "error|warning"
     else
-        make -C "$1" clean >/dev/null | grep -e "error|warning"
+        make -C "$SOURCE_PATH/$1" clean >/dev/null | grep -e "error|warning"
     fi 
 }
 
@@ -103,7 +104,7 @@ function qt_build()
         return 1
     fi
 
-    path=$(dirname "$1}")
+    path=$(dirname "$SOURCE_PATH/$1}")
     name=$(basename "$1")
     pushd "$path" >/dev/null
 
@@ -132,7 +133,7 @@ function edk2_build()
 # args: <folder> optional: <string>
 function gcc_build()
 {
-cat << "EOT" > "$1/Makefile"
+cat << "EOT" > "$SOURCE_PATH/$1/Makefile"
 CC := gcc
 SRCS := $(shell find . -name *.c)
 OBJS := $(addsuffix .o,$(basename $(SRCS)))
@@ -144,7 +145,7 @@ clean:
 	$(RM) out $(OBJS)
 EOT
 
-make_build "$1"
+make_build "$1" # SOURCE_PATH not needed here!
 }
 
 # print
@@ -210,14 +211,14 @@ fi
 # Check qmake
 qmake_found="false"
 
-if [ -f .qmake_path ]; then
-    source .qmake_path
+if [ -f "$SELF_PATH/.qmake_path" ]; then
+    source "$SELF_PATH/.qmake_path"
     qmake_found="true"
 fi
 
 # Bad qmake location
 if [ ! -f "$QMAKEPATH" ]; then
-    rm -rf .qmake_path
+    rm -rf "$SELF_PATH/.qmake_path"
     qmake_found="false"
 fi
 
@@ -237,7 +238,7 @@ fi
 # Check potential qmakes
 for candidate in "${qmake_candidates[@]}"; do
     if [ "$($candidate 2>&1 | grep "Usage: ")" ]; then
-        echo "QMAKEPATH="$candidate"" > .qmake_path
+        echo "QMAKEPATH="$candidate"" > "$SELF_PATH/.qmake_path"
         QMAKEPATH=$candidate
         qmake_found="true"
         break
@@ -254,9 +255,9 @@ fi
 echo -e "\n# $build_cmd ACPI Component Architecture"
 make_build acpica "ACPICA"
 # Copy iasl
-mkdir -p "MaciASL/build/Release/MaciASL.app/Contents/MacOS"
-cp "ACPICA/generate/unix/bin/iasl" "MaciASL/iasl4"
-cp "ACPICA/generate/unix/bin/iasl" "MaciASL/iasl61"
+mkdir -p "$SOURCE_PATH/MaciASL/build/Release/MaciASL.app/Contents/MacOS"
+cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl4"
+cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl61"
 
 echo -e "\n# $build_cmd Kozlek kexts"
 xcode_build3 "HWSensors/HWSensors.xcworkspace" "Build Kexts" Release
@@ -358,10 +359,10 @@ xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CHID/VoodooI2CHID.xcodeproj"
 xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CSynaptics/VoodooI2CSynaptics.xcodeproj" "VoodooI2CSynaptics" Release plugin force
 #
 # Copy kexts
-mkdir -p "VoodooI2C/VoodooI2C/build/Release"
+mkdir -p "$SOURCE_PATH/VoodooI2C/VoodooI2C/build/Release"
 if [ "$build_cmd" != "clean" ]; then
-    cp -R "VoodooI2C/Dependencies/VoodooGPIO/build/Release/VoodooGPIO.kext" "VoodooI2C/VoodooI2C/build/Release/"
-    cp -R "VoodooI2C/Dependencies/VoodooI2CServices/build/Release/VoodooI2CServices.kext" "VoodooI2C/VoodooI2C/build/Release/"
+    cp -R "$SOURCE_PATH/VoodooI2C/Dependencies/VoodooGPIO/build/Release/VoodooGPIO.kext" "$SOURCE_PATH/VoodooI2C/VoodooI2C/build/Release/"
+    cp -R "$SOURCE_PATH/VoodooI2C/Dependencies/VoodooI2CServices/build/Release/VoodooI2CServices.kext" "$SOURCE_PATH/VoodooI2C/VoodooI2C/build/Release/"
 fi
 #
 xcode_build "VoodooI2C/VoodooI2C/VoodooI2C.xcodeproj" "VoodooI2C" Release force
@@ -380,10 +381,13 @@ qt_build "UEFITool/uefitool.pro" "UEFITool"
 qt_build "UEFITool(NE)/UEFITool/uefitool.pro" "UEFITool(NE)"
 
 echo -e "\n# $build_cmd UEFI projects"
+
 # Setup EDK2
-pushd edk2 >/dev/null
-make_build "BaseTools" "edk2 BaseTools"
-source edksetup.sh 
+make_build "edk2/BaseTools" "edk2 BaseTools"
+
+pushd "$SOURCE_PATH/edk2" >/dev/null
+
+source "edksetup.sh"
 
 # Build AptioFixPkg
 edk2_build "AptioFixPkg/AptioFixPkg.dsc" XCODE5 RELEASE

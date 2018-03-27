@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SELF_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SOURCE_PATH="$SELF_PATH/SourceCode"
+
 blacklist_file="blacklist.txt"
 blacklist_file_exist="false"
 
@@ -19,7 +22,7 @@ function check_in_blacklist()
             #echo "Found in blacklist: $line"
             return 1
         fi
-    done < "$blacklist_file"
+    done < "$SELF_PATH/$blacklist_file"
     return 0
 }
 
@@ -29,16 +32,16 @@ function git_clone()
 {
     check_in_blacklist "$(basename "$2")"
     if [ "$?" == "1" ]; then
-        rm -rf "$2"
+        rm -rf "$SOURCE_PATH/$2"
         return 1
     fi
 
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
 
     if [ -z "$3" ]; then
-        git clone "$1" "$2"
+        git clone "$1" "$SOURCE_PATH/$2"
     else
-        git clone "$1" "$2" -b "$3"
+        git clone "$1" "$SOURCE_PATH/$2" -b "$3"
     fi
 }
 
@@ -53,8 +56,8 @@ function git_checkout()
     fi
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
 
-    git clone "$1" "$2"
-    git -C "$2" checkout "$3"
+    git clone "$1" "$SOURCE_PATH/$2"
+    git -C "$SOURCE_PATH/$2" checkout "$3"
 }
 
 # svn_co
@@ -63,11 +66,11 @@ function svn_co()
 {
     check_in_blacklist "$(basename "$2")"
     if [ "$?" == "1" ]; then
-        rm -rf "$2"
+        rm -rf "$SOURCE_PATH/$2"
         return 1
     fi
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
-    svn checkout "$1" "$2"
+    svn checkout "$1" "$SOURCE_PATH/$2"
 }
 
 # print_group
@@ -176,7 +179,7 @@ else
 fi
 
 # Check blacklist file
-if [ -f "$blacklist_file" ]; then
+if [ -f "$SELF_PATH/$blacklist_file" ]; then
     echo "Blacklist file: Exist"
     blacklist_file_exist="true"
 else
@@ -291,15 +294,15 @@ fi
 # Check qmake
 qmake_found="false"
 
-if [ -f .qmake_path ]; then
-    source .qmake_path
+if [ -f "$SELF_PATH/.qmake_path" ]; then
+    source "$SELF_PATH/.qmake_path"
     #echo "qmake path: $QMAKEPATH"
     qmake_found="true"
 fi
 
 # Bad qmake location
 if [ ! -f "$QMAKEPATH" ]; then
-    rm -rf .qmake_path
+    rm -rf "$SELF_PATH/.qmake_path"
     qmake_found="false"
 fi
 
@@ -319,7 +322,7 @@ fi
 # Check potential qmakes
 for candidate in "${qmake_candidates[@]}"; do
     if [ "$($candidate 2>&1 | grep "Usage: ")" ]; then
-        echo "QMAKEPATH="$candidate"" > .qmake_path
+        echo "QMAKEPATH="$candidate"" > "$SELF_PATH/.qmake_path"
         QMAKEPATH=$candidate
         qmake_found="true"
         break
@@ -335,6 +338,6 @@ else
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         echo -e "\nInstalling Qt5..."
         brew install qt5
-        echo "QMAKEPATH="/usr/local/Cellar/qt"" > .qmake_path
+        echo "QMAKEPATH="/usr/local/Cellar/qt"" > "$SELF_PATH/.qmake_path"
     fi
 fi

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+SELF_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SOURCE_PATH="$SELF_PATH/SourceCode"
+
 blacklist_file="blacklist.txt"
 blacklist_file_exist="false"
 
@@ -19,7 +22,7 @@ function check_in_blacklist()
             #echo "Found in blacklist: $line"
             return 1
         fi
-    done < "$blacklist_file"
+    done < "$SELF_PATH/$blacklist_file"
     return 0
 }
 
@@ -29,12 +32,12 @@ function git_pull()
 {
     check_in_blacklist "$(basename "$1")"
     if [ "$?" == "1" ]; then
-        rm -rf "$1"
+        rm -rf "$SOURCE_PATH/$1"
         return 1
     fi
 
     echo "🔸 $(tput bold)$(basename "$1")$(tput sgr0):"
-    git -C "$1" pull
+    git -C "$SOURCE_PATH/$1" pull
 }
 
 # svn_update
@@ -43,12 +46,12 @@ function svn_update()
 {
     check_in_blacklist "$(basename "$1")"
     if [ "$?" == "1" ]; then
-        rm -rf "$1"
+        rm -rf "$SOURCE_PATH/$1"
         return 1
     fi
 
     echo "🔸 $(tput bold)$(basename "$1")$(tput sgr0):"
-    pushd "$1" >/dev/null
+    pushd "$SOURCE_PATH/$1" >/dev/null
     svn update
     popd >/dev/null
 }
@@ -159,7 +162,7 @@ else
 fi
 
 # Check blacklist file
-if [ -f "$blacklist_file" ]; then
+if [ -f "$SELF_PATH/$blacklist_file" ]; then
     echo "Blacklist file: Exist"
     blacklist_file_exist="true"
 else
