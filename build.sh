@@ -210,14 +210,14 @@ fi
 # Check qmake
 qmake_found="false"
 
-if [ -f qmake_path ]; then
-    source qmake_path
+if [ -f .qmake_path ]; then
+    source .qmake_path
     qmake_found="true"
 fi
 
 # Bad qmake location
 if [ ! -f "$QMAKEPATH" ]; then
-    rm -rf qmake_path
+    rm -rf .qmake_path
     qmake_found="false"
 fi
 
@@ -237,7 +237,7 @@ fi
 # Check potential qmakes
 for candidate in "${qmake_candidates[@]}"; do
     if [ "$($candidate 2>&1 | grep "Usage: ")" ]; then
-        echo "QMAKEPATH="$candidate"" > qmake_path
+        echo "QMAKEPATH="$candidate"" > .qmake_path
         QMAKEPATH=$candidate
         qmake_found="true"
         break
