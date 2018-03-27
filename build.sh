@@ -17,6 +17,10 @@ fi
 # force - setup project SDK to last version. It helps build old projects
 function xcode_build()
 {
+    if [ ! -f "$SOURCE_PATH/$1" ]; then
+        return 1
+    fi
+
     if [ "$4" != "plugin" ]; then
         echo "🔹 $(tput bold)$2$(tput sgr0) ($3)"
     else
@@ -42,6 +46,10 @@ function xcode_build()
 # note: call for Lilu based projects
 function xcode_build2()
 {
+    if [ ! -f "$SOURCE_PATH/$1" ]; then
+        return 1
+    fi
+
     if [ "$build_cmd" != "clean" ]; then
         cp -R "$SOURCE_PATH/Lilu/build/Debug/Lilu.kext" "$SOURCE_PATH/$2/"
     else
@@ -58,6 +66,10 @@ function xcode_build2()
 # note: call for Lilu based projects
 function xcode_build3()
 {
+    if [ ! -f "$SOURCE_PATH/$1" ]; then
+        return 1
+    fi
+
     if [ "$4" != "plugin" ]; then
         echo "🔹 $(tput bold)$2$(tput sgr0) ($3)"
     else
@@ -80,6 +92,10 @@ function xcode_build3()
 # args: <makefile> optional: <string>
 function make_build()
 {
+    if [ ! -d "$SOURCE_PATH/$1" ]; then
+        return 1
+    fi
+
     if [ -z "$2" ]; then
         echo "🔹 $(tput bold)$1$(tput sgr0)"
     else
@@ -97,6 +113,10 @@ function make_build()
 # args: <pro file> <string>
 function qt_build()
 {
+    if [ ! -f "$SOURCE_PATH/$1" ]; then
+        return 1
+    fi
+
     echo "🔹 $(tput bold)$2$(tput sgr0)"
 
     if [ "$qmake_found" == "false" ]; then
@@ -121,6 +141,10 @@ function qt_build()
 # args: <package> <toolchain> <debug/release> <string>
 function edk2_build()
 {
+    if [ ! -f "$1" ]; then
+        return 1
+    fi
+
     echo "🔹 $(tput bold)$(basename "$1" | cut -d. -f1)$(tput sgr0) (X64, $1)"
     if [ "$build_cmd" != "clean" ]; then
         build -a X64 -p "$1" -t "$2" -b "$3" >/dev/null | grep -e "error|warning"
