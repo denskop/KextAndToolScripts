@@ -11,14 +11,38 @@ else
     build_cmd="build"
 fi
 
+blacklist_file="blacklist.txt"
+blacklist_file_exist="false"
+
+# check_in_blacklist
+# args: <file>
+# return codes: -1, blacklist not found
+#                0, file is not listed in blacklist
+#                1, file is listed in blacklist
+function check_in_blacklist()
+{
+    if [ "$blacklist_file_exist" == "false" ]; then
+        return "-1"
+    fi
+
+    while IFS='' read -r line || [[ -n "$line" ]]; do
+        if [ "$1" == "$line" ]; then
+            #echo "Found in blacklist: $line"
+            return "1"
+        fi
+    done < "$SELF_PATH/$blacklist_file"
+    return "0"
+}
+
 # xcode_build
 # args: <project> <target> <release/debug> optional: <plugin> <force>
 # plugin - display project as a plugin of parent project
 # force - setup project SDK to last version. It helps build old projects
 function xcode_build()
 {
-    if [ ! -f "$SOURCE_PATH/$1" ]; then
-        return 1
+    check_in_blacklist "$(basename "$(dirname "$1")")"
+    if [ "$?" == "1" ]; then
+        return "1"
     fi
 
     if [ "$4" != "plugin" ]; then
@@ -29,7 +53,7 @@ function xcode_build()
 
     if [ "$xcode_installed" == "false" ]; then
         echo "Skipping..."
-        return 1
+        return "1"
     fi
 
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
@@ -37,6 +61,7 @@ function xcode_build()
     else
         xcodebuild -project "$SOURCE_PATH/$1"  -target "$2" -configuration "$3" -quiet $build_cmd
     fi
+    return "0"
 }
 
 # xcode_build2
@@ -46,8 +71,9 @@ function xcode_build()
 # note: call for Lilu based projects
 function xcode_build2()
 {
-    if [ ! -f "$SOURCE_PATH/$1" ]; then
-        return 1
+    check_in_blacklist "$(basename "$(dirname "$1")")"
+    if [ "$?" == "1" ]; then
+        return "1"
     fi
 
     if [ "$build_cmd" != "clean" ]; then
@@ -57,6 +83,7 @@ function xcode_build2()
         #rm -R "$SOURCE_PATH/$2/build/Release/*.zip"
     fi
     xcode_build "$1" "$2" "$3" "$4" "$5"
+    return "$?"
 }
 
 # xcode_build3
@@ -66,8 +93,9 @@ function xcode_build2()
 # note: call for Lilu based projects
 function xcode_build3()
 {
-    if [ ! -f "$SOURCE_PATH/$1" ]; then
-        return 1
+    check_in_blacklist "$(basename "$(dirname "$1")")"
+    if [ "$?" == "1" ]; then
+        return "1"
     fi
 
     if [ "$4" != "plugin" ]; then
@@ -78,7 +106,7 @@ function xcode_build3()
 
     if [ "$xcode_installed" == "false" ]; then
         echo "Skipping..."
-        return 1
+        return "1"
     fi
 
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
@@ -86,14 +114,16 @@ function xcode_build3()
     else
         xcodebuild -workspace "$SOURCE_PATH/$1"  -scheme "$2" -configuration "$3" -quiet $build_cmd
     fi
+    return "0"
 }
 
 # make_build
 # args: <makefile> optional: <string>
 function make_build()
 {
-    if [ ! -d "$SOURCE_PATH/$1" ]; then
-        return 1
+    check_in_blacklist "$(basename "$2")"
+    if [ "$?" == "1" ]; then
+        return "1"
     fi
 
     if [ -z "$2" ]; then
@@ -106,22 +136,24 @@ function make_build()
         make -C "$SOURCE_PATH/$1" >/dev/null | grep -e "error|warning"
     else
         make -C "$SOURCE_PATH/$1" clean >/dev/null | grep -e "error|warning"
-    fi 
+    fi
+    return "0"
 }
 
 # qt_build
 # args: <pro file> <string>
 function qt_build()
 {
-    if [ ! -f "$SOURCE_PATH/$1" ]; then
-        return 1
+    check_in_blacklist "$2"
+    if [ "$?" == "1" ]; then
+        return "1"
     fi
 
     echo "🔹 $(tput bold)$2$(tput sgr0)"
 
     if [ "$qmake_found" == "false" ]; then
         echo "Skipping..."
-        return 1
+        return "1"
     fi
 
     path=$(dirname "$SOURCE_PATH/$1}")
@@ -135,14 +167,16 @@ function qt_build()
         make clean >/dev/null | grep -e "error|warning"
     fi
     popd >/dev/null
+    return "0"
 }
 
 # edk2_build
 # args: <package> <toolchain> <debug/release> <string>
 function edk2_build()
 {
-    if [ ! -f "$1" ]; then
-        return 1
+    check_in_blacklist "$(basename "$(dirname "$1")")"
+    if [ "$?" == "1" ]; then
+        return "1"
     fi
 
     echo "🔹 $(tput bold)$(basename "$1" | cut -d. -f1)$(tput sgr0) (X64, $1)"
@@ -150,13 +184,19 @@ function edk2_build()
         build -a X64 -p "$1" -t "$2" -b "$3" >/dev/null | grep -e "error|warning"
     else
         build clean -a X64 -p "$1" -t "$2" -b "$3" >/dev/null | grep -e "error|warning"
-    fi  
+    fi
+    return "0"
 }
 
 # gcc_build
 # args: <folder> optional: <string>
 function gcc_build()
 {
+check_in_blacklist "$(basename "$1")"
+if [ "$?" == "1" ]; then
+    return "1"
+fi
+
 cat << "EOT" > "$SOURCE_PATH/$1/Makefile"
 CC := gcc
 SRCS := $(shell find . -name *.c)
@@ -170,13 +210,117 @@ clean:
 EOT
 
 make_build "$1" # SOURCE_PATH not needed here!
+return "$?"
 }
 
 # print
 # args: <string> <debug/release>
 function print()
 {
-    echo "🔹 $(tput bold)$1$(tput sgr0) (X64, $2)" 
+    check_in_blacklist "$1"
+    if [ "$?" == "1" ]; then
+        return "1"
+    fi
+    
+    echo "🔹 $(tput bold)$1$(tput sgr0) (X64, $2)"
+    return "0"
+}
+
+# print_group
+# args: <group>
+function print_group()
+{
+    if [ "$1" == "acpica" ]; then
+        array=("ACPICA")
+        title="\n# $build_cmd ACPI Component Architecture"
+    elif [ "$1" == "denskop" ]; then
+        array=("Universal IFR Extractor")
+        title="\n# $build_cmd denskop forks"
+    elif [ "$1" == "kozlek" ]; then
+        array=("HWSensors")
+        title="\n# $build_cmd Kozlek kexts"
+    elif [ "$1" == "longsoft" ]; then
+        array=("UEFITool" \
+               "UEFITool(NE)")
+        title="\n# $build_cmd LongSoft tools"
+    elif [ "$1" == "vulgo" ]; then
+        array=("bootoption")
+        title="\n# $build_cmd vulgo tools"
+    elif [ "$1" == "mieze" ]; then
+        array=("AtherosE2200Ethernet" \
+               "IntelMausiEthernet" \
+               "Realtek RTL8100" \
+               "Realtek RTL8111")
+        title="\n# $build_cmd Mieze kexts"
+    elif [ "$1" == "rehabman" ]; then
+        array=("EAPD Codec Commander" \
+               "ACPI Battery Driver" \
+               "ACPI Debug" \
+               "ACPI Keyboard" \
+               "BrcmPatchRAM" \
+               "FakePCIID" \
+               "MaciASL" \
+               "USBInjectAll" \
+               "VoodooPS2")
+        title="\n# $build_cmd RehabMan kexts and tools"
+    elif [ "$1" == "slice" ]; then
+        array=("VoodooHDA")
+        title="\n# $build_cmd Slice kexts"
+    elif [ "$1" == "vit9696" ]; then
+        array=("AirportBrcmFixup" \
+               "AppleALC" \
+               "ATH9KFixup" \
+               "AzulPatcher4600" \
+               "BT4LEContiunityFixup" \
+               "CoreDisplayFixup" \
+               "CPUFriend" \
+               "EnableLidWake" \
+               "HibernationFixup" \
+               "IntelGraphicsDVMTFixup" \
+               "IntelGraphicsFixup" \
+               "Lilu" \
+               "NightShiftUnlocker" \
+               "NvidiaGraphicsFixup" \
+               "Shiki" \
+               "WhateverGreen")
+        title="\n# $build_cmd vit9696 kexts and plugins"
+    elif [ "$1" == "alexandred" ]; then
+        array=("VoodooI2C" \
+               "VoodooGPIO" \
+               "VoodooI2CELAN" \
+               "VoodooI2CHID" \
+               "VoodooI2CSynaptics" \
+               "VoodooI2CUPDDEngine" \
+               "VoodooI2C ACPI Patches")
+        title="\n# $build_cmd alexandred kexts"
+    elif [ "$1" == "piker_alpha" ]; then
+        array=("AppleIntelInfo" \
+               "csrstat" \
+               "ssdtPRGen")
+        title="\n# $build_cmd Piker-Alpha kexts and tools"
+    elif [ "$1" == "uefi" ]; then
+        array=("edk2" \
+               "Clover" \
+               "CupertinoModulePkg" \
+               "EfiMiscPkg" \
+               "EfiPkg" \
+               "AptioFixPkg")
+        title="\n# $build_cmd UEFI projects"
+    else
+        array=("nil")
+        title="nil"
+    fi
+
+    for i in "${array[@]}"; do
+        check_in_blacklist "$(basename "${i}")"
+        ret="$?"
+
+        if [ "$ret" != "1" ]; then
+            echo -e "$title"
+            return "1"
+        fi
+    done
+    return "0"
 }
 
 echo -e "\n# Checking build tools"
@@ -276,19 +420,37 @@ else
     qmake=$QMAKEPATH
 fi
 
-echo -e "\n# $build_cmd ACPI Component Architecture"
-make_build acpica "ACPICA"
-# Copy iasl
-mkdir -p "$SOURCE_PATH/MaciASL/build/Release/MaciASL.app/Contents/MacOS"
-cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl4"
-cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl61"
+# Check blacklist file
+if [ -f "$SELF_PATH/$blacklist_file" ]; then
+    echo "Blacklist file: Exist"
+    blacklist_file_exist="true"
+else
+    echo "Blacklist file: Not exist"
+fi
 
-echo -e "\n# $build_cmd Kozlek kexts"
+print_group "acpica"
+make_build acpica "ACPICA"
+if [ "$?" != "1" ]; then
+    mkdir -p "$SOURCE_PATH/MaciASL/build/Release/MaciASL.app/Contents/MacOS"
+    cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl4"
+    cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl61"
+fi
+
+print_group "denskop"
+qt_build "Universal IFR Extractor/Qt/Universal_IFR_Extractor.pro" "Universal IFR Extractor"
+
+print_group "kozlek"
 xcode_build3 "HWSensors/HWSensors.xcworkspace" "Build Kexts" Release
 xcode_build3 "HWSensors/HWSensors.xcworkspace" "HWMonitor" Release
 xcode_build3 "HWSensors/HWSensors.xcworkspace" "org.hwsensors.HWMonitorHelper" Release
 
-echo -e "\n# $build_cmd Mieze kexts"
+print_group "longsoft"
+qt_build "UEFITool/uefitool.pro" "UEFITool"
+qt_build "UEFITool(NE)/UEFITool/uefitool.pro" "UEFITool(NE)"
+#qt_build "UEFITool(NE)/UEFIExtract/uefiextract.pro" "UEFIExtract"
+#qt_build "UEFITool(NE)/UEFIFind/uefifind.pro" "UEFIFind"
+
+print_group "mieze"
 if [[ ${OSTYPE:6} -lt 16 ]]; then # if [macOS < 10.12]; then
     xcode_build "AtherosE2200Ethernet/AtherosE2200Ethernet.xcodeproj" "AtherosE2200Ethernet" Release
 else
@@ -304,7 +466,7 @@ else
     xcode_build "Realtek RTL8111/RealtekRTL8111.xcodeproj" "RealtekRTL8111-V2" Release
 fi
 
-echo -e "\n# $build_cmd RehabMan kexts and tools"
+print_group "rehabman"
 xcode_build "ACPI Battery Driver/ACPIBatteryManager.xcodeproj" "ACPIBatteryManager" Release force
 xcode_build "ACPI Debug/ACPIDebug.xcodeproj" "ACPIDebug" Release force
 xcode_build "ACPI Keyboard/ACPIKeyboard.xcodeproj" "ACPIKeyboard" Release force
@@ -345,12 +507,16 @@ xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "VoodooPS2Daemon" Release 
 xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "VoodooPS2synapticsPane" Release plugin force
 xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "synapticsconfigload" Release plugin force
 
-echo -e "\n# $build_cmd Slice kexts"
-xcode_build "VoodooHDA/tranc/VoodooHDA.xcodeproj" "VoodooHDA" Release force
-xcode_build "VoodooHDA/VHDAPrefPane/VoodooHDA/VoodooHDA.xcodeproj" "VoodooHDA" Release force
-xcode_build "VoodooHDA/VoodooHdaSettingsLoader/src/VoodooHdaSettingsLoader.xcodeproj" "VoodooHdaSettingsLoader" Release force
+# requires workaround
+print_group "slice"
+check_in_blacklist "VoodooHDA"
+if [ "$?" != "1" ]; then
+    xcode_build "VoodooHDA/tranc/VoodooHDA.xcodeproj" "VoodooHDA" Release force
+    xcode_build "VoodooHDA/VHDAPrefPane/VoodooHDA/VoodooHDA.xcodeproj" "VoodooHDA" Release force
+    xcode_build "VoodooHDA/VoodooHdaSettingsLoader/src/VoodooHdaSettingsLoader.xcodeproj" "VoodooHdaSettingsLoader" Release force
+fi
 
-echo -e "\n# $build_cmd vit9696 kexts and plugins"
+print_group "vit9696"
 xcode_build "Lilu/Lilu.xcodeproj" "Lilu" Debug
 xcode_build "Lilu/Lilu.xcodeproj" "Lilu" Release
 
@@ -370,10 +536,10 @@ xcode_build2 "NvidiaGraphicsFixup/NvidiaGraphicsFixup.xcodeproj" "NvidiaGraphics
 xcode_build2 "Shiki/Shiki.xcodeproj" "Shiki" Release plugin
 xcode_build2 "WhateverGreen/WhateverGreen.xcodeproj" "WhateverGreen" Release plugin
 
-echo -e "\n# $build_cmd vulgo tools"
+print_group "vulgo"
 xcode_build "bootoption/bootoption.xcodeproj" "bootoption" Release
 
-echo -e "\n# $build_cmd alexandred kexts"
+print_group "alexandred"
 xcode_build "VoodooI2C/Dependencies/VoodooGPIO/VoodooGPIO.xcodeproj" "VoodooGPIO" Release plugin force
 xcode_build "VoodooI2C/Dependencies/VoodooI2CServices/VoodooI2CServices.xcodeproj" "VoodooI2CServices" Release plugin force
 #
@@ -383,45 +549,46 @@ xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CHID/VoodooI2CHID.xcodeproj"
 xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CSynaptics/VoodooI2CSynaptics.xcodeproj" "VoodooI2CSynaptics" Release plugin force
 #
 # Copy kexts
-mkdir -p "$SOURCE_PATH/VoodooI2C/VoodooI2C/build/Release"
-if [ "$build_cmd" != "clean" ]; then
+check_in_blacklist "VoodooGPIO"
+check1="$?"
+
+check_in_blacklist "VoodooI2CServices"
+check2="$?"
+
+if [ "$build_cmd" != "clean" ] && [ "$check1" != "1" ] && [ "$check2" != "1" ]; then
+    mkdir -p "$SOURCE_PATH/VoodooI2C/VoodooI2C/build/Release"
     cp -R "$SOURCE_PATH/VoodooI2C/Dependencies/VoodooGPIO/build/Release/VoodooGPIO.kext" "$SOURCE_PATH/VoodooI2C/VoodooI2C/build/Release/"
     cp -R "$SOURCE_PATH/VoodooI2C/Dependencies/VoodooI2CServices/build/Release/VoodooI2CServices.kext" "$SOURCE_PATH/VoodooI2C/VoodooI2C/build/Release/"
 fi
 #
 xcode_build "VoodooI2C/VoodooI2C/VoodooI2C.xcodeproj" "VoodooI2C" Release force
 
-echo -e "\n# $build_cmd Piker-Alpha kexts and tools"
+print_group "piker_alpha"
 xcode_build "AppleIntelInfo/AppleIntelInfo.xcodeproj" "AppleIntelInfo" Release
 gcc_build "csrstat"
 
-echo -e "\n# $build_cmd denskop forks"
-qt_build "Universal IFR Extractor/Qt/Universal_IFR_Extractor.pro" "Universal IFR Extractor"
+check_in_blacklist "edk2"
+if [ "$?" != "1" ]; then
+    print_group "uefi"
+    # Setup EDK2
+    make_build "edk2/BaseTools" "edk2 BaseTools"
 
-echo -e "\n# $build_cmd LongSoft tools"
-qt_build "UEFITool/uefitool.pro" "UEFITool"
-#qt_build "UEFIExtract/uefiextract.pro" "UEFIExtract"
-#qt_build "UEFIFind/uefifind.pro" "UEFIFind"
-qt_build "UEFITool(NE)/UEFITool/uefitool.pro" "UEFITool(NE)"
+    pushd "$SOURCE_PATH/edk2" >/dev/null
+    source "edksetup.sh"
 
-echo -e "\n# $build_cmd UEFI projects"
+    # Build AptioFixPkg
+    edk2_build "AptioFixPkg/AptioFixPkg.dsc" XCODE5 RELEASE
 
-# Setup EDK2
-make_build "edk2/BaseTools" "edk2 BaseTools"
-
-pushd "$SOURCE_PATH/edk2" >/dev/null
-
-source "edksetup.sh"
-
-# Build AptioFixPkg
-edk2_build "AptioFixPkg/AptioFixPkg.dsc" XCODE5 RELEASE
-
-# Build Clover
-print "Clover EFI Bootloader" "RELEASE"
-cp -R Clover/Patches_for_EDK2/* .
-if [ "$build_cmd" != "clean" ]; then
-    ./Clover/ebuild.sh -fr -x64 >/dev/null | grep -e "error|warning"
-else
-    ./Clover/ebuild.sh clean >/dev/null | grep -e "error|warning"
+    # Build Clover
+    check_in_blacklist "Clover"
+    if [ "$?" != "1" ]; then
+        print "Clover EFI Bootloader" "RELEASE"
+        cp -R Clover/Patches_for_EDK2/* .
+        if [ "$build_cmd" != "clean" ]; then
+            ./Clover/ebuild.sh -fr -x64 >/dev/null | grep -e "error|warning"
+        else
+            ./Clover/ebuild.sh clean >/dev/null | grep -e "error|warning"
+        fi
+    fi
+    popd >/dev/null
 fi
-popd >/dev/null

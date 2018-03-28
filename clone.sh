@@ -14,16 +14,16 @@ blacklist_file_exist="false"
 function check_in_blacklist()
 {
     if [ "$blacklist_file_exist" == "false" ]; then
-        return -1
+        return "-1"
     fi
 
     while IFS='' read -r line || [[ -n "$line" ]]; do
         if [ "$1" == "$line" ]; then
             #echo "Found in blacklist: $line"
-            return 1
+            return "1"
         fi
     done < "$SELF_PATH/$blacklist_file"
-    return 0
+    return "0"
 }
 
 # git_clone
@@ -33,7 +33,7 @@ function git_clone()
     check_in_blacklist "$(basename "$2")"
     if [ "$?" == "1" ]; then
         rm -rf "$SOURCE_PATH/$2"
-        return 1
+        return "1"
     fi
 
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
@@ -52,7 +52,7 @@ function git_checkout()
     check_in_blacklist "$(basename "$2")"
     if [ "$?" == "1" ]; then
         rm -rf "$2"
-        return 1
+        return "1"
     fi
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
 
@@ -67,7 +67,7 @@ function svn_co()
     check_in_blacklist "$(basename "$2")"
     if [ "$?" == "1" ]; then
         rm -rf "$SOURCE_PATH/$2"
-        return 1
+        return "1"
     fi
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
     svn checkout "$1" "$SOURCE_PATH/$2"
@@ -162,12 +162,12 @@ function print_group()
         check_in_blacklist "$(basename "${i}")"
         ret="$?"
 
-        if [ "$ret" == "0" ] || [ "$ret" == "-1" ]; then
+        if [ "$ret" != "1" ]; then
             echo -e "$title"
-            return 1
+            return "1"
         fi
     done
-    return 0
+    return "0"
 }
 
 # Check git svn tools
