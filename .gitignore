@@ -1,8 +1,7 @@
-# Ignore all files
-*
-
-# Allow gitignore
-!.gitignore
+# Ignore files
+/Collection
+/SourceCode
+/*.*
 
 # Allow documentation
 !*.md
@@ -17,4 +16,4 @@
 !blacklist.txt
 
 # Allow helpers
-!Helpers/SDK-10.*/*
+!Helpers/
