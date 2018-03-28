@@ -49,7 +49,7 @@ function print_group()
 {
     if [ "$1" == "acpica" ]; then
         array=("ACPICA")
-        title="\n# Collect ACPI Component Architecture"
+        title="\n# Collect ACPI Component Architecture tools"
     elif [ "$1" == "denskop" ]; then
         array=("Universal IFR Extractor")
         title="\n# Collect denskop forks"

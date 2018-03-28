@@ -79,7 +79,7 @@ function print_group()
 {
     if [ "$1" == "acpica" ]; then
         array=("ACPICA")
-        title="\n# Clone ACPI Component Architecture"
+        title="\n# Clone ACPI Component Architecture tools"
     elif [ "$1" == "kozlek" ]; then
         array=("HWSensors")
         title="\n# Clone Kozlek kexts"
