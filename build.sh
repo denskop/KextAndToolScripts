@@ -56,10 +56,14 @@ function xcode_build()
         return "1"
     fi
 
+    target="$(xcodebuild -project "/Volumes/Important/github/SourceCode/ACPI Debug/ACPIDebug.xcodeproj" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
+    target_ver=${target##*.}
+    lib_path="$SELF_PATH/Helpers/SDK-10.$target_ver/"
+
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
-        xcodebuild -project "$SOURCE_PATH/$1"  -target "$2" -configuration "$3" -sdk macosx -quiet $build_cmd
+        xcodebuild -project "$SOURCE_PATH/$1"  -target "$2" -configuration "$3" -sdk macosx LIBRARY_SEARCH_PATHS="$lib_path" -quiet $build_cmd
     else
-        xcodebuild -project "$SOURCE_PATH/$1"  -target "$2" -configuration "$3" -quiet $build_cmd
+        xcodebuild -project "$SOURCE_PATH/$1"  -target "$2" -configuration "$3" LIBRARY_SEARCH_PATHS="$lib_path" -quiet $build_cmd
     fi
     return "0"
 }
@@ -109,10 +113,14 @@ function xcode_build3()
         return "1"
     fi
 
+    target="$(xcodebuild -project "/Volumes/Important/github/SourceCode/ACPI Debug/ACPIDebug.xcodeproj" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
+    target_ver=${target##*.}
+    lib_path="$SELF_PATH/Helpers/SDK-10.$target_ver/"
+
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
-        xcodebuild -workspace "$SOURCE_PATH/$1"  -scheme "$2" -configuration "$3" -sdk macosx -quiet $build_cmd
+        xcodebuild -workspace "$SOURCE_PATH/$1"  -scheme "$2" -configuration "$3" -sdk macosx LIBRARY_SEARCH_PATHS="$lib_path" -quiet $build_cmd
     else
-        xcodebuild -workspace "$SOURCE_PATH/$1"  -scheme "$2" -configuration "$3" -quiet $build_cmd
+        xcodebuild -workspace "$SOURCE_PATH/$1"  -scheme "$2" -configuration "$3" LIBRARY_SEARCH_PATHS="$lib_path" -quiet $build_cmd
     fi
     return "0"
 }
@@ -232,7 +240,7 @@ function print_group()
 {
     if [ "$1" == "acpica" ]; then
         array=("ACPICA")
-        title="\n# $build_cmd ACPI Component Architecture"
+        title="\n# $build_cmd ACPI Component Architecture tools"
     elif [ "$1" == "denskop" ]; then
         array=("Universal IFR Extractor")
         title="\n# $build_cmd denskop forks"
@@ -428,6 +436,10 @@ else
     echo "Blacklist file: Not exist"
 fi
 
+# Detect macOS version
+macos_ver=${1-:$(sw_vers -productVersion)}
+minor_ver=$(echo "$macos_ver" | awk -F. '{ print $2; }')
+
 print_group "acpica"
 make_build acpica "ACPICA"
 if [ "$?" != "1" ]; then
@@ -451,7 +463,7 @@ qt_build "UEFITool(NE)/UEFITool/uefitool.pro" "UEFITool(NE)"
 #qt_build "UEFITool(NE)/UEFIFind/uefifind.pro" "UEFIFind"
 
 print_group "mieze"
-if [[ ${OSTYPE:6} -lt 16 ]]; then # if [macOS < 10.12]; then
+if  [[ $minor_ver < 12 ]]; then # if [macOS < 10.12]; then
     xcode_build "AtherosE2200Ethernet/AtherosE2200Ethernet.xcodeproj" "AtherosE2200Ethernet" Release
 else
     xcode_build "AtherosE2200Ethernet/AtherosE2200Ethernet.xcodeproj" "AtherosE2200EthernetV2" Release
@@ -460,7 +472,7 @@ fi
 xcode_build "IntelMausiEthernet/IntelMausiEthernet.xcodeproj" "IntelMausiEthernet" Release
 xcode_build "Realtek RTL8100/RealtekRTL8100.xcodeproj" "RealtekRTL8100" Release
 
-if [[ ${OSTYPE:6} -lt 16 ]]; then # if [macOS < 10.12]; then
+if [[ $minor_ver < 12 ]]; then # if [macOS < 10.12]; then
     xcode_build "Realtek RTL8111/RealtekRTL8111.xcodeproj" "RealtekRTL8111" Release
 else
     xcode_build "Realtek RTL8111/RealtekRTL8111.xcodeproj" "RealtekRTL8111-V2" Release
@@ -472,7 +484,7 @@ xcode_build "ACPI Debug/ACPIDebug.xcodeproj" "ACPIDebug" Release force
 xcode_build "ACPI Keyboard/ACPIKeyboard.xcodeproj" "ACPIKeyboard" Release force
 xcode_build "EAPD Codec Commander/CodecCommander.xcodeproj" "CodecCommander" Release force
 
-if [[ ${OSTYPE:6} -lt 15 ]]; then # if [macOS < 10.11]; then
+if [[ $minor_ver < 11 ]]; then # if [macOS < 10.11]; then
     xcode_build "BrcmPatchRAM/BrcmPatchRAM.xcodeproj" "BrcmPatchRAM" Release force
 else
     xcode_build "BrcmPatchRAM/BrcmPatchRAM.xcodeproj" "BrcmPatchRAM2" Release force
@@ -481,7 +493,7 @@ fi
 xcode_build "BrcmPatchRAM/BrcmPatchRAM.xcodeproj" "BrcmFirmwareData" Release plugin force
 xcode_build "BrcmPatchRAM/BrcmPatchRAM.xcodeproj" "BrcmFirmwareRepo" Release plugin force
 
-if [[ ${OSTYPE:6} -lt 15 ]]; then # if [macOS < 10.11]; then
+if [[ $minor_ver < 11 ]]; then # if [macOS < 10.11]; then
     xcode_build "BrcmPatchRAM/BrcmPatchRAM.xcodeproj" "BrcmNonPatchRAM" Release plugin force
 else
     xcode_build "BrcmPatchRAM/BrcmPatchRAM.xcodeproj" "BrcmNonPatchRAM2" Release plugin force
