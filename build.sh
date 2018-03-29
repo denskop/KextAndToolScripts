@@ -58,7 +58,7 @@ function xcode_build()
     fi
 
     # try to patch
-    patch "$1"
+    patch "$(basename "$(dirname "$1")")"
 
     target="$(xcodebuild -project "$SOURCE_PATH/$1" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
     target_ver=${target##*.}
@@ -122,7 +122,7 @@ function xcode_build3()
     fi
 
     # try to patch
-    patch "$1"
+    patch "$(basename "$(dirname "$1")")"
 
     target="$(xcodebuild -workspace "$SOURCE_PATH/$1" -scheme "$2" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
     target_ver=${target##*.}
