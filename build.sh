@@ -56,7 +56,7 @@ function xcode_build()
         return "1"
     fi
 
-    target="$(xcodebuild -project "/Volumes/Important/github/SourceCode/ACPI Debug/ACPIDebug.xcodeproj" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
+    target="$(xcodebuild -project "$SOURCE_PATH/$1" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
     target_ver=${target##*.}
     lib_path="$SELF_PATH/Helpers/SDK-10.$target_ver/"
 
@@ -113,7 +113,7 @@ function xcode_build3()
         return "1"
     fi
 
-    target="$(xcodebuild -project "/Volumes/Important/github/SourceCode/ACPI Debug/ACPIDebug.xcodeproj" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
+    target="$(xcodebuild -project "$SOURCE_PATH/$1" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
     target_ver=${target##*.}
     lib_path="$SELF_PATH/Helpers/SDK-10.$target_ver/"
 
