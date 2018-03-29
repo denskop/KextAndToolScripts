@@ -58,6 +58,10 @@ function xcode_build()
 
     target="$(xcodebuild -project "$SOURCE_PATH/$1" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
     target_ver=${target##*.}
+    if [ "$target_ver" == "" ]; then
+        target="$(xcodebuild -project "$SOURCE_PATH/$1" -showBuildSettings | grep "SDKROOT = ")"
+        target_ver=${target##*.}
+    fi
     lib_path="$SELF_PATH/Helpers/SDK-10.$target_ver/"
 
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
@@ -113,8 +117,13 @@ function xcode_build3()
         return "1"
     fi
 
-    target="$(xcodebuild -project "$SOURCE_PATH/$1" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
+    target="$(xcodebuild -workspace "$SOURCE_PATH/$1" -scheme "$2" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
     target_ver=${target##*.}
+
+    if [ "$target_ver" == "" ]; then
+        target="$(xcodebuild -workspace "$SOURCE_PATH/$1" -scheme "$2" -showBuildSettings | grep "SDKROOT = ")"
+        target_ver=${target##*.}
+    fi
     lib_path="$SELF_PATH/Helpers/SDK-10.$target_ver/"
 
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
