@@ -122,7 +122,7 @@ function xcode_build3()
     fi
 
     # try to patch
-    patch "$(basename "$(dirname "$1")")"
+    patch "$2" "$(basename "$(dirname "$1")")"
 
     target="$(xcodebuild -workspace "$SOURCE_PATH/$1" -scheme "$2" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
     target_ver=${target##*.}
@@ -465,9 +465,11 @@ if [ "$?" != "1" ]; then
 fi
 
 # Patch
-# args: <project>
+# args: <project> optional: <folder>
 function patch()
 {
+    diffs=()
+    #echo "path: "$HELPERS_PATH/$1""
     if [ -d "$HELPERS_PATH/$1" ]; then
         echo -e "Patching..."
         diffs=($(ls "$HELPERS_PATH/$1/Diff" 2>/dev/null))
@@ -475,7 +477,11 @@ function patch()
 
     for diff in "${diffs[@]}"; do
         #echo "$diff"
-        git -C "$SOURCE_PATH/$1/" apply "$HELPERS_PATH/$1/Diff/$diff"
+        if [ -z "$2" ]; then
+            git -C "$SOURCE_PATH/$1/" apply "$HELPERS_PATH/$1/Diff/$diff"
+        else
+            git -C "$SOURCE_PATH/$2/" apply "$HELPERS_PATH/$1/Diff/$diff"
+        fi
     done
 }
 
