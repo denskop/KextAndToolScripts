@@ -37,7 +37,7 @@
 #Shiki
 #ssdtPRGen
 #UEFITool
-#UEFITool(NE)
+#UEFITool_NE
 #Universal IFR Extractor
 #USBInjectAll
 #VoodooGPIO
