@@ -71,7 +71,7 @@ function print_group()
         title="\n# Update Kozlek kexts"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
-               "UEFITool(NE)")
+               "UEFITool_NE")
         title="\n# Update LongSoft tools"
     elif [ "$1" == "vulgo" ]; then
         array=("bootoption")
@@ -180,7 +180,7 @@ git_pull "HWSensors"
 
 print_group "longsoft"
 git_pull "UEFITool"
-git_pull "UEFITool(NE)"
+git_pull "UEFITool_NE"
 
 print_group "mieze"
 git_pull "AtherosE2200Ethernet"

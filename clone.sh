@@ -35,7 +35,6 @@ function git_clone()
         rm -rf "$SOURCE_PATH/$2"
         return "1"
     fi
-
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
 
     if [ -z "$3" ]; then
@@ -88,7 +87,7 @@ function print_group()
         title="\n# Clone denskop forks"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
-               "UEFITool(NE)")
+               "UEFITool_NE")
         title="\n# Clone LongSoft tools"
     elif [ "$1" == "vulgo" ]; then
         array=("bootoption")
@@ -197,7 +196,7 @@ git_clone https://github.com/kozlek/HWSensors.git "HWSensors"
 
 print_group "longsoft"
 git_clone https://github.com/LongSoft/UEFITool.git "UEFITool"
-git_clone https://github.com/LongSoft/UEFITool.git "UEFITool(NE)" new_engine
+git_clone https://github.com/LongSoft/UEFITool.git "UEFITool_NE" new_engine
 
 print_group "mieze"
 git_clone https://github.com/Mieze/AtherosE2200Ethernet.git "AtherosE2200Ethernet"

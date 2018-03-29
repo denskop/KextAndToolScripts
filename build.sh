@@ -258,7 +258,7 @@ function print_group()
         title="\n# $build_cmd Kozlek kexts"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
-               "UEFITool(NE)")
+               "UEFITool_NE")
         title="\n# $build_cmd LongSoft tools"
     elif [ "$1" == "vulgo" ]; then
         array=("bootoption")
@@ -467,9 +467,9 @@ xcode_build3 "HWSensors/HWSensors.xcworkspace" "org.hwsensors.HWMonitorHelper" R
 
 print_group "longsoft"
 qt_build "UEFITool/uefitool.pro" "UEFITool"
-qt_build "UEFITool(NE)/UEFITool/uefitool.pro" "UEFITool(NE)"
-#qt_build "UEFITool(NE)/UEFIExtract/uefiextract.pro" "UEFIExtract"
-#qt_build "UEFITool(NE)/UEFIFind/uefifind.pro" "UEFIFind"
+qt_build "UEFITool_NE/UEFITool/uefitool.pro" "UEFITool_NE"
+#qt_build "UEFITool_NE/UEFIExtract/uefiextract.pro" "UEFIExtract"
+#qt_build "UEFITool_NE/UEFIFind/uefifind.pro" "UEFIFind"
 
 print_group "mieze"
 if  [[ $minor_ver < 12 ]]; then # if [macOS < 10.12]; then
