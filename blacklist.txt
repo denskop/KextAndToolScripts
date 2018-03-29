@@ -46,6 +46,7 @@
 #VoodooI2C ACPI Patches
 #VoodooI2CELAN
 #VoodooI2CHID
+#VoodooI2CServices
 #VoodooI2CSynaptics
 #VoodooI2CUPDDEngine
 #VoodooPS2
