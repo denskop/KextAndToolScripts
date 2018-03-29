@@ -1,0 +1,14 @@
+diff --git a/NightShiftUnlocker/kern_start.cpp b/NightShiftUnlocker/kern_start.cpp
+index 87db307..b529f91 100644
+--- a/NightShiftUnlocker/kern_start.cpp
++++ b/NightShiftUnlocker/kern_start.cpp
+@@ -12,6 +12,9 @@
+ #include <Headers/kern_mach.hpp>
+ #include <sys/vnode.h>
+ 
++#undef memcpy
++#define memcpy lmemcpy
++
+ /**
+     Read bytes from the given path
+  

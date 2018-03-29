@@ -1,0 +1,66 @@
+diff --git a/NightShiftUnlocker.xcodeproj/project.pbxproj b/NightShiftUnlocker.xcodeproj/project.pbxproj
+index d99160c..acf94d1 100644
+--- a/NightShiftUnlocker.xcodeproj/project.pbxproj
++++ b/NightShiftUnlocker.xcodeproj/project.pbxproj
+@@ -110,7 +110,8 @@
+ 				D584E6A51F8F0A340067C2BA /* kern_util.hpp */,
+ 				D584E6A61F8F0A340067C2BA /* plugin_start.hpp */,
+ 			);
+-			path = Headers;
++			name = Headers;
++			path = ../Lilu.kext/Contents/Resources/Headers;
+ 			sourceTree = "<group>";
+ 		};
+ 		D51ED58E1ECDF8280084868D /* Library */ = {
+@@ -120,7 +121,8 @@
+ 				D51ED5901ECDF8280084868D /* libkmod.a */,
+ 				D51ED5911ECDF8280084868D /* plugin_start.cpp */,
+ 			);
+-			path = Library;
++			name = Library;
++			path = ../Lilu.kext/Contents/Resources/Library;
+ 			sourceTree = "<group>";
+ 		};
+ /* End PBXGroup section */
+@@ -240,7 +242,7 @@
+ 				CLANG_WARN_COMMA = YES;
+ 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+ 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
++				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+ 				CLANG_WARN_EMPTY_BODY = YES;
+ 				CLANG_WARN_ENUM_CONVERSION = YES;
+ 				CLANG_WARN_INFINITE_RECURSION = YES;
+@@ -294,7 +296,7 @@
+ 				CLANG_WARN_COMMA = YES;
+ 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+ 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
++				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+ 				CLANG_WARN_EMPTY_BODY = YES;
+ 				CLANG_WARN_ENUM_CONVERSION = YES;
+ 				CLANG_WARN_INFINITE_RECURSION = YES;
+@@ -340,10 +342,7 @@
+ 					"PRODUCT_NAME=$(PRODUCT_NAME)",
+ 					"DEBUG=1",
+ 				);
+-				HEADER_SEARCH_PATHS = (
+-					"$(inherited)",
+-					"$(PROJECT_DIR)/NightShiftUnlocker/",
+-				);
++				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Lilu.kext/Contents/Resources";
+ 				INFOPLIST_FILE = NightShiftUnlocker/Info.plist;
+ 				LIBRARY_SEARCH_PATHS = (
+ 					"$(inherited)",
+@@ -376,10 +375,7 @@
+ 					"MODULE_VERSION=$(MODULE_VERSION)",
+ 					"PRODUCT_NAME=$(PRODUCT_NAME)",
+ 				);
+-				HEADER_SEARCH_PATHS = (
+-					"$(inherited)",
+-					"$(PROJECT_DIR)/NightShiftUnlocker/",
+-				);
++				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/Lilu.kext/Contents/Resources";
+ 				INFOPLIST_FILE = NightShiftUnlocker/Info.plist;
+ 				LIBRARY_SEARCH_PATHS = (
+ 					"$(inherited)",
