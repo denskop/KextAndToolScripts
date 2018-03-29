@@ -51,7 +51,7 @@ function svn_update()
     fi
 
     echo "🔸 $(tput bold)$(basename "$1")$(tput sgr0):"
-    pushd "$1" >/dev/null
+    pushd "$SOURCE_PATH/$1" >/dev/null
 
     result="$(svn update)"
     if [[ "$result" =~ .*[ABCDEGU][[:space:]].* ]]; then
