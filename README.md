@@ -20,7 +20,7 @@
  
 ## Known issues
 1. VoodooHDA prefpane build fails
-<s>2. NightShiftUnlocker build fails with Xcode 9</s>
+~~2. NightShiftUnlocker build fails with Xcode 9~~
  
 ## List of supported kexts and tools
 
