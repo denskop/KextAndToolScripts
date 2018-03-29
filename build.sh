@@ -2,6 +2,7 @@
 
 SELF_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SOURCE_PATH="$SELF_PATH/SourceCode"
+HELPERS_PATH="$SELF_PATH/Helpers"
 
 xcode_installed="false"
 if [ "$1" == "clean" ]; then
@@ -56,13 +57,16 @@ function xcode_build()
         return "1"
     fi
 
+    # try to patch
+    patch "$1"
+
     target="$(xcodebuild -project "$SOURCE_PATH/$1" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
     target_ver=${target##*.}
     if [ "$target_ver" == "" ]; then
         target="$(xcodebuild -project "$SOURCE_PATH/$1" -showBuildSettings | grep "SDKROOT = ")"
         target_ver=${target##*.}
     fi
-    lib_path="$SELF_PATH/Helpers/SDK-10.$target_ver/"
+    lib_path="$HELPERS_PATH/SDK-10.$target_ver/"
 
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
         xcodebuild -project "$SOURCE_PATH/$1"  -target "$2" -configuration "$3" -sdk macosx LIBRARY_SEARCH_PATHS="$lib_path" -quiet $build_cmd
@@ -117,6 +121,9 @@ function xcode_build3()
         return "1"
     fi
 
+    # try to patch
+    patch "$1"
+
     target="$(xcodebuild -workspace "$SOURCE_PATH/$1" -scheme "$2" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
     target_ver=${target##*.}
 
@@ -124,7 +131,7 @@ function xcode_build3()
         target="$(xcodebuild -workspace "$SOURCE_PATH/$1" -scheme "$2" -showBuildSettings | grep "SDKROOT = ")"
         target_ver=${target##*.}
     fi
-    lib_path="$SELF_PATH/Helpers/SDK-10.$target_ver/"
+    lib_path="$HELPERS_PATH/SDK-10.$target_ver/"
 
     if [ "$4" == "force" ] || [ "$5" == "force" ]; then
         xcodebuild -workspace "$SOURCE_PATH/$1"  -scheme "$2" -configuration "$3" -sdk macosx LIBRARY_SEARCH_PATHS="$lib_path" -quiet $build_cmd
@@ -456,6 +463,21 @@ if [ "$?" != "1" ]; then
     cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl4"
     cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl61"
 fi
+
+# Patch
+# args: <project>
+function patch()
+{
+    if [ -d "$HELPERS_PATH/$1" ]; then
+        echo -e "Patching..."
+        diffs=($(ls "$HELPERS_PATH/$1/Diff" 2>/dev/null))
+    fi
+
+    for diff in "${diffs[@]}"; do
+        #echo "$diff"
+        git -C "$SOURCE_PATH/$1/" apply "$HELPERS_PATH/$1/Diff/$diff"
+    done
+}
 
 print_group "denskop"
 qt_build "Universal IFR Extractor/Qt/Universal_IFR_Extractor.pro" "Universal IFR Extractor"
