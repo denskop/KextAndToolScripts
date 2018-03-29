@@ -51,8 +51,16 @@ function svn_update()
     fi
 
     echo "🔸 $(tput bold)$(basename "$1")$(tput sgr0):"
-    pushd "$SOURCE_PATH/$1" >/dev/null
-    svn update
+    pushd "$1" >/dev/null
+
+    result="$(svn update)"
+    if [[ "$result" =~ .*[ABCDEGU][[:space:]].* ]]; then
+        echo "hooked: $result"
+    elif [[ "$result" =~ .*"At revision ".*. ]]; then
+        echo "Already up-to-date."
+    else
+        echo "$result"
+    fi
     popd >/dev/null
 }
 
