@@ -496,7 +496,7 @@ function patch()
         #echo "$diff"
         result="$(""$patch_start""$diff""$patch_finish"" 2>&1)"
 
-        if [[ ! "$result" =~ .*"error: patch failed:".* ]]; then
+        if [[ ! "$result" =~ .*"error: patch failed:".* ]] && [[ ! "$result" =~ .*"already applied".* ]]; then
             echo "$result"
         fi
     done

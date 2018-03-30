@@ -46,7 +46,9 @@ function git_clone()
     if [[ "$result" =~ .*"already exists and is not an empty directory.".* ]]; then
         echo "Already cloned."
     else
+        echo -e "\033[0;32m########################\033[0m"
         echo "$result"
+        echo -e "\033[0;32m########################\033[0m"
     fi
 }
 
@@ -67,7 +69,9 @@ function git_checkout()
     if [[ "$result1" =~ .*"already exists and is not an empty directory.".* ]]; then
         echo "Already cloned."
     else
+        echo -e "\033[0;32m########################\033[0m"
         echo "$result1"
+        echo -e "\033[0;32m########################\033[0m"
     fi
 
     #echo "$result2"
