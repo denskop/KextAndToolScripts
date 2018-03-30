@@ -470,19 +470,34 @@ function patch()
 {
     diffs=()
     #echo "path: "$HELPERS_PATH/$1""
-    if [ -d "$HELPERS_PATH/$1" ]; then
-        echo -e "Patching..."
-        diffs=($(ls "$HELPERS_PATH/$1/Diff" 2>/dev/null))
+    if [ ! -d "$HELPERS_PATH/$1" ]; then
+        return "0"
     fi
+
+    if [ -z "$2" ]; then
+        folder="$1"
+    else
+        folder="$2"
+    fi
+
+    if [ -f "$HELPERS_PATH/$1/git" ]; then
+        patch_start="git -C "$SOURCE_PATH/$folder/" apply "$HELPERS_PATH/$1/Diff/""
+        patch_finish=""
+    elif [ -f "$HELPERS_PATH/$1/svn" ]; then
+        patch_start="svn patch "$HELPERS_PATH/$1/Diff/""
+        patch_finish=" "$SOURCE_PATH/$folder/""
+    else
+        return "0"
+    fi
+
+    echo -e "Patching..."
+    diffs=($(ls "$HELPERS_PATH/$1/Diff" 2>/dev/null))
 
     for diff in "${diffs[@]}"; do
         #echo "$diff"
-        if [ -z "$2" ]; then
-            git -C "$SOURCE_PATH/$1/" apply "$HELPERS_PATH/$1/Diff/$diff"
-        else
-            git -C "$SOURCE_PATH/$2/" apply "$HELPERS_PATH/$1/Diff/$diff"
-        fi
+        ""$patch_start""$diff""$patch_finish""
     done
+    return "1"
 }
 
 print_group "denskop"
