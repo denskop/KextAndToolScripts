@@ -490,12 +490,15 @@ function patch()
         return "0"
     fi
 
-    echo -e "Patching..."
     diffs=($(ls "$HELPERS_PATH/$1/Diff" 2>/dev/null))
 
     for diff in "${diffs[@]}"; do
         #echo "$diff"
-        ""$patch_start""$diff""$patch_finish""
+        result="$(""$patch_start""$diff""$patch_finish"" 2>&1)"
+
+        if [[ ! "$result" =~ .*"error: patch failed:".* ]]; then
+            echo "$result"
+        fi
     done
     return "1"
 }

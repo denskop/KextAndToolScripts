@@ -37,7 +37,15 @@ function git_pull()
     fi
 
     echo "🔸 $(tput bold)$(basename "$1")$(tput sgr0):"
-    git -C "$SOURCE_PATH/$1" pull
+    result="$(git -C "$SOURCE_PATH/$1" pull)"
+
+    if [[ "$result" =~ .*"Updating ".* ]]; then
+        echo -e "\033[0;32m########################\033[0m"
+        echo "$result"
+        echo -e "\033[0;32m########################\033[0m"
+    else
+        echo "$result"
+    fi
 }
 
 # svn_update
@@ -55,7 +63,9 @@ function svn_update()
 
     result="$(svn update)"
     if [[ "$result" =~ .*[ABCDEGU][[:space:]].* ]]; then
-        echo "hooked: $result"
+        echo -e "\033[0;32m########################\033[0m"
+        echo "$result"
+        echo -e "\033[0;32m########################\033[0m"
     elif [[ "$result" =~ .*"At revision ".*. ]]; then
         echo "Already up-to-date."
     else

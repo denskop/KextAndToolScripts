@@ -38,9 +38,15 @@ function git_clone()
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
 
     if [ -z "$3" ]; then
-        git clone "$1" "$SOURCE_PATH/$2"
+        result="$(git clone "$1" "$SOURCE_PATH/$2" 2>&1 >/dev/null)"
     else
-        git clone "$1" "$SOURCE_PATH/$2" -b "$3"
+        result="$(git clone "$1" "$SOURCE_PATH/$2" -b "$3" 2>&1 >/dev/null)"
+    fi
+
+    if [[ "$result" =~ .*"already exists and is not an empty directory.".* ]]; then
+        echo "Already cloned."
+    else
+        echo "$result"
     fi
 }
 
@@ -55,8 +61,16 @@ function git_checkout()
     fi
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
 
-    git clone "$1" "$SOURCE_PATH/$2"
-    git -C "$SOURCE_PATH/$2" checkout "$3"
+    result1="$(git clone "$1" "$SOURCE_PATH/$2" 2>&1 >/dev/null)"
+    result2="$(git -C "$SOURCE_PATH/$2" checkout "$3" 2>&1 >/dev/null)"
+
+    if [[ "$result1" =~ .*"already exists and is not an empty directory.".* ]]; then
+        echo "Already cloned."
+    else
+        echo "$result1"
+    fi
+
+    #echo "$result2"
 }
 
 # svn_co
@@ -69,7 +83,17 @@ function svn_co()
         return "1"
     fi
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
-    svn checkout "$1" "$SOURCE_PATH/$2"
+
+    result="$(svn checkout "$1" "$SOURCE_PATH/$2")"
+    if [[ "$result" =~ .*[ABCDEGU][[:space:]].* ]]; then
+        echo "hooked: $result"
+    elif [[ "$result" =~ .*"At revision ".*. ]]; then
+        echo "Already cloned."
+    elif [[ "$result" =~ .*"Checked out revision ".*. ]]; then
+        echo "Already cloned."
+    else
+        echo "$result"
+    fi
 }
 
 # print_group
