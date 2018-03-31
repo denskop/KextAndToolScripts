@@ -37,44 +37,38 @@ function git_clone()
     fi
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
 
-    if [ -z "$3" ]; then
-        result="$(git clone "$1" "$SOURCE_PATH/$2" 2>&1 >/dev/null)"
-    else
-        result="$(git clone "$1" "$SOURCE_PATH/$2" -b "$3" 2>&1 >/dev/null)"
+    if [ -d "$SOURCE_PATH/$2" ]; then
+        if [ "$(ls "$SOURCE_PATH/$2")" == "" ]; then
+            rm -rf "$SOURCE_PATH/$2"
+        fi
+        echo "Already cloned."
+        return "0"
     fi
 
-    if [[ "$result" =~ .*"already exists and is not an empty directory.".* ]]; then
-        echo "Already cloned."
+    echo -e "\033[0;32m########################\033[0m"
+    if [ -z "$3" ]; then
+        git clone "$1" "$SOURCE_PATH/$2"
     else
-        echo -e "\033[0;32m########################\033[0m"
-        echo "$result"
-        echo -e "\033[0;32m########################\033[0m"
+        git clone "$1" "$SOURCE_PATH/$2" -b "$3"
     fi
+    echo -e "\033[0;32m########################\033[0m"
+
+    return "0"
 }
 
 # git_checkout
 # args: <url> <folder> <sha>
 function git_checkout()
 {
-    check_in_blacklist "$(basename "$2")"
+    git_clone "$1" "$2"
     if [ "$?" == "1" ]; then
         rm -rf "$2"
         return "1"
     fi
-    echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
 
-    result1="$(git clone "$1" "$SOURCE_PATH/$2" 2>&1 >/dev/null)"
-    result2="$(git -C "$SOURCE_PATH/$2" checkout "$3" 2>&1 >/dev/null)"
-
-    if [[ "$result1" =~ .*"already exists and is not an empty directory.".* ]]; then
-        echo "Already cloned."
-    else
-        echo -e "\033[0;32m########################\033[0m"
-        echo "$result1"
-        echo -e "\033[0;32m########################\033[0m"
-    fi
-
-    #echo "$result2"
+    result="$(git -C "$SOURCE_PATH/$2" checkout "$3" 2>&1 >/dev/null)"
+    #echo "$result"
+    return "0"
 }
 
 # svn_co
@@ -88,16 +82,17 @@ function svn_co()
     fi
     echo "🔸 $(tput bold)$(basename "$2")$(tput sgr0):"
 
-    result="$(svn checkout "$1" "$SOURCE_PATH/$2")"
-    if [[ "$result" =~ .*[ABCDEGU][[:space:]].* ]]; then
-        echo "hooked: $result"
-    elif [[ "$result" =~ .*"At revision ".*. ]]; then
+    if [ -d "$SOURCE_PATH/$2" ]; then
+        if [ "$(ls "$SOURCE_PATH/$2")" == "" ]; then
+            rm -rf "$SOURCE_PATH/$2"
+        fi
         echo "Already cloned."
-    elif [[ "$result" =~ .*"Checked out revision ".*. ]]; then
-        echo "Already cloned."
-    else
-        echo "$result"
+        return "0"
     fi
+
+    echo -e "\033[0;32m########################\033[0m"
+    svn checkout "$1" "$SOURCE_PATH/$2"
+    echo -e "\033[0;32m########################\033[0m"
 }
 
 # print_group
