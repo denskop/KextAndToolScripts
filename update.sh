@@ -67,7 +67,7 @@ function svn_update()
         echo "$result"
         echo -e "\033[0;32m########################\033[0m"
     elif [[ "$result" =~ .*"At revision ".*. ]]; then
-        echo "Already up-to-date."
+        echo "Already up to date."
     else
         echo "$result"
     fi
