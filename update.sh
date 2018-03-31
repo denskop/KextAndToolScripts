@@ -37,9 +37,9 @@ function git_pull()
     fi
 
     echo "🔸 $(tput bold)$(basename "$1")$(tput sgr0):"
-    result="$(git -C "$SOURCE_PATH/$1" pull)"
+    result="$(git -C "$SOURCE_PATH/$1" pull 2>&1)"
 
-    if [[ "$result" =~ .*"Updating ".* ]]; then
+    if [[ "$result" =~ .*"Updating ".* ]] || [[ "$result" =~ .*"remote: Counting objects: ".* ]]; then
         echo -e "\033[0;32m########################\033[0m"
         echo "$result"
         echo -e "\033[0;32m########################\033[0m"
@@ -61,7 +61,7 @@ function svn_update()
     echo "🔸 $(tput bold)$(basename "$1")$(tput sgr0):"
     pushd "$SOURCE_PATH/$1" >/dev/null
 
-    result="$(svn update)"
+    result="$(svn update 2>&1)"
     if [[ "$result" =~ .*[ABCDEGU][[:space:]].* ]]; then
         echo -e "\033[0;32m########################\033[0m"
         echo "$result"
