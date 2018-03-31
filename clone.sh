@@ -288,7 +288,7 @@ git_clone https://github.com/Piker-Alpha/csrstat.git "csrstat"
 git_clone https://github.com/Piker-Alpha/ssdtPRGen.sh.git "ssdtPRGen"
 
 print_group "uefi"
-git_checkout https://github.com/tianocore/edk2.git "edk2" "a35918caae4d0b9bb51d0d4765117d7ca9a4d641"    #Tianocore
+git_checkout https://github.com/tianocore/edk2.git "edk2" "9b4a20321edc5865e38409b30814b6c4d898d7e6"    #Tianocore
 #git_clone https://git.code.sf.net/p/tianocore/edk2 "edk2"
 #
 svn_co https://svn.code.sf.net/p/cloverefiboot/code "edk2/Clover"                                       #CloverTeam

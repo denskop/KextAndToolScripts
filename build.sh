@@ -492,6 +492,7 @@ function patch()
 
     diffs=($(ls "$HELPERS_PATH/$1/Diff" 2>/dev/null))
 
+    echo "Patching..."
     for diff in "${diffs[@]}"; do
         #echo "$diff"
         result="$(""$patch_start""$diff""$patch_finish"" 2>&1)"
