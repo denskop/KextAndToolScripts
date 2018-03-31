@@ -644,6 +644,12 @@ if [ "$?" != "1" ]; then
     pushd "$SOURCE_PATH/edk2" >/dev/null
     source "edksetup.sh"
 
+    # Patch edk2
+    check_in_blacklist "Clover"
+    if [ "$?" != "1" ]; then
+        cp -R Clover/Patches_for_EDK2/* .
+    fi
+
     # Build AptioFixPkg
     edk2_build "AptioFixPkg/AptioFixPkg.dsc" XCODE5 RELEASE
 
@@ -651,7 +657,6 @@ if [ "$?" != "1" ]; then
     check_in_blacklist "Clover"
     if [ "$?" != "1" ]; then
         print "Clover EFI Bootloader" "RELEASE"
-        cp -R Clover/Patches_for_EDK2/* .
         if [ "$build_cmd" != "clean" ]; then
             ./Clover/ebuild.sh -fr -x64 >/dev/null | grep -e "error|warning"
         else
