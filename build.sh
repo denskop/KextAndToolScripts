@@ -379,11 +379,11 @@ fi
 NASMVER="2.13.02"
 if [ "$(nasm -v | grep Apple)" != "" ]; then
     echo "3. nasm: Installing..."
-    unzip -q "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}/nasm" "nasm-${NASMVER}/ndisasm" || exit 1
+    unzip -q "$SELF_PATH/nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}/nasm" "nasm-${NASMVER}/ndisasm" -d "$SELF_PATH" || exit 1
     sudo mkdir -p /usr/local/bin || exit 1
-    sudo mv "nasm-${NASMVER}/nasm" /usr/local/bin/ || exit 1
-    sudo mv "nasm-${NASMVER}/ndisasm" /usr/local/bin/ || exit 1
-    rm -rf "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}"
+    sudo mv "$SELF_PATH/nasm-${NASMVER}/nasm" /usr/local/bin/ || exit 1
+    sudo mv "$SELF_PATH/nasm-${NASMVER}/ndisasm" /usr/local/bin/ || exit 1
+    rm -rf "$SELF_PATH/nasm-${NASMVER}-macosx.zip" "$SELF_PATH/nasm-${NASMVER}"
 else
     echo "3. nasm: Installed"
 fi
@@ -391,11 +391,11 @@ fi
 # Check MTOCK by vit9696
 if [ "$(which mtoc.NEW)" == "" ] || [ "$(which mtoc)" == "" ]; then
     echo "4. mtoc: Installing..."
-    rm -f mtoc mtoc.NEW
-    unzip -q edk2/AptioFixPkg/external/mtoc-mac64.zip mtoc mtoc.NEW || exit 1
+    rm -f "$SELF_PATH/mtoc" "$SELF_PATH/mtoc.NEW"
+    unzip -q "$SOURCE_PATH/edk2/AptioFixPkg/external/mtoc-mac64.zip" "mtoc" "mtoc.NEW" -d "$SELF_PATH" || exit 1
     sudo mkdir -p /usr/local/bin || exit 1
-    sudo mv mtoc /usr/local/bin/ || exit 1
-    sudo mv mtoc.NEW /usr/local/bin/ || exit 1
+    sudo mv "$SELF_PATH/mtoc" /usr/local/bin/ || exit 1
+    sudo mv "$SELF_PATH/mtoc.NEW" /usr/local/bin/ || exit 1
 else
     echo "4. mtoc: Installed"
 fi

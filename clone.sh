@@ -305,8 +305,8 @@ echo -e "\n# Check and Download missing tools"
 NASMVER="2.13.02"
 if [ "$(nasm -v | grep Apple)" != "" ]; then
     echo "1. nasm - $(tput bold)FAILED$(tput sgr0)"
-    rm -rf "nasm-${NASMVER}-macosx.zip" "nasm-${NASMVER}"
-    curl -O "https://www.nasm.us/pub/nasm/releasebuilds/${NASMVER}/macosx/nasm-${NASMVER}-macosx.zip" || exit 1
+    rm -rf "$SELF_PATH/nasm-${NASMVER}-macosx.zip" "$SELF_PATH/nasm-${NASMVER}"
+    curl -o "$SELF_PATH/nasm-${NASMVER}-macosx.zip" "https://www.nasm.us/pub/nasm/releasebuilds/${NASMVER}/macosx/nasm-${NASMVER}-macosx.zip" || exit 1
 else
     echo "1. nasm - $(tput bold)PASSED$(tput sgr0)"
 fi
