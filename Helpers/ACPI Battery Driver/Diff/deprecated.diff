@@ -1,0 +1,14 @@
+diff --git a/AppleSmartBatteryManager/AppleSmartBatteryManager.h b/AppleSmartBatteryManager/AppleSmartBatteryManager.h
+index 0bbaeaa..666959b 100644
+--- a/AppleSmartBatteryManager/AppleSmartBatteryManager.h
++++ b/AppleSmartBatteryManager/AppleSmartBatteryManager.h
+@@ -43,6 +43,9 @@
+ #include "AppleSmartBattery.h"
+ #include "BatteryTracker.h"
+ 
++#undef OSSafeRelease
++#define OSSafeRelease(inst) do { if (inst) (inst)->release(); } while (0)
++
+ #ifdef DEBUG_MSG
+ #define DebugLog(args...)  do { IOLog("ACPIBatteryManager: " args); } while (0)
+ #define DebugOnly(expr)     do { expr; } while (0)

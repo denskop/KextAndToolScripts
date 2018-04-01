@@ -1,0 +1,15 @@
+diff --git a/USBInjectAll/USBInjectAll.cpp b/USBInjectAll/USBInjectAll.cpp
+index 2bb0682..a0d47a5 100644
+--- a/USBInjectAll/USBInjectAll.cpp
++++ b/USBInjectAll/USBInjectAll.cpp
+@@ -26,6 +26,10 @@
+ 
+ //REVIEW: avoids problem with Xcode 5.1.0 where -dead_strip eliminates these required symbols
+ #include <libkern/OSKextLib.h>
++
++#undef OSSafeRelease
++#define OSSafeRelease(inst) do { if (inst) (inst)->release(); } while (0)
++
+ void* _org_rehabman_dontstrip_[] =
+ {
+     (void*)&OSKextGetCurrentIdentifier,

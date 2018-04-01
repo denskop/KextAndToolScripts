@@ -1,0 +1,14 @@
+diff --git a/CodecCommander/Common.h b/CodecCommander/Common.h
+index 56cc6ab..e862773 100644
+--- a/CodecCommander/Common.h
++++ b/CodecCommander/Common.h
+@@ -38,6 +38,9 @@
+ #include <IOKit/audio/IOAudioDevice.h>
+ #include <IOKit/pci/IOPCIDevice.h>
+ 
++#undef OSSafeRelease
++#define OSSafeRelease(inst) do { if (inst) (inst)->release(); } while (0)
++
+ #define kCodecProfile               "Codec Profile"
+ #define kCodecVendorID              "IOHDACodecVendorID"
+ #define kCodecAddress               "IOHDACodecAddress"
