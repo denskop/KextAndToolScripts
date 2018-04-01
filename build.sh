@@ -58,7 +58,9 @@ function xcode_build()
     fi
 
     # try to patch
-    patch "$(basename "$(dirname "$1")")"
+    if [ "$build_cmd" != "clean" ]; then
+        patch "$(basename "$(dirname "$1")")"
+    fi
 
     target="$(xcodebuild -project "$SOURCE_PATH/$1" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
     target_ver=${target##*.}
@@ -122,7 +124,9 @@ function xcode_build3()
     fi
 
     # try to patch
-    patch "$2" "$(basename "$(dirname "$1")")"
+    if [ "$build_cmd" != "clean" ]; then
+        patch "$2" "$(basename "$(dirname "$1")")"
+    fi
 
     target="$(xcodebuild -workspace "$SOURCE_PATH/$1" -scheme "$2" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
     target_ver=${target##*.}
@@ -469,7 +473,7 @@ fi
 function patch()
 {
     diffs=()
-    #echo "path: "$HELPERS_PATH/$1""
+    #echo "path: $HELPERS_PATH/$1"
     if [ ! -d "$HELPERS_PATH/$1" ]; then
         return "0"
     fi
@@ -480,25 +484,16 @@ function patch()
         folder="$2"
     fi
 
-    if [ -f "$HELPERS_PATH/$1/git" ]; then
-        patch_start="git -C "$SOURCE_PATH/$folder/" apply "$HELPERS_PATH/$1/Diff/""
-        patch_finish=""
-    elif [ -f "$HELPERS_PATH/$1/svn" ]; then
-        patch_start="svn patch "$HELPERS_PATH/$1/Diff/""
-        patch_finish=" "$SOURCE_PATH/$folder/""
-    else
-        return "0"
-    fi
-
     diffs=($(ls "$HELPERS_PATH/$1/Diff" 2>/dev/null))
 
     echo "Patching..."
     for diff in "${diffs[@]}"; do
-        #echo "$diff"
-        result="$(""$patch_start""$diff""$patch_finish"" 2>&1)"
-
-        if [[ ! "$result" =~ .*"error: patch failed:".* ]] && [[ ! "$result" =~ .*"already applied".* ]]; then
-            echo "$result"
+        if [ -f "$HELPERS_PATH/$1/git" ]; then
+            git -C "$SOURCE_PATH/$folder" apply "$HELPERS_PATH/$1/Diff/$diff" >/dev/null 2>&1
+        elif [ -f "$HELPERS_PATH/$1/svn" ]; then
+            svn patch "$HELPERS_PATH/$1/Diff/$diff" "$SOURCE_PATH/$folder/" >/dev/null 2>&1
+        else
+            return "0"
         fi
     done
     return "1"
