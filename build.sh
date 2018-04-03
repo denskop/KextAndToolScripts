@@ -242,7 +242,11 @@ clean:
 	$(RM) out $(OBJS)
 EOT
 
+if [ -z "$2" ]; then
 make_build "$1" # SOURCE_PATH not needed here!
+else
+make_build "$1" "$2" # SOURCE_PATH not needed here!
+fi
 return "$?"
 }
 
@@ -274,7 +278,9 @@ function print_group()
         title="\n# $build_cmd Kozlek kexts"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
-               "UEFITool_NE")
+               "UEFITool_NE" \
+               "UEFIExtract" \
+               "UEFIFind")
         title="\n# $build_cmd LongSoft tools"
     elif [ "$1" == "vulgo" ]; then
         array=("bootoption")
@@ -515,8 +521,9 @@ xcode_build3 "HWSensors/HWSensors.xcworkspace" "org.hwsensors.HWMonitorHelper" R
 print_group "longsoft"
 qt_build "UEFITool/uefitool.pro" "UEFITool"
 qt_build "UEFITool_NE/UEFITool/uefitool.pro" "UEFITool_NE"
-#qt_build "UEFITool_NE/UEFIExtract/uefiextract.pro" "UEFIExtract"
-#qt_build "UEFITool_NE/UEFIFind/uefifind.pro" "UEFIFind"
+#
+qt_build "UEFITool_NE/UEFIExtract/uefiextract.pro" "UEFIExtract"
+qt_build "UEFITool_NE/UEFIFind/uefifind.pro" "UEFIFind"
 
 print_group "mieze"
 if  [[ $minor_ver < 12 ]]; then # if [macOS < 10.12]; then

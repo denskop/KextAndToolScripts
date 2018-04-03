@@ -38,6 +38,8 @@ Shiki
 ssdtPRGen
 UEFITool
 UEFITool_NE
+UEFIExtract
+UEFIFind
 Universal IFR Extractor
 USBInjectAll
 VoodooGPIO

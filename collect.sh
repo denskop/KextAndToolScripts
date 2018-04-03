@@ -58,7 +58,9 @@ function print_group()
         title="\n# Collect Kozlek kexts"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
-               "UEFITool_NE")
+               "UEFITool_NE" \
+               "UEFIExtract" \
+               "UEFIFind")
         title="\n# Collect LongSoft tools"
     elif [ "$1" == "vulgo" ]; then
         array=("bootoption")
@@ -184,6 +186,9 @@ print "UEFITool_NE"
 if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/Tools/UEFITool"
     cp -R "$SOURCE_PATH/UEFITool_NE/UEFITool/UEFITool.app" "$COLLECT_PATH/Tools/UEFITool/UEFITool_NE.app"
+    #
+    cp -R "$SOURCE_PATH/UEFITool_NE/UEFIExtract/UEFIExtract" "$COLLECT_PATH/Tools/UEFITool/UEFIExtract"
+    cp -R "$SOURCE_PATH/UEFITool_NE/UEFIFind/UEFIFind" "$COLLECT_PATH/Tools/UEFITool/UEFIFind"
 fi
 
 print_group "mieze"

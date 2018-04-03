@@ -1,0 +1,15 @@
+diff --git a/common/ffsparser.cpp b/common/ffsparser.cpp
+index 9210183..b38bb62 100644
+--- a/common/ffsparser.cpp
++++ b/common/ffsparser.cpp
+@@ -12,6 +12,10 @@ WITHWARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+ 
+ #include "ffsparser.h"
+ 
++#if __clang_major__ >= 4
++    #pragma clang diagnostic ignored "-Wunused-private-field"
++#endif
++
+ #include <map>
+ #include <algorithm>
+ #include <inttypes.h>
