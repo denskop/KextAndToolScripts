@@ -1,0 +1,63 @@
+diff --git a/common/ffsparser.cpp b/common/ffsparser.cpp
+index 9210183..6270fb5 100644
+--- a/common/ffsparser.cpp
++++ b/common/ffsparser.cpp
+@@ -3152,7 +3152,7 @@ USTATUS FfsParser::parseVendorHashFile(const UByteArray & fileGuid, const UModel
+ 
+     if (fileGuid == BG_VENDOR_HASH_FILE_GUID_PHOENIX) {
+         // File too small to have even a signature
+-        if (model->body(index).size() < sizeof(BG_VENDOR_HASH_FILE_SIGNATURE_PHOENIX)) {
++        if (model->body(index).size() < INT32(sizeof(BG_VENDOR_HASH_FILE_SIGNATURE_PHOENIX))) {
+             msg(UString("parseVendorHashFile: unknown or corrupted Phoenix hash file found"), index);
+             model->setText(index, UString("Phoenix hash file"));
+             return U_INVALID_FILE;
+@@ -3203,7 +3203,7 @@ USTATUS FfsParser::parseVendorHashFile(const UByteArray & fileGuid, const UModel
+     }
+     else if (fileGuid == BG_VENDOR_HASH_FILE_GUID_AMI) {
+         UModelIndex fileIndex = model->parent(index);
+-        UINT32 size = model->body(index).size();
++        INT32 size = model->body(index).size();
+         if (size != model->body(index).count('\xFF')) {
+             if (size == sizeof(BG_VENDOR_HASH_FILE_HEADER_AMI_NEW)) {
+                 bool protectedRangesFound = false;
+diff --git a/common/nvramparser.cpp b/common/nvramparser.cpp
+index ed2eebc..8ed05d5 100644
+--- a/common/nvramparser.cpp
++++ b/common/nvramparser.cpp
+@@ -1333,14 +1333,14 @@ USTATUS NvramParser::parseFdcStoreBody(const UModelIndex & index)
+ 
+     // Determine if it's a VSS or VSS2 store inside
+     UByteArray store = model->body(volumeIndex);
+-    if (store.size() >= sizeof(UINT32) && *(const UINT32*)store.constData() == NVRAM_VSS_STORE_SIGNATURE) {
++    if (store.size() >= INT32(sizeof(UINT32)) && *(const UINT32*)store.constData() == NVRAM_VSS_STORE_SIGNATURE) {
+         UModelIndex vssIndex;
+         status = parseVssStoreHeader(store, localOffset + model->header(volumeIndex).size(), true, volumeIndex, vssIndex);
+         if (status)
+             return status;
+         return parseVssStoreBody(vssIndex, 0);
+     }
+-    else if (store.size() >= sizeof(EFI_GUID) && store.left(sizeof(EFI_GUID)) == NVRAM_FDC_STORE_GUID) {
++    else if (store.size() >= INT32(sizeof(EFI_GUID)) && store.left(sizeof(EFI_GUID)) == NVRAM_FDC_STORE_GUID) {
+         UModelIndex vss2Index;
+         status = parseVss2StoreHeader(store, localOffset + model->header(volumeIndex).size(), true, volumeIndex, vss2Index);
+         if (status)
+diff --git a/common/treeitem.cpp b/common/treeitem.cpp
+index 939a6f9..523bed3 100644
+--- a/common/treeitem.cpp
++++ b/common/treeitem.cpp
+@@ -23,6 +23,7 @@ TreeItem::TreeItem(const UINT32 offset, const UINT8 type, const UINT8 subtype,
+     itemAction(Actions::NoAction),    
+     itemType(type),
+     itemSubtype(subtype),
++    itemMarking(0),
+     itemName(name),
+     itemText(text),
+     itemInfo(info),
+@@ -31,7 +32,6 @@ TreeItem::TreeItem(const UINT32 offset, const UINT8 type, const UINT8 subtype,
+     itemTail(tail),
+     itemFixed(fixed),
+     itemCompressed(compressed),
+-    itemMarking(0),
+     parentItem(parent)
+ {
+ }

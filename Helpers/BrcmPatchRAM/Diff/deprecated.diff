@@ -1,0 +1,26 @@
+diff --git a/BrcmPatchRAM/BrcmFirmwareStore.h b/BrcmPatchRAM/BrcmFirmwareStore.h
+index a1b73ca..8b531d4 100644
+--- a/BrcmPatchRAM/BrcmFirmwareStore.h
++++ b/BrcmPatchRAM/BrcmFirmwareStore.h
+@@ -24,6 +24,9 @@
+ #include <IOKit/IOService.h>
+ #include <libkern/OSKextLib.h>
+ 
++#undef OSSafeRelease
++#define OSSafeRelease(inst) do { if (inst) (inst)->release(); } while (0)
++
+ #define kBrcmFirmwareCompressed     "zhx"
+ #define kBrmcmFirwareUncompressed   "hex"
+ 
+diff --git a/BrcmPatchRAM/BrcmPatchRAM.cpp b/BrcmPatchRAM/BrcmPatchRAM.cpp
+index dcdc09f..ae398cc 100644
+--- a/BrcmPatchRAM/BrcmPatchRAM.cpp
++++ b/BrcmPatchRAM/BrcmPatchRAM.cpp
+@@ -20,6 +20,7 @@
+ #ifndef TARGET_ELCAPITAN
+ #include <IOKit/usb/IOUSBInterface.h>
+ #else
++#define __IOUSBFAMILY__
+ #include <IOKit/usb/USB.h>
+ #endif
+ #include <IOKit/IOCatalogue.h>

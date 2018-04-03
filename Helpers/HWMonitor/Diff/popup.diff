@@ -1,0 +1,3070 @@
+diff --git a/HWMonitor.xcodeproj/project.pbxproj b/HWMonitor.xcodeproj/project.pbxproj
+index 1697cb51..5289fb97 100644
+--- a/HWMonitor.xcodeproj/project.pbxproj
++++ b/HWMonitor.xcodeproj/project.pbxproj
+@@ -31,7 +31,6 @@
+ 		7E1A0325198053890001210A /* PopoverFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1A0324198053890001210A /* PopoverFrameView.m */; };
+ 		7E1ABD8F185E2CA200412B75 /* Divider.tif in Resources */ = {isa = PBXBuildFile; fileRef = 7E1ABD8E185E2CA200412B75 /* Divider.tif */; };
+ 		7E2042011730844C00C13B65 /* GraphsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2042001730844C00C13B65 /* GraphsController.xib */; };
+-		7E2042031730CDA000C13B65 /* PopupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2042021730CDA000C13B65 /* PopupController.xib */; };
+ 		7E2042051730D04100C13B65 /* AppController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2042041730D04000C13B65 /* AppController.xib */; };
+ 		7E268C621837A41C004F16E3 /* HWMIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E268C611837A41C004F16E3 /* HWMIcon.m */; };
+ 		7E2789801876FB6300B443BD /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E27897F1876FB6300B443BD /* Growl.framework */; };
+@@ -62,10 +61,8 @@
+ 		7E6D702718AF3F1800CD8BFD /* SmartAttributes.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7E6D702618AF3F1800CD8BFD /* SmartAttributes.strings */; };
+ 		7E6D90441845EEDB0045BDB3 /* HWMGraphsGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D90431845EEDB0045BDB3 /* HWMGraphsGroup.m */; };
+ 		7E713BF218FD1B2D009E6EA5 /* NSString+returnCodeDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E713BF118FD1B2D009E6EA5 /* NSString+returnCodeDescription.m */; };
+-		7E7B9B3F1786A732003ACB61 /* OBMenuBarWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7B9B3E1786A732003ACB61 /* OBMenuBarWindow.m */; };
+ 		7E7C14A71982432300BF3046 /* PopoverWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7C14A61982432300BF3046 /* PopoverWindow.m */; };
+ 		7E7D61FB1704453B00F7222F /* FadingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D61FA1704453B00F7222F /* FadingButton.m */; };
+-		7E7D86EA1B4454AE008AE77B /* OBMenuBarWindowFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D86E91B4454AE008AE77B /* OBMenuBarWindowFrameView.m */; };
+ 		7E8A337518EEEC510059DA16 /* HWMThemedTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A337418EEEC510059DA16 /* HWMThemedTextField.m */; };
+ 		7E8B050C1B4AEE6500861A5E /* PopoverWindowFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B050B1B4AEE6500861A5E /* PopoverWindowFrameView.m */; };
+ 		7E9060E51708951800BF5BBF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA248F016D8E93A002231B2 /* Foundation.framework */; };
+@@ -97,7 +94,6 @@
+ 		7ED40C29184A6D0F0068EBC9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ED40C28184A6D0F0068EBC9 /* WebKit.framework */; };
+ 		7ED6AE0518833B840005B30C /* NSTableView+HWMEngineHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6AE0418833B840005B30C /* NSTableView+HWMEngineHelper.m */; };
+ 		7ED6AE08188347FD0005B30C /* PrefsToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6AE07188347FD0005B30C /* PrefsToolbarItem.m */; };
+-		7EDA1A6D16D901100012A0DC /* PopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDA1A6C16D901100012A0DC /* PopupController.m */; };
+ 		7EDA1A7816D903740012A0DC /* PopupGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDA1A7416D903740012A0DC /* PopupGroupCell.m */; };
+ 		7EDA1A7916D903740012A0DC /* PopupSensorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EDA1A7616D903740012A0DC /* PopupSensorCell.m */; };
+ 		7EDA1AA916D936410012A0DC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7EDA1AAB16D936410012A0DC /* Localizable.strings */; };
+@@ -1238,7 +1234,6 @@
+ 				7EEC9F4518B8D08A00BDB9D7 /* HWMonitorHelper-Launchd.plist in Resources */,
+ 				7EF2A10017303EA600D8641C /* AboutController.xib in Resources */,
+ 				7E2042011730844C00C13B65 /* GraphsController.xib in Resources */,
+-				7E2042031730CDA000C13B65 /* PopupController.xib in Resources */,
+ 				7E2042051730D04100C13B65 /* AppController.xib in Resources */,
+ 				7EEC9F4418B8D08A00BDB9D7 /* HWMonitorHelper-Info.plist in Resources */,
+ 			);
+@@ -1320,7 +1315,6 @@
+ 				7EFE61B4183581090009BD0D /* HWMSmcSensor.m in Sources */,
+ 				7E2EFB3F1B4F25C8004ABDC2 /* NSWindow+ULIZoomEffect.m in Sources */,
+ 				7EFF4395183649B20094860C /* HWMEngine.m in Sources */,
+-				7EDA1A6D16D901100012A0DC /* PopupController.m in Sources */,
+ 				7EF393C2185C8D990033F1AB /* smc.c in Sources */,
+ 				7EF1B129185342630094C1DB /* HWMFavorite.m in Sources */,
+ 				7EDA1A7816D903740012A0DC /* PopupGroupCell.m in Sources */,
+@@ -1347,7 +1341,6 @@
+ 				7E0648F016DF3B7D00ACB851 /* LaunchAtLoginController.m in Sources */,
+ 				7E268C621837A41C004F16E3 /* HWMIcon.m in Sources */,
+ 				7E19DEBE1843CDC400229B0E /* HWMSensorsGroup.m in Sources */,
+-				7E7D86EA1B4454AE008AE77B /* OBMenuBarWindowFrameView.m in Sources */,
+ 				7E17953616EE705B00145082 /* PopupBatteryCell.m in Sources */,
+ 				7EDDC87316FA5DA50072B15B /* Localizer.m in Sources */,
+ 				7E1A0321197F73D10001210A /* SensorsViewController.m in Sources */,
+@@ -1367,7 +1360,6 @@
+ 				7EFE61B1183581090009BD0D /* HWMAtaSmartSensor.m in Sources */,
+ 				7EF2A0F61730379C00D8641C /* AboutController.m in Sources */,
+ 				7E9FF2CA185330BC009DAD0D /* HWMItem.m in Sources */,
+-				7E7B9B3F1786A732003ACB61 /* OBMenuBarWindow.m in Sources */,
+ 				7E9A17CD17E4529C003DB018 /* PopupAtaSmartSensorCell.m in Sources */,
+ 				7E8B050C1B4AEE6500861A5E /* PopoverWindowFrameView.m in Sources */,
+ 				7E9A17D017E45938003DB018 /* NSPopover+Message.m in Sources */,
+diff --git a/HWMonitor/AppController.h b/HWMonitor/AppController.h
+index 49705f77..3fa5755b 100644
+--- a/HWMonitor/AppController.h
++++ b/HWMonitor/AppController.h
+@@ -28,12 +28,11 @@
+ 
+ #import <Growl/Growl.h>
+ 
+-#import "PopupController.h"
+ #import "PopoverController.h"
+ #import "GraphsController.h"
+ #import "HWMEngine.h"
+ 
+-@interface AppController : NSWindowController <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate, PopupControllerDelegate, HWMEngineDelegate, GrowlApplicationBridgeDelegate>
++@interface AppController : NSWindowController <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate, HWMEngineDelegate, GrowlApplicationBridgeDelegate>
+ {
+     NSView *_previousView;
+ }
+@@ -46,7 +45,6 @@
+ @property (nonatomic, strong) IBOutlet NSMutableArray *drivePreview;
+ @property (nonatomic, strong) IBOutlet NSMutableIndexSet *driveSelectionIndexes;
+ 
+-@property (assign) IBOutlet PopupController *popupController;
+ @property (assign) IBOutlet PopoverController *popoverController;
+ @property (assign) IBOutlet GraphsController *graphsController;
+ 
+diff --git a/HWMonitor/AppController.m b/HWMonitor/AppController.m
+index b91fe259..bf4e9e2a 100644
+--- a/HWMonitor/AppController.m
++++ b/HWMonitor/AppController.m
+@@ -355,7 +355,7 @@ - (HWMSensorsUpdateLoopStrategy)updateLoopStrategyForEngine:(HWMEngine*)engine
+     if (self.window.isVisible || _graphsController.window.isVisible) {
+         return kHWMSensorsUpdateLoopForced;
+     }
+-    else if (_popupController.window.isVisible || _popoverController.isShown) {
++    else if (_popoverController.isShown) {
+         return kHWMSensorsUpdateLoopRegular;
+     }
+     
+diff --git a/HWMonitor/OBMenuBarWindow.h b/HWMonitor/OBMenuBarWindow.h
+deleted file mode 100644
+index 9792be55..00000000
+--- a/HWMonitor/OBMenuBarWindow.h
++++ /dev/null
+@@ -1,134 +0,0 @@
+-//
+-//  OBMenuBarWindow.h
+-//
+-//  Copyright (c) 2012, Oliver Bolton (http://oliverbolton.com/)
+-//  All rights reserved.
+-//
+-//  Redistribution and use in source and binary forms, with or without
+-//  modification, are permitted provided that the following conditions are met:
+-//
+-//      * Redistributions of source code must retain the above copyright
+-//        notice, this list of conditions and the following disclaimer.
+-//      * Redistributions in binary form must reproduce the above copyright
+-//        notice, this list of conditions and the following disclaimer in the
+-//        documentation and/or other materials provided with the distribution.
+-//      * Neither the name of the <organization> nor the
+-//        names of its contributors may be used to endorse or promote products
+-//        derived from this software without specific prior written permission.
+-//
+-//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+-//  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+-//  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+-//  ARE DISCLAIMED. IN NO EVENT SHALL OLIVER BOLTON BE LIABLE FOR ANY DIRECT,
+-//  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+-//  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+-//  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+-//  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+-//  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+-//  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-//
+-
+-#import <AppKit/AppKit.h>
+-
+-// Notifications
+-extern NSString * const OBMenuBarWindowDidAttachToMenuBar;
+-extern NSString * const OBMenuBarWindowDidDetachFromMenuBar;
+-extern NSString * const OBMenuBarWindowDidBecomeKey;
+-extern NSString * const OBMenuBarWindowDidResignKey;
+-
+-// Constants
+-//extern CGFloat OBMenuBarWindowTitleBarHeight;
+-extern const CGFloat OBMenuBarWindowArrowHeight;
+-extern const CGFloat OBMenuBarWindowArrowWidth;
+-extern const CGFloat OBMenuBarWindowArrowOffset;
+-
+-enum  {
+-    OBMenuBarWindowHideControlsThenAttached = 2,
+-};
+-
+-/** The `OBMenuBarWindow` class is an `NSWindow` subclass that adds the ability
+- to attach the window to an icon in the menu bar. It emulates much of the look
+- and feel of `NSPopover` but retains the appearance and functionality of a
+- regular window, including the title bar and traffic light controls. The user
+- can drag the window to and from the menu bar icon to attach and detach it from
+- the menu bar.
+- 
+- If the user resizes the window while it is attached to the menu bar, it will
+- resize horizontally in a symmetrical manner around the center to give a natural
+- user experience.
+- 
+- It is possible to hide the "traffic light" controls when the window is attached
+- to the menu bar, if desired.
+- 
+- **Notes:**
+- 
+- - OBMenuBarWindow does not use any private APIs, so it is Mac App Store
+-   compatible.
+- - OBMenuBarWindow uses ARC. If you are using OBMenuBarWindow in a non-ARC
+-   project, you will need to set a `-fobjc-arc` compiler flag on the
+-   OBMenuBarWindow source files.
+- - If you want an OBMenuBarWindow to be usable while another application is in
+-   full screen mode, create a new entry in your application's `.plist` file for
+-   `LSUIElement` and set its value to `YES`. A side-effect of doing this is that
+-   the application's dock icon will be hidden.
+- - OBMenuBarWindow does not support textured windows or standard toolbars.
+- - You can alter the height of the title bar and the dimensions of the arrow by
+-   changing the value of `OBMenuBarWindowTitleBarHeight`,
+-   `OBMenuBarWindowArrowHeight` and `OBMenuBarWindowArrowWidth` in
+-   `OBMenuBarWindow.m`.
+- - You can observe the `OBMenuBarWindowDidAttachToMenuBar` and
+-   `OBMenuBarWindowDidDetachFromMenuBar` notifications from the window object to
+-   be notified when the user attaches or detaches the window from the menu bar.
+- 
+- */
+-
+-@class HWMColorTheme;
+-
+-@interface OBMenuBarWindow : NSPanel
+-{
+-    BOOL isDragging;
+-    BOOL resizeRight;
+-    BOOL hideControls;
+-    NSPoint dragStartLocation;
+-    NSPoint resizeStartLocation;
+-    NSRect dragStartFrame;
+-    NSRect resizeStartFrame;
+-    NSTextField *titleTextField;
+-}
+-
+-/** Whether the window is attached to its icon in the menu bar (default is
+- `NO`). This property will only have an effect if the `hasMenuBarIcon` property
+- is set to `YES`. */
+-@property (nonatomic, assign) BOOL attachedToMenuBar;
+-
+-/** Whether to hide the "traffic light" window controls when the window is
+- attached to the menu bar (default is `YES`). */
+-@property (nonatomic, assign) NSUInteger hideWindowControls;
+-
+-/** The threshold distance between the centre of the title bar and the menu bar
+- icon at which to "snap" the window to the menu bar when dragging (default is
+- 30.0 pixels). */
+-@property (assign) CGFloat snapDistance;
+-
+-/** The status item associated with the window. */
+-@property (strong) NSStatusItem *statusItem;
+-
+-/** The view of status item associated with the window. */
+-@property (strong) NSView *statusItemView;
+-
+-/** The view containing the window's toolbar items. You can access this view to
+- add additional controls to the titlebar. */
+-@property (strong) IBOutlet NSView *toolbarView;
+-
+-/** Colors for window theme. */
+-@property (strong) HWMColorTheme *colorTheme;
+-
+-@property (readonly) CGFloat toolbarHeight;
+-
+--(IBAction)attachToMenuBar:(id)sender;
+--(IBAction)detachFromMenuBar:(id)sender;
+-
+-- (NSPoint)originForAttachedState;
+-- (void)drawRect:(NSRect)dirtyRect;
+-
+-@end
+diff --git a/HWMonitor/OBMenuBarWindow.m b/HWMonitor/OBMenuBarWindow.m
+deleted file mode 100644
+index 83240f67..00000000
+--- a/HWMonitor/OBMenuBarWindow.m
++++ /dev/null
+@@ -1,1258 +0,0 @@
+-//
+-//  OBMenuBarWindow.m
+-//
+-//  Copyright (c) 2012, Oliver Bolton (http://oliverbolton.com/)
+-//  All rights reserved.
+-//
+-//  Redistribution and use in source and binary forms, with or without
+-//  modification, are permitted provided that the following conditions are met:
+-//
+-//      * Redistributions of source code must retain the above copyright
+-//        notice, this list of conditions and the following disclaimer.
+-//      * Redistributions in binary form must reproduce the above copyright
+-//        notice, this list of conditions and the following disclaimer in the
+-//        documentation and/or other materials provided with the distribution.
+-//      * Neither the name of the <organization> nor the
+-//        names of its contributors may be used to endorse or promote products
+-//        derived from this software without specific prior written permission.
+-//
+-//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+-//  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+-//  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+-//  ARE DISCLAIMED. IN NO EVENT SHALL OLIVER BOLTON BE LIABLE FOR ANY DIRECT,
+-//  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+-//  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+-//  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+-//  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+-//  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+-//  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-//
+-
+-#import "OBMenuBarWindow.h"
+-#import "OBMenuBarWindowFrameView.h"
+-#import "HWMColorTheme.h"
+-
+-NSString * const OBMenuBarWindowDidAttachToMenuBar = @"OBMenuBarWindowDidAttachToMenuBar";
+-NSString * const OBMenuBarWindowDidDetachFromMenuBar = @"OBMenuBarWindowDidDetachFromMenuBar";
+-NSString * const OBMenuBarWindowDidBecomeKey = @"OBMenuBarWindowDidBecomeKey";
+-NSString * const OBMenuBarWindowDidResignKey = @"OBMenuBarWindowDidResignKey";
+-
+-// You can alter these constants to change the appearance of the window
+-//CGFloat OBMenuBarWindowTitleBarHeight = 35;
+-const CGFloat OBMenuBarWindowArrowHeight = 11.0f;
+-const CGFloat OBMenuBarWindowArrowWidth = 22.0f;
+-const CGFloat OBMenuBarWindowArrowOffset = 2.0f;
+-const CGFloat OBMenuBarWindowArrowPinRadius = 2.5f;
+-const CGFloat OBMenuBarWindowArrowBaseRadius = 11.0f;
+-const CGFloat OBMenuBarWindowCornerRadius = 5.5f;
+-const CGFloat OBMenuBarWindowSnapOffset = 30.0f;
+-
+-@interface OBMenuBarWindow ()
+-
+-- (void)initialSetup;
+-- (NSRect)titleBarRect;
+-- (NSRect)toolbarRect;
+-- (NSPoint)originForAttachedState;
+-- (void)applicationDidChangeActiveStatus:(NSNotification *)aNotification;
+-- (void)windowDidBecomeKey:(NSNotification *)aNotification;
+-- (void)windowDidResignKey:(NSNotification *)aNotification;
+-- (void)windowDidResize:(NSNotification *)aNotification;
+-- (void)windowWillStartLiveResize:(NSNotification *)aNotification;
+-- (void)windowDidMove:(NSNotification *)aNotification;
+-- (void)statusItemViewDidMove:(NSNotification *)aNotification;
+-- (NSWindow *)window;
+-
+-@property (readonly) NSImage *noiseImage;
+-@property (readonly) NSImage *activeImage;
+-@property (readonly) NSImage *inactiveImage;
+-@property (atomic, assign) NSUInteger scheduledRefreshCount;
+-@property (atomic, assign) CGFloat cachedContentScale;
+-@property (nonatomic, strong) NSView * customContentView;
+-
+-@end
+-
+-@implementation OBMenuBarWindow
+-
+-@synthesize attachedToMenuBar;
+-@synthesize hideWindowControls;
+-@synthesize snapDistance;
+-@synthesize statusItem;
+-@synthesize statusItemView;
+-@synthesize toolbarView;
+-@synthesize colorTheme;
+-@synthesize noiseImage;
+-@synthesize activeImage = _activeImage;
+-@synthesize inactiveImage = _inactiveImage;
+-
+--(CGFloat)toolbarHeight
+-{
+-    return [self titleBarRect].size.height;
+-}
+-
+--(void)setStatusItemView:(NSView *)newStatusItemView
+-{
+-    if (statusItemView == newStatusItemView) {
+-        return;
+-    }
+-    
+-    if (newStatusItemView && statusItemView != newStatusItemView)
+-    {
+-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusItemViewDidMove:) name:NSWindowDidMoveNotification object:newStatusItemView.window];
+-    }
+-    else if (statusItemView)
+-    {
+-        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidMoveNotification object:statusItemView];
+-    }
+-
+-    statusItemView = newStatusItemView;
+-}
+-
+--(NSView *)statusItemView
+-{
+-    return statusItemView;
+-}
+-
+-- (void)setStatusItem:(NSStatusItem *)newStatusItem
+-{
+-    statusItem = newStatusItem;
+-
+-    if (!statusItem) {
+-        self.attachedToMenuBar = NO;
+-    }
+-}
+-
+-- (NSStatusItem *)statusItem
+-{
+-    return statusItem;
+-}
+-
+--(void)setToolbarView:(NSView *)newToolbarView
+-{
+-    if (toolbarView) {
+-        [toolbarView removeFromSuperview];
+-    }
+-
+-    toolbarView = newToolbarView;
+-
+-    if (toolbarView) {
+-        //OBMenuBarWindowTitleBarHeight = toolbarView.frame.size.height;
+-        [[self.contentView superview] addSubview:toolbarView];
+-        [self layoutContent];
+-    }
+-}
+-
+--(NSView *)toolbarView
+-{
+-    return toolbarView;
+-}
+-
+-- (void)setContentView:(NSView *)aView
+-{
+-    if ([self.customContentView isEqualTo:aView])
+-    {
+-        return;
+-    }
+-
+-    NSRect bounds = [self frame];
+-    bounds.origin = NSZeroPoint;
+-
+-    OBMenuBarWindowFrameView *frameView = [super contentView];
+-    if (!frameView)
+-    {
+-        frameView = [[OBMenuBarWindowFrameView alloc] initWithFrame:bounds];
+-        [super setContentView:frameView];
+-    }
+-
+-    if (self.customContentView)
+-    {
+-        [self.customContentView removeFromSuperview];
+-    }
+-
+-    self.customContentView = aView;
+-    [self.customContentView setFrame:[self contentRectForFrameRect:bounds]];
+-//    [self.customContentView setTranslatesAutoresizingMaskIntoConstraints:YES];
+-//    [self.customContentView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+-    [frameView addSubview:self.customContentView];
+-}
+-
+-- (NSView *)contentView
+-{
+-    return self.customContentView;
+-}
+-
+--(void)setColorTheme:(HWMColorTheme*)newColorTheme
+-{
+-    if (colorTheme != newColorTheme) {
+-        [self resetContentImagesScheduleRefresh:YES];
+-        colorTheme = newColorTheme;
+-        // Redraw the theme frame
+-        [[self.contentView superview] setNeedsDisplayInRect:[self.contentView superview].frame];
+-    }
+-}
+-
+--(HWMColorTheme *)colorTheme
+-{
+-    return colorTheme;
+-}
+-
+-- (instancetype)initWithContentRect:(NSRect)contentRect styleMask:(NSWindowStyleMask)style backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
+-{
+-    self = [super initWithContentRect:contentRect
+-                            styleMask:NSBorderlessWindowMask//
+-                              backing:bufferingType
+-                                defer:flag];
+-    if (self)
+-    {
+-        snapDistance = 30.0;
+-        hideWindowControls = OBMenuBarWindowHideControlsThenAttached;
+-        [self initialSetup];
+-    }
+-    return self;
+-}
+-
+-- (void)dealloc
+-{
+-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+-}
+-
+-- (void)initialSetup
+-{
+-
+-
+-
+-//    if (![[[self contentView] superview] respondsToSelector:@selector(drawRectOriginal:)]) {
+-//        [[self class] swizzleDrawRectForClass:[[[self contentView] superview] class]];
+-//        [[[self contentView] superview] setWantsLayer:NO];
+-//    }
+-    // Get window's frame view class
+-    /*id class = NSClassFromString(@"NSNextStepFrame");//[[[self contentView] superview] class];
+-
+-    // Add the new drawRect: to the frame class
+-    Method m0 = class_getInstanceMethod([self class], @selector(drawRect:));
+-    class_addMethod(class, @selector(drawRectOriginal:), method_getImplementation(m0), method_getTypeEncoding(m0));
+-
+-    // Exchange methods
+-    Method m1 = class_getInstanceMethod(class, @selector(drawRect:));
+-    Method m2 = class_getInstanceMethod(class, @selector(drawRectOriginal:));
+-    method_exchangeImplementations(m1, m2);*/
+-
+-    // Set up the window drawing
+-    [self setOpaque:NO];
+-    [self setBackgroundColor:[NSColor clearColor]];
+-
+-    [self setMovable:NO];
+-
+-    // Observe window and application state notifications
+-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+-    [center addObserver:self
+-               selector:@selector(windowDidMove:)
+-                   name:NSWindowDidMoveNotification
+-                 object:self];
+-    [center addObserver:self
+-               selector:@selector(windowDidResize:)
+-                   name:NSWindowDidResizeNotification
+-                 object:self];
+-    [center addObserver:self
+-               selector:@selector(windowWillStartLiveResize:)
+-                   name:NSWindowWillStartLiveResizeNotification
+-                 object:self];
+-    [center addObserver:self
+-               selector:@selector(windowWillBeginSheet:)
+-                   name:NSWindowWillBeginSheetNotification
+-                 object:self];
+-    [center addObserver:self
+-               selector:@selector(windowDidEndSheet:)
+-                   name:NSWindowDidEndSheetNotification
+-                 object:self];
+-    [center addObserver:self
+-               selector:@selector(windowDidBecomeKey:)
+-                   name:NSWindowDidBecomeKeyNotification
+-                 object:self];
+-    [center addObserver:self
+-               selector:@selector(windowDidResignKey:)
+-                   name:NSWindowDidResignKeyNotification
+-                 object:self];
+-    [center addObserver:self
+-               selector:@selector(applicationDidChangeActiveStatus:)
+-                   name:NSApplicationDidBecomeActiveNotification
+-                 object:nil];
+-    [center addObserver:self
+-               selector:@selector(applicationDidChangeActiveStatus:)
+-                   name:NSApplicationDidResignActiveNotification
+-                 object:nil];
+-
+-    // Create the toolbar view
+-    NSRect toolbarRect = [self toolbarRect];
+-    NSView *themeFrame = [self.contentView superview];
+-    self.toolbarView = [[NSView alloc] initWithFrame:toolbarRect];
+-    [toolbarView setAutoresizingMask:(NSViewWidthSizable | NSViewMinYMargin)];
+-
+-    // Create the title text field
+-    NSRect titleRect = NSMakeRect(70,
+-                                  (toolbarRect.size.height - 17) / 2,
+-                                  toolbarRect.size.width - 140,
+-                                  17);
+-    titleTextField = [[NSTextField alloc] initWithFrame:titleRect];
+-    [titleTextField setEditable:NO];
+-    [titleTextField setBezeled:NO];
+-    [titleTextField setDrawsBackground:NO];
+-    [titleTextField setAlignment:NSCenterTextAlignment];
+-    [titleTextField setFont:[NSFont titleBarFontOfSize:13.0]];
+-    [[titleTextField cell] setLineBreakMode:NSLineBreakByTruncatingTail];
+-    [[titleTextField cell] setBackgroundStyle:NSBackgroundStyleRaised];
+-    [titleTextField setAutoresizingMask:NSViewWidthSizable];
+-    [toolbarView addSubview:titleTextField];
+-
+-    // Lay out the content
+-    [themeFrame addSubview:toolbarView];
+-    [self layoutContent];
+-}
+-
+-#pragma mark - Positioning controls
+-
+-- (void)layoutContent
+-{
+-    // Position the close/minimise/zoom buttons
+-    NSButton *closeButton = [self standardWindowButton:NSWindowCloseButton];
+-    NSButton *minimiseButton = [self standardWindowButton:NSWindowMiniaturizeButton];
+-    NSButton *zoomButton = [self standardWindowButton:NSWindowZoomButton];
+-    CGFloat buttonWidth = closeButton.frame.size.width;
+-    CGFloat buttonHeight = closeButton.frame.size.height;
+-    NSRect toolbarRect = [self toolbarRect];
+-    CGFloat buttonOriginY = floor(toolbarRect.origin.y + (toolbarRect.size.height - buttonHeight) / 2.0);
+-    [closeButton setFrame:NSMakeRect(7, buttonOriginY, buttonWidth, buttonHeight)];
+-    [minimiseButton setFrame:NSMakeRect(27, buttonOriginY, buttonWidth, buttonHeight)];
+-    [zoomButton setFrame:NSMakeRect(47, buttonOriginY, buttonWidth, buttonHeight)];
+-
+-    [[self.contentView superview] viewWillStartLiveResize];
+-    [[self.contentView superview] viewDidEndLiveResize];
+-
+-    // Position the toolbar view
+-    [toolbarView setFrame:[self toolbarRect]];
+-
+-    // Position the content view
+-    NSRect contentViewFrame = [self.contentView frame];
+-    CGFloat currentTopMargin = NSHeight(self.frame) - NSHeight(contentViewFrame);
+-    CGFloat titleBarHeight = toolbarView.frame.size.height + (self.attachedToMenuBar ? OBMenuBarWindowArrowHeight : 0) + 1;
+-    CGFloat delta = titleBarHeight - currentTopMargin;
+-    contentViewFrame.size.height -= delta;
+-    [self.contentView setFrame:contentViewFrame];
+-
+-    // Redraw the theme frame
+-    [[self.contentView superview] setNeedsDisplayInRect:[self titleBarRect]];
+-}
+-
+-#pragma mark - Menu bar icon
+-
+-- (void)attachToMenuBar:(id)sender
+-{
+-    if ([self.window isVisible]) {
+-        self.attachedToMenuBar = YES;
+-    }
+-}
+-
+-- (void)detachFromMenuBar:(id)sender
+-{
+-    if ([self.window isVisible]) {
+-        self.attachedToMenuBar = NO;
+-    }
+-}
+-
+-- (void)setAttachedToMenuBar:(BOOL)isAttached
+-{
+-    if (isAttached != attachedToMenuBar)
+-    {
+-        attachedToMenuBar = isAttached;
+-
+-        if (isAttached)
+-        {
+-            NSRect newFrame = self.frame;
+-            newFrame.size.height += OBMenuBarWindowArrowHeight;
+-            newFrame.origin.y -= OBMenuBarWindowArrowHeight;
+-            [self setFrame:newFrame display:YES];
+-        }
+-        else
+-        {
+-            NSRect newFrame = self.frame;
+-            newFrame.size.height -= OBMenuBarWindowArrowHeight;
+-            newFrame.origin.y += OBMenuBarWindowArrowHeight;
+-            [self setFrame:newFrame display:YES];
+-        }
+-
+-        // Set whether the window is opaque (this affects the shadow)
+-        //[self setOpaque:!isAttached];
+-        //[self setOpaque:NO];
+-
+-        // Reposition the content
+-        [self layoutContent];
+-
+-        // Animate the window controls
+-        NSButton *closeButton = [self standardWindowButton:NSWindowCloseButton];
+-        NSButton *minimiseButton = [self standardWindowButton:NSWindowMiniaturizeButton];
+-        NSButton *zoomButton = [self standardWindowButton:NSWindowZoomButton];
+-        if (isAttached)
+-        {
+-            if (self.hideWindowControls == OBMenuBarWindowHideControlsThenAttached)
+-            {
+-                hideControls = YES;
+-                [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+-                    [context setDuration:0.15];
+-                    [[closeButton animator] setAlphaValue:0.0];
+-                    [[minimiseButton animator] setAlphaValue:0.0];
+-                    [[zoomButton animator] setAlphaValue:0.0];
+-                } completionHandler:^{
+-                    if (hideControls)
+-                    {
+-                        [closeButton setHidden:YES];
+-                        [minimiseButton setHidden:YES];
+-                        [zoomButton setHidden:YES];
+-                        [closeButton setAlphaValue:1.0];
+-                        [minimiseButton setAlphaValue:1.0];
+-                        [zoomButton setAlphaValue:1.0];
+-                        hideControls = NO;
+-                    }
+-                }];
+-            }
+-            if (!isDragging)
+-            {
+-                [self setFrameOrigin:[self originForAttachedState]];
+-            }
+-        }
+-        else
+-        {
+-            if (self.hideWindowControls == OBMenuBarWindowHideControlsThenAttached)
+-            {
+-                hideControls = NO;
+-                [closeButton setAlphaValue:0.0];
+-                [minimiseButton setAlphaValue:0.0];
+-                [zoomButton setAlphaValue:0.0];
+-                [closeButton setHidden:NO];
+-                [minimiseButton setHidden:NO];
+-                [zoomButton setHidden:NO];
+-                [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+-                    [context setDuration:0.15];
+-                    [[closeButton animator] setAlphaValue:1.0];
+-                    [[minimiseButton animator] setAlphaValue:1.0];
+-                    [[zoomButton animator] setAlphaValue:1.0];
+-                } completionHandler:nil];
+-            }
+-            if (!isDragging)
+-            {
+-                [self setFrameOrigin:NSMakePoint(self.frame.origin.x,
+-                                                 self.frame.origin.y - self.snapDistance - 10)];
+-            }
+-        }
+-
+-        [self setLevel:(isAttached ? NSFloatingWindowLevel : NSNormalWindowLevel)];
+-
+-        if (isAttached)
+-        {
+-            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(windowDidAttachToStatusBar:)]) {
+-                [self.delegate performSelector:@selector(windowDidAttachToStatusBar:)
+-                                withObject:self];
+-            }
+-            [[NSNotificationCenter defaultCenter] postNotificationName:OBMenuBarWindowDidAttachToMenuBar
+-                                                                object:self];
+-        }
+-        else
+-        {
+-            if (self.delegate != nil && [self.delegate respondsToSelector:@selector(windowDidDetachFromStatusBar:)]) {
+-                [self.delegate performSelector:@selector(windowDidDetachFromStatusBar:)
+-                                withObject:self];
+-            }
+-            [[NSNotificationCenter defaultCenter] postNotificationName:OBMenuBarWindowDidDetachFromMenuBar
+-                                                                object:self];
+-        }
+-        
+-        //[self layoutContent];
+-        //[[self.contentView superview] setNeedsDisplayInRect:[self titleBarRect]];
+-        [[self.contentView superview] setNeedsDisplay:YES];
+-        
+-        //[self setHasShadow:NO];
+-        [self invalidateShadow];
+-    }
+-}
+-
+-- (void)setHideWindowControls:(NSUInteger)flag
+-{
+-    if (flag != self.hideWindowControls)
+-    {
+-        hideWindowControls = flag;
+-
+-        NSButton *closeButton = [self standardWindowButton:NSWindowCloseButton];
+-        NSButton *minimiseButton = [self standardWindowButton:NSWindowMiniaturizeButton];
+-        NSButton *zoomButton = [self standardWindowButton:NSWindowZoomButton];
+-
+-        switch (hideWindowControls) {
+-                case OBMenuBarWindowHideControlsThenAttached:
+-                if (self.attachedToMenuBar) {
+-                    [closeButton setAlphaValue:1.0];
+-                    [minimiseButton setAlphaValue:1.0];
+-                    [zoomButton setAlphaValue:1.0];
+-                    [closeButton setHidden:YES];
+-                    [minimiseButton setHidden:YES];
+-                    [zoomButton setHidden:YES];
+-                }
+-                break;
+-
+-                case YES:
+-                [closeButton setAlphaValue:1.0];
+-                [minimiseButton setAlphaValue:1.0];
+-                [zoomButton setAlphaValue:1.0];
+-                [closeButton setHidden:YES];
+-                [minimiseButton setHidden:YES];
+-                [zoomButton setHidden:YES];
+-                break;
+-
+-            default:
+-                [closeButton setAlphaValue:1.0];
+-                [minimiseButton setAlphaValue:1.0];
+-                [zoomButton setAlphaValue:1.0];
+-                [closeButton setHidden:NO];
+-                [minimiseButton setHidden:NO];
+-                [zoomButton setHidden:NO];
+-                break;
+-        }
+-    }
+-}
+-
+-#pragma mark - Rects
+-
+-//- (void)setContentSize:(NSSize)newSize
+-//{
+-//    NSSize sizeDelta = newSize;
+-//    NSSize childBoundsSize = [self.customContentView bounds].size;
+-//    sizeDelta.width -= childBoundsSize.width;
+-//    sizeDelta.height -= childBoundsSize.height;
+-//
+-//    OBMenuBarWindowFrameView *frameView = [super contentView];
+-//    NSSize newFrameSize = [frameView bounds].size;
+-//    newFrameSize.width += sizeDelta.width;
+-//    newFrameSize.height += sizeDelta.height;
+-//
+-//    [super setContentSize:newFrameSize];
+-//}
+-
+-- (NSRect)titleBarRect
+-{
+-    CGFloat titlebarHeight = toolbarView.frame.size.height;
+-    return NSMakeRect(0, self.frame.size.height - titlebarHeight, self.frame.size.width, titlebarHeight);
+-}
+-
+-- (NSRect)toolbarRect
+-{
+-    if (self.attachedToMenuBar)
+-    {
+-        CGFloat titlebarHeight = toolbarView.frame.size.height;
+-
+-        return NSMakeRect(0,
+-                          self.frame.size.height - titlebarHeight - OBMenuBarWindowArrowHeight,
+-                          self.frame.size.width,
+-                          titlebarHeight);
+-    }
+-    else
+-    {
+-        return [self titleBarRect];
+-    }
+-}
+-
+-#pragma mark - Active/key events
+-
+-- (BOOL)canBecomeKeyWindow
+-{
+-    return YES;
+-}
+-
+-- (void)applicationDidChangeActiveStatus:(NSNotification *)aNotification
+-{
+-    [[self.contentView superview] setNeedsDisplayInRect:[self titleBarRect]];
+-}
+-
+-- (void)windowDidBecomeKey:(NSNotification *)aNotification
+-{
+-    [[self.contentView superview] setNeedsDisplay:YES];
+-    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(windowDidBecomeKey:)]) {
+-        [self.delegate performSelector:@selector(windowDidBecomeKey:)
+-                            withObject:self];
+-    }
+-    [[NSNotificationCenter defaultCenter] postNotificationName:OBMenuBarWindowDidBecomeKey
+-                                                        object:self];
+-}
+-
+-- (void)windowDidResignKey:(NSNotification *)aNotification
+-{
+-    if (self.attachedToMenuBar)
+-    {
+-        [self orderOut:self];
+-    }
+-    [[self.contentView superview] setNeedsDisplayInRect:[self titleBarRect]];
+-    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(windowDidResignKey:)]) {
+-        [self.delegate performSelector:@selector(windowDidResignKey:)
+-                            withObject:self];
+-    }
+-    [[NSNotificationCenter defaultCenter] postNotificationName:OBMenuBarWindowDidResignKey
+-                                                        object:self];
+-}
+-
+-#pragma mark - Showing the window
+-
+-- (NSPoint)originForAttachedState
+-{
+-    if (statusItemView) {
+-        NSRect statusItemFrame = statusItemView.window.frame;
+-
+-        NSPoint midPoint = NSMakePoint(NSMidX(statusItemFrame),
+-                                       NSMinY(statusItemFrame));
+-
+-        return NSMakePoint(midPoint.x - (self.frame.size.width / 2),
+-                           midPoint.y - self.frame.size.height - OBMenuBarWindowArrowOffset);
+-    }
+-
+-    return NSZeroPoint;
+-}
+-
+-- (void)makeKeyAndOrderFront:(id)sender
+-{
+-    if (self.attachedToMenuBar)
+-    {
+-        NSPoint origin = [self originForAttachedState];
+-        [self setFrameOrigin:origin];
+-    }
+-    [super makeKeyAndOrderFront:sender];
+-}
+-
+-- (void)orderOut:(id)sender
+-{
+-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+-        [context setDuration:0.1];
+-        [self.animator setAlphaValue:0];
+-    } completionHandler:^{
+-        [super orderOut:self];
+-        [self setAlphaValue:1.0];
+-    }];
+-}
+-
+-#pragma mark - Mouse events
+-
+-- (void)mouseDown:(NSEvent *)theEvent
+-{
+-    dragStartLocation = [NSEvent mouseLocation];
+-    dragStartFrame = self.frame;
+-    NSPoint mouseLocationInWindow = [theEvent locationInWindow];
+-    isDragging = NSPointInRect(mouseLocationInWindow, [self toolbarRect]);
+-}
+-
+-- (void)mouseUp:(NSEvent *)theEvent
+-{
+-    if ([theEvent clickCount] == 2 && isDragging){
+-        if (self.attachedToMenuBar) {
+-            [self performSelector:@selector(detachFromMenuBar:) withObject:NULL afterDelay:0.0];
+-        }
+-        else {
+-            [self performSelector:@selector(attachToMenuBar:) withObject:NULL afterDelay:0.0];
+-        }
+-    }
+-    else if (isDragging)
+-    {
+-        NSRect visibleRect = [[self screen] visibleFrame];
+-        CGFloat minY = NSMinY(visibleRect);
+-        if (NSMaxY(self.frame) - OBMenuBarWindowArrowHeight - OBMenuBarWindowSnapOffset < minY)
+-        {
+-            [self setFrameOrigin:NSMakePoint(self.frame.origin.x, minY - self.frame.size.height + OBMenuBarWindowArrowHeight + OBMenuBarWindowSnapOffset)];
+-        }
+-    }
+-    isDragging = NO;
+-}
+-
+-- (void)mouseDragged:(NSEvent *)theEvent
+-{
+-    if ([theEvent type] == NSLeftMouseDragged)
+-    {
+-        NSPoint newLocation = [NSEvent mouseLocation];
+-        if (isDragging)
+-        {
+-            CGFloat originX = dragStartFrame.origin.x + newLocation.x - dragStartLocation.x;
+-            CGFloat originY = dragStartFrame.origin.y + newLocation.y - dragStartLocation.y;
+-            [self setFrameOrigin:NSMakePoint(originX, originY)];
+-        }
+-    }
+-}
+-
+-#pragma mark - Resizing events
+-
+-- (void)windowDidResize:(NSNotification *)aNotification
+-{
+-    [self layoutContent];
+-}
+-
+-- (void)windowWillStartLiveResize:(NSNotification *)aNotification
+-{
+-    resizeStartFrame = self.frame;
+-    NSPoint point = [self mouseLocationOutsideOfEventStream];
+-    resizeStartLocation = [self convertRectToScreen:NSMakeRect(point.x, point.y, 1, 1)].origin;
+-     //resizeStartLocation = [self convertBaseToScreen:[self mouseLocationOutsideOfEventStream]];
+-    resizeRight = ([self mouseLocationOutsideOfEventStream].x > self.frame.size.width / 2.0);
+-}
+-
+-#pragma mark - Positioning events
+-
+-- (void)windowDidMove:(NSNotification *)aNotification
+-{
+-    if (![self inLiveResize] && self.statusItem)
+-    {
+-        NSRect frame = [self frame];
+-        NSPoint arrowPoint = NSMakePoint(NSMidX(frame), NSMaxY(frame));
+-        NSRect statusItemFrame = [[statusItemView window] frame];
+-        NSPoint statusItemPoint = NSMakePoint(NSMidX(statusItemFrame), NSMinY(statusItemFrame));
+-        double distance = sqrt(pow(arrowPoint.x - statusItemPoint.x, 2) + pow(arrowPoint.y - statusItemPoint.y, 2));
+-        if (distance <= self.snapDistance)
+-        {
+-            [self setFrameOrigin:[self originForAttachedState]];
+-            self.attachedToMenuBar = YES;
+-        }
+-        else
+-        {
+-            self.attachedToMenuBar = NO;
+-        }
+-    }
+-
+-    [self layoutContent];
+-}
+-
+-- (void)statusItemViewDidMove:(NSNotification *)aNotification
+-{
+-    if (self.attachedToMenuBar)
+-    {
+-        [self setFrameOrigin:[self originForAttachedState]];
+-    }
+-}
+-
+-- (void)setFrame:(NSRect)frameRect display:(BOOL)flag
+-{
+-    if ([self inLiveResize]) {
+-        if (self.attachedToMenuBar)
+-        {
+-            //NSPoint mouseLocation = [self convertBaseToScreen:[self mouseLocationOutsideOfEventStream]];
+-            NSPoint point = [self mouseLocationOutsideOfEventStream];
+-            NSPoint mouseLocation = [self convertRectToScreen:NSMakeRect(point.x, point.y, 1, 1)].origin;
+-
+-            NSRect newFrame = resizeStartFrame;
+-            if (frameRect.size.width != resizeStartFrame.size.width)
+-            {
+-                CGFloat deltaWidth = (resizeRight ? mouseLocation.x - resizeStartLocation.x : resizeStartLocation.x - mouseLocation.x);
+-                newFrame.origin.x -= deltaWidth;
+-                newFrame.size.width += deltaWidth * 2;
+-                if (newFrame.size.width < self.minSize.width)
+-                {
+-                    newFrame.size.width = self.minSize.width;
+-                    newFrame.origin.x = NSMidX(resizeStartFrame) - (self.minSize.width) / 2.0;
+-                }
+-                if (newFrame.size.width > self.maxSize.width)
+-                {
+-                    newFrame.size.width = self.maxSize.width;
+-                    newFrame.origin.x = NSMidX(resizeStartFrame) - (self.maxSize.width) / 2.0;
+-                }
+-            }
+-
+-            // Don't allow resizing upwards when attached to menu bar
+-            if (frameRect.origin.y != resizeStartFrame.origin.y)
+-            {
+-                newFrame.origin.y = frameRect.origin.y;
+-                newFrame.size.height = frameRect.size.height;
+-            }
+-
+-            [self resetContentImagesScheduleRefresh:NO];
+-            [super setFrame:newFrame display:YES];
+-        }
+-        else {
+-            [self resetContentImagesScheduleRefresh:NO];
+-            [super setFrame:frameRect display:flag];
+-        }
+-    }
+-    else {
+-        [self resetContentImagesScheduleRefresh:YES];
+-        [super setFrame:frameRect display:flag];
+-    }
+-}
+-
+-#pragma mark - Drawing
+-
+-- (NSWindow *)window
+-{
+-    return self;
+-}
+-
+-- (NSImage *)noiseImage
+-{
+-    if (noiseImage == nil)
+-    {
+-        size_t dimension = 100;
+-        size_t bytes = dimension * dimension * 4;
+-
+-        //CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+-
+-        // Fix rainbow noise when selected device-independent monitor profile
+-        // Values got from: http://stackoverflow.com/questions/501199/disabling-color-correction-in-quartz-2d
+-        const CGFloat whitePoint[] = {0.95047, 1.0, 1.08883};
+-        const CGFloat blackPoint[] = {0, 0, 0};
+-        const CGFloat gamma[] = {1, 1, 1};
+-        const CGFloat matrix[] = {0.449695, 0.244634, 0.0251829, 0.316251, 0.672034, 0.141184, 0.18452, 0.0833318, 0.922602 };
+-        CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateCalibratedRGB(whitePoint, blackPoint, gamma, matrix);
+-
+-        unsigned char *data = malloc(bytes);
+-        unsigned char grey;
+-        for (NSUInteger i = 0; i < bytes; i += 4)
+-        {
+-            grey = rand() % 256;
+-            data[i] = grey;
+-            data[i + 1] = grey;
+-            data[i + 2] = grey;
+-            data[i + 3] = 6;
+-        }
+-        CGContextRef contextRef = CGBitmapContextCreate(data, dimension, dimension, 8, dimension * 4, colorSpaceRef,(CGBitmapInfo)kCGImageAlphaPremultipliedLast);
+-        CGImageRef imageRef = CGBitmapContextCreateImage(contextRef);
+-        noiseImage = [[NSImage alloc] initWithCGImage:imageRef size:NSMakeSize(dimension, dimension)];
+-        CGImageRelease(imageRef);
+-        CGContextRelease(contextRef);
+-        free(data);
+-        CGColorSpaceRelease(colorSpaceRef);
+-    }
+-    return noiseImage;
+-}
+-
+-- (void)renderContentForKeyWindow:(BOOL)isKey
+-{
+-    OBMenuBarWindow *window = (OBMenuBarWindow *)[self window];
+-
+-    if (!window.toolbarView) {
+-        return;
+-    }
+-    
+-    self.cachedContentScale = window.screen.backingScaleFactor;
+-
+-    NSRect bounds = [window.contentView superview].bounds;
+-    CGFloat originX = bounds.origin.x;
+-    CGFloat originY = bounds.origin.y;
+-    CGFloat width = bounds.size.width;
+-    CGFloat height = bounds.size.height;
+-    CGFloat arrowHeight = OBMenuBarWindowArrowHeight;
+-    CGFloat arrowWidth = OBMenuBarWindowArrowWidth;
+-    CGFloat cornerRadius = OBMenuBarWindowCornerRadius;
+-    CGFloat hairlineWidth = 1 / self.cachedContentScale;
+-    CGFloat strokeWidth = self.cachedContentScale == 1 ? 0.5 : hairlineWidth;
+-    CGFloat arrowPinRadius = self.cachedContentScale == 1 ? 4 : OBMenuBarWindowArrowPinRadius;
+-    BOOL isAttached = window.attachedToMenuBar;
+-
+-    // Create the window shape
+-    NSPoint arrowPointLeft = NSMakePoint(originX + (width - arrowWidth) / 2.0 /*- (isAttached ? hairlineWidth / 2 : 0)*/,
+-                                         originY + height - (isAttached ? arrowHeight : 0));
+-    NSPoint arrowPointMiddle = NSMakePoint(originX + width / 2.0,
+-                                           originY + height /*+ (isAttached ? hairlineWidth / 2 : 0)*/);
+-    NSPoint arrowPointRight = NSMakePoint(originX + (width + arrowWidth) / 2.0 /*+ (isAttached ? hairlineWidth / 2 : 0)*/,
+-                                          originY + height - (isAttached ? arrowHeight : 0));
+-    NSPoint topLeft = NSMakePoint(originX,
+-                                  originY + height - (isAttached ? arrowHeight : 0));
+-    NSPoint topRight = NSMakePoint(originX + width,
+-                                   originY + height - (isAttached ? arrowHeight : 0));
+-    NSPoint bottomLeft = NSMakePoint(originX,
+-                                     originY + height - (isAttached ? arrowHeight : 0) - window.toolbarView.frame.size.height);
+-    NSPoint bottomRight = NSMakePoint(originX + width,
+-                                      originY + height - (isAttached ? arrowHeight : 0) - window.toolbarView.frame.size.height);
+-
+-    // Erase the window content
+-    NSRectFillUsingOperation(NSMakeRect(originX, originY, width, height), NSCompositeClear);
+-
+-    // Draw the window background
+-
+-    NSPoint listBottomRight = NSMakePoint(originX + width, originY);
+-    NSPoint listBottomLeft = NSMakePoint(originX, originY);
+-
+-    NSBezierPath *listPath = [NSBezierPath bezierPath];
+-
+-    [listPath moveToPoint:bottomRight];
+-    [listPath lineToPoint:NSMakePoint(listBottomRight.x, listBottomRight.y + cornerRadius)];
+-
+-    [listPath appendBezierPathWithArcFromPoint:listBottomRight
+-                                       toPoint:NSMakePoint(listBottomLeft.x + cornerRadius, listBottomRight.y)
+-                                        radius:cornerRadius];
+-
+-    [listPath appendBezierPathWithArcFromPoint:listBottomLeft
+-                                       toPoint:bottomLeft
+-                                        radius:cornerRadius];
+-    [listPath lineToPoint:bottomLeft];
+-
+-
+-
+-    [NSGraphicsContext saveGraphicsState];
+-
+-    [listPath setLineWidth:hairlineWidth];
+-    [listPath addClip];
+-
+-    [window.colorTheme.listBackgroundColor setFill];
+-    [listPath fill];
+-
+-    if (window.colorTheme.listStrokeColor) {
+-        [window.colorTheme.listStrokeColor setStroke];
+-        [listPath setLineWidth:strokeWidth];
+-        [listPath stroke];
+-    }
+-    
+-    [NSGraphicsContext restoreGraphicsState];
+-
+-    NSBezierPath *toolbarPath = [NSBezierPath bezierPath];
+-
+-    BOOL drawRoundedArrow = YES;
+-
+-    // Arrow Pin
+-    if (drawRoundedArrow) {
+-
+-        [toolbarPath moveToPoint:bottomLeft];
+-
+-        [toolbarPath appendBezierPathWithArcFromPoint:bottomLeft
+-                                              toPoint:topLeft
+-                                               radius:cornerRadius];
+-        [toolbarPath appendBezierPathWithArcFromPoint:topLeft
+-                                              toPoint:arrowPointLeft
+-                                               radius:cornerRadius];
+-
+-        [toolbarPath appendBezierPathWithArcFromPoint:arrowPointLeft
+-                                              toPoint:arrowPointMiddle
+-                                               radius:OBMenuBarWindowArrowBaseRadius];
+-        [toolbarPath appendBezierPathWithArcFromPoint:arrowPointMiddle
+-                                              toPoint:arrowPointRight
+-                                               radius:arrowPinRadius];
+-
+-        [toolbarPath appendBezierPathWithArcFromPoint:arrowPointRight
+-                                              toPoint:topRight
+-                                               radius:OBMenuBarWindowArrowBaseRadius];
+-        [toolbarPath appendBezierPathWithArcFromPoint:topRight
+-                                              toPoint:bottomRight
+-                                               radius:cornerRadius];
+-        [toolbarPath lineToPoint:bottomRight];
+-    }
+-    else {
+-        [toolbarPath moveToPoint:arrowPointLeft];
+-        [toolbarPath lineToPoint:arrowPointMiddle];
+-        [toolbarPath lineToPoint:arrowPointRight];
+-
+-        [toolbarPath appendBezierPathWithArcFromPoint:arrowPointRight
+-                                             toPoint:topRight
+-                                              radius:cornerRadius];
+-        [toolbarPath appendBezierPathWithArcFromPoint:topRight
+-                                             toPoint:bottomRight
+-                                              radius:cornerRadius];
+-        [toolbarPath lineToPoint:bottomRight];
+-        [toolbarPath lineToPoint:bottomLeft];
+-        [toolbarPath appendBezierPathWithArcFromPoint:topLeft
+-                                             toPoint:arrowPointLeft
+-                                              radius:cornerRadius];
+-    }
+-
+-    [toolbarPath closePath];
+-
+-    // Draw the title bar
+-    [NSGraphicsContext saveGraphicsState];
+-
+-    [toolbarPath addClip];
+-
+-    CGFloat titleBarHeight = window.toolbarView.frame.size.height + (isAttached ? OBMenuBarWindowArrowHeight : 0);
+-    
+-    NSRect headingRect = NSMakeRect(originX,
+-                                    originY + height - titleBarHeight,
+-                                    width,
+-                                    window.toolbarView.frame.size.height);
+-    NSRect titleBarRect = NSMakeRect(originX,
+-                                     originY + height - titleBarHeight,
+-                                     width,
+-                                     window.toolbarView.frame.size.height + OBMenuBarWindowArrowHeight);
+-
+-    // Colors
+-    NSColor *bottomColor, *topColor, *topColorTransparent;
+-
+-    if (window.colorTheme) {
+-        if (isKey || window.attachedToMenuBar)
+-        {
+-            bottomColor = window.colorTheme.toolbarEndColor;
+-            topColor = window.colorTheme.toolbarStartColor;
+-            topColorTransparent = [NSColor colorWithCalibratedRed:topColor.redComponent green:topColor.greenComponent blue:topColor.blueComponent alpha:0.0];
+-        }
+-        else
+-        {
+-            bottomColor = [window.colorTheme.toolbarEndColor highlightWithLevel:0.2];
+-            topColor = [window.colorTheme.toolbarStartColor highlightWithLevel:0.2];
+-            topColorTransparent = [[NSColor colorWithCalibratedRed:topColor.redComponent green:topColor.greenComponent blue:topColor.blueComponent alpha:0.0] highlightWithLevel:0.15];
+-        }
+-    }
+-    else {
+-        if (isKey || window.attachedToMenuBar)
+-        {
+-            bottomColor = [NSColor colorWithCalibratedWhite:0.690 alpha:1.0];
+-            topColor = [NSColor colorWithCalibratedWhite:0.910 alpha:1.0];
+-            topColorTransparent = [NSColor colorWithCalibratedWhite:0.910 alpha:0.0];
+-        }
+-        else
+-        {
+-            bottomColor = [NSColor colorWithCalibratedWhite:0.85 alpha:1.0];
+-            topColor = [NSColor colorWithCalibratedWhite:0.93 alpha:1.0];
+-            topColorTransparent = [NSColor colorWithCalibratedWhite:0.93 alpha:0.0];
+-        }
+-    }
+-
+-    [bottomColor set];
+-    //NSRectFill(window.attachedToMenuBar ? titleBarRect : headingRect);
+-    [toolbarPath fill];
+-
+-    // Draw some subtle noise to the titlebar if the window is the key window
+-    if (isKey || attachedToMenuBar)
+-    {
+-        [[NSColor colorWithPatternImage:[window noiseImage]] set];
+-        NSRectFillUsingOperation(window.attachedToMenuBar ? titleBarRect : headingRect, NSCompositeSourceOver);
+-    }
+-
+-    // Draw the highlight
+-    NSGradient *headingGradient = [[NSGradient alloc] initWithStartingColor:topColorTransparent
+-                                                                endingColor:topColor];
+-    [headingGradient drawInRect:headingRect angle:90.0];
+-
+-    // Highlight the pin, too
+-    if (isAttached)
+-    {
+-        NSColor *tipColor = [topColor highlightWithLevel:0.15];
+-        NSGradient *tipGradient = [[NSGradient alloc] initWithStartingColor:topColor
+-                                                                endingColor:tipColor];
+-        NSRect tipRect = NSMakeRect(arrowPointLeft.x - OBMenuBarWindowArrowWidth / 2,
+-                                    arrowPointLeft.y,
+-                                    OBMenuBarWindowArrowWidth * 2,
+-                                    OBMenuBarWindowArrowHeight);
+-        [tipGradient drawInRect:tipRect angle:90.0];
+-    }
+-
+-    // Draw the title bar highlight
+-    /*NSBezierPath *highlightPath = [NSBezierPath bezierPath];
+-    [highlightPath moveToPoint:NSMakePoint(arrowPointMiddle.x,arrowPointMiddle.y - 0.5)];
+-    [highlightPath lineToPoint:NSMakePoint(arrowPointLeft.x, arrowPointLeft.y - 0.5)];
+-    [highlightPath appendBezierPathWithArcFromPoint:NSMakePoint(topLeft.x + 0.5, topLeft.y - 0.5)
+-                                            toPoint:NSMakePoint(bottomLeft.x - 0.5, topLeft.y - cornerRadius)
+-                                             radius:cornerRadius];
+-
+-    [highlightPath moveToPoint:NSMakePoint(arrowPointMiddle.x,arrowPointMiddle.y - 0.5)];
+-    [highlightPath lineToPoint:NSMakePoint(arrowPointRight.x, arrowPointRight.y - 0.5)];
+-    [highlightPath appendBezierPathWithArcFromPoint:NSMakePoint(topRight.x - 0.5, topRight.y - 0.5)
+-                                            toPoint:NSMakePoint(bottomRight.x + 0.5, topRight.y - cornerRadius)
+-                                             radius:cornerRadius];
+-    [[window.colorTheme.toolbarShadowColor highlightWithLevel:0.5] set];
+-    [highlightPath setLineWidth:window.colorTheme.toolbarStrokeColor ? 2.0 : 1.0];
+-    [highlightPath stroke];*/
+-
+-//    [[NSColor colorWithCalibratedWhite:0.5 alpha:0.5] set];
+-//    [borderPath stroke];
+-
+-    [NSGraphicsContext restoreGraphicsState];
+-
+-    // Draw title
+-    
+-    [NSGraphicsContext saveGraphicsState];
+-    
+-    NSMutableDictionary *titleAttributes = [[NSMutableDictionary alloc] init];
+-    [titleAttributes setValue:[NSColor colorWithCalibratedWhite:1.0 alpha:0.85] forKey:NSForegroundColorAttributeName];
+-    [titleAttributes setValue:[NSFont fontWithName:@"Helvetica Light" size:15] forKey:NSFontAttributeName];
+-    NSShadow *stringShadow = [[NSShadow alloc] init];
+-    [stringShadow setShadowColor:[NSColor colorWithCalibratedWhite:0.0 alpha:0.5]];
+-    [stringShadow setShadowOffset:NSMakeSize(0, 0)];
+-    [stringShadow setShadowBlurRadius:6];
+-    [titleAttributes setValue:stringShadow forKey:NSShadowAttributeName];
+-    NSSize titleSize = [window.title sizeWithAttributes:titleAttributes];
+-
+-    NSPoint centerPoint;
+-
+-    centerPoint.x = isAttached ? 10 : (width / 2) - (titleSize.width / 2);
+-    centerPoint.y = topLeft.y - (window.toolbarView.frame.size.height / 2) /*- (window.attachedToMenuBar ? OBMenuBarWindowArrowHeight / 2 : 0)*/ - (titleSize.height / 2);
+-
+-    [window.title drawAtPoint:centerPoint withAttributes:titleAttributes];
+-
+-    // Draw separator line between the titlebar and the content view
+-    if (isKey) {
+-        [[window.colorTheme.listBackgroundColor shadowWithLevel:0.5] set];
+-    }
+-    else {
+-        [[window.colorTheme.listBackgroundColor shadowWithLevel:0.2] set];
+-    }
+-    NSRect separatorRect = NSMakeRect(originX, originY + height - window.toolbarView.frame.size.height - (isAttached ? arrowHeight : 0) - hairlineWidth, width, hairlineWidth);
+-    NSRectFill(separatorRect);
+-
+-    // Draw toolbar stroke
+-    if (window.colorTheme.toolbarStrokeColor) {
+-        
+-        // Stroke open path
+-        NSBezierPath *strokePath = [NSBezierPath bezierPath];
+-
+-        if (drawRoundedArrow) {
+-
+-            [strokePath moveToPoint:bottomLeft];
+-
+-            [strokePath appendBezierPathWithArcFromPoint:bottomLeft
+-                                                  toPoint:topLeft
+-                                                   radius:cornerRadius];
+-            [strokePath appendBezierPathWithArcFromPoint:topLeft
+-                                                  toPoint:arrowPointLeft
+-                                                   radius:cornerRadius];
+-
+-            [strokePath appendBezierPathWithArcFromPoint:arrowPointLeft
+-                                                  toPoint:arrowPointMiddle
+-                                                   radius:OBMenuBarWindowArrowBaseRadius];
+-            [strokePath appendBezierPathWithArcFromPoint:arrowPointMiddle
+-                                                  toPoint:arrowPointRight
+-                                                   radius:arrowPinRadius];
+-
+-            [strokePath appendBezierPathWithArcFromPoint:arrowPointRight
+-                                                  toPoint:topRight
+-                                                   radius:OBMenuBarWindowArrowBaseRadius];
+-            [strokePath appendBezierPathWithArcFromPoint:topRight
+-                                                  toPoint:bottomRight
+-                                                   radius:cornerRadius];
+-            [strokePath lineToPoint:bottomRight];
+-        }
+-        else {
+-            [strokePath moveToPoint:arrowPointLeft];
+-            [strokePath lineToPoint:arrowPointMiddle];
+-            [strokePath lineToPoint:arrowPointRight];
+-            [strokePath appendBezierPathWithArcFromPoint:topRight
+-                                                 toPoint:bottomRight
+-                                                  radius:cornerRadius];
+-            [strokePath lineToPoint:bottomRight];
+-            [strokePath moveToPoint:bottomLeft];
+-            [strokePath appendBezierPathWithArcFromPoint:topLeft
+-                                                 toPoint:arrowPointLeft
+-                                                  radius:cornerRadius];
+-            [strokePath lineToPoint:arrowPointLeft];
+-        }
+-
+-        if (isKey) {
+-            [window.colorTheme.toolbarStrokeColor set];
+-        }
+-        else {
+-            [[window.colorTheme.toolbarStrokeColor highlightWithLevel:0.25] set];
+-        }
+-
+-        [toolbarPath setLineWidth:hairlineWidth];
+-        [toolbarPath setLineJoinStyle:NSRoundLineJoinStyle];
+-        [toolbarPath addClip];
+-
+-        [strokePath setLineWidth:strokeWidth];
+-        [strokePath setLineJoinStyle:NSRoundLineJoinStyle];
+-        [strokePath stroke];
+-    }
+-
+-    [NSGraphicsContext restoreGraphicsState];
+-
+-    //[self setHasShadow:NO];
+-
+-    /*CGMutablePathRef shadowPath = CGPathCreateMutable();
+-
+-    CGPathMoveToPoint(shadowPath, NULL, bottomLeft.x, bottomLeft.y);
+-    CGPathAddArcToPoint(shadowPath, NULL, bottomLeft.x, bottomLeft.y, topLeft.x, topLeft.y, cornerRadius);
+-    CGPathAddArcToPoint(shadowPath, NULL, topLeft.x, topLeft.y, topLeft.x, topLeft.y, cornerRadius);
+-    CGPathAddArcToPoint(shadowPath, NULL, arrowPointLeft.x, arrowPointLeft.y, arrowPointMiddle.x, arrowPointMiddle.y, OBMenuBarWindowArrowBaseRadius);
+-    CGPathAddArcToPoint(shadowPath, NULL, arrowPointMiddle.x, arrowPointMiddle.y, arrowPointRight.x, arrowPointRight.y, arrowPinRadius);
+-    CGPathAddArcToPoint(shadowPath, NULL, arrowPointRight.x, arrowPointRight.y, topRight.x, topRight.y, OBMenuBarWindowArrowBaseRadius);
+-    CGPathAddArcToPoint(shadowPath, NULL, topRight.x, topRight.y, bottomRight.x, bottomRight.y, cornerRadius);
+-    CGPathAddLineToPoint(shadowPath, NULL, bottomRight.x, bottomRight.y);
+-    CGPathAddLineToPoint(shadowPath, NULL, listBottomRight.x, listBottomRight.y + cornerRadius);
+-    CGPathAddArcToPoint(shadowPath, NULL, listBottomRight.x, listBottomRight.y, listBottomLeft.x + cornerRadius, listBottomRight.y, cornerRadius);
+-    CGPathAddArcToPoint(shadowPath, NULL, listBottomLeft.x, listBottomLeft.y, bottomLeft.x, bottomLeft.y, cornerRadius);
+-    CGPathAddLineToPoint(shadowPath, NULL, bottomLeft.x, bottomLeft.y);
+-    CGPathCloseSubpath(shadowPath);
+-
+-    NSView * shadowView = [super contentView];
+-
+-    shadowView.wantsLayer = NO;
+-    shadowView.layer.s
+-    shadowView.layer.shadowColor = [NSColor blackColor].CGColor;
+-    shadowView.layer.shadowOpacity = 0.35f;
+-    shadowView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+-    shadowView.layer.shadowRadius = 3.0f;
+-    shadowView.layer.masksToBounds = NO;
+-    shadowView.layer.shadowPath = shadowPath;
+-
+-    CGPathRelease(shadowPath);*/
+-
+-}
+-
+-- (void)refreshContentImageForKeyWindow:(BOOL)isKey
+-{
+-    NSImage *contentImage = [[NSImage alloc] initWithSize:NSMakeSize([self.contentView superview].bounds.size.width, [self.contentView superview].bounds.size.height)];
+-
+-    [contentImage lockFocus];
+-
+-    [self renderContentForKeyWindow:isKey];
+-    
+-    [contentImage unlockFocus];
+-
+-    if (isKey) {
+-        _activeImage = contentImage;
+-        //NSLog(@"Active image refreshed");
+-    }
+-    else {
+-        _inactiveImage = contentImage;
+-        //NSLog(@"Inactive image refreshed");
+-    }
+-}
+-
+-- (void)resetContentImagesScheduleRefresh:(BOOL)scheduleRefresh
+-{
+-    if (_activeImage || _inactiveImage) {
+-        _activeImage = nil;
+-        _inactiveImage = nil;
+-
+-        //NSLog(@"reset");
+-    }
+-
+-    if (scheduleRefresh) {
+-
+-        self.scheduledRefreshCount++;
+-
+-        [self performSelector:@selector(refreshContentImages) withObject:nil afterDelay:0.5];
+-    }
+-}
+-
+-- (void)refreshContentImages
+-{
+-    if (--self.scheduledRefreshCount) {
+-        return;
+-    }
+-    
+-    //if (!_activeImage) {
+-        [self refreshContentImageForKeyWindow:YES];
+-        //NSLog(@"active image refreshed");
+-        //}
+-
+-    //if (!_inactiveImage) {
+-        [self refreshContentImageForKeyWindow:NO];
+-        //NSLog(@"inactive image refreshed");
+-        //}
+-
+-    // Redraw the theme frame
+-    [[self.contentView superview] setNeedsDisplay:YES];
+-}
+-
+-- (void)drawRect:(NSRect)dirtyRect
+-{
+-    if (!self.toolbarView) {
+-        return;
+-    }
+-
+-    if (self.cachedContentScale != self.screen.backingScaleFactor) {
+-        [self resetContentImagesScheduleRefresh:YES];
+-    }
+-    
+-    NSImage *content = self.isKeyWindow || self.attachedToMenuBar ? self.activeImage : self.inactiveImage;
+-
+-    if (!content) {
+-        [self renderContentForKeyWindow:self.isKeyWindow];
+-    }
+-    else {
+-        [content drawInRect:dirtyRect fromRect:dirtyRect operation:NSCompositeCopy fraction:1.0];
+-    }
+-}
+-
+-@end
+diff --git a/HWMonitor/OBMenuBarWindowFrameView.h b/HWMonitor/OBMenuBarWindowFrameView.h
+deleted file mode 100644
+index b0515b58..00000000
+--- a/HWMonitor/OBMenuBarWindowFrameView.h
++++ /dev/null
+@@ -1,18 +0,0 @@
+-//
+-//  RoundWindowFrameView.h
+-//  RoundWindow
+-//
+-//  Created by Matt Gallagher on 12/12/08.
+-//  Copyright 2008 Matt Gallagher. All rights reserved.
+-//
+-//  Permission is given to use this source code file without charge in any
+-//  project, commercial or otherwise, entirely at your risk, with the condition
+-//  that any redistribution (in part or whole) of source code must retain
+-//  this copyright and permission notice. Attribution in compiled projects is
+-//  appreciated but not required.
+-//
+-
+-@interface OBMenuBarWindowFrameView : NSView
+-
+-
+-@end
+diff --git a/HWMonitor/OBMenuBarWindowFrameView.m b/HWMonitor/OBMenuBarWindowFrameView.m
+deleted file mode 100644
+index 4e059f39..00000000
+--- a/HWMonitor/OBMenuBarWindowFrameView.m
++++ /dev/null
+@@ -1,31 +0,0 @@
+-//
+-//  RoundWindowFrameView.m
+-//  RoundWindow
+-//
+-//  Created by Matt Gallagher on 12/12/08.
+-//  Copyright 2008 Matt Gallagher. All rights reserved.
+-//
+-//  Permission is given to use this source code file without charge in any
+-//  project, commercial or otherwise, entirely at your risk, with the condition
+-//  that any redistribution (in part or whole) of source code must retain
+-//  this copyright and permission notice. Attribution in compiled projects is
+-//  appreciated but not required.
+-//
+-
+-#import "OBMenuBarWindowFrameView.h"
+-#import "OBMenuBarWindow.h"
+-
+-@implementation OBMenuBarWindowFrameView
+-
+-//
+-// drawRect:
+-//
+-// Draws the frame of the window.
+-//
+-- (void)drawRect:(NSRect)rect
+-{
+-    OBMenuBarWindow * window = (OBMenuBarWindow*)self.window;
+-	[window drawRect:rect];
+-}
+-
+-@end
+diff --git a/HWMonitor/PopupController.h b/HWMonitor/PopupController.h
+deleted file mode 100644
+index 43315acb..00000000
+--- a/HWMonitor/PopupController.h
++++ /dev/null
+@@ -1,72 +0,0 @@
+-//
+-//  PopupController.h
+-//  HWMonitor
+-//
+-//  Created by kozlek on 23.02.13.
+-//
+-
+-/*
+- *  Copyright (c) 2013 Natan Zalkin <natan.zalkin@me.com>. All rights reserved.
+- *
+- *  This program is free software; you can redistribute it and/or
+- *  modify it under the terms of the GNU General Public License
+- *  as published by the Free Software Foundation; either version 2
+- *  of the License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+- *  02111-1307, USA.
+- *
+- */
+-
+-#import "StatusItemView.h"
+-#import "OBMenuBarWindow.h"
+-
+-@protocol PopupControllerDelegate <NSObject>
+-@optional
+-- (void)popupWillOpen:(id)sender;
+-- (void)popupDidOpen:(id)sender;
+-- (void)popupWillClose:(id)sender;
+-- (void)popupDidClose:(id)sender;
+-@end
+-
+-@class HWMEngine;
+-
+-@interface PopupController : NSWindowController <NSApplicationDelegate, NSWindowDelegate, NSTableViewDelegate, NSTableViewDataSource, NSPopoverDelegate>
+-
+-@property (assign) IBOutlet id <PopupControllerDelegate> delegate;
+-
+-@property (readonly) IBOutlet HWMEngine *monitorEngine;
+-
+-@property (readonly) NSStatusItem *statusItem;
+-@property (readonly) StatusItemView *statusItemView;
+-
+-@property (assign) IBOutlet NSPopover *popover;
+-@property (assign) IBOutlet NSMenu *mainMenu;
+-@property (assign) IBOutlet NSView *toolbarView;
+-@property (assign) IBOutlet NSScrollView *scrollView;
+-@property (assign) IBOutlet NSTableView *tableView;
+-
+-@property (assign) IBOutlet NSWindowController *appController;
+-@property (assign) IBOutlet NSWindowController *graphsController;
+-@property (assign) IBOutlet NSWindowController *aboutController;
+-
+-@property (assign) IBOutlet NSLayoutConstraint *tableHeightConstraint;
+-
+-@property (atomic, assign) NSDragOperation currentItemDragOperation;
+-@property (readonly) BOOL hasDraggedFavoriteItem;
+-
+-@property (readonly) NSArray *sensorsAndGroupsCollectionSnapshot;
+-
+-- (IBAction)togglePanel:(id)sender;
+-- (IBAction)showAboutPanel:(id)sender;
+-- (IBAction)openPreferences:(id)sender;
+-- (IBAction)showGraphsWindow:(id)sender;
+-
+-@end
+diff --git a/HWMonitor/PopupController.m b/HWMonitor/PopupController.m
+deleted file mode 100644
+index 5b50a438..00000000
+--- a/HWMonitor/PopupController.m
++++ /dev/null
+@@ -1,563 +0,0 @@
+-//
+-//  PopupController.m
+-//  HWMonitor
+-//
+-//  Created by kozlek on 23.02.13.
+-//
+-
+-/*
+- *  Copyright (c) 2013 Natan Zalkin <natan.zalkin@me.com>. All rights reserved.
+- *
+- *  This program is free software; you can redistribute it and/or
+- *  modify it under the terms of the GNU General Public License
+- *  as published by the Free Software Foundation; either version 2
+- *  of the License, or (at your option) any later version.
+- *
+- *  This program is distributed in the hope that it will be useful,
+- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *  GNU General Public License for more details.
+- *
+- *  You should have received a copy of the GNU General Public License
+- *  along with this program; if not, write to the Free Software
+- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+- *  02111-1307, USA.
+- *
+- */
+-
+-#import "PopupController.h"
+-
+-#import "Localizer.h"
+-
+-#import "HWMonitorDefinitions.h"
+-
+-#import "PopupGroupCell.h"
+-#import "PopupSensorCell.h"
+-#import "PopupAtaSmartSensorCell.h"
+-#import "PopupBatteryCell.h"
+-
+-#import "JLNFadingScrollView.h"
+-
+-#import "HWMColorTheme.h"
+-#import "HWMConfiguration.h"
+-#import "HWMEngine.h"
+-#import "HWMSensorsGroup.h"
+-#import "HWMSensor.h"
+-
+-#import "NSTableView+HWMEngineHelper.h"
+-#import "NSImage+HighResolutionLoading.h"
+-#import "NSWindow+BackgroundBlur.h"
+-
+-@implementation PopupController
+-
+-@synthesize statusItem = _statusItem;
+-@synthesize statusItemView = _statusItemView;
+-@synthesize toolbarView = _toolbarView;
+-@synthesize sensorsAndGroupsCollectionSnapshot = _sensorsAndGroupsCollectionSnapshot;
+-
+-#pragma mark -
+-#pragma mark Properties
+-
+--(BOOL)hasDraggedFavoriteItem
+-{
+-    return YES;
+-}
+-
+--(NSArray *)sensorsAndGroupsCollectionSnapshot
+-{
+-    if (!_sensorsAndGroupsCollectionSnapshot) {
+-        _sensorsAndGroupsCollectionSnapshot = [self.monitorEngine.sensorsAndGroups copy];
+-    }
+-
+-    return _sensorsAndGroupsCollectionSnapshot;
+-}
+-
+--(HWMEngine *)monitorEngine
+-{
+-    return [HWMEngine sharedEngine];
+-}
+-
+-//-(void)setMonitorEngine:(HWMEngine *)monitorEngine
+-//{
+-//    if (monitorEngine != _monitorEngine) {
+-//
+-//        _monitorEngine = monitorEngine;
+-//
+-//        [_statusItemView setMonitorEngine:_monitorEngine];
+-//    }
+-//}
+-
+-#pragma mark -
+-#pragma mark Overridden Methods
+-
+-- (instancetype)init
+-{
+-    self = [super initWithWindowNibName:NSStringFromClass([PopupController class])];
+-    
+-    if (self != nil)
+-    {
+-        _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+-        
+-        [_statusItem setHighlightMode:NO];
+-        
+-        _statusItemView = [[StatusItemView alloc] initWithFrame:NSMakeRect(0, 0, 22, 22) statusItem:_statusItem];
+-
+-        [_statusItemView setImage:[NSImage loadImageNamed:@"scale" ofType:@"png"]];
+-        [_statusItemView setAlternateImage:[NSImage loadImageNamed:@"scale-white" ofType:@"png"]];
+-
+-        [_statusItemView setAction:@selector(togglePanel:)];
+-        [_statusItemView setTarget:self];
+-    }
+-    
+-    return self;
+-}
+-
+-- (void)dealloc
+-{
+-    [[NSStatusBar systemStatusBar] removeStatusItem:_statusItem];
+-}
+-
+--(void)windowDidLoad
+-{
+-    [super windowDidLoad];
+-
+-    //[[_titleField cell] setBackgroundStyle:NSBackgroundStyleRaised];
+-
+-    // Install status item into the menu bar
+-    OBMenuBarWindow *menubarWindow = (OBMenuBarWindow *)self.window;
+-
+-    menubarWindow.statusItemView = _statusItemView;
+-    menubarWindow.statusItem = _statusItem;
+-    menubarWindow.attachedToMenuBar = YES;
+-    menubarWindow.hideWindowControls = YES;
+-
+-    menubarWindow.toolbarView = _toolbarView;
+-
+-    [menubarWindow setWorksWhenModal:YES];
+-
+-    //    [Localizer localizeView:menubarWindow];
+-    //    [Localizer localizeView:_toolbarView];
+-
+-    // Make main menu font size smaller
+-    //            NSFont* font = [NSFont menuFontOfSize:13];
+-    //            NSDictionary* fontAttribute = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
+-    //
+-    //            [_mainMenu setFont:font];
+-    //
+-    //            for (id subItem in [_mainMenu itemArray]) {
+-    //                if ([subItem isKindOfClass:[NSMenuItem class]]) {
+-    //                    NSMenuItem* menuItem = subItem;
+-    //                    NSString* title = [menuItem title];
+-    //
+-    //                    NSMutableAttributedString *attributedTitle = [[NSMutableAttributedString alloc] initWithString:title attributes:fontAttribute];
+-    //
+-    //                    [menuItem setAttributedTitle:attributedTitle];
+-    //                }
+-    //            }
+-
+-    [(OBMenuBarWindow*)self.window setColorTheme:self.monitorEngine.configuration.colorTheme];
+-    [(JLNFadingScrollView *)_scrollView setFadeColor:self.monitorEngine.configuration.colorTheme.listBackgroundColor];
+-
+-    [_tableView registerForDraggedTypes:[NSArray arrayWithObject:kHWMonitorPopupItemDataType]];
+-    [_tableView setDraggingSourceOperationMask:NSDragOperationMove | NSDragOperationDelete forLocal:YES];
+-
+-    [Localizer localizeView:self.window];
+-    [Localizer localizeView:_toolbarView];
+-
+-    [self addObserver:self forKeyPath:@keypath(self, monitorEngine.configuration.colorTheme) options:0 context:nil];
+-    [self addObserver:self forKeyPath:@keypath(self, monitorEngine.configuration.showSensorLegendsInPopup) options:0 context:nil];
+-    [self addObserver:self forKeyPath:@keypath(self, monitorEngine.sensorsAndGroups) options:0 context:nil];
+-
+-    [self layoutContent:YES orderFront:NO animated:NO];
+-}
+-
+--(void)showWindow:(id)sender
+-{
+-    //OBMenuBarWindow *menubarWindow = (OBMenuBarWindow *)self.window;
+-
+-    if (self.delegate && [self.delegate respondsToSelector:@selector(popupWillOpen:)]) {
+-        [self.delegate popupWillOpen:self];
+-    }
+-
+-    //if (!menubarWindow.attachedToMenuBar) {
+-        [NSApp activateIgnoringOtherApps:YES];
+-    //}
+-    
+-    [self layoutContent:NO orderFront:YES animated:YES];
+-
+-    //self.statusItemView.isHighlighted = YES;
+-    
+-    if (self.delegate && [self.delegate respondsToSelector:@selector(popupDidOpen:)]) {
+-        [self.delegate popupDidOpen:self];
+-    }
+-}
+-
+--(void)close
+-{
+-    if (self.delegate && [self.delegate respondsToSelector:@selector(popupWillClose:)]) {
+-        [self.delegate popupWillClose:self];
+-    }
+-    
+-    [self.window orderOut:nil];
+-
+-    //self.statusItemView.isHighlighted = NO;
+-    
+-    if (self.delegate && [self.delegate respondsToSelector:@selector(popupDidClose:)]) {
+-        [self.delegate popupDidClose:self];
+-    }
+-}
+-
+-#pragma mark -
+-#pragma mark Methods
+-
+-// Space betweeen last sensor cell and bottom side of a window
+-#define BOTTOM_SPACE  5
+-
+-- (void)layoutContent:(BOOL)resizeToContent orderFront:(BOOL)orderFront animated:(BOOL)animated
+-{
+-    OBMenuBarWindow *menubarWindow = (OBMenuBarWindow *)self.window;
+-
+-    if (resizeToContent) {
+-
+-        __block CGFloat height = 0;
+-
+-        [self.sensorsAndGroupsCollectionSnapshot enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+-            height += [self tableView:_tableView heightOfRow:idx];
+-        }];
+-
+-        height += BOTTOM_SPACE;
+-
+-        CGFloat fullHeight = height + menubarWindow.toolbarHeight * 2;
+-        CGFloat screenHeight = menubarWindow.screen.visibleFrame.size.height;
+-
+-        if (fullHeight > screenHeight) {
+-            height = screenHeight - menubarWindow.toolbarView.frame.size.height * 2 - BOTTOM_SPACE;
+-            [_scrollView setHasVerticalScroller:YES];
+-        }
+-        else {
+-            [_scrollView setHasVerticalScroller:NO];
+-        }
+-
+-        if (animated) {
+-            [[_tableHeightConstraint animator] setConstant:height];
+-        }
+-        else {
+-            [_tableHeightConstraint setConstant:height];
+-        }
+-    }
+-    
+-    // Order front if needed
+-    if (orderFront) {
+-        [menubarWindow makeKeyAndOrderFront:self];
+-        [self.window setHeavyBackgroundBlur];
+-    }
+-}
+-
+--(void)reloadSensorsTableView:(id)sender
+-{
+-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+-
+-        NSArray *oldSensorsAndGroups = [_sensorsAndGroupsCollectionSnapshot copy];
+-
+-        _sensorsAndGroupsCollectionSnapshot = nil;
+-
+-        [_tableView updateWithObjectValues:self.sensorsAndGroupsCollectionSnapshot previousObjectValues:oldSensorsAndGroups];
+-
+-        [self layoutContent:YES orderFront:NO animated:YES];
+-    }];
+-
+-}
+-
+-#pragma mark -
+-#pragma mark Actions
+-
+-- (void)togglePanel:(id)sender
+-{
+-    OBMenuBarWindow* menubarWindow = (OBMenuBarWindow*)self.window;
+-    
+-    if (menubarWindow)
+-    {
+-        if (menubarWindow.isVisible && (menubarWindow.isKeyWindow || menubarWindow.attachedToMenuBar))
+-        {
+-            [self close];
+-        }
+-        else
+-        {
+-            [self showWindow:self];
+-        }
+-    }
+-}
+-
+-- (void)showAboutPanel:(id)sender
+-{
+-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+-        [_aboutController showWindow:sender];
+-    }];
+-}
+-
+-- (void)openPreferences:(id)sender
+-{
+-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+-        [_appController showWindow:sender];
+-    }];
+-}
+-
+-- (void)showGraphsWindow:(id)sender
+-{
+-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+-        [_graphsController showWindow:sender];
+-    }];
+-}
+-
+-#pragma mark -
+-#pragma mark Events
+-
+--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+-{
+-    if ([keyPath isEqual:@keypath(self, monitorEngine.configuration.colorTheme)]) {
+-
+-        [(OBMenuBarWindow*)self.window setColorTheme:self.monitorEngine.configuration.colorTheme];
+-        [(JLNFadingScrollView *)_scrollView setFadeColor:self.monitorEngine.configuration.colorTheme.listBackgroundColor];
+-
+-        //self.window.
+-
+-    }
+-    else if ([keyPath isEqual:@keypath(self, monitorEngine.configuration.showSensorLegendsInPopup)] ||
+-             [keyPath isEqual:@keypath(self, monitorEngine.sensorsAndGroups)]) {
+-
+-        [self reloadSensorsTableView:self];
+-
+-    }
+-}
+-
+-- (void)windowDidAttachToStatusBar:(id)sender
+-{
+-//    OBMenuBarWindow *menubarWindow = (OBMenuBarWindow *)self.window;
+-//
+-//    [menubarWindow setMaxSize:NSMakeSize(menubarWindow.maxSize.width, menubarWindow.frame.size.height)];
+-//    [menubarWindow setMinSize:NSMakeSize(menubarWindow.minSize.width, menubarWindow.toolbarHeight + BOTTOM_SPACE)];
+-
+-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(NSEC_PER_SEC / 7)), dispatch_get_main_queue(), ^{
+-        [self layoutContent:YES orderFront:NO animated:YES];
+-    });
+-}
+-
+-- (void)windowDidDetachFromStatusBar:(id)sender
+-{
+-//    OBMenuBarWindow *menubarWindow = (OBMenuBarWindow *)self.window;
+-//
+-//    [menubarWindow setMaxSize:NSMakeSize(menubarWindow.maxSize.width, menubarWindow.frame.size.height)];
+-//    [menubarWindow setMinSize:NSMakeSize(menubarWindow.minSize.width, menubarWindow.toolbarHeight + BOTTOM_SPACE)];
+-
+-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(NSEC_PER_SEC / 7)), dispatch_get_main_queue(), ^{
+-        [NSApp activateIgnoringOtherApps:YES];
+-        [self layoutContent:YES orderFront:YES animated:YES];
+-    });
+-}
+-
+-- (void)windowDidBecomeKey:(id)sender
+-{
+-    for (id subveiw in _toolbarView.subviews)
+-    {
+-        if ([subveiw respondsToSelector:@selector(setEnabled:)]) {
+-            [subveiw setEnabled:YES];
+-        }
+-    }
+-}
+-
+-- (void)windowDidResignKey:(id)sender
+-{
+-    for (id subveiw in _toolbarView.subviews)
+-    {
+-        if ([subveiw respondsToSelector:@selector(setEnabled:)]) {
+-            [subveiw setEnabled:NO];
+-        }
+-    }
+-}
+-
+-#pragma mark - NSPopoverDelegate
+-
+--(void)popoverWillShow:(NSNotification *)notification
+-{
+-    if (self.delegate && [self.delegate respondsToSelector:@selector(popupWillOpen:)]) {
+-        [self.delegate popupWillOpen:self];
+-    }
+-}
+-
+--(void)popoverDidShow:(NSNotification *)notification
+-{
+-    if (self.delegate && [self.delegate respondsToSelector:@selector(popupDidOpen:)]) {
+-        [self.delegate popupDidOpen:self];
+-    }
+-}
+-
+--(void)popoverWillClose:(NSNotification *)notification
+-{
+-    if (self.delegate && [self.delegate respondsToSelector:@selector(popupWillClose:)]) {
+-        [self.delegate popupWillClose:self];
+-    }
+-}
+-
+--(void)popoverDidClose:(NSNotification *)notification
+-{
+-    if (self.delegate && [self.delegate respondsToSelector:@selector(popupDidClose:)]) {
+-        [self.delegate popupDidClose:self];
+-    }
+-}
+-
+-#pragma mark - NSTableViewDelegate
+-
+-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+-    return self.sensorsAndGroupsCollectionSnapshot.count;
+-}
+-
+-- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row
+-{
+-    HWMItem *item = [self.sensorsAndGroupsCollectionSnapshot objectAtIndex:row];
+-
+-    NSUInteger height = [item isKindOfClass:[HWMSensorsGroup class]] ? 21 : 17;
+-
+-    if (item.legend && self.monitorEngine.configuration.showSensorLegendsInPopup.boolValue)
+-        height += 10;
+-
+-    return height;
+-}
+-
+-- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
+-{
+-    return NO;
+-}
+-
+--(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+-{
+-    return [self.sensorsAndGroupsCollectionSnapshot objectAtIndex:row];
+-}
+-
+-- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+-{
+-    HWMItem *item = [self.sensorsAndGroupsCollectionSnapshot objectAtIndex:row];
+-
+-    id view = [tableView makeViewWithIdentifier:item.identifier owner:self];
+-
+-    return view;
+-}
+-
+-//- (BOOL)tableView:(NSTableView *)tableView isGroupRow:(NSInteger)row
+-//{
+-//    id item = [_items objectAtIndex:row];
+-//    
+-//    if ([item isKindOfClass:[HWMonitorGroup class]]) {
+-//        return _hasScroller;
+-//    }
+-//    
+-//    return NO;
+-//}
+-
+-- (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard;
+-{
+-    if (self.tableView != tableView) {
+-        return NO;
+-    }
+-    
+-    id item = [self.sensorsAndGroupsCollectionSnapshot objectAtIndex:[rowIndexes firstIndex]];
+-    
+-    if ([item isKindOfClass:[HWMSensor class]]) {
+-        NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
+-        
+-        [pboard declareTypes:[NSArray arrayWithObjects:kHWMonitorPopupItemDataType, nil] owner:self];
+-        [pboard setData:indexData forType:kHWMonitorPopupItemDataType];
+-
+-        [NSApp activateIgnoringOtherApps:YES];
+-
+-        return YES;
+-    }
+-
+-    return NO;
+-}
+-
+--(void)tableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation
+-{
+-    if (tableView == _tableView && (operation == NSDragOperationDelete || _currentItemDragOperation == NSDragOperationDelete))
+-    {
+-        NSPasteboard* pboard = [session draggingPasteboard];
+-        NSData* rowData = [pboard dataForType:kHWMonitorPopupItemDataType];
+-        NSIndexSet* rowIndexes = [NSKeyedUnarchiver unarchiveObjectWithData:rowData];
+-        NSInteger fromRow = [rowIndexes firstIndex];
+-        id fromItem = [self.sensorsAndGroupsCollectionSnapshot objectAtIndex:fromRow];
+-
+-        [(HWMItem*)fromItem setHidden:@YES];
+-
+-        NSShowAnimationEffect(NSAnimationEffectPoof, screenPoint, NSZeroSize, nil, nil, nil);
+-    }
+-}
+-
+-- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)toRow proposedDropOperation:(NSTableViewDropOperation)dropOperation;
+-{
+-    if (_tableView != tableView || [info draggingSource] != _tableView) {
+-        return NO;
+-    }
+-    
+-    [tableView setDropRow:toRow dropOperation:NSTableViewDropAbove];
+-    
+-    NSPasteboard* pboard = [info draggingPasteboard];
+-    NSData* rowData = [pboard dataForType:kHWMonitorPopupItemDataType];
+-    NSIndexSet* rowIndexes = [NSKeyedUnarchiver unarchiveObjectWithData:rowData];
+-    NSInteger fromRow = [rowIndexes firstIndex];
+-    id fromItem = [self.sensorsAndGroupsCollectionSnapshot objectAtIndex:fromRow];
+-
+-    _currentItemDragOperation = NSDragOperationNone;
+-    
+-    if ([fromItem isKindOfClass:[HWMSensor class]] && toRow > 0) {
+-        
+-        _currentItemDragOperation = NSDragOperationMove;
+-
+-        if (toRow < self.sensorsAndGroupsCollectionSnapshot.count) {
+-            if (toRow == fromRow || toRow == fromRow + 1) {
+-                _currentItemDragOperation = NSDragOperationNone;
+-            }
+-            else {
+-                id toItem = [self.sensorsAndGroupsCollectionSnapshot objectAtIndex:toRow];
+-
+-                if ([toItem isKindOfClass:[HWMSensor class]] && [(HWMSensor*)fromItem group] != [(HWMSensor*)toItem group]) {
+-                    _currentItemDragOperation = NSDragOperationNone;
+-                }
+-            }
+-        }
+-        else {
+-            id toItem = [self.sensorsAndGroupsCollectionSnapshot objectAtIndex:toRow - 1];
+-
+-            if ([toItem isKindOfClass:[HWMSensor class]] && [(HWMSensor*)fromItem group] != [(HWMSensor*)toItem group]) {
+-                _currentItemDragOperation = NSDragOperationNone;
+-            }
+-        }
+-    }
+-    
+-    return _currentItemDragOperation;
+-}
+-
+-- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)toRow dropOperation:(NSTableViewDropOperation)dropOperation;
+-{
+-    if (self.tableView != tableView) {
+-        return NO;
+-    }
+-    
+-    NSPasteboard* pboard = [info draggingPasteboard];
+-    NSData* rowData = [pboard dataForType:kHWMonitorPopupItemDataType];
+-    NSIndexSet* rowIndexes = [NSKeyedUnarchiver unarchiveObjectWithData:rowData];
+-    NSInteger fromRow = [rowIndexes firstIndex];
+-
+-    HWMSensor *fromItem = [self.sensorsAndGroupsCollectionSnapshot objectAtIndex:fromRow];
+-    
+-    id checkItem = toRow >= self.sensorsAndGroupsCollectionSnapshot.count ? [self.sensorsAndGroupsCollectionSnapshot lastObject] : [self.sensorsAndGroupsCollectionSnapshot objectAtIndex:toRow];
+-    
+-    HWMSensor *toItem = ![checkItem isKindOfClass:[HWMSensor class]] 
+-    || toRow >= self.sensorsAndGroupsCollectionSnapshot.count ? nil : checkItem;
+-
+-    [fromItem.group moveSensorsObjectAtIndex:[fromItem.group.sensors indexOfObject:fromItem] toIndex: toItem ? [fromItem.group.sensors indexOfObject:toItem] : fromItem.group.sensors.count];
+-
+-    [self.monitorEngine setNeedsUpdateSensorLists];
+-
+-    return YES;
+-}
+-
+-@end
+diff --git a/HWMonitor/PopupController.xib b/HWMonitor/PopupController.xib
+deleted file mode 100644
+index f5527f24..00000000
+--- a/HWMonitor/PopupController.xib
++++ /dev/null
+@@ -1,850 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+-    <dependencies>
+-        <deployment identifier="macosx"/>
+-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+-    </dependencies>
+-    <objects>
+-        <customObject id="-2" userLabel="File's Owner" customClass="PopupController">
+-            <connections>
+-                <outlet property="mainMenu" destination="1556" id="2786"/>
+-                <outlet property="popover" destination="TYV-GK-w0B" id="gWL-Vc-szN"/>
+-                <outlet property="scrollView" destination="13" id="ySg-oZ-M5D"/>
+-                <outlet property="tableHeightConstraint" destination="YnQ-Ep-f64" id="YZU-xR-Vg8"/>
+-                <outlet property="tableView" destination="52" id="125"/>
+-                <outlet property="toolbarView" destination="14" id="992"/>
+-                <outlet property="window" destination="3" id="123"/>
+-            </connections>
+-        </customObject>
+-        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+-        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+-        <menu title="Main Menu" systemMenu="main" id="1543">
+-            <items>
+-                <menuItem title="HWMonitor" id="1549">
+-                    <modifierMask key="keyEquivalentModifierMask"/>
+-                    <menu key="submenu" title="HWMonitor" systemMenu="apple" id="1556">
+-                        <items>
+-                            <menuItem title="Attach to Menu Bar" keyEquivalent="a" id="1447">
+-                                <attributedString key="attributedTitle"/>
+-                                <connections>
+-                                    <action selector="attachToMenuBar:" target="3" id="1451"/>
+-                                    <binding destination="-2" name="hidden" keyPath="self.window.attachedToMenuBar" previousBinding="1725" id="2646">
+-                                        <dictionary key="options">
+-                                            <integer key="NSMultipleValuesPlaceholder" value="1"/>
+-                                            <integer key="NSNoSelectionPlaceholder" value="1"/>
+-                                            <integer key="NSNotApplicablePlaceholder" value="1"/>
+-                                            <integer key="NSNullPlaceholder" value="1"/>
+-                                        </dictionary>
+-                                    </binding>
+-                                    <binding destination="-2" name="enabled" keyPath="self.window.isVisible" id="1725">
+-                                        <dictionary key="options">
+-                                            <integer key="NSMultipleValuesPlaceholder" value="0"/>
+-                                            <integer key="NSNoSelectionPlaceholder" value="0"/>
+-                                            <integer key="NSNotApplicablePlaceholder" value="0"/>
+-                                            <integer key="NSNullPlaceholder" value="0"/>
+-                                        </dictionary>
+-                                    </binding>
+-                                </connections>
+-                            </menuItem>
+-                            <menuItem title="Detach from Menu Bar" keyEquivalent="d" id="1443">
+-                                <attributedString key="attributedTitle"/>
+-                                <connections>
+-                                    <action selector="detachFromMenuBar:" target="3" id="1445"/>
+-                                    <binding destination="-2" name="hidden" keyPath="self.window.attachedToMenuBar" previousBinding="1727" id="2641">
+-                                        <dictionary key="options">
+-                                            <integer key="NSMultipleValuesPlaceholder" value="0"/>
+-                                            <integer key="NSNoSelectionPlaceholder" value="0"/>
+-                                            <integer key="NSNotApplicablePlaceholder" value="0"/>
+-                                            <integer key="NSNullPlaceholder" value="0"/>
+-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+-                                        </dictionary>
+-                                    </binding>
+-                                    <binding destination="-2" name="enabled" keyPath="self.window.isVisible" id="1727">
+-                                        <dictionary key="options">
+-                                            <integer key="NSMultipleValuesPlaceholder" value="0"/>
+-                                            <integer key="NSNoSelectionPlaceholder" value="0"/>
+-                                            <integer key="NSNotApplicablePlaceholder" value="0"/>
+-                                            <integer key="NSNullPlaceholder" value="0"/>
+-                                        </dictionary>
+-                                    </binding>
+-                                </connections>
+-                            </menuItem>
+-                            <menuItem isSeparatorItem="YES" id="2783"/>
+-                            <menuItem title="About HWMonitor" id="221">
+-                                <attributedString key="attributedTitle"/>
+-                                <modifierMask key="keyEquivalentModifierMask"/>
+-                                <connections>
+-                                    <action selector="showAboutPanel:" target="-2" id="225"/>
+-                                </connections>
+-                            </menuItem>
+-                            <menuItem title="ACPIProbe Profile" id="xMS-QT-iOu" customClass="ProbeControllingMenuItem">
+-                                <modifierMask key="keyEquivalentModifierMask"/>
+-                            </menuItem>
+-                            <menuItem title="Preferences..." keyEquivalent="," id="220">
+-                                <attributedString key="attributedTitle"/>
+-                                <connections>
+-                                    <action selector="openPreferences:" target="-2" id="227"/>
+-                                </connections>
+-                            </menuItem>
+-                            <menuItem isSeparatorItem="YES" id="228"/>
+-                            <menuItem title="Quit HWMonitor" keyEquivalent="q" id="222">
+-                                <attributedString key="attributedTitle"/>
+-                                <connections>
+-                                    <action selector="terminate:" target="-3" id="226"/>
+-                                </connections>
+-                            </menuItem>
+-                        </items>
+-                    </menu>
+-                </menuItem>
+-                <menuItem title="Edit" id="iBy-sa-CHB">
+-                    <modifierMask key="keyEquivalentModifierMask"/>
+-                    <menu key="submenu" title="Edit" id="SgY-3T-bme">
+-                        <items>
+-                            <menuItem title="Undo" keyEquivalent="z" id="Rso-s1-Iwx">
+-                                <connections>
+-                                    <action selector="undo:" target="-1" id="7Xn-ju-TTm"/>
+-                                </connections>
+-                            </menuItem>
+-                            <menuItem title="Redo" keyEquivalent="Z" id="iJ0-5z-rOW">
+-                                <connections>
+-                                    <action selector="redo:" target="-1" id="Ta8-l6-I5J"/>
+-                                </connections>
+-                            </menuItem>
+-                            <menuItem isSeparatorItem="YES" id="7xv-RZ-IUh"/>
+-                            <menuItem title="Cut" keyEquivalent="x" id="pmf-5L-4Nt">
+-                                <connections>
+-                                    <action selector="cut:" target="-1" id="kMk-gS-JMo"/>
+-                                </connections>
+-                            </menuItem>
+-                            <menuItem title="Copy" keyEquivalent="c" id="Gny-O6-Ig5">
+-                                <connections>
+-                                    <action selector="copy:" target="-1" id="Wom-oh-1mf"/>
+-                                </connections>
+-                            </menuItem>
+-                            <menuItem title="Paste" keyEquivalent="v" id="Xdb-qr-YpI">
+-                                <connections>
+-                                    <action selector="paste:" target="-1" id="XXK-v7-1dD"/>
+-                                </connections>
+-                            </menuItem>
+-                            <menuItem title="Paste and Match Style" keyEquivalent="V" id="JVN-xe-g3J">
+-                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+-                                <connections>
+-                                    <action selector="pasteAsPlainText:" target="-1" id="ylc-rA-gCX"/>
+-                                </connections>
+-                            </menuItem>
+-                            <menuItem title="Delete" id="rVF-by-WbY">
+-                                <modifierMask key="keyEquivalentModifierMask"/>
+-                                <connections>
+-                                    <action selector="delete:" target="-1" id="5Oq-kY-Xa5"/>
+-                                </connections>
+-                            </menuItem>
+-                            <menuItem title="Select All" keyEquivalent="a" id="FsM-a9-Wbh">
+-                                <connections>
+-                                    <action selector="selectAll:" target="-1" id="yvf-td-Ab3"/>
+-                                </connections>
+-                            </menuItem>
+-                            <menuItem isSeparatorItem="YES" id="BQm-AD-6RA"/>
+-                            <menuItem title="Find" id="XBd-Sh-jKC">
+-                                <modifierMask key="keyEquivalentModifierMask"/>
+-                                <menu key="submenu" title="Find" id="JfJ-ug-A4V">
+-                                    <items>
+-                                        <menuItem title="Find…" tag="1" keyEquivalent="f" id="N5k-su-uEi">
+-                                            <connections>
+-                                                <action selector="performFindPanelAction:" target="-1" id="qcH-7z-A7v"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Find and Replace…" tag="12" keyEquivalent="f" id="jte-fl-UOC">
+-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+-                                            <connections>
+-                                                <action selector="performTextFinderAction:" target="-1" id="BSw-wJ-3c6"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Find Next" tag="2" keyEquivalent="g" id="AlG-IB-s2r">
+-                                            <connections>
+-                                                <action selector="performFindPanelAction:" target="-1" id="ivj-Aa-eHx"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Find Previous" tag="3" keyEquivalent="G" id="PkD-oV-9pW">
+-                                            <connections>
+-                                                <action selector="performFindPanelAction:" target="-1" id="eqS-ut-Zdq"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Use Selection for Find" tag="7" keyEquivalent="e" id="dQ3-GK-N8N">
+-                                            <connections>
+-                                                <action selector="performFindPanelAction:" target="-1" id="EyL-gQ-tFz"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Jump to Selection" keyEquivalent="j" id="3CX-bS-b7Q">
+-                                            <connections>
+-                                                <action selector="centerSelectionInVisibleArea:" target="-1" id="bWZ-zG-Ilc"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                    </items>
+-                                </menu>
+-                            </menuItem>
+-                            <menuItem title="Spelling and Grammar" id="EVf-BJ-9PJ">
+-                                <modifierMask key="keyEquivalentModifierMask"/>
+-                                <menu key="submenu" title="Spelling" id="tL0-GU-WbP">
+-                                    <items>
+-                                        <menuItem title="Show Spelling and Grammar" keyEquivalent=":" id="msN-cj-Gbp">
+-                                            <connections>
+-                                                <action selector="showGuessPanel:" target="-1" id="U1w-RS-LBZ"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Check Document Now" keyEquivalent=";" id="5k6-mb-6xH">
+-                                            <connections>
+-                                                <action selector="checkSpelling:" target="-1" id="KaH-Ws-BGm"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem isSeparatorItem="YES" id="Tn8-uS-vhF"/>
+-                                        <menuItem title="Check Spelling While Typing" id="x1z-nf-Q7K">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="toggleContinuousSpellChecking:" target="-1" id="NiZ-T4-oKp"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Check Grammar With Spelling" id="aq2-w3-iD7">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="toggleGrammarChecking:" target="-1" id="Cin-Uv-gle"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Correct Spelling Automatically" id="XCs-jv-NUD">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="toggleAutomaticSpellingCorrection:" target="-1" id="tGk-9u-Bhp"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                    </items>
+-                                </menu>
+-                            </menuItem>
+-                            <menuItem title="Substitutions" id="jLN-gC-OW7">
+-                                <modifierMask key="keyEquivalentModifierMask"/>
+-                                <menu key="submenu" title="Substitutions" id="dDe-a8-bkT">
+-                                    <items>
+-                                        <menuItem title="Show Substitutions" id="rsh-pu-I9W">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="orderFrontSubstitutionsPanel:" target="-1" id="e9n-Du-ILT"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem isSeparatorItem="YES" id="g80-a0-RuS"/>
+-                                        <menuItem title="Smart Copy/Paste" id="qz2-0C-Aff">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="toggleSmartInsertDelete:" target="-1" id="8kO-3k-TVa"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Smart Quotes" id="aGV-Y0-Vm4">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="toggleAutomaticQuoteSubstitution:" target="-1" id="s3L-jM-H1p"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Smart Dashes" id="BDS-7Y-MMt">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="toggleAutomaticDashSubstitution:" target="-1" id="U1l-Hg-OqM"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Smart Links" id="65Q-Oq-Drz">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="toggleAutomaticLinkDetection:" target="-1" id="gwv-h1-L9R"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Data Detectors" id="Yh2-bJ-VTX">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="toggleAutomaticDataDetection:" target="-1" id="LKE-hx-dKu"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Text Replacement" id="DoR-eU-usc">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="toggleAutomaticTextReplacement:" target="-1" id="nii-Lg-zJG"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                    </items>
+-                                </menu>
+-                            </menuItem>
+-                            <menuItem title="Transformations" id="VTP-AN-FYy">
+-                                <modifierMask key="keyEquivalentModifierMask"/>
+-                                <menu key="submenu" title="Transformations" id="fBa-js-AMS">
+-                                    <items>
+-                                        <menuItem title="Make Upper Case" id="ZD4-ZQ-4aw">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="uppercaseWord:" target="-1" id="bR8-os-hd3"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Make Lower Case" id="Ffh-Fj-CWY">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="lowercaseWord:" target="-1" id="FfZ-G4-VxK"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Capitalize" id="jGA-hH-Tcz">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="capitalizeWord:" target="-1" id="QCt-Mn-nwr"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                    </items>
+-                                </menu>
+-                            </menuItem>
+-                            <menuItem title="Speech" id="gdq-xa-4id">
+-                                <modifierMask key="keyEquivalentModifierMask"/>
+-                                <menu key="submenu" title="Speech" id="T8L-Zp-XUp">
+-                                    <items>
+-                                        <menuItem title="Start Speaking" id="55k-9p-Hh6">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="startSpeaking:" target="-1" id="mGc-Al-9Bt"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                        <menuItem title="Stop Speaking" id="4mo-VW-30d">
+-                                            <modifierMask key="keyEquivalentModifierMask"/>
+-                                            <connections>
+-                                                <action selector="stopSpeaking:" target="-1" id="qDi-4F-2Hz"/>
+-                                            </connections>
+-                                        </menuItem>
+-                                    </items>
+-                                </menu>
+-                            </menuItem>
+-                        </items>
+-                    </menu>
+-                </menuItem>
+-            </items>
+-        </menu>
+-        <window title="HWMonitor" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="none" frameAutosaveName="PopupWindow" id="3" customClass="OBMenuBarWindow">
+-            <windowStyleMask key="styleMask" titled="YES" closable="YES" nonactivatingPanel="YES"/>
+-            <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" participatesInCycle="YES"/>
+-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+-            <rect key="contentRect" x="1240" y="753" width="222" height="150"/>
+-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+-            <value key="minSize" type="size" width="220" height="19"/>
+-            <view key="contentView" id="4">
+-                <rect key="frame" x="0.0" y="0.0" width="222" height="150"/>
+-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+-                <subviews>
+-                    <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="27" horizontalPageScroll="10" verticalLineScroll="27" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="13" customClass="JLNFadingScrollView">
+-                        <rect key="frame" x="0.0" y="0.0" width="222" height="150"/>
+-                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Ii9-fX-Ldk">
+-                            <rect key="frame" x="0.0" y="0.0" width="222" height="150"/>
+-                            <autoresizingMask key="autoresizingMask"/>
+-                            <subviews>
+-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="27" rowSizeStyle="automatic" viewBased="YES" id="52" customClass="SensorsTableView">
+-                                    <rect key="frame" x="0.0" y="0.0" width="222" height="150"/>
+-                                    <autoresizingMask key="autoresizingMask"/>
+-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+-                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+-                                    <tableColumns>
+-                                        <tableColumn identifier="List" width="222" minWidth="40" maxWidth="1000" id="55">
+-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
+-                                                <font key="font" metaFont="smallSystem"/>
+-                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+-                                                <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
+-                                            </tableHeaderCell>
+-                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="56">
+-                                                <font key="font" metaFont="system"/>
+-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+-                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+-                                            </textFieldCell>
+-                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+-                                            <prototypeCellViews>
+-                                                <tableCellView identifier="Group" id="60" customClass="PopupGroupCell">
+-                                                    <rect key="frame" x="0.0" y="0.0" width="222" height="21"/>
+-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+-                                                    <subviews>
+-                                                        <imageView alphaValue="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="65">
+-                                                            <rect key="frame" x="6" y="1" width="18" height="18"/>
+-                                                            <constraints>
+-                                                                <constraint firstAttribute="height" constant="18" id="Vz2-ay-gGb"/>
+-                                                                <constraint firstAttribute="width" constant="18" id="chr-tt-O1x"/>
+-                                                            </constraints>
+-                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSBonjour" id="71"/>
+-                                                            <connections>
+-                                                                <binding destination="60" name="value" keyPath="objectValue.icon.image" id="EUt-zI-L4C"/>
+-                                                            </connections>
+-                                                        </imageView>
+-                                                        <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gc6-vA-Eep">
+-                                                            <rect key="frame" x="25" y="3" width="178" height="14"/>
+-                                                            <constraints>
+-                                                                <constraint firstAttribute="height" constant="14" id="wNw-GU-Y6E"/>
+-                                                            </constraints>
+-                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" enabled="NO" sendsActionOnEndEditing="YES" alignment="center" title="GROUP" drawsBackground="YES" id="czb-lE-tf5">
+-                                                                <font key="font" size="11" name="Helvetica"/>
+-                                                                <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="60" name="textColor" keyPath="objectValue.engine.configuration.colorTheme.groupTitleColor" id="IbO-eG-AhU"/>
+-                                                                <binding destination="60" name="value" keyPath="objectValue.title" id="Aag-Ka-2uK"/>
+-                                                            </connections>
+-                                                        </textField>
+-                                                    </subviews>
+-                                                    <constraints>
+-                                                        <constraint firstItem="65" firstAttribute="top" secondItem="60" secondAttribute="top" constant="2" id="3ky-N7-NJa"/>
+-                                                        <constraint firstItem="gc6-vA-Eep" firstAttribute="leading" secondItem="65" secondAttribute="trailing" constant="1" id="DtS-hn-j8b"/>
+-                                                        <constraint firstAttribute="trailing" secondItem="gc6-vA-Eep" secondAttribute="trailing" constant="19" id="bSh-fr-Kwd"/>
+-                                                        <constraint firstItem="gc6-vA-Eep" firstAttribute="top" secondItem="60" secondAttribute="top" constant="4" id="cea-Ox-Nkd"/>
+-                                                        <constraint firstItem="65" firstAttribute="leading" secondItem="60" secondAttribute="leading" constant="6" id="hOp-Aa-iFz"/>
+-                                                    </constraints>
+-                                                    <connections>
+-                                                        <outlet property="imageView" destination="65" id="122"/>
+-                                                        <outlet property="textField" destination="gc6-vA-Eep" id="4uI-62-Ro6"/>
+-                                                    </connections>
+-                                                </tableCellView>
+-                                                <tableCellView identifier="Sensor" id="57" customClass="PopupSensorCell">
+-                                                    <rect key="frame" x="0.0" y="21" width="222" height="27"/>
+-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+-                                                    <subviews>
+-                                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="107">
+-                                                            <rect key="frame" x="136" y="11" width="76" height="15"/>
+-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="9999 об/мин" id="110">
+-                                                                <font key="font" size="12" name="Helvetica-Bold"/>
+-                                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="57" name="value" keyPath="objectValue.formattedValue" id="qaV-K4-AWn">
+-                                                                    <dictionary key="options">
+-                                                                        <string key="NSMultipleValuesPlaceholder">-</string>
+-                                                                        <string key="NSNoSelectionPlaceholder">-</string>
+-                                                                        <string key="NSNotApplicablePlaceholder">-</string>
+-                                                                        <string key="NSNullPlaceholder">-</string>
+-                                                                    </dictionary>
+-                                                                </binding>
+-                                                            </connections>
+-                                                        </textField>
+-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="106">
+-                                                            <rect key="frame" x="10" y="0.0" width="202" height="11"/>
+-                                                            <textFieldCell key="cell" controlSize="mini" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Subtitle" id="112">
+-                                                                <font key="font" metaFont="miniSystem"/>
+-                                                                <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="57" name="value" keyPath="objectValue.legend" id="Bjg-5U-fL2">
+-                                                                    <dictionary key="options">
+-                                                                        <string key="NSMultipleValuesPlaceholder">-</string>
+-                                                                        <string key="NSNoSelectionPlaceholder">-</string>
+-                                                                        <string key="NSNotApplicablePlaceholder">-</string>
+-                                                                        <string key="NSNullPlaceholder">-</string>
+-                                                                    </dictionary>
+-                                                                </binding>
+-                                                            </connections>
+-                                                        </textField>
+-                                                        <textField identifier="Name" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="108">
+-                                                            <rect key="frame" x="10" y="11" width="127" height="15"/>
+-                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Sensor" id="109">
+-                                                                <font key="font" size="12" name="Helvetica"/>
+-                                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="57" name="value" keyPath="objectValue.title" id="f47-uc-NDU"/>
+-                                                            </connections>
+-                                                        </textField>
+-                                                    </subviews>
+-                                                    <constraints>
+-                                                        <constraint firstItem="107" firstAttribute="leading" secondItem="108" secondAttribute="trailing" constant="3" id="7Qv-Rj-ggs"/>
+-                                                        <constraint firstItem="106" firstAttribute="trailing" secondItem="107" secondAttribute="trailing" id="FRZ-6Y-qn7"/>
+-                                                        <constraint firstItem="106" firstAttribute="leading" secondItem="108" secondAttribute="leading" id="Osq-6I-ROC"/>
+-                                                        <constraint firstAttribute="trailing" secondItem="107" secondAttribute="trailing" constant="12" id="Q3N-a9-DhG"/>
+-                                                        <constraint firstItem="107" firstAttribute="top" secondItem="57" secondAttribute="top" constant="1" id="cvY-Vv-w62"/>
+-                                                        <constraint firstItem="108" firstAttribute="leading" secondItem="57" secondAttribute="leading" constant="12" id="jZf-oT-CUA"/>
+-                                                        <constraint firstItem="106" firstAttribute="top" secondItem="108" secondAttribute="bottom" id="mha-qJ-ZAY"/>
+-                                                        <constraint firstItem="108" firstAttribute="top" secondItem="57" secondAttribute="top" constant="1" id="sBv-in-Ltx"/>
+-                                                    </constraints>
+-                                                    <connections>
+-                                                        <outlet property="subtitleField" destination="106" id="120"/>
+-                                                        <outlet property="textField" destination="108" id="119"/>
+-                                                        <outlet property="valueField" destination="107" id="118"/>
+-                                                    </connections>
+-                                                </tableCellView>
+-                                                <tableCellView identifier="Drive" id="K10-8U-L2z" customClass="PopupAtaSmartSensorCell">
+-                                                    <rect key="frame" x="0.0" y="48" width="222" height="27"/>
+-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+-                                                    <subviews>
+-                                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSb-uB-rFu">
+-                                                            <rect key="frame" x="136" y="11" width="76" height="15"/>
+-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="9999 об/мин" id="iEW-Ak-HlP">
+-                                                                <font key="font" size="12" name="Helvetica-Bold"/>
+-                                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="K10-8U-L2z" name="value" keyPath="objectValue.formattedValue" id="aRb-nG-R7g">
+-                                                                    <dictionary key="options">
+-                                                                        <string key="NSMultipleValuesPlaceholder">-</string>
+-                                                                        <string key="NSNoSelectionPlaceholder">-</string>
+-                                                                        <string key="NSNotApplicablePlaceholder">-</string>
+-                                                                        <string key="NSNullPlaceholder">-</string>
+-                                                                    </dictionary>
+-                                                                </binding>
+-                                                            </connections>
+-                                                        </textField>
+-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNI-l8-ksn">
+-                                                            <rect key="frame" x="10" y="0.0" width="202" height="11"/>
+-                                                            <textFieldCell key="cell" controlSize="mini" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Subtitle" id="cJS-Gq-JCj">
+-                                                                <font key="font" metaFont="miniSystem"/>
+-                                                                <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="K10-8U-L2z" name="value" keyPath="objectValue.legend" id="ZMg-VR-a1B">
+-                                                                    <dictionary key="options">
+-                                                                        <string key="NSMultipleValuesPlaceholder">-</string>
+-                                                                        <string key="NSNoSelectionPlaceholder">-</string>
+-                                                                        <string key="NSNotApplicablePlaceholder">-</string>
+-                                                                        <string key="NSNullPlaceholder">-</string>
+-                                                                    </dictionary>
+-                                                                </binding>
+-                                                            </connections>
+-                                                        </textField>
+-                                                        <textField identifier="Name" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Th-Wg-ej6">
+-                                                            <rect key="frame" x="10" y="11" width="127" height="15"/>
+-                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Drive" id="t54-V5-8D9">
+-                                                                <font key="font" size="12" name="Helvetica"/>
+-                                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="K10-8U-L2z" name="value" keyPath="objectValue.title" id="jYw-2I-20f"/>
+-                                                            </connections>
+-                                                        </textField>
+-                                                    </subviews>
+-                                                    <constraints>
+-                                                        <constraint firstItem="XNI-l8-ksn" firstAttribute="leading" secondItem="9Th-Wg-ej6" secondAttribute="leading" id="7RL-E6-HqK"/>
+-                                                        <constraint firstItem="GSb-uB-rFu" firstAttribute="top" secondItem="K10-8U-L2z" secondAttribute="top" constant="1" id="Dc2-6P-O58"/>
+-                                                        <constraint firstItem="GSb-uB-rFu" firstAttribute="leading" secondItem="9Th-Wg-ej6" secondAttribute="trailing" constant="3" id="LAU-h7-IZL"/>
+-                                                        <constraint firstItem="9Th-Wg-ej6" firstAttribute="top" secondItem="K10-8U-L2z" secondAttribute="top" constant="1" id="NC1-DS-PXr"/>
+-                                                        <constraint firstItem="XNI-l8-ksn" firstAttribute="trailing" secondItem="GSb-uB-rFu" secondAttribute="trailing" id="NIE-yS-g3p"/>
+-                                                        <constraint firstItem="9Th-Wg-ej6" firstAttribute="leading" secondItem="K10-8U-L2z" secondAttribute="leading" constant="12" id="UmT-to-arN"/>
+-                                                        <constraint firstItem="XNI-l8-ksn" firstAttribute="top" secondItem="9Th-Wg-ej6" secondAttribute="bottom" id="jsa-J4-voe"/>
+-                                                        <constraint firstAttribute="trailing" secondItem="GSb-uB-rFu" secondAttribute="trailing" constant="12" id="kkD-oR-wSa"/>
+-                                                    </constraints>
+-                                                    <connections>
+-                                                        <outlet property="subtitleField" destination="XNI-l8-ksn" id="c8S-NX-Zcl"/>
+-                                                        <outlet property="textField" destination="9Th-Wg-ej6" id="h9M-fh-imh"/>
+-                                                        <outlet property="valueField" destination="GSb-uB-rFu" id="dEK-FJ-oLJ"/>
+-                                                    </connections>
+-                                                </tableCellView>
+-                                                <tableCellView identifier="Fan" id="cnm-wp-39Z" customClass="PopupFanCell">
+-                                                    <rect key="frame" x="0.0" y="75" width="222" height="27"/>
+-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+-                                                    <subviews>
+-                                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgF-OZ-Krc">
+-                                                            <rect key="frame" x="136" y="11" width="76" height="15"/>
+-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="9999 об/мин" id="dcL-XI-fYU">
+-                                                                <font key="font" size="12" name="Helvetica-Bold"/>
+-                                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="cnm-wp-39Z" name="value" keyPath="objectValue.formattedValue" id="SbR-Ll-9o0">
+-                                                                    <dictionary key="options">
+-                                                                        <string key="NSMultipleValuesPlaceholder">-</string>
+-                                                                        <string key="NSNoSelectionPlaceholder">-</string>
+-                                                                        <string key="NSNotApplicablePlaceholder">-</string>
+-                                                                        <string key="NSNullPlaceholder">-</string>
+-                                                                    </dictionary>
+-                                                                </binding>
+-                                                            </connections>
+-                                                        </textField>
+-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khn-Bp-tT2">
+-                                                            <rect key="frame" x="10" y="0.0" width="202" height="11"/>
+-                                                            <textFieldCell key="cell" controlSize="mini" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Subtitle" id="2cM-sq-IgE">
+-                                                                <font key="font" metaFont="miniSystem"/>
+-                                                                <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="cnm-wp-39Z" name="value" keyPath="objectValue.legend" id="N1M-Vg-Mn0">
+-                                                                    <dictionary key="options">
+-                                                                        <string key="NSMultipleValuesPlaceholder">-</string>
+-                                                                        <string key="NSNoSelectionPlaceholder">-</string>
+-                                                                        <string key="NSNotApplicablePlaceholder">-</string>
+-                                                                        <string key="NSNullPlaceholder">-</string>
+-                                                                    </dictionary>
+-                                                                </binding>
+-                                                            </connections>
+-                                                        </textField>
+-                                                        <textField identifier="Name" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLS-rh-4W3">
+-                                                            <rect key="frame" x="10" y="11" width="127" height="15"/>
+-                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Fan" id="AcR-Tg-Kiw">
+-                                                                <font key="font" size="12" name="Helvetica"/>
+-                                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="cnm-wp-39Z" name="value" keyPath="objectValue.title" id="xaJ-bR-sME"/>
+-                                                            </connections>
+-                                                        </textField>
+-                                                    </subviews>
+-                                                    <constraints>
+-                                                        <constraint firstAttribute="trailing" secondItem="dgF-OZ-Krc" secondAttribute="trailing" constant="12" id="6N4-oa-tct"/>
+-                                                        <constraint firstItem="dgF-OZ-Krc" firstAttribute="top" secondItem="cnm-wp-39Z" secondAttribute="top" constant="1" id="8Uy-bl-h3u"/>
+-                                                        <constraint firstItem="khn-Bp-tT2" firstAttribute="trailing" secondItem="dgF-OZ-Krc" secondAttribute="trailing" id="Km4-ic-Qau"/>
+-                                                        <constraint firstItem="khn-Bp-tT2" firstAttribute="top" secondItem="kLS-rh-4W3" secondAttribute="bottom" id="Yek-li-fBi"/>
+-                                                        <constraint firstItem="dgF-OZ-Krc" firstAttribute="leading" secondItem="kLS-rh-4W3" secondAttribute="trailing" constant="3" id="ZvA-se-ryK"/>
+-                                                        <constraint firstItem="kLS-rh-4W3" firstAttribute="leading" secondItem="cnm-wp-39Z" secondAttribute="leading" constant="12" id="bJI-mH-wJL"/>
+-                                                        <constraint firstItem="khn-Bp-tT2" firstAttribute="leading" secondItem="kLS-rh-4W3" secondAttribute="leading" id="kEA-F7-edE"/>
+-                                                        <constraint firstItem="kLS-rh-4W3" firstAttribute="top" secondItem="cnm-wp-39Z" secondAttribute="top" constant="1" id="vwK-JR-uYW"/>
+-                                                    </constraints>
+-                                                    <connections>
+-                                                        <outlet property="subtitleField" destination="khn-Bp-tT2" id="5Tj-AC-7if"/>
+-                                                        <outlet property="textField" destination="kLS-rh-4W3" id="eKj-04-M1z"/>
+-                                                        <outlet property="valueField" destination="dgF-OZ-Krc" id="kTH-rq-vB5"/>
+-                                                    </connections>
+-                                                </tableCellView>
+-                                                <tableCellView identifier="Battery" id="59" customClass="PopupBatteryCell">
+-                                                    <rect key="frame" x="0.0" y="102" width="222" height="27"/>
+-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+-                                                    <subviews>
+-                                                        <textField identifier="Name" horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84">
+-                                                            <rect key="frame" x="10" y="11" width="159" height="15"/>
+-                                                            <constraints>
+-                                                                <constraint firstAttribute="height" constant="15" id="sT3-On-UZP"/>
+-                                                            </constraints>
+-                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Battery" id="88">
+-                                                                <font key="font" size="12" name="Helvetica"/>
+-                                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="59" name="value" keyPath="objectValue.title" id="hTP-jb-fdv"/>
+-                                                            </connections>
+-                                                        </textField>
+-                                                        <imageView translatesAutoresizingMaskIntoConstraints="NO" id="83">
+-                                                            <rect key="frame" x="206" y="12" width="6" height="13"/>
+-                                                            <constraints>
+-                                                                <constraint firstAttribute="height" constant="13" id="92T-mz-j8J"/>
+-                                                                <constraint firstAttribute="width" constant="6" id="Kzp-XP-rHB"/>
+-                                                            </constraints>
+-                                                            <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSInfo" id="89"/>
+-                                                        </imageView>
+-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82">
+-                                                            <rect key="frame" x="10" y="0.0" width="202" height="11"/>
+-                                                            <textFieldCell key="cell" controlSize="mini" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Subtitle" id="92">
+-                                                                <font key="font" metaFont="miniSystem"/>
+-                                                                <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="59" name="value" keyPath="objectValue.legend" id="hZy-ZG-hbQ">
+-                                                                    <dictionary key="options">
+-                                                                        <string key="NSMultipleValuesPlaceholder">-</string>
+-                                                                        <string key="NSNoSelectionPlaceholder">-</string>
+-                                                                        <string key="NSNotApplicablePlaceholder">-</string>
+-                                                                        <string key="NSNullPlaceholder">-</string>
+-                                                                    </dictionary>
+-                                                                </binding>
+-                                                            </connections>
+-                                                        </textField>
+-                                                        <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85">
+-                                                            <rect key="frame" x="168" y="11" width="35" height="15"/>
+-                                                            <constraints>
+-                                                                <constraint firstAttribute="height" constant="15" id="UvQ-8P-bQB"/>
+-                                                            </constraints>
+-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="100%" id="86">
+-                                                                <font key="font" size="12" name="Helvetica-Bold"/>
+-                                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+-                                                            </textFieldCell>
+-                                                            <connections>
+-                                                                <binding destination="59" name="value" keyPath="objectValue.formattedValue" id="zZN-ld-FG5">
+-                                                                    <dictionary key="options">
+-                                                                        <string key="NSMultipleValuesPlaceholder">-</string>
+-                                                                        <string key="NSNoSelectionPlaceholder">-</string>
+-                                                                        <string key="NSNotApplicablePlaceholder">-</string>
+-                                                                        <string key="NSNullPlaceholder">-</string>
+-                                                                    </dictionary>
+-                                                                </binding>
+-                                                            </connections>
+-                                                        </textField>
+-                                                    </subviews>
+-                                                    <constraints>
+-                                                        <constraint firstAttribute="trailing" secondItem="83" secondAttribute="trailing" constant="10" id="5i2-3M-3iL"/>
+-                                                        <constraint firstItem="84" firstAttribute="top" secondItem="59" secondAttribute="top" constant="1" id="7FW-mS-wbp"/>
+-                                                        <constraint firstItem="82" firstAttribute="leading" secondItem="59" secondAttribute="leading" constant="12" id="Du0-ae-mbE"/>
+-                                                        <constraint firstItem="84" firstAttribute="leading" secondItem="59" secondAttribute="leading" constant="12" id="QBf-TX-59l"/>
+-                                                        <constraint firstItem="82" firstAttribute="top" secondItem="85" secondAttribute="bottom" id="ViJ-uD-gsN"/>
+-                                                        <constraint firstAttribute="trailing" secondItem="82" secondAttribute="trailing" constant="12" id="lco-gY-AWS"/>
+-                                                        <constraint firstItem="83" firstAttribute="top" secondItem="59" secondAttribute="top" constant="2" id="tmc-fa-QZ1"/>
+-                                                        <constraint firstItem="83" firstAttribute="leading" secondItem="85" secondAttribute="trailing" constant="5" id="v9z-YU-Kv3"/>
+-                                                        <constraint firstItem="85" firstAttribute="leading" secondItem="84" secondAttribute="trailing" constant="3" id="yES-n9-z5G"/>
+-                                                        <constraint firstItem="85" firstAttribute="top" secondItem="59" secondAttribute="top" constant="1" id="yLY-aV-XXD"/>
+-                                                    </constraints>
+-                                                    <connections>
+-                                                        <outlet property="imageView" destination="83" id="sfH-Ol-lig"/>
+-                                                        <outlet property="subtitleField" destination="82" id="116"/>
+-                                                        <outlet property="textField" destination="84" id="114"/>
+-                                                        <outlet property="valueField" destination="85" id="115"/>
+-                                                    </connections>
+-                                                </tableCellView>
+-                                                <tableCellView identifier="Dummy" id="58" customClass="PopupSensorCell">
+-                                                    <rect key="frame" x="0.0" y="129" width="222" height="17"/>
+-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+-                                                    <subviews>
+-                                                        <textField identifier="Name" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93">
+-                                                            <rect key="frame" x="0.0" y="1" width="223" height="15"/>
+-                                                            <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="No sensors found..." id="97">
+-                                                                <font key="font" size="12" name="Helvetica"/>
+-                                                                <color key="textColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
+-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+-                                                            </textFieldCell>
+-                                                        </textField>
+-                                                    </subviews>
+-                                                    <constraints>
+-                                                        <constraint firstItem="93" firstAttribute="leading" secondItem="58" secondAttribute="leading" constant="2" id="Euu-L1-LoI"/>
+-                                                        <constraint firstItem="93" firstAttribute="centerX" secondItem="58" secondAttribute="centerX" id="Ktp-M0-0XY"/>
+-                                                        <constraint firstItem="93" firstAttribute="centerY" secondItem="58" secondAttribute="centerY" id="cq6-Ih-auD"/>
+-                                                    </constraints>
+-                                                    <connections>
+-                                                        <outlet property="textField" destination="93" id="113"/>
+-                                                    </connections>
+-                                                </tableCellView>
+-                                            </prototypeCellViews>
+-                                        </tableColumn>
+-                                    </tableColumns>
+-                                    <connections>
+-                                        <outlet property="dataSource" destination="-2" id="127"/>
+-                                        <outlet property="delegate" destination="-2" id="128"/>
+-                                    </connections>
+-                                </tableView>
+-                            </subviews>
+-                        </clipView>
+-                        <constraints>
+-                            <constraint firstAttribute="width" priority="730" constant="222" id="Tc6-dF-SAK"/>
+-                            <constraint firstAttribute="height" constant="150" id="YnQ-Ep-f64"/>
+-                        </constraints>
+-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="mini" horizontal="YES" id="53" customClass="RFOverlayScroller">
+-                            <rect key="frame" x="-100" y="-100" width="211" height="11"/>
+-                            <autoresizingMask key="autoresizingMask"/>
+-                        </scroller>
+-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" arrowsPosition="none" controlSize="mini" horizontal="NO" id="54" customClass="RFOverlayScroller">
+-                            <rect key="frame" x="-100" y="-100" width="11" height="301"/>
+-                            <autoresizingMask key="autoresizingMask"/>
+-                        </scroller>
+-                        <userDefinedRuntimeAttributes>
+-                            <userDefinedRuntimeAttribute type="number" keyPath="fadeHeight">
+-                                <integer key="value" value="30"/>
+-                            </userDefinedRuntimeAttribute>
+-                        </userDefinedRuntimeAttributes>
+-                    </scrollView>
+-                </subviews>
+-                <constraints>
+-                    <constraint firstAttribute="trailing" secondItem="13" secondAttribute="trailing" id="KXu-CH-g6w"/>
+-                    <constraint firstAttribute="bottom" secondItem="13" secondAttribute="bottom" id="UnD-xQ-nbS"/>
+-                    <constraint firstItem="13" firstAttribute="top" secondItem="4" secondAttribute="top" id="fey-af-iUR"/>
+-                    <constraint firstItem="13" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="pzF-fk-7pY"/>
+-                </constraints>
+-            </view>
+-            <connections>
+-                <outlet property="delegate" destination="-2" id="124"/>
+-            </connections>
+-        </window>
+-        <customView id="14" userLabel="Toolbar View">
+-            <rect key="frame" x="0.0" y="0.0" width="224" height="34"/>
+-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+-            <subviews>
+-                <button toolTip="Hide Window" translatesAutoresizingMaskIntoConstraints="NO" id="1138" userLabel="Hide Popup Button" customClass="FadingButton">
+-                    <rect key="frame" x="10" y="10" width="15" height="15"/>
+-                    <constraints>
+-                        <constraint firstAttribute="width" constant="15" id="OYB-vc-kF1"/>
+-                        <constraint firstAttribute="height" constant="15" id="f5k-id-7Qg"/>
+-                    </constraints>
+-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="37-circle-x" imagePosition="only" alignment="left" alternateImage="37-circle-x" imageScaling="proportionallyUpOrDown" inset="2" id="1139">
+-                        <behavior key="behavior" lightByContents="YES"/>
+-                        <font key="font" metaFont="system"/>
+-                        <string key="keyEquivalent">g</string>
+-                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+-                    </buttonCell>
+-                    <connections>
+-                        <action selector="orderOut:" target="3" id="1151"/>
+-                        <binding destination="-2" name="enabled" keyPath="self.window.attachedToMenuBar" id="2507">
+-                            <dictionary key="options">
+-                                <integer key="NSMultipleValuesPlaceholder" value="0"/>
+-                                <integer key="NSNoSelectionPlaceholder" value="0"/>
+-                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+-                                <integer key="NSNullPlaceholder" value="0"/>
+-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+-                            </dictionary>
+-                        </binding>
+-                        <binding destination="-2" name="hidden" keyPath="self.window.attachedToMenuBar" previousBinding="2507" id="2551">
+-                            <dictionary key="options">
+-                                <integer key="NSMultipleValuesPlaceholder" value="1"/>
+-                                <integer key="NSNoSelectionPlaceholder" value="1"/>
+-                                <integer key="NSNotApplicablePlaceholder" value="1"/>
+-                                <integer key="NSNullPlaceholder" value="1"/>
+-                            </dictionary>
+-                        </binding>
+-                    </connections>
+-                </button>
+-                <button toolTip="Preferences" translatesAutoresizingMaskIntoConstraints="NO" id="25" userLabel="Preferences Button" customClass="FadingButton">
+-                    <rect key="frame" x="199" y="10" width="15" height="15"/>
+-                    <constraints>
+-                        <constraint firstAttribute="width" constant="15" id="2zO-2X-BI1"/>
+-                        <constraint firstAttribute="height" constant="15" id="rzV-nZ-xdI"/>
+-                    </constraints>
+-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="19-gear" imagePosition="only" alignment="left" alternateImage="19-gear" continuous="YES" imageScaling="proportionallyUpOrDown" inset="2" id="45">
+-                        <behavior key="behavior" lightByContents="YES"/>
+-                        <font key="font" metaFont="system"/>
+-                        <string key="keyEquivalent">p</string>
+-                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+-                    </buttonCell>
+-                    <connections>
+-                        <outlet property="menu" destination="1556" id="OC9-6M-tk1"/>
+-                    </connections>
+-                </button>
+-                <button toolTip="History Graphs" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="26" userLabel="Graphs Button" customClass="FadingButton">
+-                    <rect key="frame" x="179" y="10" width="15" height="15"/>
+-                    <constraints>
+-                        <constraint firstAttribute="width" constant="15" id="8lk-go-VNb"/>
+-                        <constraint firstAttribute="height" constant="15" id="c9n-1Z-TPf"/>
+-                    </constraints>
+-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="16-line-chart" imagePosition="only" alignment="left" alternateImage="16-line-chart" imageScaling="proportionallyUpOrDown" inset="2" id="43">
+-                        <behavior key="behavior" lightByContents="YES"/>
+-                        <font key="font" metaFont="system"/>
+-                        <string key="keyEquivalent">g</string>
+-                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+-                    </buttonCell>
+-                    <connections>
+-                        <action selector="showGraphsWindow:" target="-2" id="131"/>
+-                    </connections>
+-                </button>
+-            </subviews>
+-            <constraints>
+-                <constraint firstItem="1138" firstAttribute="leading" secondItem="14" secondAttribute="leading" constant="10" id="OOY-Zc-l8q"/>
+-                <constraint firstAttribute="trailing" secondItem="25" secondAttribute="trailing" constant="10" id="Yw9-jC-RN7"/>
+-                <constraint firstItem="25" firstAttribute="leading" secondItem="26" secondAttribute="trailing" constant="5" id="dtN-Hz-fEO"/>
+-                <constraint firstItem="1138" firstAttribute="centerY" secondItem="14" secondAttribute="centerY" id="oP7-kE-BtZ"/>
+-                <constraint firstItem="25" firstAttribute="bottom" secondItem="1138" secondAttribute="bottom" id="vVI-rG-d83"/>
+-                <constraint firstItem="26" firstAttribute="bottom" secondItem="25" secondAttribute="bottom" id="xwB-Wq-okv"/>
+-            </constraints>
+-        </customView>
+-        <userDefaultsController representsSharedInstance="YES" id="1200"/>
+-        <viewController id="7L4-Fk-LUD" userLabel="Popover View Controller">
+-            <connections>
+-                <outlet property="view" destination="4" id="Mc0-rA-ccE"/>
+-            </connections>
+-        </viewController>
+-        <popover id="TYV-GK-w0B">
+-            <connections>
+-                <outlet property="contentViewController" destination="7L4-Fk-LUD" id="h5U-H4-Xru"/>
+-                <outlet property="delegate" destination="-2" id="ec4-b6-k93"/>
+-            </connections>
+-        </popover>
+-    </objects>
+-    <resources>
+-        <image name="16-line-chart" width="15" height="15"/>
+-        <image name="19-gear" width="15" height="15"/>
+-        <image name="37-circle-x" width="15" height="15"/>
+-        <image name="NSBonjour" width="32" height="32"/>
+-        <image name="NSInfo" width="32" height="32"/>
+-    </resources>
+-</document>

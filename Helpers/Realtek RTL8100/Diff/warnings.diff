@@ -1,0 +1,15 @@
+diff --git a/RealtekRTL8100/RealtekRTL8100.h b/RealtekRTL8100/RealtekRTL8100.h
+index f38bf64..ebccb05 100644
+--- a/RealtekRTL8100/RealtekRTL8100.h
++++ b/RealtekRTL8100/RealtekRTL8100.h
+@@ -20,6 +20,10 @@
+ 
+ #include "RealtekRTL8100Linux-103002.h"
+ 
++#if __clang_major__ >= 4
++    #pragma clang diagnostic ignored "-Winconsistent-missing-override"
++#endif
++
+ #ifdef DEBUG
+ #define DebugLog(args...) IOLog(args)
+ #else
