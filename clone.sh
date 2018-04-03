@@ -40,9 +40,10 @@ function git_clone()
     if [ -d "$SOURCE_PATH/$2" ]; then
         if [ "$(ls "$SOURCE_PATH/$2")" == "" ]; then
             rm -rf "$SOURCE_PATH/$2"
+        else
+            echo "Already cloned."
+            return "0"
         fi
-        echo "Already cloned."
-        return "0"
     fi
 
     echo -e "\033[0;32m########################\033[0m"
@@ -85,9 +86,10 @@ function svn_co()
     if [ -d "$SOURCE_PATH/$2" ]; then
         if [ "$(ls "$SOURCE_PATH/$2")" == "" ]; then
             rm -rf "$SOURCE_PATH/$2"
+        else
+            echo "Already cloned."
+            return "0"
         fi
-        echo "Already cloned."
-        return "0"
     fi
 
     echo -e "\033[0;32m########################\033[0m"
