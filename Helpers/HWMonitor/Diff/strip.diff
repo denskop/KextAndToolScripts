@@ -1,0 +1,13 @@
+diff --git a/HWMonitor.xcodeproj/project.pbxproj b/HWMonitor.xcodeproj/project.pbxproj
+index 1697cb51..6c41c18c 100644
+--- a/HWMonitor.xcodeproj/project.pbxproj
++++ b/HWMonitor.xcodeproj/project.pbxproj
+@@ -1642,7 +1642,7 @@
+ 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+ 				CODE_SIGN_IDENTITY = "";
+ 				CONFIGURATION_BUILD_DIR = Binaries;
+-				COPY_PHASE_STRIP = YES;
++				COPY_PHASE_STRIP = NO;
+ 				DEBUG_INFORMATION_FORMAT = dwarf;
+ 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+ 				GCC_C_LANGUAGE_STANDARD = gnu99;

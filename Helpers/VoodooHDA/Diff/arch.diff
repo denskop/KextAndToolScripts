@@ -1,0 +1,26 @@
+Index: VHDAPrefPane/VoodooHDA/VoodooHDA.xcodeproj/project.pbxproj
+===================================================================
+--- VHDAPrefPane/VoodooHDA/VoodooHDA.xcodeproj/project.pbxproj	(revision 149)
++++ VHDAPrefPane/VoodooHDA/VoodooHDA.xcodeproj/project.pbxproj	(working copy)
+@@ -222,7 +222,7 @@
+ 		1DBD214A08BA80EA00186707 /* Release */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
++				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+ 				CLANG_ENABLE_OBJC_ARC = YES;
+ 				COMBINE_HIDPI_IMAGES = YES;
+ 				INFOPLIST_FILE = Info.plist;
+Index: VoodooHdaSettingsLoader/src/VoodooHdaSettingsLoader.xcodeproj/project.pbxproj
+===================================================================
+--- VoodooHdaSettingsLoader/src/VoodooHdaSettingsLoader.xcodeproj/project.pbxproj	(revision 149)
++++ VoodooHdaSettingsLoader/src/VoodooHdaSettingsLoader.xcodeproj/project.pbxproj	(working copy)
+@@ -194,7 +194,7 @@
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+ 				ALWAYS_SEARCH_USER_PATHS = NO;
+-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
++				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+ 				CURRENT_PROJECT_VERSION = 1.2;
+ 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+ 				DEPLOYMENT_POSTPROCESSING = YES;

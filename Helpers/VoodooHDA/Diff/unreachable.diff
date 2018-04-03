@@ -1,0 +1,30 @@
+Index: tranc/Parser.cpp
+===================================================================
+--- tranc/Parser.cpp	(revision 149)
++++ tranc/Parser.cpp	(working copy)
+@@ -8,6 +8,10 @@
+ #include "Common.h"
+ #include "Verbs.h"
+ 
++#if __clang_major__ >= 4
++    #pragma clang diagnostic ignored "-Wunreachable-code"
++#endif
++
+ #ifdef TIGER
+ #include "TigerAdditionals.h"
+ #endif
+Index: tranc/VoodooHDADevice.cpp
+===================================================================
+--- tranc/VoodooHDADevice.cpp	(revision 149)
++++ tranc/VoodooHDADevice.cpp	(working copy)
+@@ -17,6 +17,10 @@
+ 
+ #include <kern/locks.h>
+ 
++#if __clang_major__ >= 4
++    #pragma clang diagnostic ignored "-Wunreachable-code"
++#endif
++
+ #ifdef TIGER
+ #include "TigerAdditionals.h"
+ #endif
