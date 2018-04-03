@@ -184,6 +184,11 @@ function qt_build()
         return "1"
     fi
 
+    # try to patch
+    if [ "$build_cmd" != "clean" ]; then
+        patch "$2"
+    fi
+
     path=$(dirname "$SOURCE_PATH/$1}")
     name=$(basename "$1")
     pushd "$path" >/dev/null
