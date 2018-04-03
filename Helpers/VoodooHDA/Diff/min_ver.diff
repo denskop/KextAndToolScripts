@@ -1,0 +1,13 @@
+Index: VoodooHdaSettingsLoader/src/VoodooHdaSettingsLoader/VoodooHdaSettingsLoader-Info.plist
+===================================================================
+--- VoodooHdaSettingsLoader/src/VoodooHdaSettingsLoader/VoodooHdaSettingsLoader-Info.plist	(revision 149)
++++ VoodooHdaSettingsLoader/src/VoodooHdaSettingsLoader/VoodooHdaSettingsLoader-Info.plist	(working copy)
+@@ -23,7 +23,7 @@
+ 	<key>CFBundleVersion</key>
+ 	<string>${DYLIB_CURRENT_VERSION}</string>
+ 	<key>LSMinimumSystemVersion</key>
+-	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
++	<string>10.4</string>
+ 	<key>NSHumanReadableCopyright</key>
+ 	<string>Copyright © 2011-2014 VoodooHDA. All rights reserved.</string>
+ 	<key>NSMainNibFile</key>
