@@ -19,7 +19,7 @@
     ./collect.sh
  
 ## Known issues
-1. VoodooHDA prefpane build fails<br>
+~~1. VoodooHDA prefpane build fails~~<br>
 ~~2. NightShiftUnlocker build fails with Xcode 9~~
  
 ## List of supported kexts and tools
