@@ -579,8 +579,8 @@ xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "synapticsconfigload" Rele
 print_group "slice"
 check_in_blacklist "VoodooHDA"
 if [ "$?" != "1" ]; then
-    xcode_build "VoodooHDA/tranc/VoodooHDA.xcodeproj" "VoodooHDA" Release force
     xcode_build "VoodooHDA/VHDAPrefPane/VoodooHDA/VoodooHDA.xcodeproj" "VoodooHDA" Release force
+    xcode_build "VoodooHDA/tranc/VoodooHDA.xcodeproj" "VoodooHDA" Release force
     xcode_build "VoodooHDA/VoodooHdaSettingsLoader/src/VoodooHdaSettingsLoader.xcodeproj" "VoodooHdaSettingsLoader" Release force
 fi
 
