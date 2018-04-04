@@ -17,25 +17,3 @@ index 65cdd370..c89f6d0a 100644
  #define CSTR(ptr) (((char *)(ctx->bios))+(ptr))
  
  static int atom_iio_len[] = { 1, 2, 3, 3, 3, 3, 4, 4, 4, 3 };
-diff --git a/HWMonitor.xcodeproj/project.pbxproj b/HWMonitor.xcodeproj/project.pbxproj
-index 1697cb51..c08c9d43 100644
---- a/HWMonitor.xcodeproj/project.pbxproj
-+++ b/HWMonitor.xcodeproj/project.pbxproj
-@@ -1577,7 +1577,7 @@
- 				CLANG_WARN_BOOL_CONVERSION = YES;
- 				CLANG_WARN_CONSTANT_CONVERSION = YES;
- 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
--				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
- 				CLANG_WARN_EMPTY_BODY = YES;
- 				CLANG_WARN_ENUM_CONVERSION = YES;
- 				CLANG_WARN_INFINITE_RECURSION = YES;
-@@ -1630,7 +1630,7 @@
- 				CLANG_WARN_BOOL_CONVERSION = YES;
- 				CLANG_WARN_CONSTANT_CONVERSION = YES;
- 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
--				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
- 				CLANG_WARN_EMPTY_BODY = YES;
- 				CLANG_WARN_ENUM_CONVERSION = YES;
- 				CLANG_WARN_INFINITE_RECURSION = YES;

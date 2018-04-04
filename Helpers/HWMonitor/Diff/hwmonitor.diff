@@ -1,5 +1,5 @@
 diff --git a/HWMonitor.xcodeproj/project.pbxproj b/HWMonitor.xcodeproj/project.pbxproj
-index 1697cb51..5289fb97 100644
+index 1697cb51..4a7a731b 100644
 --- a/HWMonitor.xcodeproj/project.pbxproj
 +++ b/HWMonitor.xcodeproj/project.pbxproj
 @@ -31,7 +31,6 @@
@@ -61,6 +61,55 @@ index 1697cb51..5289fb97 100644
  				7E9A17CD17E4529C003DB018 /* PopupAtaSmartSensorCell.m in Sources */,
  				7E8B050C1B4AEE6500861A5E /* PopoverWindowFrameView.m in Sources */,
  				7E9A17D017E45938003DB018 /* NSPopover+Message.m in Sources */,
+@@ -1577,7 +1569,7 @@
+ 				CLANG_WARN_BOOL_CONVERSION = YES;
+ 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+ 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
++				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+ 				CLANG_WARN_EMPTY_BODY = YES;
+ 				CLANG_WARN_ENUM_CONVERSION = YES;
+ 				CLANG_WARN_INFINITE_RECURSION = YES;
+@@ -1630,7 +1622,7 @@
+ 				CLANG_WARN_BOOL_CONVERSION = YES;
+ 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+ 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
++				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+ 				CLANG_WARN_EMPTY_BODY = YES;
+ 				CLANG_WARN_ENUM_CONVERSION = YES;
+ 				CLANG_WARN_INFINITE_RECURSION = YES;
+@@ -1642,7 +1634,7 @@
+ 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+ 				CODE_SIGN_IDENTITY = "";
+ 				CONFIGURATION_BUILD_DIR = Binaries;
+-				COPY_PHASE_STRIP = YES;
++				COPY_PHASE_STRIP = NO;
+ 				DEBUG_INFORMATION_FORMAT = dwarf;
+ 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+ 				GCC_C_LANGUAGE_STANDARD = gnu99;
+@@ -1668,10 +1660,8 @@
+ 				COMBINE_HIDPI_IMAGES = YES;
+ 				FRAMEWORK_SEARCH_PATHS = (
+ 					"$(SOURCE_ROOT)",
+-					"$(SOURCE_ROOT)/Sparkle/Binaries/",
+ 					"$(SOURCE_ROOT)/HWMonitor",
+ 					"$(PROJECT_DIR)",
+-					"$(PROJECT_DIR)/Sparkle/Binaries",
+ 				);
+ 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+ 				GCC_PREFIX_HEADER = "HWMonitor/HWMonitor-Prefix.pch";
+@@ -1691,10 +1681,8 @@
+ 				COMBINE_HIDPI_IMAGES = YES;
+ 				FRAMEWORK_SEARCH_PATHS = (
+ 					"$(SOURCE_ROOT)",
+-					"$(SOURCE_ROOT)/Sparkle/Binaries/",
+ 					"$(SOURCE_ROOT)/HWMonitor",
+ 					"$(PROJECT_DIR)",
+-					"$(PROJECT_DIR)/Sparkle/Binaries",
+ 				);
+ 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+ 				GCC_PREFIX_HEADER = "HWMonitor/HWMonitor-Prefix.pch";
 diff --git a/HWMonitor/AppController.h b/HWMonitor/AppController.h
 index 49705f77..3fa5755b 100644
 --- a/HWMonitor/AppController.h
