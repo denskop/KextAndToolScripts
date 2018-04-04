@@ -1,8 +1,18 @@
 diff --git a/NightShiftUnlocker/kern_start.cpp b/NightShiftUnlocker/kern_start.cpp
-index 87db307..aec69e3 100644
+index 87db307..e8b9ca2 100644
 --- a/NightShiftUnlocker/kern_start.cpp
 +++ b/NightShiftUnlocker/kern_start.cpp
-@@ -195,7 +195,7 @@ static void generatePatches(void* unused, KernelPatcher &patcher)
+@@ -12,6 +12,9 @@
+ #include <Headers/kern_mach.hpp>
+ #include <sys/vnode.h>
+ 
++#undef memcpy
++#define memcpy lmemcpy
++
+ /**
+     Read bytes from the given path
+  
+@@ -195,7 +198,7 @@ static void generatePatches(void* unused, KernelPatcher &patcher)
          return;
      }
      
@@ -11,7 +21,7 @@ index 87db307..aec69e3 100644
      
      size_t length = numBytesBufferAA;
      
-@@ -203,7 +203,7 @@ static void generatePatches(void* unused, KernelPatcher &patcher)
+@@ -203,7 +206,7 @@ static void generatePatches(void* unused, KernelPatcher &patcher)
      
      if (buffer != NULL)
      {
