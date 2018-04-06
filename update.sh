@@ -46,6 +46,12 @@ function git_pull()
     else
         echo "$result"
     fi
+
+    if [ ! -z "$2" ]; then
+        git -C "$SOURCE_PATH/$1" reset --hard head
+        result="$(git -C "$SOURCE_PATH/$1" checkout "$2" 2>&1 >/dev/null)"
+        #echo "$result"
+    fi
 }
 
 # svn_update
@@ -258,11 +264,11 @@ git_pull "csrstat"
 git_pull "ssdtPRGen"
 
 print_group "uefi"
-#git_pull edk2                                          #TianoCore
-#svn_update edk2
-svn_update "edk2/Clover"                                #CloverTeam
-git_pull "edk2/AptioFixPkg"                             #vit9696
+git_pull "edk2" "0c9f2cb10b7ddec56a3440e77219fd3ab1725e5c"  #TianoCore
+#svn_update "edk2"
+svn_update "edk2/Clover"                                    #CloverTeam
+git_pull "edk2/AptioFixPkg"                                 #vit9696
 # UEFI useful packages
-git_pull "edk2/CupertinoModulePkg"                      #CupertinoNet
-git_pull "edk2/EfiMiscPkg"                              #CupertinoNet
-git_pull "edk2/EfiPkg"                                  #CupertinoNet
+git_pull "edk2/CupertinoModulePkg"                          #CupertinoNet
+git_pull "edk2/EfiMiscPkg"                                  #CupertinoNet
+git_pull "edk2/EfiPkg"                                      #CupertinoNet
