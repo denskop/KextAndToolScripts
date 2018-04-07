@@ -471,14 +471,6 @@ fi
 macos_ver=${1-:$(sw_vers -productVersion)}
 minor_ver=$(echo "$macos_ver" | awk -F. '{ print $2; }')
 
-print_group "acpica"
-make_build acpica "ACPICA"
-if [ "$?" != "1" ]; then
-    mkdir -p "$SOURCE_PATH/MaciASL/build/Release/MaciASL.app/Contents/MacOS"
-    cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl4"
-    cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl61"
-fi
-
 # Patch
 # args: <project> optional: <folder>
 function patch()
@@ -518,6 +510,14 @@ function patch()
     done
     return "1"
 }
+
+print_group "acpica"
+make_build acpica "ACPICA"
+if [ "$?" != "1" ]; then
+    mkdir -p "$SOURCE_PATH/MaciASL/build/Release/MaciASL.app/Contents/MacOS"
+    cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl4"
+    cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl61"
+fi
 
 print_group "denskop"
 qt_build "Universal IFR Extractor/Qt/Universal_IFR_Extractor.pro" "Universal IFR Extractor"
@@ -624,12 +624,40 @@ print_group "vulgo"
 xcode_build "bootoption/bootoption.xcodeproj" "bootoption" Release
 
 print_group "alexandred"
+#
+check_in_blacklist "VoodooGPIO"
+check="$?"
+if [ "$build_cmd" != "clean" ] && [ "$check" != "1" ]; then
+    rm -rf "$SOURCE_PATH/VoodooGPIO" >/dev/null 2>&1
+    ln -s "$SOURCE_PATH/VoodooI2C/Dependencies/VoodooGPIO" "$SOURCE_PATH/VoodooGPIO" >/dev/null 2>&1
+fi
 xcode_build "VoodooI2C/Dependencies/VoodooGPIO/VoodooGPIO.xcodeproj" "VoodooGPIO" Release plugin force
+
 xcode_build "VoodooI2C/Dependencies/VoodooI2CServices/VoodooI2CServices.xcodeproj" "VoodooI2CServices" Release plugin force
 #
+check_in_blacklist "VoodooI2CUPDDEngine"
+check="$?"
+if [ "$build_cmd" != "clean" ] && [ "$check" != "1" ]; then
+    rm -rf "$SOURCE_PATH/VoodooI2CUPDDEngine" >/dev/null 2>&1
+    ln -s "$SOURCE_PATH/VoodooI2C/VoodooI2C Satellites/VoodooI2CUPDDEngine" "$SOURCE_PATH/VoodooI2CUPDDEngine" >/dev/null 2>&1
+fi
 xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CUPDDEngine/VoodooI2CUPDDEngine.xcodeproj" "VoodooI2CUPDDEngine" Release plugin force
 xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CELAN/VoodooI2CELAN.xcodeproj" "VoodooI2CELAN" Release plugin force
+#
+check_in_blacklist "VoodooI2CHID"
+check="$?"
+if [ "$build_cmd" != "clean" ] && [ "$check" != "1" ]; then
+    rm -rf "$SOURCE_PATH/VoodooI2CHID" >/dev/null 2>&1
+    ln -s "$SOURCE_PATH/VoodooI2C/VoodooI2C Satellites/VoodooI2CHID" "$SOURCE_PATH/VoodooI2CHID" >/dev/null 2>&1
+fi
 xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CHID/VoodooI2CHID.xcodeproj" "VoodooI2CHID" Release plugin force
+#
+check_in_blacklist "VoodooI2CSynaptics"
+check="$?"
+if [ "$build_cmd" != "clean" ] && [ "$check" != "1" ]; then
+    rm -rf "$SOURCE_PATH/VoodooI2CSynaptics" >/dev/null 2>&1
+    ln -s "$SOURCE_PATH/VoodooI2C/VoodooI2C Satellites/VoodooI2CSynaptics" "$SOURCE_PATH/VoodooI2CSynaptics" >/dev/null 2>&1
+fi
 xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CSynaptics/VoodooI2CSynaptics.xcodeproj" "VoodooI2CSynaptics" Release plugin force
 #
 # Copy kexts
