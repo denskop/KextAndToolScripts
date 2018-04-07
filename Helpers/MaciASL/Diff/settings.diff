@@ -1,5 +1,5 @@
 diff --git a/MaciASL.xcodeproj/project.pbxproj b/MaciASL.xcodeproj/project.pbxproj
-index 9843d8a..02f645a 100644
+index 9843d8a..74840cc 100644
 --- a/MaciASL.xcodeproj/project.pbxproj
 +++ b/MaciASL.xcodeproj/project.pbxproj
 @@ -564,14 +564,33 @@
@@ -36,7 +36,7 @@ index 9843d8a..02f645a 100644
  				GCC_OPTIMIZATION_LEVEL = 0;
  				GCC_PREPROCESSOR_DEFINITIONS = (
  					"DEBUG=1",
-@@ -580,11 +599,13 @@
+@@ -580,11 +599,14 @@
  				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
  				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
  				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -47,10 +47,11 @@ index 9843d8a..02f645a 100644
  				MACOSX_DEPLOYMENT_TARGET = 10.7;
  				ONLY_ACTIVE_ARCH = YES;
  				SDKROOT = macosx10.8;
++				STRIP_STYLE = debugging;
  			};
  			name = Debug;
  		};
-@@ -595,21 +616,40 @@
+@@ -595,21 +617,41 @@
  				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
  				CLANG_CXX_LIBRARY = "libc++";
  				CLANG_ENABLE_OBJC_ARC = YES;
@@ -88,6 +89,7 @@ index 9843d8a..02f645a 100644
  				GCC_WARN_UNUSED_VARIABLE = YES;
  				MACOSX_DEPLOYMENT_TARGET = 10.7;
  				SDKROOT = macosx10.8;
++				STRIP_STYLE = "non-global";
  			};
  			name = Release;
  		};
