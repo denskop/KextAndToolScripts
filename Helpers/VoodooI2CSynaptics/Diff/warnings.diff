@@ -1,0 +1,62 @@
+diff --git a/VoodooI2CSynaptics/VoodooI2CSynapticsDevice.cpp b/VoodooI2CSynaptics/VoodooI2CSynapticsDevice.cpp
+index 4e80ac7..73a7467 100644
+--- a/VoodooI2CSynaptics/VoodooI2CSynapticsDevice.cpp
++++ b/VoodooI2CSynaptics/VoodooI2CSynapticsDevice.cpp
+@@ -361,7 +361,7 @@ static unsigned long rmi_gen_mask(unsigned irq_base, unsigned irq_count)
+     return GENMASK(irq_count + irq_base - 1, irq_base);
+ }
+ 
+-void VoodooI2CSynapticsDevice::rmi_register_function(struct pdt_entry *pdt_entry, int _page, unsigned interrupt_count)
++void VoodooI2CSynapticsDevice::rmi_register_function(pdt_entry *pdt_entry, int _page, unsigned interrupt_count)
+ {
+     struct rmi_function *f = NULL;
+     uint16_t page_base = page << 8;
+@@ -399,7 +399,7 @@ void VoodooI2CSynapticsDevice::rmi_register_function(struct pdt_entry *pdt_entry
+ 
+ int VoodooI2CSynapticsDevice::rmi_scan_pdt()
+ {
+-    struct pdt_entry entry;
++    pdt_entry entry;
+     int _page;
+     bool page_has_function;
+     int i;
+@@ -843,7 +843,7 @@ int VoodooI2CSynapticsDevice::rmi_populate_f30()
+ 
+ int VoodooI2CSynapticsDevice::rmi_set_mode(uint8_t mode) {
+     uint8_t command[] = { 0x22, 0x00, 0x3f, 0x03, 0x0f, 0x23, 0x00, 0x04, 0x00, RMI_SET_RMI_MODE_REPORT_ID, mode }; //magic bytes from Linux
+-    IOReturn ret = api->writeI2C(command, sizeof(command));
++    /*IOReturn ret = */api->writeI2C(command, sizeof(command));
+     return 0;
+ }
+ 
+diff --git a/VoodooI2CSynaptics/VoodooI2CSynapticsDevice.hpp b/VoodooI2CSynaptics/VoodooI2CSynapticsDevice.hpp
+index 69db3c7..6de46af 100644
+--- a/VoodooI2CSynaptics/VoodooI2CSynapticsDevice.hpp
++++ b/VoodooI2CSynaptics/VoodooI2CSynapticsDevice.hpp
+@@ -49,7 +49,7 @@ struct rmi_function {
+ };
+ 
+ 
+-typedef struct __attribute__((__packed__)) pdt_entry {
++typedef struct {
+     uint8_t query_base_addr : 8;
+     uint8_t command_base_addr : 8;
+     uint8_t control_base_addr : 8;
+@@ -59,7 +59,7 @@ typedef struct __attribute__((__packed__)) pdt_entry {
+     uint8_t function_version : 2;
+     uint8_t bit7 : 1;
+     uint8_t function_number : 8;
+-};
++} __attribute__((__packed__)) pdt_entry;
+ 
+ class VoodooI2CSynapticsDevice : public IOService
+ {
+@@ -131,7 +131,7 @@ public:
+     int rmi_read(uint16_t addr, uint8_t *buf);
+     int rmi_write_block(uint16_t addr, uint8_t *buf, const int len);
+     int rmi_write(uint16_t addr, uint8_t *buf);
+-    void rmi_register_function(struct pdt_entry *pdt_entry, int page, unsigned interrupt_count);
++    void rmi_register_function(pdt_entry *pdt_entry, int page, unsigned interrupt_count);
+     
+     int rmi_scan_pdt();
+     int rmi_populate_f01();

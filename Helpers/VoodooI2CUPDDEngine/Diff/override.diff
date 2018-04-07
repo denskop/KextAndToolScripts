@@ -1,0 +1,55 @@
+diff --git a/VoodooI2CUPDDEngine/Headers/VoodooI2CDigitiserTransducer.hpp b/VoodooI2CUPDDEngine/Headers/VoodooI2CDigitiserTransducer.hpp
+index e0e4997..884b1c4 100644
+--- a/VoodooI2CUPDDEngine/Headers/VoodooI2CDigitiserTransducer.hpp
++++ b/VoodooI2CUPDDEngine/Headers/VoodooI2CDigitiserTransducer.hpp
+@@ -117,7 +117,7 @@ class VoodooI2CDigitiserTransducer : public OSObject {
+     UInt32 event_mask;
+     AbsoluteTime timestamp;
+ 
+-    void           free();
++    //void           free();
+     bool serialize(OSSerialize* serializer);
+ 
+     /* Instantiates a new transducer
+diff --git a/VoodooI2CUPDDEngine/Headers/VoodooI2CMultitouchEngine.hpp b/VoodooI2CUPDDEngine/Headers/VoodooI2CMultitouchEngine.hpp
+index b8f4403..fb9234d 100644
+--- a/VoodooI2CUPDDEngine/Headers/VoodooI2CMultitouchEngine.hpp
++++ b/VoodooI2CUPDDEngine/Headers/VoodooI2CMultitouchEngine.hpp
+@@ -47,7 +47,7 @@ class VoodooI2CMultitouchEngine : public IOService {
+      * @return *true* upon successful start, *false* otherwise
+      */
+ 
+-    virtual bool start(IOService* provider);
++    virtual bool start(IOService* provider) override;
+ 
+     /* Stops the multitouch engine
+      * @provider The <VoodooI2CMultitouchInterface> that we have matched against
+@@ -56,7 +56,7 @@ class VoodooI2CMultitouchEngine : public IOService {
+      * function.
+      */
+ 
+-    virtual void stop(IOService* provider);
++    virtual void stop(IOService* provider) override;
+ 
+  protected:
+     VoodooI2CMultitouchInterface* interface;
+diff --git a/VoodooI2CUPDDEngine/Headers/VoodooI2CMultitouchInterface.hpp b/VoodooI2CUPDDEngine/Headers/VoodooI2CMultitouchInterface.hpp
+index e1b732d..fb323c0 100644
+--- a/VoodooI2CUPDDEngine/Headers/VoodooI2CMultitouchInterface.hpp
++++ b/VoodooI2CUPDDEngine/Headers/VoodooI2CMultitouchInterface.hpp
+@@ -65,13 +65,13 @@ class VoodooI2CMultitouchInterface : public IOService {
+      * @return *true* on successful start, *false* otherwise
+      */
+ 
+-    bool start(IOService* provider);
++    bool start(IOService* provider) override;
+ 
+     /* Stops up the multitouch interface
+      * @provider The driver which has created us
+      */
+ 
+-    void stop(IOService* provider);
++    void stop(IOService* provider) override;
+ 
+  protected:
+  private:

@@ -1,0 +1,29 @@
+diff --git a/VoodooI2CHID/Sensors/VoodooI2CDeviceOrientationSensor.cpp b/VoodooI2CHID/Sensors/VoodooI2CDeviceOrientationSensor.cpp
+index 6b3b385..a52ebe0 100644
+--- a/VoodooI2CHID/Sensors/VoodooI2CDeviceOrientationSensor.cpp
++++ b/VoodooI2CHID/Sensors/VoodooI2CDeviceOrientationSensor.cpp
+@@ -19,9 +19,11 @@ void VoodooI2CDeviceOrientationSensor::handleInterruptReport(AbsoluteTime timest
+     if (quaternion->getReportID() != report_id)
+         return;
+ 
++    /*
+     OSData* data = quaternion->getDataValue();
+ 
+     VoodooI2CQuaternion* quaternion = (VoodooI2CQuaternion*)data->getBytesNoCopy();
++    */
+     
+     // IOLog("VoodooI2C Quaternion x: %d, y: %d, z: %d, w: %d\n", quaternion->x, quaternion->y, quaternion->z, quaternion->w);
+ }
+diff --git a/VoodooI2CHID/VoodooI2CHIDDevice.cpp b/VoodooI2CHID/VoodooI2CHIDDevice.cpp
+index d808ebc..61e8e8b 100644
+--- a/VoodooI2CHID/VoodooI2CHIDDevice.cpp
++++ b/VoodooI2CHID/VoodooI2CHIDDevice.cpp
+@@ -314,7 +314,7 @@ IOReturn VoodooI2CHIDDevice::resetHIDDevice() {
+ 
+     read_in_progress = false;
+ 
+-    IOReturn sleep = command_gate->commandSleep(&reset_event, absolute_time);
++    IOReturn sleep = command_gate->commandSleep(&reset_event, (UInt32)absolute_time);
+ 
+     if (sleep == THREAD_TIMED_OUT) {
+         IOLog("%s::%s Timeout waiting for device to complete host initiated reset\n", getName(), name);
