@@ -1,0 +1,55 @@
+diff --git a/MaciASL/Document.m b/MaciASL/Document.m
+index d74b680..080ecf8 100644
+--- a/MaciASL/Document.m
++++ b/MaciASL/Document.m
+@@ -66,14 +66,14 @@
+     ////if ([[self superclass] instancesRespondToSelector:@selector(isDraft)])
+     ////    return [super isDraft];
+     if ([self.superclass instancesRespondToSelector:_cmd])
+-        return [self.superclass instanceMethodForSelector:_cmd](self,_cmd) != nil;
++        return [self.superclass instanceMethodForSelector:_cmd] != nil;
+     return !self.fileURL;
+ }
+ - (BOOL)isLocked {
+     ////if ([[self superclass] instancesRespondToSelector:@selector(isLocked)])
+     ////    return [super isLocked];
+     if ([self.superclass instancesRespondToSelector:_cmd])
+-        return [self.superclass instanceMethodForSelector:_cmd](self,_cmd) != nil;
++        return [self.superclass instanceMethodForSelector:_cmd] != nil;
+     NSError *err;
+     if ([[self class] autosavesInPlace] && ![self checkAutosavingSafetyAndReturnError:&err])
+         return true;
+@@ -183,12 +183,14 @@
+ 
+ #pragma mark GUI
+ -(IBAction)filterTree:(id)sender{//TODO: keep parents, or use oldNav for breadcrumb?
++    if (!_oldNav) _oldNav = nav;
++    if (!nav) nav = _oldNav;
++    
+     if (![[sender stringValue] length]) {
+         self.nav = _oldNav;
+         _oldNav = nil;
+     }
+     else {
+-        if (!_oldNav) _oldNav = nav;
+         nav = [DefinitionBlock create:_oldNav.name withRange:_oldNav.range];
+         NSMutableArray *temp = [_oldNav flat];
+         [temp filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings){
+@@ -198,7 +200,7 @@
+         muteWithNotice(self, nav, [nav setChildren:temp])
+     }
+     [navView expandItem:[navView itemAtRow:0]];
+-    [self textViewDidChangeSelection:nil];
++    //[self textViewDidChangeSelection:nil];
+ }
+ -(IBAction)patch:(id)sender{
+     [self.patch beginSheet];
+@@ -284,7 +286,7 @@
+     self.nav = [DefinitionBlock build:text.string];
+     if (!navView) return;
+     [navView expandItem:[navView itemAtRow:0]];
+-    [self textViewDidChangeSelection:nil];
++    //[self textViewDidChangeSelection:nil];
+ }
+ #pragma mark NSTableViewDelegate
+ -(void)tableViewSelectionDidChange:(NSNotification *)notification{//TODO: autofixes or suggestions
