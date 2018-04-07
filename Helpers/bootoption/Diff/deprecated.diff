@@ -1,0 +1,185 @@
+diff --git a/CommandLine/CommandLine.swift b/CommandLine/CommandLine.swift
+index 2d814da..0b98f20 100644
+--- a/CommandLine/CommandLine.swift
++++ b/CommandLine/CommandLine.swift
+@@ -122,7 +122,7 @@ class CommandLine {
+         private var verbMax: Int = 0
+         private var optionWidth: Int {
+                 if optionMax == 0 {
+-                        let mapped = options.map { $0.optionDescription.characters.count }
++                        let mapped = options.map { $0.optionDescription.count }
+                         let padding = listPadding.count
+                         optionMax = (mapped.sorted().last ?? 0) + padding
+                 }
+@@ -130,7 +130,7 @@ class CommandLine {
+         }
+         private var verbWidth: Int {
+                 if verbMax == 0 {
+-                        let mapped = verbs.map { $0.name.characters.count }
++                        let mapped = verbs.map { $0.name.count }
+                         let padding = listPadding.count
+                         verbMax = (mapped.sorted().last ?? 0) + padding
+                 }
+diff --git a/CommandLine/Option.swift b/CommandLine/Option.swift
+index 9599578..3af5311 100644
+--- a/CommandLine/Option.swift
++++ b/CommandLine/Option.swift
+@@ -73,7 +73,7 @@ class Option {
+         
+         internal init(_ shortFlag: String?, _ longFlag: String?, _ required: Int, _ helpMessage: String, _ precludes: String) {
+                 if shortFlag != nil {
+-                        assert(shortFlag!.characters.count == 1, "Short flag must be a single character")
++                        assert(shortFlag!.count == 1, "Short flag must be a single character")
+                         assert(Int(shortFlag!) == nil && shortFlag!.toDouble() == nil, "Short flag cannot be a numeric value")
+                 }
+                 if longFlag != nil {
+diff --git a/CommandLine/OptionParser.swift b/CommandLine/OptionParser.swift
+index bcdb5c2..d777c5a 100644
+--- a/CommandLine/OptionParser.swift
++++ b/CommandLine/OptionParser.swift
+@@ -72,7 +72,7 @@ class OptionParser {
+                                 continue
+                         }
+                         
+-                        let skipChars = string.hasPrefix(getOpt.longPrefix) ? getOpt.longPrefix.characters.count : getOpt.shortPrefix.characters.count
++                        let skipChars = string.hasPrefix(getOpt.longPrefix) ? getOpt.longPrefix.count : getOpt.shortPrefix.count
+                         let flagWithArg = string[string.index(string.startIndex, offsetBy: skipChars)..<string.endIndex]
+                         
+                         /* The argument contained nothing but ShortOptionPrefix or LongOptionPrefix */
+@@ -91,9 +91,9 @@ class OptionParser {
+                                 
+                                 /* Preclude */
+                                 
+-                                if let c = option.shortFlag?.characters.first {
++                                if let c = option.shortFlag?.first {
+                                         
+-                                        if precludedOptions.characters.contains(c) {
++                                        if precludedOptions.contains(c) {
+                                                 status = .tooManyOptions
+                                                 return
+                                         }
+@@ -120,15 +120,15 @@ class OptionParser {
+                         
+                         /* Flags that do not take any arguments can be concatenated */
+                         
+-                        let flagLength = flag.characters.count
++                        let flagLength = flag.count
+                         if !flagMatched && !string.hasPrefix(getOpt.longPrefix) {
+-                                let flagCharactersEnumerator = flag.characters.enumerated()
++                                let flagCharactersEnumerator = flag.enumerated()
+                                 for (i, c) in flagCharactersEnumerator {
+                                         for option in options where option.flagMatch(String(c)) {
+                                                 
+                                                 /* preclude */
+-                                                if let c = option.shortFlag?.characters.first {
+-                                                        if precludedOptions.characters.contains(c) {
++                                                if let c = option.shortFlag?.first {
++                                                        if precludedOptions.contains(c) {
+                                                                 status = .tooManyOptions
+                                                                 return
+                                                         }
+diff --git a/bootoption/Extensions.swift b/bootoption/Extensions.swift
+index 60a98bf..30f67dd 100644
+--- a/bootoption/Extensions.swift
++++ b/bootoption/Extensions.swift
+@@ -102,7 +102,7 @@ extension FileHandle : TextOutputStream {
+ 
+ extension String {
+         func efiStringData(withNullTerminator: Bool = true) -> Data? {
+-                let characters = self.characters
++                let characters = self
+                 var data = Data()
+                 for c in characters {
+                         if let scalar: Unicode.Scalar = UnicodeScalar(String(c)) {
+@@ -133,8 +133,8 @@ extension String {
+         }
+         
+         func containsOutlawedCharacters() -> Bool {
+-                let allowed: Set<Character> = Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890+-=(),.!_\\".characters)
+-                for char in self.characters {
++                let allowed: Set<Character> = Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890+-=(),.!_\\")
++                for char in self {
+                         if allowed.contains(char) {
+                                 continue
+                         } else {
+@@ -145,8 +145,8 @@ extension String {
+         }
+         
+         func containsNonHexCharacters() -> Bool {
+-                let allowed: Set<Character> = Set("abcdefABCDEF1234567890".characters)
+-                for char in self.characters {
++                let allowed: Set<Character> = Set("abcdefABCDEF1234567890")
++                for char in self {
+                         if allowed.contains(char) {
+                                 continue
+                         } else {
+@@ -165,7 +165,7 @@ extension String {
+         func hexToData(byteSwapped: Bool = false) -> Data? {
+                 var strings: [String] = Array()
+                 let width: Int = 2
+-                let max: Int = self.characters.count
++                let max: Int = self.count
+                 if byteSwapped {
+                         var start: Int = max - width, end: Int = max
+                         while start >= 0 {
+@@ -184,7 +184,7 @@ extension String {
+         }
+         
+         func leftPadding(toLength: Int, withPad character: Character) -> String {
+-                let newLength = self.characters.count
++                let newLength = self.count
+                 if newLength < toLength {
+                         return String(repeatElement(character, count: toLength - newLength)) + self
+                 } else {
+diff --git a/bootoption/FilePathDevicePath.swift b/bootoption/FilePathDevicePath.swift
+index a850014..b7fefc0 100644
+--- a/bootoption/FilePathDevicePath.swift
++++ b/bootoption/FilePathDevicePath.swift
+@@ -80,7 +80,7 @@ struct FilePathDevicePath {
+                 
+                 /* Path */
+                 
+-                let c: Int = mountPoint.characters.count
++                let c: Int = mountPoint.count
+                 let i: String.Index = localPath.index(localPath.startIndex, offsetBy: c)
+                 let efiPath: String = "/" + localPath[i...]
+                 path = efiPath.uppercased().replacingOccurrences(of: "/", with: "\\")
+diff --git a/bootoption/HardDriveDevicePath.swift b/bootoption/HardDriveDevicePath.swift
+index 55a2810..e153b58 100644
+--- a/bootoption/HardDriveDevicePath.swift
++++ b/bootoption/HardDriveDevicePath.swift
+@@ -138,7 +138,7 @@ struct HardDriveDevicePath {
+                 
+                 for volume in volumes {
+                         let unprefixedVolumeString: String = volume.absoluteString.replacingOccurrences(of: prefix, with: "")
+-                        let stringLength: Int = unprefixedVolumeString.characters.count
++                        let stringLength: Int = unprefixedVolumeString.count
+                         let start: String.Index = unprefixedVolumeString.index(unprefixedVolumeString.startIndex, offsetBy: 0)
+                         let end: String.Index = unprefixedVolumeString.index(unprefixedVolumeString.startIndex, offsetBy: stringLength)
+                         let test: String = String(path[start..<end])
+diff --git a/bootoption/NvramExtensions.swift b/bootoption/NvramExtensions.swift
+index aa144c8..a96c9e8 100644
+--- a/bootoption/NvramExtensions.swift
++++ b/bootoption/NvramExtensions.swift
+@@ -287,7 +287,7 @@ extension Nvram {
+                 var mutableString = string.uppercased()
+                 mutableString = mutableString.replacingOccurrences(of: "0X", with: "")
+                 mutableString = mutableString.replacingOccurrences(of: "BOOT", with: "")
+-                if mutableString.containsNonHexCharacters() || mutableString.characters.count > 4 {
++                if mutableString.containsNonHexCharacters() || mutableString.count > 4 {
+                         Log.log(logErrorMessage)
+                         return nil
+                 }
+diff --git a/bootoption/save.swift b/bootoption/save.swift
+index 3570f52..322f45a 100644
+--- a/bootoption/save.swift
++++ b/bootoption/save.swift
+@@ -70,7 +70,7 @@ func save() {
+                                 Log.logExit(EX_UNAVAILABLE)
+                         }
+                         if let xml = String(data: propertyList, encoding: .utf8) {
+-                                let outputString = String(xml.characters.filter { !"\n\t\r".characters.contains($0) })
++                                let outputString = String(xml.filter { !"\n\t\r".contains($0) })
+                                 print(outputString)
+                         } else {
+                                 Log.error("Error printing serialized xml property list representation")
