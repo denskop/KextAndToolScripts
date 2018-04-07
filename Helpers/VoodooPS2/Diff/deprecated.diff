@@ -1,0 +1,108 @@
+diff --git a/VoodooPS2Controller/VoodooPS2Controller.cpp b/VoodooPS2Controller/VoodooPS2Controller.cpp
+index 12e17fe..3bd6fcc 100644
+--- a/VoodooPS2Controller/VoodooPS2Controller.cpp
++++ b/VoodooPS2Controller/VoodooPS2Controller.cpp
+@@ -32,8 +32,16 @@
+ #include "ApplePS2MouseDevice.h"
+ #include "VoodooPS2Controller.h"
+ 
++#if __clang_major__ >= 4
++    #pragma clang diagnostic ignored "-Winvalid-offsetof"
++#endif
++
+ //REVIEW: avoids problem with Xcode 5.1.0 where -dead_strip eliminates these required symbols
+ #include <libkern/OSKextLib.h>
++
++#undef OSSafeRelease
++#define OSSafeRelease(inst) do { if (inst) (inst)->release(); } while (0)
++
+ void* _org_rehabman_dontstrip_[] =
+ {
+     (void*)&OSKextGetCurrentIdentifier,
+diff --git a/VoodooPS2Daemon/main.cpp b/VoodooPS2Daemon/main.cpp
+index c6588e8..70cab62 100644
+--- a/VoodooPS2Daemon/main.cpp
++++ b/VoodooPS2Daemon/main.cpp
+@@ -256,7 +256,9 @@ int main(int argc, const char *argv[])
+     utsname system_info;
+     uname(&system_info);
+     DEBUG_LOG("System version: %s\n", system_info.release);
++#ifdef DEBUG
+     int major_version = atoi(system_info.release);
++#endif
+     DEBUG_LOG("major_version = %d\n", major_version);
+ 
+     // Create dictionary to match all USB devices
+diff --git a/VoodooPS2Keyboard/VoodooPS2Keyboard.cpp b/VoodooPS2Keyboard/VoodooPS2Keyboard.cpp
+index 3d224ac..74b4c26 100644
+--- a/VoodooPS2Keyboard/VoodooPS2Keyboard.cpp
++++ b/VoodooPS2Keyboard/VoodooPS2Keyboard.cpp
+@@ -40,6 +40,10 @@
+ 
+ //REVIEW: avoids problem with Xcode 5.1.0 where -dead_strip eliminates these required symbols
+ #include <libkern/OSKextLib.h>
++
++#undef OSSafeRelease
++#define OSSafeRelease(inst) do { if (inst) (inst)->release(); } while (0)
++
+ void* _org_rehabman_dontstrip_[] =
+ {
+     (void*)&OSKextGetCurrentIdentifier,
+diff --git a/VoodooPS2Mouse/VoodooPS2Mouse.cpp b/VoodooPS2Mouse/VoodooPS2Mouse.cpp
+index 0dca1fe..d3555ea 100644
+--- a/VoodooPS2Mouse/VoodooPS2Mouse.cpp
++++ b/VoodooPS2Mouse/VoodooPS2Mouse.cpp
+@@ -27,6 +27,10 @@
+ 
+ //REVIEW: avoids problem with Xcode 5.1.0 where -dead_strip eliminates these required symbols
+ #include <libkern/OSKextLib.h>
++
++#undef OSSafeRelease
++#define OSSafeRelease(inst) do { if (inst) (inst)->release(); } while (0)
++
+ void* _org_rehabman_dontstrip_[] =
+ {
+     (void*)&OSKextGetCurrentIdentifier,
+diff --git a/VoodooPS2Trackpad/VoodooPS2ALPSGlidePoint.cpp b/VoodooPS2Trackpad/VoodooPS2ALPSGlidePoint.cpp
+index 9682d7c..efa04eb 100644
+--- a/VoodooPS2Trackpad/VoodooPS2ALPSGlidePoint.cpp
++++ b/VoodooPS2Trackpad/VoodooPS2ALPSGlidePoint.cpp
+@@ -25,6 +25,9 @@
+ #include "VoodooPS2Controller.h"
+ #include "VoodooPS2ALPSGlidePoint.h"
+ 
++#undef OSSafeRelease
++#define OSSafeRelease(inst) do { if (inst) (inst)->release(); } while (0)
++
+ enum {
+     //
+     //
+diff --git a/VoodooPS2Trackpad/VoodooPS2SentelicFSP.cpp b/VoodooPS2Trackpad/VoodooPS2SentelicFSP.cpp
+index df1f59c..9603955 100644
+--- a/VoodooPS2Trackpad/VoodooPS2SentelicFSP.cpp
++++ b/VoodooPS2Trackpad/VoodooPS2SentelicFSP.cpp
+@@ -25,6 +25,9 @@
+ #include "VoodooPS2Controller.h"
+ #include "VoodooPS2SentelicFSP.h"
+ 
++#undef OSSafeRelease
++#define OSSafeRelease(inst) do { if (inst) (inst)->release(); } while (0)
++
+ enum {
+     kModeByteValueGesturesEnabled  = 0x00,
+     kModeByteValueGesturesDisabled = 0x04
+diff --git a/VoodooPS2Trackpad/VoodooPS2SynapticsTouchPad.cpp b/VoodooPS2Trackpad/VoodooPS2SynapticsTouchPad.cpp
+index 03ef595..77bd864 100644
+--- a/VoodooPS2Trackpad/VoodooPS2SynapticsTouchPad.cpp
++++ b/VoodooPS2Trackpad/VoodooPS2SynapticsTouchPad.cpp
+@@ -46,6 +46,10 @@
+ 
+ //REVIEW: avoids problem with Xcode 5.1.0 where -dead_strip eliminates these required symbols
+ #include <libkern/OSKextLib.h>
++
++#undef OSSafeRelease
++#define OSSafeRelease(inst) do { if (inst) (inst)->release(); } while (0)
++
+ void* _org_rehabman_dontstrip_[] =
+ {
+     (void*)&OSKextGetCurrentIdentifier,
