@@ -507,6 +507,15 @@ function patch()
             return "0"
         fi
     done
+
+    things=($(ls "$HELPERS_PATH/$1/Replace" 2>/dev/null))
+    for thing in "${things[@]}"; do
+        if [ ! -f "$HELPERS_PATH/$1/Replace/$thing" ]; then
+            cp -v -R "$HELPERS_PATH/$1/Replace/$thing/." "$SOURCE_PATH/$folder/$thing/" >/dev/null 2>&1
+        else
+            cp -v "$HELPERS_PATH/$1/Replace/$thing" "$SOURCE_PATH/$folder/" >/dev/null 2>&1
+        fi
+    done
     return "1"
 }
 
