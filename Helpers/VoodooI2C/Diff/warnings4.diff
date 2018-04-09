@@ -1,0 +1,22 @@
+diff --git a/VoodooGPIO/VoodooGPIO.cpp b/VoodooGPIO/VoodooGPIO.cpp
+index e1b0187..1c4615c 100644
+--- a/VoodooGPIO/VoodooGPIO.cpp
++++ b/VoodooGPIO/VoodooGPIO.cpp
+@@ -10,7 +10,7 @@ OSDefineMetaClassAndStructors(VoodooGPIO, IOService);
+ #define BITS_PER_LONG 32
+ #endif
+ 
+-#define BIT(x) 1UL << x
++#define BIT(x) 1U << x
+ #define GENMASK(h, l) \
+ (((~0UL) << (l)) & (~0UL >> (BITS_PER_LONG - 1 - (h))))
+ 
+@@ -315,7 +315,7 @@ bool VoodooGPIO::intel_pinctrl_add_padgroups(intel_community *community){
+             unsigned gpp_size = community->gpp_size;
+             gpps[i].reg_num = i;
+             gpps[i].base = community->pin_base + i * gpp_size;
+-            gpps[i].size = min(gpp_size, npins);
++            gpps[i].size = min(gpp_size, (unsigned)npins);
+             npins -= gpps[i].size;
+         }
+         
