@@ -107,6 +107,9 @@ function print_group()
     elif [ "$1" == "kozlek" ]; then
         array=("HWSensors")
         title="\n# Clone Kozlek kexts"
+    elif [ "$1" == "kxproject" ]; then
+        array=("kXAudioDriver")
+        title="\n# Clone kxproject kexts"
     elif [ "$1" == "denskop" ]; then
         array=("Universal IFR Extractor")
         title="\n# Clone denskop forks"
@@ -218,6 +221,9 @@ git_clone https://github.com/denskop/Universal-IFR-Extractor.git "Universal IFR 
 
 print_group "kozlek"
 git_clone https://github.com/kozlek/HWSensors.git "HWSensors"
+
+print_group "kxproject"
+git_clone https://github.com/kxproject/kx-audio-driver.git "kXAudioDriver"
 
 print_group "longsoft"
 git_clone https://github.com/LongSoft/UEFITool.git "UEFITool"

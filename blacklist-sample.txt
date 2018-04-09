@@ -28,6 +28,7 @@ HWSensors
 IntelGraphicsDVMTFixup
 IntelGraphicsFixup
 IntelMausiEthernet
+kXAudioDriver
 Lilu
 MaciASL
 NightShiftUnlocker

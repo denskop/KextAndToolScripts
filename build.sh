@@ -59,7 +59,7 @@ function xcode_build()
 
     # try to patch
     if [ "$build_cmd" != "clean" ]; then
-        patch "$(basename "$(dirname "$1")")"
+        patch "${1%%/*}"
     fi
 
     target="$(xcodebuild -project "$SOURCE_PATH/$1" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
@@ -125,7 +125,7 @@ function xcode_build3()
 
     # try to patch
     if [ "$build_cmd" != "clean" ]; then
-        patch "$2" "$(basename "$(dirname "$1")")"
+        patch "${1%%/*}"
     fi
 
     target="$(xcodebuild -workspace "$SOURCE_PATH/$1" -scheme "$2" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
@@ -187,6 +187,7 @@ function qt_build()
     # try to patch
     if [ "$build_cmd" != "clean" ]; then
         patch "$2"
+        patch "${1%%/*}"
     fi
 
     path=$(dirname "$SOURCE_PATH/$1}")
@@ -276,6 +277,9 @@ function print_group()
     elif [ "$1" == "kozlek" ]; then
         array=("HWSensors")
         title="\n# $build_cmd Kozlek kexts"
+    elif [ "$1" == "kxproject" ]; then
+        array=("kXAudioDriver")
+        title="\n# $build_cmd kxproject kexts"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
                "UEFITool_NE" \
@@ -489,7 +493,7 @@ function patch()
 
     diffs=($(ls "$HELPERS_PATH/$1/Diff" 2>/dev/null))
 
-    echo "Patching..."
+    #echo "Patching..."
     for diff in "${diffs[@]}"; do
         if [ -f "$HELPERS_PATH/$1/git" ]; then
             git -C "$SOURCE_PATH/$folder" apply "$HELPERS_PATH/$1/Diff/$diff" >/dev/null 2>&1
@@ -526,6 +530,9 @@ print_group "kozlek"
 xcode_build3 "HWSensors/HWSensors.xcworkspace" "Build Kexts" Release
 xcode_build3 "HWSensors/HWSensors.xcworkspace" "HWMonitor" Release
 xcode_build3 "HWSensors/HWSensors.xcworkspace" "org.hwsensors.HWMonitorHelper" Release
+
+print_group "kxproject"
+xcode_build "kXAudioDriver/macosx/10kx driver.xcodeproj" "kXAudioDriver" Deployment
 
 print_group "longsoft"
 qt_build "UEFITool/uefitool.pro" "UEFITool"

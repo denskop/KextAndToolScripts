@@ -1,0 +1,71 @@
+diff --git a/driver/dsp.cpp b/driver/dsp.cpp
+index 5752cb8..c2c41eb 100644
+--- a/driver/dsp.cpp
++++ b/driver/dsp.cpp
+@@ -152,9 +152,11 @@ char *strstr(const char *str1, const char *str2)
+ 		s1 = cp;
+ 		s2 = (char *) str2;
+ 		
+-		while ( *s1 && *s2 && !(*s1-*s2) )
+-			s1++, s2++;
+-		
++        while ( *s1 && *s2 && !(*s1-*s2) ) {
++            s1++;
++            s2++;
++        }
++        
+ 		if (!*s2)
+ 			return(cp);
+ 		
+diff --git a/h/vers.h b/h/vers.h
+index 04733e9..d19ad1a 100644
+--- a/h/vers.h
++++ b/h/vers.h
+@@ -25,8 +25,8 @@
+ #else
+  #define KX_VERSION_STR			"5, 10, 00, 3553"
+ #endif
+-#define KX_COPYRIGHT_STR		"Copyright © Eugene Gavrilov, 2001-2018. All rights reserved."
+-#define KX_COPYRIGHT_STR_R		"Copyright © Eugene Gavrilov, 2001-2018."
++#define KX_COPYRIGHT_STR		"Copyright Eugene Gavrilov, 2001-2018. All rights reserved."
++#define KX_COPYRIGHT_STR_R		"Copyright Eugene Gavrilov, 2001-2018."
+ #define KX_COPYRIGHT_YEARS		"2001-2018"
+ #define KX_COMPANY_NAME			"Eugene Gavrilov"
+ 
+diff --git a/macosx/kext/AudioDevice.cpp b/macosx/kext/AudioDevice.cpp
+index 219156c..365f77e 100644
+--- a/macosx/kext/AudioDevice.cpp
++++ b/macosx/kext/AudioDevice.cpp
+@@ -463,7 +463,7 @@ int kXAudioDevice::create_audio_controls(IOAudioEngine *audioEngine)
+     control = IOAudioLevelControl::createVolumeControl(65535,   // Initial value
+                                                        0,       // min value
+                                                        65535,   // max value
+-                                                       (-100 << 16) + (0),  // -100.0 in IOFixed (16.16)
++                                                       -(100 << 16) + (0),  // -100.0 in IOFixed (16.16)
+                                                        0,       // max 0.0 in IOFixed
+                                                        kIOAudioControlChannelIDAll,
+                                                        kIOAudioControlChannelNameAll,
+@@ -506,7 +506,7 @@ int kXAudioDevice::create_audio_controls(IOAudioEngine *audioEngine)
+         control = IOAudioLevelControl::createVolumeControl(65535,   // Initial value
+                                                            0,       // min value
+                                                            65535,   // max value
+-                                                           (-100 << 16) + (0),  // min -100.0 in IOFixed (16.16)
++                                                           -(100 << 16) + (0),  // min -100.0 in IOFixed (16.16)
+                                                            0,       // max 0.0 in IOFixed
+                                                            ids[i],
+                                                            names[i],
+diff --git a/macosx/kext/Compat.cpp b/macosx/kext/Compat.cpp
+index ba853fc..eed72f7 100644
+--- a/macosx/kext/Compat.cpp
++++ b/macosx/kext/Compat.cpp
+@@ -43,6 +43,10 @@
+ #undef kx_lock_acquire
+ #undef kx_lock_release
+ 
++#if __clang_major__ >= 4
++    #pragma clang diagnostic ignored  "-Wint-to-pointer-cast"
++#endif
++
+ void kXAudioDevice::malloc_func(int len,void **b,int where)
+ {
+ 	int *mem=(int *)IOMalloc(len+sizeof(int));
