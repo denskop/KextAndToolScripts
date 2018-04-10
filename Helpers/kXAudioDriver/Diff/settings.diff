@@ -1,0 +1,247 @@
+diff --git a/macosx/10kx driver.xcodeproj/project.pbxproj b/macosx/10kx driver.xcodeproj/project.pbxproj
+index 26e2ae0..8820ed7 100644
+--- a/macosx/10kx driver.xcodeproj/project.pbxproj	
++++ b/macosx/10kx driver.xcodeproj/project.pbxproj	
+@@ -12,7 +12,7 @@
+ 		17251D9E17063EEC006D7687 /* IOAudioBlitterLibDispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17251D9917063EEC006D7687 /* IOAudioBlitterLibDispatch.cpp */; };
+ 		17251D9F17063EEC006D7687 /* IOAudioBlitterLibDispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 17251D9A17063EEC006D7687 /* IOAudioBlitterLibDispatch.h */; };
+ 		17251DA017063EEC006D7687 /* IOAudioBlitterLibX86.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17251D9B17063EEC006D7687 /* IOAudioBlitterLibX86.cpp */; };
+-		17251DA2170640FB006D7687 /* kXAPI.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8A3E96E0E8F20FE005D3692 /* kXAPI.dylib */; };
++		17251DA2170640FB006D7687 /* kXAPI.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8A3E96E0E8F20FE005D3692 /* kXAPI.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+ 		44212C060DECB5BF00E06065 /* AudioDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A224C3FFF42367911CA2CB7 /* AudioDevice.cpp */; };
+ 		44212C070DECB5BF00E06065 /* AudioEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0117744F00710DAB7F000001 /* AudioEngine.cpp */; };
+ 		44212C080DECB5BF00E06065 /* Compat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 449EE4590DE7A807000769A3 /* Compat.cpp */; };
+@@ -2346,7 +2346,7 @@
+ 		089C1669FE841209C02AAC07 /* Project object */ = {
+ 			isa = PBXProject;
+ 			attributes = {
+-				LastUpgradeCheck = 0460;
++				LastUpgradeCheck = 0930;
+ 				ORGANIZATIONNAME = "kX Project";
+ 			};
+ 			buildConfigurationList = E84281580B8E825C0042E2D2 /* Build configuration list for PBXProject "10kx driver" */;
+@@ -2579,6 +2579,7 @@
+ 		44212BE50DECB47E00E06065 /* Deployment */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				CLANG_ENABLE_OBJC_WEAK = YES;
+ 				COMBINE_HIDPI_IMAGES = YES;
+ 				COPY_PHASE_STRIP = NO;
+ 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+@@ -2594,6 +2595,7 @@
+ 				KERNEL_MODULE = YES;
+ 				MODULE_IOKIT = YES;
+ 				MODULE_NAME = com.kXProject.driver.kXAudioDriver;
++				PRODUCT_BUNDLE_IDENTIFIER = "${MODULE_NAME}";
+ 				PRODUCT_NAME = kXAudioDriver;
+ 				WRAPPER_EXTENSION = kext;
+ 			};
+@@ -2602,6 +2604,7 @@
+ 		44212C1D0DECB66900E06065 /* Deployment */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				CLANG_ENABLE_OBJC_WEAK = YES;
+ 				CLANG_X86_VECTOR_INSTRUCTIONS = sse4.1;
+ 				COMBINE_HIDPI_IMAGES = YES;
+ 				GCC_ENABLE_KERNEL_DEVELOPMENT = YES;
+@@ -2626,7 +2629,25 @@
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+ 				ALWAYS_SEARCH_USER_PATHS = NO;
+-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
++				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
++				CLANG_WARN_BOOL_CONVERSION = YES;
++				CLANG_WARN_COMMA = YES;
++				CLANG_WARN_CONSTANT_CONVERSION = YES;
++				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
++				CLANG_WARN_EMPTY_BODY = YES;
++				CLANG_WARN_ENUM_CONVERSION = YES;
++				CLANG_WARN_INFINITE_RECURSION = YES;
++				CLANG_WARN_INT_CONVERSION = YES;
++				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
++				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
++				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
++				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
++				CLANG_WARN_STRICT_PROTOTYPES = YES;
++				CLANG_WARN_SUSPICIOUS_MOVE = YES;
++				CLANG_WARN_UNREACHABLE_CODE = YES;
++				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
++				ENABLE_STRICT_OBJC_MSGSEND = YES;
++				GCC_NO_COMMON_BLOCKS = YES;
+ 				GCC_PREPROCESSOR_DEFINITIONS = "$(GCC_PREPROCESSOR_DEFINITIONS_QUOTED_1)";
+ 				GCC_PREPROCESSOR_DEFINITIONS_QUOTED_1 = "'DRIVER_VERSION=\"${MODULE_VERSION}\"'";
+ 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+@@ -2645,6 +2666,7 @@
+ 				GCC_WARN_UNUSED_LABEL = YES;
+ 				GCC_WARN_UNUSED_VARIABLE = YES;
+ 				INFOPLIST_PREPROCESS = YES;
++				MACOSX_DEPLOYMENT_TARGET = 10.6;
+ 				MODULE_VERSION = 2.00b0;
+ 				SDKROOT = macosx;
+ 				USER_HEADER_SEARCH_PATHS = ../h;
+@@ -2655,6 +2677,7 @@
+ 		E8A3E96F0E8F20FE005D3692 /* Deployment */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				CLANG_ENABLE_OBJC_WEAK = YES;
+ 				COMBINE_HIDPI_IMAGES = YES;
+ 				INSTALL_PATH = "@executable_path";
+ 				PRODUCT_NAME = kXAPI;
+@@ -2664,8 +2687,10 @@
+ 		E8A3EA210E8F2735005D3692 /* Deployment */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				CLANG_ENABLE_OBJC_WEAK = YES;
+ 				COMBINE_HIDPI_IMAGES = YES;
+ 				INFOPLIST_FILE = kxmanager/Info.plist;
++				PRODUCT_BUNDLE_IDENTIFIER = com.kXProject.kXManager;
+ 				PRODUCT_NAME = "kX Manager";
+ 			};
+ 			name = Deployment;
+@@ -2673,6 +2698,7 @@
+ 		E8A6D9870E908BA50083971C /* Deployment */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				CLANG_ENABLE_OBJC_WEAK = YES;
+ 				PRODUCT_NAME = kxctrl;
+ 			};
+ 			name = Deployment;
+@@ -2680,6 +2706,7 @@
+ 		E8A6D9B80E908E950083971C /* Deployment */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				CLANG_ENABLE_OBJC_WEAK = YES;
+ 				PRODUCT_NAME = edspctrl;
+ 			};
+ 			name = Deployment;
+@@ -2687,10 +2714,12 @@
+ 		E8D8958010687D6E006F33DC /* Deployment */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				CLANG_ENABLE_OBJC_WEAK = YES;
+ 				COMBINE_HIDPI_IMAGES = YES;
+ 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+ 				GCC_PREFIX_HEADER = kxac97/kxac97_Prefix.pch;
+ 				INFOPLIST_FILE = kxac97/Info.plist;
++				PRODUCT_BUNDLE_IDENTIFIER = com.kxproject.ac97;
+ 				PRODUCT_NAME = "kX AC97";
+ 			};
+ 			name = Deployment;
+diff --git a/macosx/kext/Info.plist b/macosx/kext/Info.plist
+index 420a604..5d834bd 100644
+--- a/macosx/kext/Info.plist
++++ b/macosx/kext/Info.plist
+@@ -7,7 +7,7 @@
+ 	<key>CFBundleExecutable</key>
+ 	<string>${EXECUTABLE_NAME}</string>
+ 	<key>CFBundleIdentifier</key>
+-	<string>${MODULE_NAME}</string>
++	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+ 	<key>CFBundleInfoDictionaryVersion</key>
+ 	<string>6.0</string>
+ 	<key>CFBundlePackageType</key>
+@@ -24,16 +24,20 @@
+ 			<string>com.kXProject.driver.kXAudioDriver</string>
+ 			<key>IOClass</key>
+ 			<string>com_kXProject_driver_kXAudioDriver</string>
+-			<key>IOUserClientClass</key>
+-			<string>com_kXProject_driver_kXUserClient</string>
+ 			<key>IOPCIMatch</key>
+ 			<string>0x00021102 0x00041102 0x00081102</string>
+ 			<key>IOProviderClass</key>
+ 			<string>IOPCIDevice</string>
++			<key>IOUserClientClass</key>
++			<string>com_kXProject_driver_kXUserClient</string>
+ 		</dict>
+ 	</dict>
+ 	<key>OSBundleLibraries</key>
+ 	<dict>
++		<key>com.apple.iokit.IOAudioFamily</key>
++		<string>1.5</string>
++		<key>com.apple.iokit.IOPCIFamily</key>
++		<string>1.0.0b1</string>
+ 		<key>com.apple.kpi.bsd</key>
+ 		<string>8.0</string>
+ 		<key>com.apple.kpi.iokit</key>
+@@ -42,10 +46,6 @@
+ 		<string>8.0</string>
+ 		<key>com.apple.kpi.mach</key>
+ 		<string>8.0</string>
+-		<key>com.apple.iokit.IOAudioFamily</key>
+-		<string>1.5</string>
+-		<key>com.apple.iokit.IOPCIFamily</key>
+-		<string>1.0.0b1</string>
+ 	</dict>
+ </dict>
+ </plist>
+diff --git a/macosx/kxac97/Info.plist b/macosx/kxac97/Info.plist
+index 9c6a412..ced368f 100644
+--- a/macosx/kxac97/Info.plist
++++ b/macosx/kxac97/Info.plist
+@@ -2,8 +2,6 @@
+ <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+ <plist version="1.0">
+ <dict>
+-	<key>NSHumanReadableCopyright</key>
+-	<string>Copyright © 2009 Dmitry Gorelov. All rights reserved.</string>
+ 	<key>CFBundleDevelopmentRegion</key>
+ 	<string>English</string>
+ 	<key>CFBundleExecutable</key>
+@@ -11,20 +9,22 @@
+ 	<key>CFBundleIconFile</key>
+ 	<string>kxac97-main.icns</string>
+ 	<key>CFBundleIdentifier</key>
+-	<string>com.kxproject.ac97</string>
++	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+ 	<key>CFBundleInfoDictionaryVersion</key>
+ 	<string>6.0</string>
++	<key>CFBundleName</key>
++	<string>${PRODUCT_NAME}</string>
+ 	<key>CFBundlePackageType</key>
+ 	<string>APPL</string>
+ 	<key>CFBundleSignature</key>
+ 	<string>????</string>
+ 	<key>CFBundleVersion</key>
+ 	<string>1.0</string>
++	<key>NSHumanReadableCopyright</key>
++	<string>Copyright © 2009 Dmitry Gorelov. All rights reserved.</string>
+ 	<key>NSMainNibFile</key>
+ 	<string>MainMenu</string>
+ 	<key>NSPrincipalClass</key>
+ 	<string>NSApplication</string>
+-	<key>CFBundleName</key>
+-	<string>${PRODUCT_NAME}</string>
+ </dict>
+ </plist>
+diff --git a/macosx/kxmanager/Info.plist b/macosx/kxmanager/Info.plist
+index 937dacb..8b83caf 100644
+--- a/macosx/kxmanager/Info.plist
++++ b/macosx/kxmanager/Info.plist
+@@ -7,22 +7,22 @@
+ 	<key>CFBundleExecutable</key>
+ 	<string>${EXECUTABLE_NAME}</string>
+ 	<key>CFBundleIdentifier</key>
+-	<string>com.kXProject.kXManager</string>
++	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+ 	<key>CFBundleInfoDictionaryVersion</key>
+ 	<string>6.0</string>
++	<key>CFBundleName</key>
++	<string>${PRODUCT_NAME}</string>
+ 	<key>CFBundlePackageType</key>
+ 	<string>APPL</string>
+ 	<key>CFBundleSignature</key>
+ 	<string>????</string>
+ 	<key>CFBundleVersion</key>
+ 	<string>1.0</string>
++	<key>NSHumanReadableCopyright</key>
++	<string>Copyright 2007-2009 Eugene Gavrilov, kX Project</string>
+ 	<key>NSMainNibFile</key>
+ 	<string>manager</string>
+ 	<key>NSPrincipalClass</key>
+ 	<string>NSApplication</string>
+-	<key>NSHumanReadableCopyright</key>
+-	<string>Copyright 2007-2009 Eugene Gavrilov, kX Project</string>
+-	<key>CFBundleName</key>
+-	<string>${PRODUCT_NAME}</string>
+ </dict>
+ </plist>

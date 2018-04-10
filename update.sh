@@ -93,6 +93,9 @@ function print_group()
     elif [ "$1" == "kozlek" ]; then
         array=("HWSensors")
         title="\n# Update Kozlek kexts"
+    elif [ "$1" == "kxproject" ]; then
+        array=("kXAudioDriver")
+        title="\n# Update kxproject kexts"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
                "UEFITool_NE")
@@ -201,6 +204,9 @@ git_pull "Universal IFR Extractor"
 
 print_group "kozlek"
 git_pull "HWSensors"
+
+print_group "kxproject"
+git_pull "kXAudioDriver"
 
 print_group "longsoft"
 git_pull "UEFITool"

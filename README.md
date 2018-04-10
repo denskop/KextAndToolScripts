@@ -48,18 +48,21 @@ with plugins: VoodooI2CELAN, VoodooI2CHID, VoodooI2CSynaptics, VoodooI2CUPDDEngi
 - [HWSensors](https://github.com/kozlek/HWSensors): FakeSMC.kext
 with plugins: ACPISensors, CPUSensors,  GPUSensors, LPCSensors
 
-### 7. Mieze kexts
+### 7. kX Project kexts
+- [kXAudioDriver](https://github.com/kxproject/kx-audio-driver)
+
+### 8. Mieze kexts
 - [AtherosE2200Ethernet](https://github.com/Mieze/AtherosE2200Ethernet)
 - [IntelMausiEthernet](https://github.com/Mieze/IntelMausiEthernet)
 - [Realtek RTL8100](https://github.com/Mieze/RealtekRTL8100)
 - [Realtek RTL8111](https://github.com/Mieze/RTL8111_driver_for_OS_X)
 
-### 8. Piker-Alpha kexts and tools
+### 9. Piker-Alpha kexts and tools
 - [AppleIntelInfo](https://github.com/Piker-Alpha/AppleIntelInfo)
 - [csrstat](https://github.com/Piker-Alpha/csrstat)
 - [ssdtPRGen.sh](https://github.com/Piker-Alpha/ssdtPRGen.sh)
 
-### 9. RehabMan kexts and forks
+### 10. RehabMan kexts and forks
 - [EAPD Codec Commander](https://github.com/RehabMan/EAPD-Codec-Commander)
 - [ACPI Battery Driver](https://github.com/RehabMan/OS-X-ACPI-Battery-Driver)
 - [ACPI Debug](https://github.com/RehabMan/OS-X-ACPI-Debug)
@@ -70,10 +73,10 @@ with plugins: ACPISensors, CPUSensors,  GPUSensors, LPCSensors
 - [USBInjectAll](https://github.com/RehabMan/OS-X-USB-Inject-All)
 - [VoodooPS2](https://github.com/RehabMan/OS-X-Voodoo-PS2-Controller)
 
-### 10. Slice kexts
+### 11. Slice kexts
 - [VoodooHDA](https://sourceforge.net/projects/voodoohda/)
 
-### 11. vit9696 kexts and plugins
+### 12. vit9696 kexts and plugins
 - [AirportBrcmFixup](https://github.com/lvs1974/AirportBrcmFixup)
 - [AppleALC](https://github.com/vit9696/AppleALC)
 - [ATH9KFixup](https://github.com/chunnann/ATH9KFixup)
@@ -91,5 +94,5 @@ with plugins: ACPISensors, CPUSensors,  GPUSensors, LPCSensors
 - [Shiki](https://github.com/vit9696/Shiki)
 - [WhateverGreen](https://github.com/vit9696/WhateverGreen)
 
-### 12. vulgo tools
+### 13. vulgo tools
 - [bootoption](https://github.com/vulgo/bootoption)

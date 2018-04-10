@@ -56,6 +56,9 @@ function print_group()
     elif [ "$1" == "kozlek" ]; then
         array=("HWSensors")
         title="\n# Collect Kozlek kexts"
+    elif [ "$1" == "kxproject" ]; then
+        array=("kXAudioDriver")
+        title="\n# Collect kxproject kexts"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
                "UEFITool_NE" \
@@ -172,6 +175,14 @@ if [ "$?" == "0" ]; then
     rm -f -R "$COLLECT_PATH/FakeSMC/HWMonitor.app" # To avoid framework overwrite problems
     cp -R "$SOURCE_PATH/HWSensors/Binaries/" "$COLLECT_PATH/FakeSMC/"
     rm -f -R "$COLLECT_PATH/FakeSMC/org.hwsensors.HWMonitorHelper" # This is part of HWMonitor.app
+fi
+
+print_group "kxproject"
+#
+print "kXAudioDriver"
+if [ "$?" == "0" ]; then
+    mkdir -p "$COLLECT_PATH/Sound"
+    cp -R "$SOURCE_PATH/kXAudioDriver/macosx/build/Deployment/kXAudioDriver.kext" "$COLLECT_PATH/Sound/"
 fi
 
 print_group "longsoft"

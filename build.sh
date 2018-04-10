@@ -44,6 +44,11 @@ function xcode_build()
     check_in_blacklist "$(basename "$(dirname "$1")")"
     if [ "$?" == "1" ]; then
         return "1"
+    else
+        check_in_blacklist "${1%%/*}"
+        if [ "$?" == "1" ]; then
+            return "1"
+        fi
     fi
 
     if [ "$4" != "plugin" ]; then
@@ -59,7 +64,7 @@ function xcode_build()
 
     # try to patch
     if [ "$build_cmd" != "clean" ]; then
-        patch "$(basename "$(dirname "$1")")"
+        patch "$1"
     fi
 
     target="$(xcodebuild -project "$SOURCE_PATH/$1" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
@@ -125,7 +130,7 @@ function xcode_build3()
 
     # try to patch
     if [ "$build_cmd" != "clean" ]; then
-        patch "$2" "$(basename "$(dirname "$1")")"
+        patch "$1"
     fi
 
     target="$(xcodebuild -workspace "$SOURCE_PATH/$1" -scheme "$2" -showBuildSettings | grep "MACOSX_DEPLOYMENT_TARGET = ")"
@@ -186,7 +191,7 @@ function qt_build()
 
     # try to patch
     if [ "$build_cmd" != "clean" ]; then
-        patch "$2"
+        patch "$1"
     fi
 
     path=$(dirname "$SOURCE_PATH/$1}")
@@ -276,6 +281,9 @@ function print_group()
     elif [ "$1" == "kozlek" ]; then
         array=("HWSensors")
         title="\n# $build_cmd Kozlek kexts"
+    elif [ "$1" == "kxproject" ]; then
+        array=("kXAudioDriver")
+        title="\n# $build_cmd kxproject kexts"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
                "UEFITool_NE" \
@@ -472,40 +480,42 @@ macos_ver=${1-:$(sw_vers -productVersion)}
 minor_ver=$(echo "$macos_ver" | awk -F. '{ print $2; }')
 
 # Patch
-# args: <project> optional: <folder>
+# args: <filename>
 function patch()
 {
     diffs=()
-    #echo "path: $HELPERS_PATH/$1"
-    if [ ! -d "$HELPERS_PATH/$1" ]; then
+    root_folder="${1%%/*}"
+    proj_folder="$(dirname "$1")"
+
+    if [ ! -d "$HELPERS_PATH/$root_folder" ]; then
         return "0"
     fi
 
-    if [ -z "$2" ]; then
-        folder="$1"
-    else
-        folder="$2"
-    fi
-
-    diffs=($(ls "$HELPERS_PATH/$1/Diff" 2>/dev/null))
-
-    echo "Patching..."
+    diffs=($(ls "$HELPERS_PATH/$root_folder/Diff" 2>/dev/null))
     for diff in "${diffs[@]}"; do
-        if [ -f "$HELPERS_PATH/$1/git" ]; then
-            git -C "$SOURCE_PATH/$folder" apply "$HELPERS_PATH/$1/Diff/$diff" >/dev/null 2>&1
-        elif [ -f "$HELPERS_PATH/$1/svn" ]; then
-            svn patch "$HELPERS_PATH/$1/Diff/$diff" "$SOURCE_PATH/$folder/" >/dev/null 2>&1
+        if [ -f "$HELPERS_PATH/$root_folder/git" ]; then
+            if [ "$(ls -a "$SOURCE_PATH/$proj_folder" | grep .git)" != "" ]; then
+                git -C "$SOURCE_PATH/$proj_folder" apply "$HELPERS_PATH/$root_folder/Diff/$diff" >/dev/null 2>&1
+            else
+                git -C "$SOURCE_PATH/$root_folder" apply "$HELPERS_PATH/$root_folder/Diff/$diff" >/dev/null 2>&1
+            fi
+        elif [ -f "$HELPERS_PATH/$root_folder/svn" ]; then
+            if [ "$(ls -a "$SOURCE_PATH/$proj_folder" | grep .svn)" != "" ]; then
+                svn patch "$HELPERS_PATH/$root_folder/Diff/$diff" "$SOURCE_PATH/$proj_folder/" >/dev/null 2>&1
+            else
+                svn patch "$HELPERS_PATH/$root_folder/Diff/$diff" "$SOURCE_PATH/$root_folder/" >/dev/null 2>&1
+            fi
         else
             return "0"
         fi
     done
 
-    things=($(ls "$HELPERS_PATH/$1/Replace" 2>/dev/null))
+    things=($(ls "$HELPERS_PATH/$root_folder/Replace" 2>/dev/null))
     for thing in "${things[@]}"; do
-        if [ ! -f "$HELPERS_PATH/$1/Replace/$thing" ]; then
-            cp -v -R "$HELPERS_PATH/$1/Replace/$thing/." "$SOURCE_PATH/$folder/$thing/" >/dev/null 2>&1
+        if [ ! -f "$HELPERS_PATH/$root_folder/Replace/$thing" ]; then
+            cp -v -R "$HELPERS_PATH/$root_folder/Replace/$thing/." "$SOURCE_PATH/$root_folder/$thing/" >/dev/null 2>&1
         else
-            cp -v "$HELPERS_PATH/$1/Replace/$thing" "$SOURCE_PATH/$folder/" >/dev/null 2>&1
+            cp -v "$HELPERS_PATH/$root_folder/Replace/$thing" "$SOURCE_PATH/$root_folder/" >/dev/null 2>&1
         fi
     done
     return "1"
@@ -526,6 +536,9 @@ print_group "kozlek"
 xcode_build3 "HWSensors/HWSensors.xcworkspace" "Build Kexts" Release
 xcode_build3 "HWSensors/HWSensors.xcworkspace" "HWMonitor" Release
 xcode_build3 "HWSensors/HWSensors.xcworkspace" "org.hwsensors.HWMonitorHelper" Release
+
+print_group "kxproject"
+xcode_build "kXAudioDriver/macosx/10kx driver.xcodeproj" "kXAudioDriver" Deployment
 
 print_group "longsoft"
 qt_build "UEFITool/uefitool.pro" "UEFITool"
@@ -626,38 +639,14 @@ xcode_build "bootoption/bootoption.xcodeproj" "bootoption" Release
 print_group "alexandred"
 #
 check_in_blacklist "VoodooGPIO"
-check="$?"
-if [ "$build_cmd" != "clean" ] && [ "$check" != "1" ]; then
-    rm -rf "$SOURCE_PATH/VoodooGPIO" >/dev/null 2>&1
-    ln -s "$SOURCE_PATH/VoodooI2C/Dependencies/VoodooGPIO" "$SOURCE_PATH/VoodooGPIO" >/dev/null 2>&1
-fi
 xcode_build "VoodooI2C/Dependencies/VoodooGPIO/VoodooGPIO.xcodeproj" "VoodooGPIO" Release plugin force
-
 xcode_build "VoodooI2C/Dependencies/VoodooI2CServices/VoodooI2CServices.xcodeproj" "VoodooI2CServices" Release plugin force
-#
 check_in_blacklist "VoodooI2CUPDDEngine"
-check="$?"
-if [ "$build_cmd" != "clean" ] && [ "$check" != "1" ]; then
-    rm -rf "$SOURCE_PATH/VoodooI2CUPDDEngine" >/dev/null 2>&1
-    ln -s "$SOURCE_PATH/VoodooI2C/VoodooI2C Satellites/VoodooI2CUPDDEngine" "$SOURCE_PATH/VoodooI2CUPDDEngine" >/dev/null 2>&1
-fi
 xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CUPDDEngine/VoodooI2CUPDDEngine.xcodeproj" "VoodooI2CUPDDEngine" Release plugin force
 xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CELAN/VoodooI2CELAN.xcodeproj" "VoodooI2CELAN" Release plugin force
-#
 check_in_blacklist "VoodooI2CHID"
-check="$?"
-if [ "$build_cmd" != "clean" ] && [ "$check" != "1" ]; then
-    rm -rf "$SOURCE_PATH/VoodooI2CHID" >/dev/null 2>&1
-    ln -s "$SOURCE_PATH/VoodooI2C/VoodooI2C Satellites/VoodooI2CHID" "$SOURCE_PATH/VoodooI2CHID" >/dev/null 2>&1
-fi
 xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CHID/VoodooI2CHID.xcodeproj" "VoodooI2CHID" Release plugin force
-#
 check_in_blacklist "VoodooI2CSynaptics"
-check="$?"
-if [ "$build_cmd" != "clean" ] && [ "$check" != "1" ]; then
-    rm -rf "$SOURCE_PATH/VoodooI2CSynaptics" >/dev/null 2>&1
-    ln -s "$SOURCE_PATH/VoodooI2C/VoodooI2C Satellites/VoodooI2CSynaptics" "$SOURCE_PATH/VoodooI2CSynaptics" >/dev/null 2>&1
-fi
 xcode_build "VoodooI2C/VoodooI2C Satellites/VoodooI2CSynaptics/VoodooI2CSynaptics.xcodeproj" "VoodooI2CSynaptics" Release plugin force
 #
 # Copy kexts
