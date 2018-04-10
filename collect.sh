@@ -285,6 +285,7 @@ if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/Sound/VoodooHDA"
     cp -R "$SOURCE_PATH/VoodooHDA/tranc/build/Release/VoodooHDA.kext" "$COLLECT_PATH/Sound/VoodooHDA"
     cp -R "$SOURCE_PATH/VoodooHDA/VoodooHdaSettingsLoader/src/build/Release/VoodooHdaSettingsLoader.app" "$COLLECT_PATH/Sound/VoodooHDA"
+    cp -R "$SOURCE_PATH/VoodooHDA/VHDAPrefPane/VoodooHDA/build/Release/VoodooHDA.prefPane" "$COLLECT_PATH/Sound/VoodooHDA"
 fi
 
 
