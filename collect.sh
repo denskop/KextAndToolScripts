@@ -232,8 +232,9 @@ print_group "rehabman"
 #
 print "EAPD Codec Commander"
 if [ "$?" == "0" ]; then
-    mkdir -p "$COLLECT_PATH/Sound"
-    cp -R "$SOURCE_PATH/EAPD Codec Commander/build/Products/Release/CodecCommander.kext" "$COLLECT_PATH/Sound/"
+    mkdir -p "$COLLECT_PATH/Sound/CodecCommander"
+    cp -R "$SOURCE_PATH/EAPD Codec Commander/build/Products/Release/CodecCommander.kext" "$COLLECT_PATH/Sound/CodecCommander/"
+    cp -R "$SOURCE_PATH/EAPD Codec Commander/build/Products/Release/CodecCommanderClient" "$COLLECT_PATH/Sound/CodecCommander/"
 fi
 #
 print "ACPI Battery Driver"

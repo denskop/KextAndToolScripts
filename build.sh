@@ -568,6 +568,7 @@ xcode_build "ACPI Battery Driver/ACPIBatteryManager.xcodeproj" "ACPIBatteryManag
 xcode_build "ACPI Debug/ACPIDebug.xcodeproj" "ACPIDebug" Release force
 xcode_build "ACPI Keyboard/ACPIKeyboard.xcodeproj" "ACPIKeyboard" Release force
 xcode_build "EAPD Codec Commander/CodecCommander.xcodeproj" "CodecCommander" Release force
+xcode_build "EAPD Codec Commander/CodecCommander.xcodeproj" "CodecCommanderClient" Release force
 
 if [[ $minor_ver < 11 ]]; then # if [macOS < 10.11]; then
     xcode_build "BrcmPatchRAM/BrcmPatchRAM.xcodeproj" "BrcmPatchRAM" Release force
