@@ -1,5 +1,5 @@
 diff --git a/IntelMausiEthernet/IntelMausiEthernet.cpp b/IntelMausiEthernet/IntelMausiEthernet.cpp
-index 2150ffd..46b5839 100644
+index 32e0604..7453fec 100644
 --- a/IntelMausiEthernet/IntelMausiEthernet.cpp
 +++ b/IntelMausiEthernet/IntelMausiEthernet.cpp
 @@ -21,6 +21,10 @@
@@ -13,14 +13,15 @@ index 2150ffd..46b5839 100644
  #pragma mark --- function prototypes ---
  
  static inline void prepareTSO4(mbuf_t m, UInt32 *mssHeaderSize, UInt32 *payloadSize);
-@@ -1969,8 +1973,10 @@ bool IntelMausi::checkForDeadlock()
+@@ -1970,10 +1974,9 @@ bool IntelMausi::checkForDeadlock()
          if (++deadlockWarn >= kTxDeadlockTreshhold) {
              mbuf_t m = txBufArray[txDirtyIndex].mbuf;
              UInt32 pktSize;
-+#ifdef DEBUG
-             UInt16 i, index;
-             UInt16 stalledIndex = txDirtyIndex;
-+#endif
-             //UInt8 data;
+-            UInt16 index;
              
-             IOLog("Ethernet [IntelMausi]: Tx stalled? Resetting chipset. txDirtyDescIndex=%u, STATUS=0x%08x, TCTL=0x%08x.\n", txDirtyIndex, intelReadMem32(E1000_STATUS), intelReadMem32(E1000_TCTL));
+ #ifdef DEBUG
+-            UInt16 i;
++            UInt16 i, index;
+             UInt16 stalledIndex = txDirtyIndex;
+ #endif
+             //UInt8 data;
