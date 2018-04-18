@@ -37,6 +37,7 @@ function git_pull()
     fi
 
     echo "🔸 $(tput bold)$(basename "$1")$(tput sgr0):"
+    result="$(git -C "$SOURCE_PATH/$1" reset --hard 2>&1)"
     result="$(git -C "$SOURCE_PATH/$1" pull 2>&1)"
 
     if [[ "$result" =~ .*"Updating ".* ]] || [[ "$result" =~ .*"remote: Counting objects: ".* ]]; then
@@ -67,6 +68,7 @@ function svn_update()
     echo "🔸 $(tput bold)$(basename "$1")$(tput sgr0):"
     pushd "$SOURCE_PATH/$1" >/dev/null
 
+    result="$(svn revert --recursive . 2>&1)"
     result="$(svn update 2>&1)"
     if [[ "$result" =~ .*[ABCDEGU][[:space:]].* ]]; then
         echo -e "\033[0;32m########################\033[0m"
