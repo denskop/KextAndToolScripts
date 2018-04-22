@@ -327,6 +327,7 @@ function print_group()
                "IntelGraphicsFixup" \
                "Lilu" \
                "NightShiftUnlocker" \
+               "NoTouchID" \
                "NvidiaGraphicsFixup" \
                "Shiki" \
                "WhateverGreen")
@@ -630,6 +631,7 @@ xcode_build2 "HibernationFixup/HibernationFixup.xcodeproj" "HibernationFixup" Re
 xcode_build2 "IntelGraphicsDVMTFixup/IntelGraphicsDVMTFixup.xcodeproj" "IntelGraphicsDVMTFixup" Release plugin  #lvs1974
 xcode_build2 "IntelGraphicsFixup/IntelGraphicsFixup.xcodeproj" "IntelGraphicsFixup" Release plugin              #lvs1974
 xcode_build2 "NightShiftUnlocker/NightShiftUnlocker.xcodeproj" "NightShiftUnlocker" Release plugin              #Austere-J
+xcode_build2 "NoTouchID/NoTouchID.xcodeproj" "NoTouchID" Release plugin                                         #al3xtjames
 xcode_build2 "NvidiaGraphicsFixup/NvidiaGraphicsFixup.xcodeproj" "NvidiaGraphicsFixup" Release plugin           #lvs1974
 xcode_build2 "Shiki/Shiki.xcodeproj" "Shiki" Release plugin
 xcode_build2 "WhateverGreen/WhateverGreen.xcodeproj" "WhateverGreen" Release plugin

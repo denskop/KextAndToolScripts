@@ -139,6 +139,7 @@ function print_group()
                "IntelGraphicsFixup" \
                "Lilu" \
                "NightShiftUnlocker" \
+               "NoTouchID" \
                "NvidiaGraphicsFixup" \
                "Shiki" \
                "WhateverGreen")
@@ -248,6 +249,7 @@ git_pull "IntelGraphicsDVMTFixup"   #BarbaraPalvin
 git_pull "IntelGraphicsFixup"       #lvs1974
 git_pull "Lilu"
 git_pull "NightShiftUnlocker"       #Austere-J
+git_pull "NoTouchID"                #al3xtjames
 git_pull "NvidiaGraphicsFixup"      #lvs1974
 git_pull "Shiki"
 git_pull "WhateverGreen"

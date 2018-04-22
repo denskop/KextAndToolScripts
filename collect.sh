@@ -102,6 +102,7 @@ function print_group()
                "IntelGraphicsFixup" \
                "Lilu" \
                "NightShiftUnlocker" \
+               "NoTouchID" \
                "NvidiaGraphicsFixup" \
                "Shiki" \
                "WhateverGreen")
@@ -379,6 +380,12 @@ print "NightShiftUnlocker"
 if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/Lilu+Plugins"
     cp -R "$SOURCE_PATH/NightShiftUnlocker/build/Release/NightShiftUnlocker.kext" "$COLLECT_PATH/Lilu+Plugins"
+fi
+#
+print "NoTouchID"
+if [ "$?" == "0" ]; then
+    mkdir -p "$COLLECT_PATH/Lilu+Plugins"
+    cp -R "$SOURCE_PATH/NoTouchID/build/Release/NoTouchID.kext" "$COLLECT_PATH/Lilu+Plugins"
 fi
 #
 print "NvidiaGraphicsFixup"

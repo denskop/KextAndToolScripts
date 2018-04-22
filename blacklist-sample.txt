@@ -32,6 +32,7 @@ kXAudioDriver
 Lilu
 MaciASL
 NightShiftUnlocker
+NoTouchID
 NvidiaGraphicsFixup
 Realtek RTL8100
 Realtek RTL8111

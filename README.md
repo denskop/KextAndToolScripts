@@ -90,6 +90,7 @@ with plugins: ACPISensors, CPUSensors,  GPUSensors, LPCSensors
 - [IntelGraphicsFixup](https://github.com/lvs1974/IntelGraphicsFixup)
 - [Lilu](https://github.com/vit9696/Lilu)
 - [NightShiftUnlocker](https://github.com/Austere-J/NightShiftUnlocker)
+- [NoTouchID](https://github.com/al3xtjames/NoTouchID)
 - [NvidiaGraphicsFixup](https://github.com/lvs1974/NvidiaGraphicsFixup)
 - [Shiki](https://github.com/vit9696/Shiki)
 - [WhateverGreen](https://github.com/vit9696/WhateverGreen)
