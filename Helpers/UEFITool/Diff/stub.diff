@@ -2,7 +2,10 @@ diff --git a/ffsengine.cpp b/ffsengine.cpp
 index 0747e90..eb6eaa9 100644
 --- a/ffsengine.cpp
 +++ b/ffsengine.cpp
-@@ -2662,6 +2662,14 @@ UINT8 FfsEngine::rebuild(const QModelIndex & index)
+@@ -2659,9 +2659,17 @@ UINT8 FfsEngine::rebuild(const QModelIndex & index)
+     // Rebase all PEI-files that follow
+     rebasePeiFiles(fileIndex);
+
      return ERR_SUCCESS;
  }
  
