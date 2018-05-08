@@ -858,7 +858,7 @@
                             </buttonCell>
                         </column>
                         <column>
-                            <buttonCell type="radio" title="ACPI 6.1" imagePosition="left" alignment="left" tag="61" inset="2" id="1698">
+                            <buttonCell type="radio" title="ACPI 6.2a" imagePosition="left" alignment="left" tag="62" inset="2" id="1698">
                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>

@@ -527,7 +527,8 @@ make_build acpica "ACPICA"
 if [ "$?" != "1" ]; then
     mkdir -p "$SOURCE_PATH/MaciASL/build/Release/MaciASL.app/Contents/MacOS"
     cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl4"
-    cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl61"
+    #cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl61"
+    cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl62"
 fi
 
 print_group "denskop"
