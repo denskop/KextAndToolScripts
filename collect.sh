@@ -480,8 +480,14 @@ print_group "uefi"
 print "AptioFixPkg"
 if [ "$?" != "1" ]; then
     mkdir -p "$COLLECT_PATH/UEFI/Drivers"
+    mkdir -p "$COLLECT_PATH/UEFI/Tools"
+
     cp "$SOURCE_PATH/edk2/Build/AptioFixPkg/RELEASE_XCODE5/X64/AptioMemoryFix.efi" "$COLLECT_PATH/UEFI/Drivers/AptioMemoryFix-64.efi"
     cp "$SOURCE_PATH/edk2/Build/AptioFixPkg/RELEASE_XCODE5/X64/AptioInputFix.efi" "$COLLECT_PATH/UEFI/Drivers/AptioInputFix-64.efi"
+
+    # tools
+    cp "$SOURCE_PATH/edk2/Build/AptioFixPkg/RELEASE_XCODE5/X64/CleanNvram.efi" "$COLLECT_PATH/UEFI/Tools/CleanNvram-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/AptioFixPkg/RELEASE_XCODE5/X64/VerifyMsrE2.efi" "$COLLECT_PATH/UEFI/Tools/VerifyMsrE2-64.efi"
 fi
 
 print "Clover"
@@ -489,6 +495,7 @@ if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/UEFI/BOOT"
     mkdir -p "$COLLECT_PATH/UEFI/Debug"
     mkdir -p "$COLLECT_PATH/UEFI/Drivers"
+    mkdir -p "$COLLECT_PATH/UEFI/Tools"
 
     # bootloader
     cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/CLOVER.efi" "$COLLECT_PATH/UEFI/BOOT/BOOTX64.efi"
@@ -517,4 +524,8 @@ if [ "$?" == "0" ]; then
 
     # additinal drivers
     cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/DumpUefiCalls.efi" "$COLLECT_PATH/UEFI/Debug/DumpUefiCalls-64.efi"
+
+    # tools
+    cp "$SOURCE_PATH/edk2/EdkShellBinPkg/FullShell/X64/Shell_Full.efi" "$COLLECT_PATH/UEFI/Tools/Shell_Full-64.efi"
+    cp "$SOURCE_PATH/edk2/EdkShellBinPkg/MinimumShell/X64/Shell.efi" "$COLLECT_PATH/UEFI/Tools/Shell_Minimum-64.efi"
 fi
