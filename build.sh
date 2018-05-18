@@ -275,8 +275,12 @@ function print_group()
     if [ "$1" == "acpica" ]; then
         array=("ACPICA")
         title="\n# $build_cmd ACPI Component Architecture tools"
+    elif [ "$1" == "corpnewt" ]; then
+        array=("NullCPUPowerManagement")
+        title="\n# $build_cmd corpnewt forks"
     elif [ "$1" == "denskop" ]; then
-        array=("Universal IFR Extractor")
+        array=("Universal IFR Extractor" \
+               "VoodooTSCSync")
         title="\n# $build_cmd denskop forks"
     elif [ "$1" == "kozlek" ]; then
         array=("HWSensors")
@@ -531,8 +535,13 @@ if [ "$?" != "1" ]; then
     cp "$SOURCE_PATH/ACPICA/generate/unix/bin/iasl" "$SOURCE_PATH/MaciASL/iasl62"
 fi
 
+print_group "corpnewt"
+xcode_build "NullCPUPowerManagement/NullCPUPowerManagement.xcodeproj" "NullCPUPowerManagement" Release force
+
 print_group "denskop"
 qt_build "Universal IFR Extractor/Qt/Universal_IFR_Extractor.pro" "Universal IFR Extractor"
+xcode_build "VoodooTSCSync/VoodooTSCSync.xcodeproj" "VoodooTSCSync" Release
+xcode_build "VoodooTSCSync/VoodooTSCSync.xcodeproj" "VoodooTSCSyncAMD" Release
 
 print_group "kozlek"
 xcode_build3 "HWSensors/HWSensors.xcworkspace" "Build Kexts" Release

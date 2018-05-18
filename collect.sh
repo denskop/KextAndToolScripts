@@ -50,8 +50,12 @@ function print_group()
     if [ "$1" == "acpica" ]; then
         array=("ACPICA")
         title="\n# Collect ACPI Component Architecture tools"
+    elif [ "$1" == "corpnewt" ]; then
+        array=("NullCPUPowerManagement")
+        title="\n# Collect corpnewt forks"
     elif [ "$1" == "denskop" ]; then
-        array=("Universal IFR Extractor")
+        array=("Universal IFR Extractor" \
+               "VoodooTSCSync")
         title="\n# Collect denskop forks"
     elif [ "$1" == "kozlek" ]; then
         array=("HWSensors")
@@ -160,12 +164,54 @@ if [ "$?" == "0" ]; then
     cp -R "$SOURCE_PATH/ACPICA/documents/aslcompiler.pdf" "$COLLECT_PATH/Tools/ACPICA/"
 fi
 
+print_group "corpnewt"
+#
+print "NullCPUPowerManagement"
+if [ "$?" == "0" ]; then
+    mkdir -p "$COLLECT_PATH/CPU"
+    cp -R "$SOURCE_PATH/NullCPUPowerManagement/build/Release/NullCPUPowerManagement.kext" "$COLLECT_PATH/CPU/"
+fi
+
 print_group "denskop"
 #
 print "Universal IFR Extractor"
 if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/Tools"
     cp -R "$SOURCE_PATH/Universal IFR Extractor/Qt/Universal IFR Extractor.app" "$COLLECT_PATH/Tools/"
+fi
+
+print "VoodooTSCSync"
+if [ "$?" == "0" ]; then
+    # Cleaning
+    rm -rf "$COLLECT_PATH/CPU/AMD"
+    rm -rf "$COLLECT_PATH/CPU/Intel"
+
+    mkdir -p "$COLLECT_PATH/CPU/AMD"
+    mkdir -p "$COLLECT_PATH/CPU/Intel"
+
+    # Intel
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync2TH.kext"
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync4TH.kext"
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync6TH.kext"
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync8TH.kext"
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync12TH.kext"
+
+    # Patch plists
+    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSync:IOPropertyMatch:IOCPUNumber 3" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync4TH.kext/Contents/Info.plist"
+    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSync:IOPropertyMatch:IOCPUNumber 5" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync6TH.kext/Contents/Info.plist"
+    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSync:IOPropertyMatch:IOCPUNumber 7" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync8TH.kext/Contents/Info.plist"
+    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSync:IOPropertyMatch:IOCPUNumber 11" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync12TH.kext/Contents/Info.plist"
+
+    # AMD
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSyncAMD.kext" "$COLLECT_PATH/CPU/AMD/VoodooTSCSyncAMD2Cores.kext"
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSyncAMD.kext" "$COLLECT_PATH/CPU/AMD/VoodooTSCSyncAMD4Cores.kext"
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSyncAMD.kext" "$COLLECT_PATH/CPU/AMD/VoodooTSCSyncAMD6Cores.kext"
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSyncAMD.kext" "$COLLECT_PATH/CPU/AMD/VoodooTSCSyncAMD8Cores.kext"
+
+    # Patch plists
+    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSyncAMD:IOPropertyMatch:IOCPUNumber 3" "$COLLECT_PATH/CPU/AMD/VoodooTSCSyncAMD4Cores.kext/Contents/Info.plist"
+    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSyncAMD:IOPropertyMatch:IOCPUNumber 5" "$COLLECT_PATH/CPU/AMD/VoodooTSCSyncAMD6Cores.kext/Contents/Info.plist"
+    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSyncAMD:IOPropertyMatch:IOCPUNumber 7" "$COLLECT_PATH/CPU/AMD/VoodooTSCSyncAMD8Cores.kext/Contents/Info.plist"
 fi
 
 print_group "kozlek"

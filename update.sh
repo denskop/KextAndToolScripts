@@ -89,8 +89,12 @@ function print_group()
     if [ "$1" == "acpica" ]; then
         array=("ACPICA")
         title="\n# Update ACPI Component Architecture tools"
+    elif [ "$1" == "corpnewt" ]; then
+        array=("NullCPUPowerManagement")
+        title="\n# Update corpnewt forks"
     elif [ "$1" == "denskop" ]; then
-        array=("Universal IFR Extractor")
+        array=("Universal IFR Extractor" \
+               "VoodooTSCSync")
         title="\n# Update denskop forks"
     elif [ "$1" == "kozlek" ]; then
         array=("HWSensors")
@@ -202,8 +206,12 @@ fi
 print_group "acpica"
 git_pull "ACPICA"
 
+print_group "corpnewt"
+git_pull "NullCPUPowerManagement"
+
 print_group "denskop"
 git_pull "Universal IFR Extractor"
+git_pull "VoodooTSCSync"
 
 print_group "kozlek"
 git_pull "HWSensors"

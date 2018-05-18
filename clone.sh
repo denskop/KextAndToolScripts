@@ -110,8 +110,12 @@ function print_group()
     elif [ "$1" == "kxproject" ]; then
         array=("kXAudioDriver")
         title="\n# Clone kxproject kexts"
+    elif [ "$1" == "corpnewt" ]; then
+        array=("NullCPUPowerManagement")
+        title="\n# Clone corpnewt forks"
     elif [ "$1" == "denskop" ]; then
-        array=("Universal IFR Extractor")
+        array=("Universal IFR Extractor" \
+               "VoodooTSCSync")
         title="\n# Clone denskop forks"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
@@ -217,8 +221,12 @@ fi
 print_group "acpica"
 git_clone https://github.com/acpica/acpica.git "ACPICA"
 
+print_group "corpnewt"
+git_clone https://github.com/corpnewt/NullCPUPowerManagement.git "NullCPUPowerManagement"
+
 print_group "denskop"
 git_clone https://github.com/denskop/Universal-IFR-Extractor.git "Universal IFR Extractor"
+git_clone https://github.com/denskop/VoodooTSCSync.git "VoodooTSCSync"
 
 print_group "kozlek"
 git_clone https://github.com/kozlek/HWSensors.git "HWSensors"
