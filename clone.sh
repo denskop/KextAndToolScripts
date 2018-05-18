@@ -293,7 +293,8 @@ git_clone https://github.com/Piker-Alpha/csrstat.git "csrstat"
 git_clone https://github.com/Piker-Alpha/ssdtPRGen.sh.git "ssdtPRGen"
 
 print_group "uefi"
-git_checkout https://github.com/tianocore/edk2.git "edk2" "3f34e36d04a8de4992a696f738643b5a11261469"    #Tianocore
+git_checkout https://github.com/tianocore/edk2.git "edk2" "333f32ec23ddf87530aff58a10430871e5bea6e9"    #Tianocore
+#git_checkout https://github.com/tianocore/edk2.git "edk2" "3f34e36d04a8de4992a696f738643b5a11261469"
 #git_checkout https://github.com/tianocore/edk2.git "edk2" "13e3f8c03339ebc8cd25c454fca1abde098fe7ed"
 #git_checkout https://github.com/tianocore/edk2.git "edk2" "0c9f2cb10b7ddec56a3440e77219fd3ab1725e5c"
 #git_clone https://git.code.sf.net/p/tianocore/edk2 "edk2"
