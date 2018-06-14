@@ -526,7 +526,7 @@ print_group "uefi"
 print "ApfsSupportPkg"
 if [ "$?" != "1" ]; then
     mkdir -p "$COLLECT_PATH/UEFI/Drivers"
-    cp "$SOURCE_PATH/edk2/Build/ApfsSupportPkg/RELEASE_XCODE5/X64/ApfsSupportPkg.efi" "$COLLECT_PATH/UEFI/Drivers/ApfsSupportPkg-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/ApfsSupportPkg/RELEASE_XCODE5/X64/ApfsDriverLoader.efi" "$COLLECT_PATH/UEFI/Drivers/ApfsDriverLoader-64.efi"
 fi
 
 print "AptioFixPkg"
@@ -550,32 +550,32 @@ if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/UEFI/Tools"
 
     # bootloader
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/CLOVER.efi" "$COLLECT_PATH/UEFI/BOOT/BOOTX64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/CLOVER.efi" "$COLLECT_PATH/UEFI/CLOVERX64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/CLOVER.efi" "$COLLECT_PATH/UEFI/BOOT/BOOTX64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/CLOVER.efi" "$COLLECT_PATH/UEFI/CLOVERX64.efi"
 
     # drivers
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/DataHubDxe.efi" "$COLLECT_PATH/UEFI/Drivers/DataHubDxe-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/AppleImageCodec.efi" "$COLLECT_PATH/UEFI/Drivers/AppleImageCodec-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/AppleKeyAggregator.efi" "$COLLECT_PATH/UEFI/Drivers/AppleKeyAggregator-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/AppleUITheme.efi" "$COLLECT_PATH/UEFI/Drivers/AppleUITheme-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/EmuVariableUefi.efi" "$COLLECT_PATH/UEFI/Drivers/EmuVariableUefi-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/Fat.efi" "$COLLECT_PATH/UEFI/Drivers/Fat-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/FirmwareVolume.efi" "$COLLECT_PATH/UEFI/Drivers/FirmwareVolume-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/FSInject.efi" "$COLLECT_PATH/UEFI/Drivers/FSInject-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/OsxAptioFix2Drv.efi" "$COLLECT_PATH/UEFI/Drivers/OsxAptioFix2Drv-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/OsxAptioFix3Drv.efi" "$COLLECT_PATH/UEFI/Drivers/OsxAptioFix3Drv-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/OsxAptioFixDrv.efi" "$COLLECT_PATH/UEFI/Drivers/OsxAptioFixDrv-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/OsxFatBinaryDrv.efi" "$COLLECT_PATH/UEFI/Drivers/OsxFatBinaryDrv-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/OsxLowMemFixDrv.efi" "$COLLECT_PATH/UEFI/Drivers/OsxLowMemFixDrv-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/PartitionDxe.efi" "$COLLECT_PATH/UEFI/Drivers/PartitionDxe-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/SMCHelper.efi" "$COLLECT_PATH/UEFI/Drivers/SMCHelper-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/VBoxHfs.efi" "$COLLECT_PATH/UEFI/Drivers/VBoxHfs-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/CsmVideoDxe.efi" "$COLLECT_PATH/UEFI/Drivers/CsmVideoDxe-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/UsbKbDxe.efi" "$COLLECT_PATH/UEFI/Drivers/UsbKbDxe-64.efi"
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/UsbMouseDxe.efi" "$COLLECT_PATH/UEFI/Drivers/UsbMouseDxe-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/DataHubDxe.efi" "$COLLECT_PATH/UEFI/Drivers/DataHubDxe-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/AppleImageCodec.efi" "$COLLECT_PATH/UEFI/Drivers/AppleImageCodec-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/AppleKeyAggregator.efi" "$COLLECT_PATH/UEFI/Drivers/AppleKeyAggregator-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/AppleUITheme.efi" "$COLLECT_PATH/UEFI/Drivers/AppleUITheme-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/EmuVariableUefi.efi" "$COLLECT_PATH/UEFI/Drivers/EmuVariableUefi-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/Fat.efi" "$COLLECT_PATH/UEFI/Drivers/Fat-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/FirmwareVolume.efi" "$COLLECT_PATH/UEFI/Drivers/FirmwareVolume-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/FSInject.efi" "$COLLECT_PATH/UEFI/Drivers/FSInject-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/OsxAptioFix2Drv.efi" "$COLLECT_PATH/UEFI/Drivers/OsxAptioFix2Drv-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/OsxAptioFix3Drv.efi" "$COLLECT_PATH/UEFI/Drivers/OsxAptioFix3Drv-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/OsxAptioFixDrv.efi" "$COLLECT_PATH/UEFI/Drivers/OsxAptioFixDrv-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/OsxFatBinaryDrv.efi" "$COLLECT_PATH/UEFI/Drivers/OsxFatBinaryDrv-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/OsxLowMemFixDrv.efi" "$COLLECT_PATH/UEFI/Drivers/OsxLowMemFixDrv-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/PartitionDxe.efi" "$COLLECT_PATH/UEFI/Drivers/PartitionDxe-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/SMCHelper.efi" "$COLLECT_PATH/UEFI/Drivers/SMCHelper-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/VBoxHfs.efi" "$COLLECT_PATH/UEFI/Drivers/VBoxHfs-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/CsmVideoDxe.efi" "$COLLECT_PATH/UEFI/Drivers/CsmVideoDxe-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/UsbKbDxe.efi" "$COLLECT_PATH/UEFI/Drivers/UsbKbDxe-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/UsbMouseDxe.efi" "$COLLECT_PATH/UEFI/Drivers/UsbMouseDxe-64.efi"
 
     # additinal drivers
-    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE5/X64/DumpUefiCalls.efi" "$COLLECT_PATH/UEFI/Debug/DumpUefiCalls-64.efi"
+    cp "$SOURCE_PATH/edk2/Build/Clover/RELEASE_XCODE8/X64/DumpUefiCalls.efi" "$COLLECT_PATH/UEFI/Debug/DumpUefiCalls-64.efi"
 
     # tools
     cp "$SOURCE_PATH/edk2/EdkShellBinPkg/FullShell/X64/Shell_Full.efi" "$COLLECT_PATH/UEFI/Tools/Shell_Full-64.efi"
