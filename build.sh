@@ -356,7 +356,8 @@ function print_group()
                "CupertinoModulePkg" \
                "EfiMiscPkg" \
                "EfiPkg" \
-               "AptioFixPkg")
+               "AptioFixPkg" \
+               "ApfsSupportPkg")
         title="\n# $build_cmd UEFI projects"
     else
         array=("nil")
@@ -698,6 +699,9 @@ if [ "$?" != "1" ]; then
 
     # Build AptioFixPkg
     edk2_build "AptioFixPkg/AptioFixPkg.dsc" XCODE5 RELEASE
+
+    # Build ApfsSupportPkg
+    edk2_build "ApfsSupportPkg/ApfsSupportPkg.dsc" XCODE5 RELEASE
 
     # Build Clover
     check_in_blacklist "Clover"

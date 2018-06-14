@@ -523,6 +523,12 @@ fi
 
 print_group "uefi"
 
+print "ApfsSupportPkg"
+if [ "$?" != "1" ]; then
+    mkdir -p "$COLLECT_PATH/UEFI/Drivers"
+    cp "$SOURCE_PATH/edk2/Build/ApfsSupportPkg/RELEASE_XCODE5/X64/ApfsSupportPkg.efi" "$COLLECT_PATH/UEFI/Drivers/ApfsSupportPkg-64.efi"
+fi
+
 print "AptioFixPkg"
 if [ "$?" != "1" ]; then
     mkdir -p "$COLLECT_PATH/UEFI/Drivers"

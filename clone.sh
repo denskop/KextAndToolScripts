@@ -183,7 +183,8 @@ function print_group()
                "CupertinoModulePkg" \
                "EfiMiscPkg" \
                "EfiPkg" \
-               "AptioFixPkg")
+               "AptioFixPkg" \
+               "ApfsSupportPkg")
         title="\n# Clone UEFI projects"
     else
         array=("nil")
@@ -301,7 +302,8 @@ git_clone https://github.com/Piker-Alpha/csrstat.git "csrstat"
 git_clone https://github.com/Piker-Alpha/ssdtPRGen.sh.git "ssdtPRGen"
 
 print_group "uefi"
-git_checkout https://github.com/tianocore/edk2.git "edk2" "333f32ec23ddf87530aff58a10430871e5bea6e9"    #Tianocore
+git_checkout https://github.com/tianocore/edk2.git "edk2" "77ca824c652443bdf3edaa0bb109fd8225a71cd3"    #TianoCore
+#git_checkout https://github.com/tianocore/edk2.git "edk2" "333f32ec23ddf87530aff58a10430871e5bea6e9"
 #git_checkout https://github.com/tianocore/edk2.git "edk2" "3f34e36d04a8de4992a696f738643b5a11261469"
 #git_checkout https://github.com/tianocore/edk2.git "edk2" "13e3f8c03339ebc8cd25c454fca1abde098fe7ed"
 #git_checkout https://github.com/tianocore/edk2.git "edk2" "0c9f2cb10b7ddec56a3440e77219fd3ab1725e5c"
@@ -314,6 +316,7 @@ git_clone https://github.com/CupertinoNet/EfiMiscPkg "edk2/EfiMiscPkg"          
 git_clone https://github.com/CupertinoNet/EfiPkg "edk2/EfiPkg"                                          #CupertinoNet
 #
 git_clone https://github.com/vit9696/AptioFixPkg.git "edk2/AptioFixPkg"                                 #vit9696
+git_clone https://github.com/acidanthera/ApfsSupportPkg.git "edk2/ApfsSupportPkg"                       #savvas, vit9696
 
 echo -e "\n# Check and Download missing tools"
 

@@ -29,6 +29,7 @@
 - [ACPICA](https://github.com/acpica/acpica): iasl
 
 ### 2. EDK2 based projects
+- [ApfsSupportPkg](https://github.com/acidanthera/ApfsSupportPkg)
 - [AptioFixPkg](https://github.com/vit9696/AptioFixPkg)
 - [CupertinoModulePkg](https://github.com/CupertinoNet/CupertinoModulePkg), [EfiMiscPkg](https://github.com/CupertinoNet/EfiMiscPkg), [EfiPkg](https://github.com/CupertinoNet/EfiPkg)
 - [Clover EFI Bootloader](https://sourceforge.net/projects/cloverefiboot)

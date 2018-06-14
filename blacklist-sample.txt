@@ -3,6 +3,7 @@ ACPI Debug
 ACPI Keyboard
 ACPICA
 AirportBrcmFixup
+ApfsSupportPkg
 AppleALC
 AppleIntelInfo
 AptioFixPkg

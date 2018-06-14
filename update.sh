@@ -168,7 +168,8 @@ function print_group()
                "CupertinoModulePkg" \
                "EfiMiscPkg" \
                "EfiPkg" \
-               "AptioFixPkg")
+               "AptioFixPkg" \
+               "ApfsSupportPkg")
         title="\n# Update UEFI projects"
     else
         array=("nil")
@@ -282,13 +283,15 @@ git_pull "csrstat"
 git_pull "ssdtPRGen"
 
 print_group "uefi"
-git_pull "edk2" "333f32ec23ddf87530aff58a10430871e5bea6e9"  #TianoCore
+git_pull "edk2" "77ca824c652443bdf3edaa0bb109fd8225a71cd3"  #TianoCore
+#git_pull "edk2" "333f32ec23ddf87530aff58a10430871e5bea6e9"
 #git_pull "edk2" "3f34e36d04a8de4992a696f738643b5a11261469"
 #git_pull "edk2" "13e3f8c03339ebc8cd25c454fca1abde098fe7ed"
 #git_pull "edk2" "0c9f2cb10b7ddec56a3440e77219fd3ab1725e5c"
 #svn_update "edk2"
 svn_update "edk2/Clover"                                    #CloverTeam
 git_pull "edk2/AptioFixPkg"                                 #vit9696
+git_pull "edk2/ApfsSupportPkg"                              #savvas, vit9696
 # UEFI useful packages
 git_pull "edk2/CupertinoModulePkg"                          #CupertinoNet
 git_pull "edk2/EfiMiscPkg"                                  #CupertinoNet
