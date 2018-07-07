@@ -420,11 +420,9 @@ fi
 # Check MTOCK by vit9696
 if [ "$(which mtoc.NEW)" == "" ] || [ "$(which mtoc)" == "" ]; then
     echo "4. mtoc: Installing..."
-    rm -f "$SELF_PATH/mtoc" "$SELF_PATH/mtoc.NEW"
-    unzip -q "$SOURCE_PATH/edk2/AptioFixPkg/external/mtoc-mac64.zip" "mtoc" "mtoc.NEW" -d "$SELF_PATH" || exit 1
     sudo mkdir -p /usr/local/bin || exit 1
-    sudo mv "$SELF_PATH/mtoc" /usr/local/bin/ || exit 1
-    sudo mv "$SELF_PATH/mtoc.NEW" /usr/local/bin/ || exit 1
+    sudo cp "$HELPERS_PATH/mtoc/mtoc.NEW" /usr/local/bin/mtoc || exit 1
+    sudo cp "$HELPERS_PATH/mtoc/mtoc.NEW" /usr/local/bin/ || exit 1
 else
     echo "4. mtoc: Installed"
 fi
