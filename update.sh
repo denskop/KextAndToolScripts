@@ -129,7 +129,7 @@ function print_group()
     elif [ "$1" == "slice" ]; then
         array=("VoodooHDA")
         title="\n# Update Slice kexts"
-    elif [ "$1" == "vit9696" ]; then
+    elif [ "$1" == "acidanthera" ]; then
         array=("AirportBrcmFixup" \
                "AppleALC" \
                "ATH9KFixup" \
@@ -144,7 +144,7 @@ function print_group()
                "NightShiftUnlocker" \
                "NoTouchID" \
                "WhateverGreen")
-        title="\n# Clone vit9696 kexts and plugins"
+        title="\n# Update acidanthera kexts and plugins"
     elif [ "$1" == "alexandred" ]; then
         array=("VoodooI2C" \
                "VoodooGPIO" \
@@ -241,7 +241,7 @@ git_pull "VoodooPS2"
 print_group "slice"
 svn_update "VoodooHDA"
 
-print_group "vit9696"
+print_group "acidanthera"
 git_pull "AirportBrcmFixup"         #lvs1974
 git_pull "AppleALC"
 git_pull "ATH9KFixup"               #chunnann
@@ -284,8 +284,8 @@ git_pull "edk2" "77ca824c652443bdf3edaa0bb109fd8225a71cd3"  #TianoCore
 #git_pull "edk2" "0c9f2cb10b7ddec56a3440e77219fd3ab1725e5c"
 #svn_update "edk2"
 svn_update "edk2/Clover"                                    #CloverTeam
-git_pull "edk2/AptioFixPkg"                                 #vit9696
-git_pull "edk2/ApfsSupportPkg"                              #savvas, vit9696
+git_pull "edk2/AptioFixPkg"                                 #acidanthera
+git_pull "edk2/ApfsSupportPkg"                              #savvas, acidanthera
 # UEFI useful packages
 git_pull "edk2/CupertinoModulePkg"                          #CupertinoNet
 git_pull "edk2/EfiMiscPkg"                                  #CupertinoNet

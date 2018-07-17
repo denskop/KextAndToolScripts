@@ -144,7 +144,7 @@ function print_group()
     elif [ "$1" == "slice" ]; then
         array=("VoodooHDA")
         title="\n# Clone Slice kexts"
-    elif [ "$1" == "vit9696" ]; then
+    elif [ "$1" == "acidanthera" ]; then
         array=("AirportBrcmFixup" \
                "AppleALC" \
                "ATH9KFixup" \
@@ -159,7 +159,7 @@ function print_group()
                "NightShiftUnlocker" \
                "NoTouchID" \
                "WhateverGreen")
-        title="\n# Clone vit9696 kexts and plugins"
+        title="\n# Clone acidanthera kexts and plugins"
     elif [ "$1" == "alexandred" ]; then
         array=("VoodooI2C" \
                "VoodooGPIO" \
@@ -256,9 +256,9 @@ git_clone https://github.com/RehabMan/OS-X-Voodoo-PS2-Controller.git "VoodooPS2"
 print_group "slice"
 svn_co https://svn.code.sf.net/p/voodoohda/code "VoodooHDA"
 
-print_group "vit9696"
+print_group "acidanthera"
 git_clone https://github.com/lvs1974/AirportBrcmFixup.git "AirportBrcmFixup"                    #lvs1974
-git_clone https://github.com/vit9696/AppleALC.git "AppleALC"
+git_clone https://github.com/acidanthera/AppleALC.git "AppleALC"
 git_clone https://github.com/chunnann/ATH9KFixup.git "ATH9KFixup"                               #chunnann
 git_clone https://github.com/coderobe/AzulPatcher4600.git "AzulPatcher4600"                     #coderobe
 git_clone https://github.com/lvs1974/BT4LEContiunityFixup.git "BT4LEContiunityFixup"            #lvs1974
@@ -267,10 +267,10 @@ git_clone https://github.com/PMheart/CPUFriend.git "CPUFriend"                  
 git_clone https://github.com/syscl/EnableLidWake.git "EnableLidWake"                            #syscl
 git_clone https://github.com/lvs1974/HibernationFixup.git "HibernationFixup"                    #lvs1974
 git_clone https://github.com/BarbaraPalvin/IntelGraphicsDVMTFixup.git "IntelGraphicsDVMTFixup"  #BarbaraPalvin
-git_clone https://github.com/vit9696/Lilu.git "Lilu"
+git_clone https://github.com/acidanthera/Lilu.git "Lilu"
 git_clone https://github.com/Austere-J/NightShiftUnlocker.git "NightShiftUnlocker"              #Austere-J
 git_clone https://github.com/al3xtjames/NoTouchID.git "NoTouchID"                               #al3xtjames
-git_clone https://github.com/vit9696/WhateverGreen.git "WhateverGreen"
+git_clone https://github.com/acidanthera/WhateverGreen.git "WhateverGreen"
 
 print_group "vulgo"
 git_clone https://github.com/vulgo/bootoption.git "bootoption"
@@ -309,12 +309,12 @@ git_clone https://github.com/CupertinoNet/CupertinoModulePkg "edk2/CupertinoModu
 git_clone https://github.com/CupertinoNet/EfiMiscPkg "edk2/EfiMiscPkg"                                  #CupertinoNet
 git_clone https://github.com/CupertinoNet/EfiPkg "edk2/EfiPkg"                                          #CupertinoNet
 #
-git_clone https://github.com/vit9696/AptioFixPkg.git "edk2/AptioFixPkg"                                 #vit9696
-git_clone https://github.com/acidanthera/ApfsSupportPkg.git "edk2/ApfsSupportPkg"                       #savvas, vit9696
+git_clone https://github.com/acidanthera/AptioFixPkg.git "edk2/AptioFixPkg"                                 #acidanthera
+git_clone https://github.com/acidanthera/ApfsSupportPkg.git "edk2/ApfsSupportPkg"                       #savvas, acidanthera
 
 echo -e "\n# Check and Download missing tools"
 
-# Check NASM by vit9696
+# Check NASM by acidanthera
 NASMVER="2.13.02"
 if [ "$(nasm -v | grep Apple)" != "" ]; then
     echo "1. nasm - $(tput bold)FAILED$(tput sgr0)"
@@ -324,7 +324,7 @@ else
     echo "1. nasm - $(tput bold)PASSED$(tput sgr0)"
 fi
 
-# Check MTOCK by vit9696
+# Check MTOCK by acidanthera
 if [ "$(which mtoc.NEW)" == "" ] || [ "$(which mtoc)" == "" ]; then
     echo "2. mtoc - $(tput bold)FAILED$(tput sgr0)"
 else

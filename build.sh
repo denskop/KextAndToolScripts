@@ -317,7 +317,7 @@ function print_group()
     elif [ "$1" == "slice" ]; then
         array=("VoodooHDA")
         title="\n# $build_cmd Slice kexts"
-    elif [ "$1" == "vit9696" ]; then
+    elif [ "$1" == "acidanthera" ]; then
         array=("AirportBrcmFixup" \
                "AppleALC" \
                "ATH9KFixup" \
@@ -332,7 +332,7 @@ function print_group()
                "NightShiftUnlocker" \
                "NoTouchID" \
                "WhateverGreen")
-        title="\n# Clone vit9696 kexts and plugins"
+        title="\n# $build_cmd acidanthera kexts and plugins"
     elif [ "$1" == "alexandred" ]; then
         array=("VoodooI2C" \
                "VoodooGPIO" \
@@ -401,7 +401,7 @@ else
     xcode_installed="true"
 fi
 
-# Check NASM by vit9696
+# Check NASM by acidanthera
 NASMVER="2.13.02"
 if [ "$(nasm -v | grep Apple)" != "" ]; then
     echo "3. nasm: Installing..."
@@ -414,7 +414,7 @@ else
     echo "3. nasm: Installed"
 fi
 
-# Check MTOCK by vit9696
+# Check MTOCK by acidanthera
 if [ "$(which mtoc.NEW)" == "" ] || [ "$(which mtoc)" == "" ]; then
     echo "4. mtoc: Installing..."
     sudo mkdir -p /usr/local/bin || exit 1
@@ -621,7 +621,7 @@ if [ "$?" != "1" ]; then
     xcode_build "VoodooHDA/VoodooHdaSettingsLoader/src/VoodooHdaSettingsLoader.xcodeproj" "VoodooHdaSettingsLoader" Release force
 fi
 
-print_group "vit9696"
+print_group "acidanthera"
 xcode_build "Lilu/Lilu.xcodeproj" "Lilu" Debug
 xcode_build "Lilu/Lilu.xcodeproj" "Lilu" Release
 

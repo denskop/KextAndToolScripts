@@ -92,7 +92,7 @@ function print_group()
     elif [ "$1" == "slice" ]; then
         array=("VoodooHDA")
         title="\n# Collect Slice kexts"
-    elif [ "$1" == "vit9696" ]; then
+    elif [ "$1" == "acidanthera" ]; then
         array=("AirportBrcmFixup" \
                "AppleALC" \
                "ATH9KFixup" \
@@ -107,7 +107,7 @@ function print_group()
                "NightShiftUnlocker" \
                "NoTouchID" \
                "WhateverGreen")
-        title="\n# Clone vit9696 kexts and plugins"
+        title="\n# Collect acidanthera kexts and plugins"
     elif [ "$1" == "alexandred" ]; then
         array=("VoodooI2C" \
                "VoodooI2CELAN" \
@@ -345,7 +345,7 @@ if [ "$?" == "0" ]; then
 fi
 
 
-print_group "vit9696"
+print_group "acidanthera"
 #
 print "AirportBrcmFixup"
 if [ "$?" == "0" ]; then
