@@ -27,7 +27,6 @@ FakePCIID
 HibernationFixup
 HWSensors
 IntelGraphicsDVMTFixup
-IntelGraphicsFixup
 IntelMausiEthernet
 kXAudioDriver
 Lilu
@@ -35,10 +34,8 @@ MaciASL
 NightShiftUnlocker
 NoTouchID
 NullCPUPowerManagement
-NvidiaGraphicsFixup
 Realtek RTL8100
 Realtek RTL8111
-Shiki
 ssdtPRGen
 UEFITool
 UEFITool_NE

@@ -140,14 +140,11 @@ function print_group()
                "EnableLidWake" \
                "HibernationFixup" \
                "IntelGraphicsDVMTFixup" \
-               "IntelGraphicsFixup" \
                "Lilu" \
                "NightShiftUnlocker" \
                "NoTouchID" \
-               "NvidiaGraphicsFixup" \
-               "Shiki" \
                "WhateverGreen")
-        title="\n# Update vit9696 kexts and plugins"
+        title="\n# Clone vit9696 kexts and plugins"
     elif [ "$1" == "alexandred" ]; then
         array=("VoodooI2C" \
                "VoodooGPIO" \
@@ -255,12 +252,9 @@ git_pull "CPUFriend"                #PMheart
 git_pull "EnableLidWake"            #syscl
 git_pull "HibernationFixup"         #lvs1974
 git_pull "IntelGraphicsDVMTFixup"   #BarbaraPalvin
-git_pull "IntelGraphicsFixup"       #lvs1974
 git_pull "Lilu"
 git_pull "NightShiftUnlocker"       #Austere-J
 git_pull "NoTouchID"                #al3xtjames
-git_pull "NvidiaGraphicsFixup"      #lvs1974
-git_pull "Shiki"
 git_pull "WhateverGreen"
 
 print_group "vulgo"

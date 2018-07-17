@@ -155,12 +155,9 @@ function print_group()
                "EnableLidWake" \
                "HibernationFixup" \
                "IntelGraphicsDVMTFixup" \
-               "IntelGraphicsFixup" \
                "Lilu" \
                "NightShiftUnlocker" \
                "NoTouchID" \
-               "NvidiaGraphicsFixup" \
-               "Shiki" \
                "WhateverGreen")
         title="\n# Clone vit9696 kexts and plugins"
     elif [ "$1" == "alexandred" ]; then
@@ -270,12 +267,9 @@ git_clone https://github.com/PMheart/CPUFriend.git "CPUFriend"                  
 git_clone https://github.com/syscl/EnableLidWake.git "EnableLidWake"                            #syscl
 git_clone https://github.com/lvs1974/HibernationFixup.git "HibernationFixup"                    #lvs1974
 git_clone https://github.com/BarbaraPalvin/IntelGraphicsDVMTFixup.git "IntelGraphicsDVMTFixup"  #BarbaraPalvin
-git_clone https://github.com/lvs1974/IntelGraphicsFixup.git "IntelGraphicsFixup"                #lvs1974
 git_clone https://github.com/vit9696/Lilu.git "Lilu"
 git_clone https://github.com/Austere-J/NightShiftUnlocker.git "NightShiftUnlocker"              #Austere-J
-git_clone https://github.com/al3xtjames/NoTouchID.git "NoTouchID"                               #al3xtjames         
-git_clone https://github.com/lvs1974/NvidiaGraphicsFixup.git "NvidiaGraphicsFixup"              #lvs1974
-git_clone https://github.com/vit9696/Shiki.git "Shiki"
+git_clone https://github.com/al3xtjames/NoTouchID.git "NoTouchID"                               #al3xtjames
 git_clone https://github.com/vit9696/WhateverGreen.git "WhateverGreen"
 
 print_group "vulgo"

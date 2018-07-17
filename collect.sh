@@ -103,14 +103,11 @@ function print_group()
                "EnableLidWake" \
                "HibernationFixup" \
                "IntelGraphicsDVMTFixup" \
-               "IntelGraphicsFixup" \
                "Lilu" \
                "NightShiftUnlocker" \
                "NoTouchID" \
-               "NvidiaGraphicsFixup" \
-               "Shiki" \
                "WhateverGreen")
-        title="\n# Collect vit9696 kexts and plugins"
+        title="\n# Clone vit9696 kexts and plugins"
     elif [ "$1" == "alexandred" ]; then
         array=("VoodooI2C" \
                "VoodooI2CELAN" \
@@ -410,12 +407,6 @@ if [ "$?" == "0" ]; then
     cp -R "$SOURCE_PATH/IntelGraphicsDVMTFixup/build/Release/IntelGraphicsDVMTFixup.kext" "$COLLECT_PATH/Lilu+Plugins"
 fi
 #
-print "IntelGraphicsFixup"
-if [ "$?" == "0" ]; then
-    mkdir -p "$COLLECT_PATH/Lilu+Plugins"
-    cp -R "$SOURCE_PATH/IntelGraphicsFixup/build/Release/IntelGraphicsFixup.kext" "$COLLECT_PATH/Lilu+Plugins"
-fi
-#
 print "Lilu"
 if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/Lilu+Plugins"
@@ -432,18 +423,6 @@ print "NoTouchID"
 if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/Lilu+Plugins"
     cp -R "$SOURCE_PATH/NoTouchID/build/Release/NoTouchID.kext" "$COLLECT_PATH/Lilu+Plugins"
-fi
-#
-print "NvidiaGraphicsFixup"
-if [ "$?" == "0" ]; then
-    mkdir -p "$COLLECT_PATH/Lilu+Plugins"
-    cp -R "$SOURCE_PATH/NvidiaGraphicsFixup/build/Release/NvidiaGraphicsFixup.kext" "$COLLECT_PATH/Lilu+Plugins"
-fi
-#
-print "Shiki"
-if [ "$?" == "0" ]; then
-    mkdir -p "$COLLECT_PATH/Lilu+Plugins"
-    cp -R "$SOURCE_PATH/Shiki/build/Release/Shiki.kext" "$COLLECT_PATH/Lilu+Plugins"
 fi
 #
 print "WhateverGreen"
