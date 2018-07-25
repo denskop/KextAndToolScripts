@@ -20,7 +20,8 @@
  
 ## Known issues
 ~~1. VoodooHDA prefpane build fails~~<br>
-~~2. NightShiftUnlocker build fails with Xcode 9~~
+~~2. NightShiftUnlocker build fails with Xcode 9~~<br>
+3. NightShiftUnlocker is incompatible with actual Lilu
  
 ## List of supported kexts and tools
 
@@ -87,17 +88,13 @@ with plugins: ACPISensors, CPUSensors,  GPUSensors, LPCSensors
 - [ATH9KFixup](https://github.com/chunnann/ATH9KFixup)
 - [AzulPatcher4600](https://github.com/coderobe/AzulPatcher4600)
 - [BT4LEContiunityFixup](https://github.com/lvs1974/BT4LEContiunityFixup)
-- [CoreDisplayFixup](https://github.com/PMheart/CoreDisplayFixup)
 - [CPUFriend](https://github.com/PMheart/CPUFriend)
 - [EnableLidWake](https://github.com/syscl/EnableLidWake)
 - [HibernationFixup](https://github.com/lvs1974/HibernationFixup)
 - [IntelGraphicsDVMTFixup](https://github.com/BarbaraPalvin/IntelGraphicsDVMTFixup)
-- [IntelGraphicsFixup](https://github.com/lvs1974/IntelGraphicsFixup)
 - [Lilu](https://github.com/vit9696/Lilu)
 - [NightShiftUnlocker](https://github.com/Austere-J/NightShiftUnlocker)
 - [NoTouchID](https://github.com/al3xtjames/NoTouchID)
-- [NvidiaGraphicsFixup](https://github.com/lvs1974/NvidiaGraphicsFixup)
-- [Shiki](https://github.com/vit9696/Shiki)
 - [WhateverGreen](https://github.com/vit9696/WhateverGreen)
 
 ### 14. vulgo tools
