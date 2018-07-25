@@ -262,7 +262,6 @@ git_clone https://github.com/acidanthera/AppleALC.git "AppleALC"
 git_clone https://github.com/chunnann/ATH9KFixup.git "ATH9KFixup"                               #chunnann
 git_clone https://github.com/coderobe/AzulPatcher4600.git "AzulPatcher4600"                     #coderobe
 git_clone https://github.com/lvs1974/BT4LEContiunityFixup.git "BT4LEContiunityFixup"            #lvs1974
-git_clone https://github.com/PMheart/CoreDisplayFixup.git "CoreDisplayFixup"                    #PMheart
 git_clone https://github.com/PMheart/CPUFriend.git "CPUFriend"                                  #PMheart
 git_clone https://github.com/syscl/EnableLidWake.git "EnableLidWake"                            #syscl
 git_clone https://github.com/lvs1974/HibernationFixup.git "HibernationFixup"                    #lvs1974

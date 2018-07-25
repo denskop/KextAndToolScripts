@@ -630,7 +630,6 @@ xcode_build2 "AppleALC/AppleALC.xcodeproj" "AppleALC" Release plugin
 xcode_build2 "ATH9KFixup/ATH9KFixup.xcodeproj" "ATH9KFixup" Release plugin                                      #chunnann
 xcode_build2 "AzulPatcher4600/AzulPatcher4600.xcodeproj" "AzulPatcher4600" Release plugin                       #coderobe
 xcode_build2 "BT4LEContiunityFixup/BT4LEContiunityFixup.xcodeproj" "BT4LEContiunityFixup" Release plugin        #lvs1974
-xcode_build2 "CoreDisplayFixup/CoreDisplayFixup.xcodeproj" "CoreDisplayFixup" Release plugin                    #PMheart
 xcode_build2 "CPUFriend/CPUFriend.xcodeproj" "CPUFriend" Release plugin                                         #PMheart
 xcode_build2 "EnableLidWake/EnableLidWake.xcodeproj" "EnableLidWake" Release plugin                             #syscl
 xcode_build2 "HibernationFixup/HibernationFixup.xcodeproj" "HibernationFixup" Release plugin                    #lvs1974

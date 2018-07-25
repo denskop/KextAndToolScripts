@@ -377,12 +377,6 @@ if [ "$?" == "0" ]; then
     cp -R "$SOURCE_PATH/BT4LEContiunityFixup/build/Release/BT4LEContiunityFixup.kext" "$COLLECT_PATH/Lilu+Plugins"
 fi
 #
-print "CoreDisplayFixup"
-if [ "$?" == "0" ]; then
-    mkdir -p "$COLLECT_PATH/Lilu+Plugins"
-    cp -R "$SOURCE_PATH/CoreDisplayFixup/build/Release/CoreDisplayFixup.kext" "$COLLECT_PATH/Lilu+Plugins"
-fi
-#
 print "CPUFriend"
 if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/Lilu+Plugins"
