@@ -1,0 +1,19 @@
+diff --git a/HWPEnabler/main.m b/HWPEnabler/main.m
+index c9946b0..c975bce 100644
+--- a/HWPEnabler/main.m
++++ b/HWPEnabler/main.m
+@@ -96,10 +96,12 @@ int main(int argc, const char * argv[])
+     char * msr;
+     char * regvalue;
+     io_service_t service = getService();
++    kern_return_t ret;
++    io_connect_t connect = 0;
++    
+ 	if(!service)
+ 		goto failure;
+-	kern_return_t ret;
+-	io_connect_t connect = 0;
++	
+ 	ret = IOServiceOpen(service, mach_task_self(), 0, &connect);
+ 	if (ret != KERN_SUCCESS)
+     {
