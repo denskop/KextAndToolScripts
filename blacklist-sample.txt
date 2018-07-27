@@ -24,6 +24,7 @@ EfiPkg
 EnableLidWake
 FakePCIID
 HibernationFixup
+HWPEnable
 HWSensors
 IntelGraphicsDVMTFixup
 IntelMausiEthernet

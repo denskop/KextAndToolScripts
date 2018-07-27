@@ -150,7 +150,6 @@ function print_group()
                "ATH9KFixup" \
                "AzulPatcher4600" \
                "BT4LEContiunityFixup" \
-               "CoreDisplayFixup" \
                "CPUFriend" \
                "EnableLidWake" \
                "HibernationFixup" \
@@ -169,6 +168,9 @@ function print_group()
                "VoodooI2CUPDDEngine" \
                "VoodooI2C ACPI Patches")
         title="\n# Clone alexandred kexts"
+    elif [ "$1" == "goodwin" ]; then
+        array=("HWPEnable")
+        title="\n# Clone goodwin kexts"
     elif [ "$1" == "piker_alpha" ]; then
         array=("AppleIntelInfo" \
                "csrstat" \
@@ -288,6 +290,9 @@ git_clone https://github.com/blankmac/VoodooI2CUPDDEngine.git "VoodooI2C/VoodooI
 
 # Patches
 git_clone https://github.com/alexandred/VoodooI2C-Patches.git "VoodooI2C/VoodooI2C ACPI Patches"
+
+print_group "goodwin"
+git_clone https://github.com/goodwin/HWPEnable.git "HWPEnable"
 
 print_group "piker_alpha"
 git_clone https://github.com/Piker-Alpha/AppleIntelInfo.git "AppleIntelInfo"

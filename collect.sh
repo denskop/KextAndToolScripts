@@ -98,7 +98,6 @@ function print_group()
                "ATH9KFixup" \
                "AzulPatcher4600" \
                "BT4LEContiunityFixup" \
-               "CoreDisplayFixup" \
                "CPUFriend" \
                "EnableLidWake" \
                "HibernationFixup" \
@@ -116,6 +115,9 @@ function print_group()
                "VoodooI2CUPDDEngine" \
                "VoodooI2C ACPI Patches")
         title="\n# Collect alexandred kexts"
+    elif [ "$1" == "goodwin" ]; then
+        array=("HWPEnable")
+        title="\n# Collect goodwin kexts"
     elif [ "$1" == "piker_alpha" ]; then
         array=("AppleIntelInfo" \
                "csrstat" \
@@ -148,6 +150,11 @@ if [ -f "$SELF_PATH/$blacklist_file" ]; then
     blacklist_file_exist="true"
 else
     echo "Blacklist file: Not exist"
+fi
+
+# Cleanup collect folder
+if [ -d "$COLLECT_PAT" ]; then
+    rm -R "$COLLECT_PATH"
 fi
 
 print_group "acpica"
@@ -184,20 +191,20 @@ if [ "$?" == "0" ]; then
     rm -rf "$COLLECT_PATH/CPU/Intel"
 
     mkdir -p "$COLLECT_PATH/CPU/AMD"
-    mkdir -p "$COLLECT_PATH/CPU/Intel"
+    mkdir -p "$COLLECT_PATH/CPU/Intel/VoodooTSCSync"
 
     # Intel
-    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync2TH.kext"
-    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync4TH.kext"
-    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync6TH.kext"
-    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync8TH.kext"
-    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync12TH.kext"
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync/VoodooTSCSync2TH.kext"
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync/VoodooTSCSync4TH.kext"
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync/VoodooTSCSync6TH.kext"
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync/VoodooTSCSync8TH.kext"
+    cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSync.kext" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync/VoodooTSCSync12TH.kext"
 
     # Patch plists
-    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSync:IOPropertyMatch:IOCPUNumber 3" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync4TH.kext/Contents/Info.plist"
-    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSync:IOPropertyMatch:IOCPUNumber 5" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync6TH.kext/Contents/Info.plist"
-    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSync:IOPropertyMatch:IOCPUNumber 7" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync8TH.kext/Contents/Info.plist"
-    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSync:IOPropertyMatch:IOCPUNumber 11" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync12TH.kext/Contents/Info.plist"
+    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSync:IOPropertyMatch:IOCPUNumber 3" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync/VoodooTSCSync4TH.kext/Contents/Info.plist"
+    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSync:IOPropertyMatch:IOCPUNumber 5" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync/VoodooTSCSync6TH.kext/Contents/Info.plist"
+    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSync:IOPropertyMatch:IOCPUNumber 7" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync/VoodooTSCSync8TH.kext/Contents/Info.plist"
+    /usr/libexec/PlistBuddy -c "Set :IOKitPersonalities:VoodooTSCSync:IOPropertyMatch:IOCPUNumber 11" "$COLLECT_PATH/CPU/Intel/VoodooTSCSync/VoodooTSCSync12TH.kext/Contents/Info.plist"
 
     # AMD
     cp -R "$SOURCE_PATH/VoodooTSCSync/build/Release/VoodooTSCSyncAMD.kext" "$COLLECT_PATH/CPU/AMD/VoodooTSCSyncAMD2Cores.kext"
@@ -471,6 +478,15 @@ if [ "$?" == "0" ]; then
     cp -R "$SOURCE_PATH/VoodooI2C/VoodooI2C ACPI Patches/Controllers" "$COLLECT_PATH/Laptop/VoodooI2C/ACPI Patches/"
     cp -R "$SOURCE_PATH/VoodooI2C/VoodooI2C ACPI Patches/GPIO" "$COLLECT_PATH/Laptop/VoodooI2C/ACPI Patches/"
     cp -R "$SOURCE_PATH/VoodooI2C/VoodooI2C ACPI Patches/Windows" "$COLLECT_PATH/Laptop/VoodooI2C/ACPI Patches/"
+fi
+
+print_group "goodwin"
+#
+print "HWPEnable"
+if [ "$?" == "0" ]; then
+    mkdir -p "$COLLECT_PATH/CPU/Intel/HWPEnable"
+    cp -R "$SOURCE_PATH/HWPEnable/build/Release/HWPEnabler.kext" "$COLLECT_PATH/CPU/Intel/HWPEnable"
+    cp -R "$SOURCE_PATH/HWPEnable/build/Release/hwpenabler" "$COLLECT_PATH/CPU/Intel/HWPEnable"
 fi
 
 print_group "piker_alpha"

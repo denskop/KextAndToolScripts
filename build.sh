@@ -323,7 +323,6 @@ function print_group()
                "ATH9KFixup" \
                "AzulPatcher4600" \
                "BT4LEContiunityFixup" \
-               "CoreDisplayFixup" \
                "CPUFriend" \
                "EnableLidWake" \
                "HibernationFixup" \
@@ -342,6 +341,9 @@ function print_group()
                "VoodooI2CUPDDEngine" \
                "VoodooI2C ACPI Patches")
         title="\n# $build_cmd alexandred kexts"
+    elif [ "$1" == "goodwin" ]; then
+        array=("HWPEnable")
+        title="\n# Clone goodwin kexts"
     elif [ "$1" == "piker_alpha" ]; then
         array=("AppleIntelInfo" \
                "csrstat" \
@@ -668,6 +670,11 @@ if [ "$build_cmd" != "clean" ] && [ "$check1" != "1" ] && [ "$check2" != "1" ]; 
 fi
 #
 xcode_build "VoodooI2C/VoodooI2C/VoodooI2C.xcodeproj" "VoodooI2C" Release force
+
+print_group "goodwin"
+xcode_build "HWPEnable/HWPEnabler.xcodeproj" "HWPEnabler" Release
+# HWP check util
+xcode_build "HWPEnable/HWPEnabler.xcodeproj" "hwpenabler" Release
 
 print_group "piker_alpha"
 xcode_build "AppleIntelInfo/AppleIntelInfo.xcodeproj" "AppleIntelInfo" Release
