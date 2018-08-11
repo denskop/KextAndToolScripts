@@ -226,6 +226,41 @@ function edk2_build()
     return "0"
 }
 
+# cmake_build
+# args: <folder> optional: <string>
+function cmake_build()
+{
+    if [ -z "$2" ]; then
+        check_in_blacklist "$(basename "$1")"
+    else
+        check_in_blacklist "$2"
+    fi
+
+    if [ "$?" == "1" ]; then
+        return "1"
+    fi
+
+    if [ -z "$2" ]; then
+        echo "🔹 $(tput bold)$1$(tput sgr0)"
+    else
+        echo "🔹 $(tput bold)$2$(tput sgr0)"
+    fi
+
+    if [ "$cmake_found" == "false" ]; then
+        echo "Skipping..."
+        return "1"
+    fi
+
+    pushd "$SOURCE_PATH/$1" >/dev/null
+
+    cmake .
+    make
+
+    popd >/dev/null
+    return "0"
+}
+
+
 # gcc_build
 # args: <folder> optional: <string>
 function gcc_build()
@@ -292,7 +327,9 @@ function print_group()
         array=("UEFITool" \
                "UEFITool_NE" \
                "UEFIExtract" \
-               "UEFIFind")
+               "UEFIFind" \
+               "UEFIPatch" \
+               "UEFIReplace")
         title="\n# $build_cmd LongSoft tools"
     elif [ "$1" == "vulgo" ]; then
         array=("bootoption")
@@ -425,6 +462,16 @@ else
     echo "4. mtoc: Installed"
 fi
 
+# Check cmake
+cmake_found="false"
+
+if [ "$(which cmake)" == "" ]; then
+    echo "5. cmake: Not Installed, skip building CMake-based tools..."
+else
+    echo "5. cmake: Installed"
+    cmake_found="true"
+fi
+
 # Check qmake
 qmake_found="false"
 
@@ -463,9 +510,9 @@ for candidate in "${qmake_candidates[@]}"; do
 done
 
 if [ "$qmake_found" == "false" ]; then
-    echo "5. qmake: Not Installed, skipping Qt apps building..."
+    echo "6. qmake: Not Installed, skipping Qt apps building..."
 else
-    echo "5. qmake: Installed"
+    echo "6. qmake: Installed"
     qmake=$QMAKEPATH
 fi
 
@@ -548,10 +595,12 @@ xcode_build "kXAudioDriver/macosx/10kx driver.xcodeproj" "kXAudioDriver" Deploym
 
 print_group "longsoft"
 qt_build "UEFITool/uefitool.pro" "UEFITool"
-qt_build "UEFITool_NE/UEFITool/uefitool.pro" "UEFITool_NE"
+qt_build "UEFITool/UEFIPatch/uefipatch.pro" "UEFIPatch"
+qt_build "UEFITool/UEFIReplace/uefireplace.pro" "UEFIReplace"
 #
-qt_build "UEFITool_NE/UEFIExtract/uefiextract.pro" "UEFIExtract"
-qt_build "UEFITool_NE/UEFIFind/uefifind.pro" "UEFIFind"
+qt_build "UEFITool_NE/UEFITool/uefitool.pro" "UEFITool_NE"
+cmake_build "UEFITool_NE/UEFIExtract" "UEFIExtract"
+cmake_build "UEFITool_NE/UEFIFind" "UEFIFind"
 
 print_group "mieze"
 if  [[ $minor_ver < 12 ]]; then # if [macOS < 10.12]; then

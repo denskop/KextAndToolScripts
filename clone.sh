@@ -119,7 +119,11 @@ function print_group()
         title="\n# Clone denskop forks"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
-               "UEFITool_NE")
+               "UEFITool_NE" \
+               "UEFIExtract" \
+               "UEFIFind" \
+               "UEFIPatch" \
+               "UEFIReplace")
         title="\n# Clone LongSoft tools"
     elif [ "$1" == "vulgo" ]; then
         array=("bootoption")
@@ -334,6 +338,20 @@ else
     echo "2. mtoc - $(tput bold)PASSED$(tput sgr0)"
 fi
 
+# Check cmake
+if [ "$(which cmake)" != "" ]; then
+    echo "3. cmake - $(tput bold)PASSED$(tput sgr0)"
+
+else
+    echo "3. cmake - $(tput bold)FAILED$(tput sgr0)"
+    if [ "$(brew -v 2>&1 | grep Homebrew)" == "" ]; then
+        echo -e "\nInstalling Homebrew..."
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        echo -e "\nInstalling cmake..."
+        brew install cmake
+    fi
+fi
+
 # Check qmake
 qmake_found="false"
 
@@ -373,9 +391,9 @@ for candidate in "${qmake_candidates[@]}"; do
 done
 
 if [ "$qmake_found" == "true" ]; then
-    echo "3. qmake - $(tput bold)PASSED$(tput sgr0). Found at: $QMAKEPATH"
+    echo "4. qmake - $(tput bold)PASSED$(tput sgr0). Found at: $QMAKEPATH"
 else
-    echo "3. qmake - $(tput bold)FAILED$(tput sgr0)."
+    echo "4. qmake - $(tput bold)FAILED$(tput sgr0)."
     if [ "$(brew -v 2>&1 | grep Homebrew)" == "" ]; then
         echo -e "\nInstalling Homebrew..."
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

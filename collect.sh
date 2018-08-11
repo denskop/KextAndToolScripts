@@ -67,7 +67,9 @@ function print_group()
         array=("UEFITool" \
                "UEFITool_NE" \
                "UEFIExtract" \
-               "UEFIFind")
+               "UEFIFind" \
+               "UEFIPatch" \
+               "UEFIReplace")
         title="\n# Collect LongSoft tools"
     elif [ "$1" == "vulgo" ]; then
         array=("bootoption")
@@ -241,6 +243,9 @@ print "UEFITool"
 if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/Tools/UEFITool"
     cp -R "$SOURCE_PATH/UEFITool/UEFITool.app" "$COLLECT_PATH/Tools/UEFITool/UEFITool.app"
+    #
+    cp -R "$SOURCE_PATH/UEFITool/UEFIPatch/UEFIPatch" "$COLLECT_PATH/Tools/UEFITool/UEFIPatch"
+    cp -R "$SOURCE_PATH/UEFITool/UEFIReplace/UEFIReplace" "$COLLECT_PATH/Tools/UEFITool/UEFIReplace"
 fi
 #
 print "UEFITool_NE"

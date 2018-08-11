@@ -104,7 +104,11 @@ function print_group()
         title="\n# Update kxproject kexts"
     elif [ "$1" == "longsoft" ]; then
         array=("UEFITool" \
-               "UEFITool_NE")
+               "UEFITool_NE" \
+               "UEFIExtract" \
+               "UEFIFind" \
+               "UEFIPatch" \
+               "UEFIReplace")
         title="\n# Update LongSoft tools"
     elif [ "$1" == "vulgo" ]; then
         array=("bootoption")
