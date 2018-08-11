@@ -2,6 +2,7 @@
 - macOS
 - Command Line Tools
 - Xcode (optional)
+- cmake (optional)
 - Qt (optional)
 
 ## Scripts description

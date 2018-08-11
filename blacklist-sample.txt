@@ -26,7 +26,6 @@ FakePCIID
 HibernationFixup
 HWPEnable
 HWSensors
-IntelGraphicsDVMTFixup
 IntelMausiEthernet
 kXAudioDriver
 Lilu
@@ -41,6 +40,8 @@ UEFITool
 UEFITool_NE
 UEFIExtract
 UEFIFind
+UEFIPatch
+UEFIReplace
 Universal IFR Extractor
 USBInjectAll
 VoodooGPIO
