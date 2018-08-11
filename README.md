@@ -78,14 +78,13 @@ with plugins: ACPISensors, CPUSensors,  GPUSensors, LPCSensors
 - [ACPI Keyboard](https://github.com/RehabMan/OS-X-ACPI-Keyboard)
 - [BrcmPatchRAM](https://github.com/RehabMan/OS-X-BrcmPatchRAM)
 - [FakePCIID](https://github.com/RehabMan/OS-X-Fake-PCI-ID)
-- [MaciASL](https://github.com/RehabMan/OS-X-MaciASL-patchmatic)
 - [USBInjectAll](https://github.com/RehabMan/OS-X-USB-Inject-All)
 - [VoodooPS2](https://github.com/RehabMan/OS-X-Voodoo-PS2-Controller)
 
 ### 13. Slice kexts
 - [VoodooHDA](https://sourceforge.net/projects/voodoohda/)
 
-### 14. vit9696 kexts and plugins
+### 14. acidanthera kexts and plugins
 - [AirportBrcmFixup](https://github.com/lvs1974/AirportBrcmFixup)
 - [AppleALC](https://github.com/vit9696/AppleALC)
 - [ATH9KFixup](https://github.com/chunnann/ATH9KFixup)
@@ -96,6 +95,7 @@ with plugins: ACPISensors, CPUSensors,  GPUSensors, LPCSensors
 - [HibernationFixup](https://github.com/lvs1974/HibernationFixup)
 - [IntelGraphicsDVMTFixup](https://github.com/BarbaraPalvin/IntelGraphicsDVMTFixup)
 - [Lilu](https://github.com/vit9696/Lilu)
+- [MaciASL](https://github.com/RehabMan/OS-X-MaciASL-patchmatic)
 - [NightShiftUnlocker](https://github.com/Austere-J/NightShiftUnlocker)
 - [NoTouchID](https://github.com/al3xtjames/NoTouchID)
 - [WhateverGreen](https://github.com/vit9696/WhateverGreen)
