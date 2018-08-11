@@ -639,7 +639,7 @@ xcode_build2 "NightShiftUnlocker/NightShiftUnlocker.xcodeproj" "NightShiftUnlock
 xcode_build2 "NoTouchID/NoTouchID.xcodeproj" "NoTouchID" Release plugin                                         #al3xtjames
 xcode_build2 "WhateverGreen/WhateverGreen.xcodeproj" "WhateverGreen" Release plugin
 
-xcode_build "MaciASL/MaciASL.xcodeproj" "MaciASL" Release force
+xcode_build "MaciASL/MaciASL.xcodeproj" "MaciASL" Release
 
 print_group "vulgo"
 xcode_build "bootoption/bootoption.xcodeproj" "bootoption" Release
