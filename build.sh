@@ -325,7 +325,6 @@ function print_group()
                "CPUFriend" \
                "EnableLidWake" \
                "HibernationFixup" \
-               "IntelGraphicsDVMTFixup" \
                "Lilu" \
                "NightShiftUnlocker" \
                "NoTouchID" \
@@ -632,7 +631,6 @@ xcode_build2 "BT4LEContiunityFixup/BT4LEContiunityFixup.xcodeproj" "BT4LEContiun
 xcode_build2 "CPUFriend/CPUFriend.xcodeproj" "CPUFriend" Release plugin                                         #PMheart
 xcode_build2 "EnableLidWake/EnableLidWake.xcodeproj" "EnableLidWake" Release plugin                             #syscl
 xcode_build2 "HibernationFixup/HibernationFixup.xcodeproj" "HibernationFixup" Release plugin                    #lvs1974
-xcode_build2 "IntelGraphicsDVMTFixup/IntelGraphicsDVMTFixup.xcodeproj" "IntelGraphicsDVMTFixup" Release plugin  #lvs1974
 xcode_build2 "NightShiftUnlocker/NightShiftUnlocker.xcodeproj" "NightShiftUnlocker" Release plugin              #Austere-J
 xcode_build2 "NoTouchID/NoTouchID.xcodeproj" "NoTouchID" Release plugin                                         #al3xtjames
 xcode_build2 "WhateverGreen/WhateverGreen.xcodeproj" "WhateverGreen" Release plugin

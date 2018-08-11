@@ -152,7 +152,6 @@ function print_group()
                "CPUFriend" \
                "EnableLidWake" \
                "HibernationFixup" \
-               "IntelGraphicsDVMTFixup" \
                "Lilu" \
                "NightShiftUnlocker" \
                "NoTouchID" \
@@ -266,7 +265,6 @@ git_clone https://github.com/lvs1974/BT4LEContiunityFixup.git "BT4LEContiunityFi
 git_clone https://github.com/PMheart/CPUFriend.git "CPUFriend"                                  #PMheart
 git_clone https://github.com/syscl/EnableLidWake.git "EnableLidWake"                            #syscl
 git_clone https://github.com/lvs1974/HibernationFixup.git "HibernationFixup"                    #lvs1974
-git_clone https://github.com/BarbaraPalvin/IntelGraphicsDVMTFixup.git "IntelGraphicsDVMTFixup"  #BarbaraPalvin
 git_clone https://github.com/acidanthera/Lilu.git "Lilu"
 git_clone https://github.com/Austere-J/NightShiftUnlocker.git "NightShiftUnlocker"              #Austere-J
 git_clone https://github.com/al3xtjames/NoTouchID.git "NoTouchID"                               #al3xtjames

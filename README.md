@@ -93,7 +93,6 @@ with plugins: ACPISensors, CPUSensors,  GPUSensors, LPCSensors
 - [CPUFriend](https://github.com/PMheart/CPUFriend)
 - [EnableLidWake](https://github.com/syscl/EnableLidWake)
 - [HibernationFixup](https://github.com/lvs1974/HibernationFixup)
-- [IntelGraphicsDVMTFixup](https://github.com/BarbaraPalvin/IntelGraphicsDVMTFixup)
 - [Lilu](https://github.com/vit9696/Lilu)
 - [MaciASL](https://github.com/RehabMan/OS-X-MaciASL-patchmatic)
 - [NightShiftUnlocker](https://github.com/Austere-J/NightShiftUnlocker)

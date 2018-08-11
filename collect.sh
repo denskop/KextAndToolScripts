@@ -100,7 +100,6 @@ function print_group()
                "CPUFriend" \
                "EnableLidWake" \
                "HibernationFixup" \
-               "IntelGraphicsDVMTFixup" \
                "Lilu" \
                "NightShiftUnlocker" \
                "NoTouchID" \
@@ -394,12 +393,6 @@ print "HibernationFixup"
 if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/Lilu+Plugins"
     cp -R "$SOURCE_PATH/HibernationFixup/build/Release/HibernationFixup.kext" "$COLLECT_PATH/Lilu+Plugins"
-fi
-#
-print "IntelGraphicsDVMTFixup"
-if [ "$?" == "0" ]; then
-    mkdir -p "$COLLECT_PATH/Lilu+Plugins"
-    cp -R "$SOURCE_PATH/IntelGraphicsDVMTFixup/build/Release/IntelGraphicsDVMTFixup.kext" "$COLLECT_PATH/Lilu+Plugins"
 fi
 #
 print "Lilu"
