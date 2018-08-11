@@ -122,7 +122,6 @@ function print_group()
                "ACPI Keyboard" \
                "BrcmPatchRAM" \
                "FakePCIID" \
-               "MaciASL" \
                "USBInjectAll" \
                "VoodooPS2")
         title="\n# Update RehabMan kexts and tools"
@@ -142,7 +141,8 @@ function print_group()
                "Lilu" \
                "NightShiftUnlocker" \
                "NoTouchID" \
-               "WhateverGreen")
+               "WhateverGreen" \
+               "MaciASL")
         title="\n# Update acidanthera kexts and plugins"
     elif [ "$1" == "alexandred" ]; then
         array=("VoodooI2C" \
@@ -236,7 +236,6 @@ git_pull "ACPI Debug"
 git_pull "ACPI Keyboard"
 git_pull "BrcmPatchRAM"
 git_pull "FakePCIID"
-git_pull "MaciASL"
 git_pull "USBInjectAll"
 git_pull "VoodooPS2"
 
@@ -257,6 +256,8 @@ git_pull "Lilu"
 git_pull "NightShiftUnlocker"       #Austere-J
 git_pull "NoTouchID"                #al3xtjames
 git_pull "WhateverGreen"
+
+git_pull "MaciASL"
 
 print_group "vulgo"
 git_pull "bootoption"

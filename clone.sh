@@ -137,7 +137,6 @@ function print_group()
                "ACPI Keyboard" \
                "BrcmPatchRAM" \
                "FakePCIID" \
-               "MaciASL" \
                "USBInjectAll" \
                "VoodooPS2") \
         title="\n# Clone RehabMan kexts and tools"
@@ -157,7 +156,8 @@ function print_group()
                "Lilu" \
                "NightShiftUnlocker" \
                "NoTouchID" \
-               "WhateverGreen")
+               "WhateverGreen" \
+               "MaciASL")
         title="\n# Clone acidanthera kexts and plugins"
     elif [ "$1" == "alexandred" ]; then
         array=("VoodooI2C" \
@@ -251,7 +251,6 @@ git_clone https://github.com/RehabMan/OS-X-ACPI-Debug.git "ACPI Debug"
 git_clone https://github.com/RehabMan/OS-X-ACPI-Keyboard.git "ACPI Keyboard"
 git_clone https://github.com/RehabMan/OS-X-BrcmPatchRAM.git "BrcmPatchRAM"
 git_clone https://github.com/RehabMan/OS-X-Fake-PCI-ID.git "FakePCIID"
-git_clone https://github.com/RehabMan/OS-X-MaciASL-patchmatic.git "MaciASL"
 git_clone https://github.com/RehabMan/OS-X-USB-Inject-All.git "USBInjectAll"
 git_clone https://github.com/RehabMan/OS-X-Voodoo-PS2-Controller.git "VoodooPS2"
 
@@ -272,6 +271,8 @@ git_clone https://github.com/acidanthera/Lilu.git "Lilu"
 git_clone https://github.com/Austere-J/NightShiftUnlocker.git "NightShiftUnlocker"              #Austere-J
 git_clone https://github.com/al3xtjames/NoTouchID.git "NoTouchID"                               #al3xtjames
 git_clone https://github.com/acidanthera/WhateverGreen.git "WhateverGreen"
+
+git_clone https://github.com/acidanthera/MaciASL.git "MaciASL"
 
 print_group "vulgo"
 git_clone https://github.com/vulgo/bootoption.git "bootoption"

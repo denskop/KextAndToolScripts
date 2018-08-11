@@ -310,7 +310,6 @@ function print_group()
                "ACPI Keyboard" \
                "BrcmPatchRAM" \
                "FakePCIID" \
-               "MaciASL" \
                "USBInjectAll" \
                "VoodooPS2")
         title="\n# $build_cmd RehabMan kexts and tools"
@@ -330,7 +329,8 @@ function print_group()
                "Lilu" \
                "NightShiftUnlocker" \
                "NoTouchID" \
-               "WhateverGreen")
+               "WhateverGreen" \
+               "MaciASL")
         title="\n# $build_cmd acidanthera kexts and plugins"
     elif [ "$1" == "alexandred" ]; then
         array=("VoodooI2C" \
@@ -604,7 +604,6 @@ xcode_build "FakePCIID/FakePCIID.xcodeproj" "FakePCIID_Broadcom_WiFi" Release pl
 xcode_build "FakePCIID/FakePCIID.xcodeproj" "FakePCIID_BCM57XX_as_BCM57765" Release plugin force
 xcode_build "FakePCIID/FakePCIID.xcodeproj" "FakePCIID_Intel_GbX" Release plugin force
 xcode_build "FakePCIID/FakePCIID.xcodeproj" "FakePCIID_XHCIMux" Release plugin force
-xcode_build "MaciASL/MaciASL.xcodeproj" "MaciASL" Release force
 xcode_build "USBInjectAll/USBInjectAll.xcodeproj" "USBInjectAll" Release force
 xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "VoodooPS2Controller" Release force
 xcode_build "VoodooPS2/VoodooPS2Controller.xcodeproj" "VoodooPS2Keyboard" Release plugin force
@@ -639,6 +638,8 @@ xcode_build2 "IntelGraphicsDVMTFixup/IntelGraphicsDVMTFixup.xcodeproj" "IntelGra
 xcode_build2 "NightShiftUnlocker/NightShiftUnlocker.xcodeproj" "NightShiftUnlocker" Release plugin              #Austere-J
 xcode_build2 "NoTouchID/NoTouchID.xcodeproj" "NoTouchID" Release plugin                                         #al3xtjames
 xcode_build2 "WhateverGreen/WhateverGreen.xcodeproj" "WhateverGreen" Release plugin
+
+xcode_build "MaciASL/MaciASL.xcodeproj" "MaciASL" Release force
 
 print_group "vulgo"
 xcode_build "bootoption/bootoption.xcodeproj" "bootoption" Release

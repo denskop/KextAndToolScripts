@@ -85,7 +85,6 @@ function print_group()
                "ACPI Keyboard" \
                "BrcmPatchRAM" \
                "FakePCIID" \
-               "MaciASL" \
                "USBInjectAll" \
                "VoodooPS2")
         title="\n# Collect RehabMan kexts and tools"
@@ -105,7 +104,8 @@ function print_group()
                "Lilu" \
                "NightShiftUnlocker" \
                "NoTouchID" \
-               "WhateverGreen")
+               "WhateverGreen" \
+               "MaciASL")
         title="\n# Collect acidanthera kexts and plugins"
     elif [ "$1" == "alexandred" ]; then
         array=("VoodooI2C" \
@@ -318,12 +318,6 @@ if [ "$?" == "0" ]; then
     cp -R "$SOURCE_PATH/FakePCIID/build/Release/" "$COLLECT_PATH/FakePCIID/"
 fi
 #
-print "MaciASL"
-if [ "$?" == "0" ]; then
-    mkdir -p "$COLLECT_PATH/Tools"
-    cp -R "$SOURCE_PATH/MaciASL/build/Release/MaciASL.app" "$COLLECT_PATH/Tools/"
-fi
-#
 print "USBInjectAll"
 if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/USB/USBInjectAll"
@@ -430,6 +424,12 @@ print "WhateverGreen"
 if [ "$?" == "0" ]; then
     mkdir -p "$COLLECT_PATH/Lilu+Plugins"
     cp -R "$SOURCE_PATH/WhateverGreen/build/Release/WhateverGreen.kext" "$COLLECT_PATH/Lilu+Plugins"
+fi
+#
+print "MaciASL"
+if [ "$?" == "0" ]; then
+    mkdir -p "$COLLECT_PATH/Tools"
+    cp -R "$SOURCE_PATH/MaciASL/build/Release/MaciASL.app" "$COLLECT_PATH/Tools/"
 fi
 
 print_group "vulgo"
